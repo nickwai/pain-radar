@@ -162,6 +162,16 @@ def call_gemini(prompt: str, model: str, api_key: str, thinking_budget: int | No
             text = data["candidates"][0]["content"]["parts"][0]["text"]
             return json.loads(text)
         except urllib.error.HTTPError as exc:
+            # BUG FIX: a bare HTTPError's str() is just "HTTP Error 400: Bad
+            # Request" - useless for debugging. Google's actual reason lives
+            # in the response BODY, which is still readable off the
+            # exception object here (it hasn't been consumed yet). Print it
+            # now, since a non-retryable code means this is the only chance.
+            try:
+                body = exc.read().decode("utf-8", errors="replace")[:1000]
+            except Exception:  # noqa: BLE001 - body read is best-effort
+                body = "(could not read response body)"
+            print(f"[synthesize] Gemini HTTP {exc.code} body: {body}", flush=True)
             last_exc = exc
             # 503/429 are transient (model overloaded / rate limit) - worth a
             # retry. Anything else (400 bad request, 403 bad key) will never

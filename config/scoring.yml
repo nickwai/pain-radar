@@ -87,15 +87,21 @@ synthesis:
   #     your brief (a licence, a team, big upfront capital, a network
   #     effect) - if true, the idea is dropped no matter how it scores.
 
-  model: gemini-flash-latest  # Google's own floating alias for "whatever
-                           # flash model is current" - avoids ever hardcoding
-                           # a model name that later goes end-of-life
-                           # (gemini-2.5-flash already has, for new API keys,
-                           # as of this project, 2026-09 - verified live).
+  model: gemini-3.5-flash-lite  # PINNED, not a "-latest" alias.
+                           # Learned the hard way: "gemini-flash-latest"
+                           # silently repointed to a brand-new preview model
+                           # (gemini-3.8-flash) with a free-tier cap of only
+                           # 20 requests/DAY - normal testing exhausted it in
+                           # under an hour. A pinned, established model name
+                           # doesn't move under you like that. Verified live
+                           # (2026-09-23): works, no quota wall hit, handles
+                           # the full schema correctly. If Google retires
+                           # this one too, `python3 run.py check-gemini`
+                           # would be worth adding - for now just re-verify
+                           # with a plain curl before changing this value.
                            # Override with GEMINI_MODEL env var.
-  thinking_budget: 0       # 0 = skip extended reasoning. This is clustering
-                           # + scoring against a fixed rubric, not a problem
-                           # that benefits from step-by-step thinking, and
-                           # thinking tokens are NOT free-tier-unlimited the
-                           # same way output tokens effectively are at this
-                           # volume - keep it capped.
+  thinking_budget:         # null = omit thinkingConfig entirely. Leave this
+                           # blank/null unless you've verified your chosen
+                           # model accepts the field - gemini-3.5-flash-lite
+                           # returns a 400 INVALID_ARGUMENT if you set this,
+                           # it doesn't just ignore it (confirmed live).

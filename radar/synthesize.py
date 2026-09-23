@@ -132,20 +132,27 @@ def _http_post_json(url: str, payload: dict, headers: dict, timeout: int = 90) -
         return json.loads(resp.read().decode("utf-8"))
 
 
-def call_gemini(prompt: str, model: str, api_key: str, thinking_budget: int,
+def call_gemini(prompt: str, model: str, api_key: str, thinking_budget: int | None,
                 retries: int = 5) -> list[dict]:
     """Free-tier Gemini genuinely 503s/429s/times-out under real load - this
     isn't hypothetical, it happened repeatedly while building this. A cron
     run has no one watching it retry by hand, so this backs off for real:
-    2s, 4s, 8s, 16s, 32s (~1 min total) before giving up to Groq/failure."""
+    2s, 4s, 8s, 16s, 32s (~1 min total) before giving up to Groq/failure.
+
+    thinkingConfig is OMITTED entirely when thinking_budget is None - some
+    models (gemini-3.5-flash-lite, confirmed live) reject the field outright
+    with a 400 INVALID_ARGUMENT, they don't just ignore it. Only pass a real
+    budget for a model you've verified accepts it."""
     url = GEMINI_URL_TMPL.format(model=model) + f"?key={api_key}"
+    generation_config: dict = {
+        "responseMimeType": "application/json",
+        "responseSchema": RESPONSE_SCHEMA,
+    }
+    if thinking_budget is not None:
+        generation_config["thinkingConfig"] = {"thinkingBudget": thinking_budget}
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {
-            "responseMimeType": "application/json",
-            "responseSchema": RESPONSE_SCHEMA,
-            "thinkingConfig": {"thinkingBudget": thinking_budget},
-        },
+        "generationConfig": generation_config,
     }
     last_exc: Exception | None = None
     for attempt in range(retries):
@@ -207,10 +214,10 @@ def synthesize_raw(posts: list[dict], config: dict, env: dict | None = None) -> 
     prompt = build_prompt(posts, industries)
 
     gemini_key = env.get("GEMINI_API_KEY")
-    model = env.get("GEMINI_MODEL", syn.get("model", "gemini-flash-latest"))
+    model = env.get("GEMINI_MODEL", syn.get("model", "gemini-3.5-flash-lite"))
     if gemini_key:
         try:
-            return call_gemini(prompt, model, gemini_key, syn.get("thinking_budget", 0))
+            return call_gemini(prompt, model, gemini_key, syn.get("thinking_budget"))
         except (urllib.error.URLError, urllib.error.HTTPError, KeyError,
                 json.JSONDecodeError, TimeoutError) as exc:
             print(f"[synthesize] Gemini failed ({type(exc).__name__}: {exc}), "

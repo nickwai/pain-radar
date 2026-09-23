@@ -94,7 +94,35 @@ jobs:
           git add reports/
           if git diff --cached --quiet; then
             echo "Nothing new to commit."
-          else
-            git commit -m "data: daily report $(date -u +%F)"
-            git push
+            exit 0
           fi
+          git commit -m "data: daily report $(date -u +%F)"
+
+          # BUG FIX: checkout@v4 can hand this job a commit ref that's
+          # already stale by the time we get here - most commonly when a
+          # run is triggered via "Re-run jobs" (reuses the ORIGINAL run's
+          # pinned commit, not the current branch tip) rather than a fresh
+          # "Run workflow" dispatch, but a genuinely fresh run landing
+          # seconds after another one finishes could hit this too. A bare
+          # `git push` then fails with "fetch first" - not a real conflict,
+          # just a stale local ref. Rebase onto whatever's actually on
+          # origin right now before pushing, retrying a few times in case
+          # two runs race each other.
+          for attempt in 1 2 3; do
+            git fetch origin master
+            if git rebase origin/master; then
+              if git push origin master; then
+                echo "Pushed on attempt $attempt."
+                exit 0
+              fi
+            else
+              git rebase --abort
+              echo "Rebase conflict on attempt $attempt - unexpected for a"
+              echo "single generated file, but not retrying blindly into it."
+              exit 1
+            fi
+            echo "Push/rebase race on attempt $attempt, retrying..."
+            sleep 5
+          done
+          echo "Still couldn't push after 3 attempts - see log above."
+          exit 1

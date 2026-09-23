@@ -8,15 +8,70 @@ solution.
 $0 budget. Free API tiers only, no card anywhere. Built for a beginner
 coder to run and tune without touching Python.
 
-## Status (2026-09-23)
+## Status (2026-09-23 23:37 BST)
 
 | Stage | State |
 |---|---|
 | 1 — collect (28 free sources) | ✅ working |
 | 2 — filter (pain + money keyword scoring) | ✅ working |
-| 3 — AI synthesis (Gemini clustering/scoring) | ✅ code done, **not yet run successfully end-to-end** — blocked on a live Gemini free-tier capacity outage hit while building it (Google-side `503 high demand`, confirmed not a bug here: key valid, 2 different models both affected, schema-free requests also failed). Retries automatically; try `python3 run.py report --dry-run` any time. |
-| 4 — GitHub Actions cron | ❌ not started |
+| 3 — AI synthesis (Gemini clustering/scoring) | ✅ working — multiple clean end-to-end runs, both locally and on GitHub Actions. Pinned to `gemini-3.5-flash-lite` (not a `-latest` alias, see "known rough edges" below for why). |
+| 4 — GitHub Actions cron (7am Europe/London, DST-aware) | ✅ working — pipeline runs clean, commits `reports/DATE.md` back to the repo. |
+| Telegram delivery | ❌ **BROKEN on GitHub Actions specifically** — see "Open issue" right below. Works fine from this machine's local `.env`. |
 | 5 — this README / tuning guide | ✅ this file |
+
+## ⚠️ Open issue — continue troubleshooting here (as of 2026-09-23 23:37 BST)
+
+**Symptom:** every GitHub Actions run's Telegram step fails with the exact
+same error:
+```
+[telegram] FAILED: HTTP 404: {"ok":false,"error_code":404,"description":"Not Found"}
+```
+This is a 404 from Telegram's own API — it means the token in the request
+URL doesn't match any real bot. This is the SAME error signature that, on
+this machine's local `.env`, turned out to mean "only half the token got
+pasted (missing the `<digits>:` prefix)".
+
+**What's confirmed working (ruled out):**
+- The bot itself is real and the token is good: `getMe` against the
+  **local** `.env` value returns `200 OK` right now (just re-verified).
+- Local token: **46 characters**, 10 leading digits + `:` + secret. If you
+  re-check the GitHub secret tomorrow, this is the length/shape to match.
+- The report pipeline itself (Gemini synthesis, the actual report content)
+  is fully healthy — this run produced a real report with no errors before
+  the Telegram step.
+
+**What's NOT yet confirmed — the actual gap:**
+- The `TG_TOKEN` **secret value on GitHub** has never been directly
+  verified — Secrets are write-only, can't be viewed once saved, so there's
+  no way to confirm what's actually stored there vs. what was intended.
+- The secret was updated once already (after the first `404`) and the
+  error came back identical on the very next run. Either the update didn't
+  fully take, or the same partial-paste mistake happened again, or
+  something else entirely (a hidden trailing newline from a multi-line
+  clipboard copy is a real, common, easy-to-miss cause of exactly this).
+
+**Concrete next steps for tomorrow:**
+1. Add a **temporary, safe** debug step to `.github/workflows/daily-report.yml`
+   that prints `echo "TG_TOKEN length: ${#TG_TOKEN}"` (a bare number is
+   never treated as secret-shaped, so GitHub won't mask it, and it reveals
+   nothing about the actual value) — compare that number against the `46`
+   above.
+2. If the length differs: the secret is wrong/incomplete. Re-copy fresh
+   from `cat .env` on this machine (not from BotFather's chat, to remove a
+   whole class of copy error) and re-paste into the GitHub secret. Watch
+   for a trailing newline if pasting from a file viewer rather than a
+   plain-text editor.
+3. If the length matches but it STILL 404s: something more interesting is
+   going on (an invisible character mid-string, a different kind of
+   mismatch) — at that point, log the length AND a partial hash
+   (`echo "TG_TOKEN sha256: $(echo -n "$TG_TOKEN" | sha256sum)"`, still
+   safe to print) and compare against
+   `echo -n "$(grep '^TG_TOKEN=' .env | cut -d= -f2-)" | sha256sum` run
+   locally — an exact hash match proves the values are byte-identical, a
+   mismatch proves they're genuinely different and narrows it to "the
+   paste is wrong" definitively rather than "something else is broken."
+4. Remove the debug step once resolved — it doesn't leak the secret, but
+   there's no reason to leave debug output in a working pipeline.
 
 ## What it does
 
@@ -135,12 +190,23 @@ range from the original brief once weekends/quiet nights are averaged in.
   fetches `/latest.rss` from the same forum and joins them on topic ID to
   get real bodies. If you add a Discourse forum and its filter results look
   thin, check this joined correctly.
-- Gemini free tier genuinely rate-limits/503s under load sometimes (see
-  Status above) — `run.py report` retries automatically with backoff
-  (~1 min budget) before giving up.
+- Gemini free tier genuinely rate-limits/503s under load sometimes —
+  `run.py report` retries automatically with backoff (~1 min budget)
+  before giving up. Pin `synthesis.model` in `config/scoring.yml` to a
+  named, non-preview model (not a `-latest` alias) - a floating alias
+  silently repointed to a brand-new preview model with a 20-requests/DAY
+  cap during this project's build, which looked exactly like a sustained
+  outage until traced to the real cause.
+- A hard-to-diagnose Gemini `400 Bad Request` happened once on GitHub
+  Actions and never reproduced locally with similar-sized fresh data -
+  likely a one-off. `radar/synthesize.py` now prints the real response
+  body on any HTTP failure (previously only the useless generic urllib
+  message), so if it recurs, the actual reason will be visible in the
+  Action's log instead of another blind guess.
+- **Telegram on GitHub Actions is currently broken** - see "Open issue"
+  in Status above for the live troubleshooting state.
 
 ## Repo
 
-No remote configured yet — this exists only as local commits in
-`/home/oc/projects/pain-radar`. Add one (`git remote add origin <url>`)
-when you're ready to back it up off this machine.
+Public at https://github.com/nickwai/pain-radar (needed for free GitHub
+Actions minutes). Working copy: `/home/oc/projects/pain-radar`.

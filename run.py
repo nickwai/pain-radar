@@ -149,6 +149,22 @@ def cmd_report(args: argparse.Namespace) -> int:
     print("\n" + "=" * 60)
     print(report_md)
 
+    # Telegram: sends automatically if credentials are present in .env,
+    # same as Groq's fallback pattern - opt in by adding the key, no flag
+    # needed. --dry-run and --no-telegram both skip it; --dry-run also
+    # skips the file write below, so nothing has any side effect at all.
+    if not args.dry_run and not args.no_telegram:
+        tg_token = os.environ.get("TG_TOKEN")
+        tg_chat_id = os.environ.get("TG_CHAT_ID")
+        if tg_token and tg_chat_id:
+            from radar.telegram import format_message, send
+
+            tg_text = format_message(ideas, posts_by_id, date)
+            delivered, detail = send(tg_text, tg_token, tg_chat_id)
+            print(f"\n[telegram] {'sent' if delivered else 'FAILED'}: {detail}")
+        else:
+            print("\n[telegram] skipped - TG_TOKEN/TG_CHAT_ID not set in .env")
+
     if args.dry_run:
         print("(--dry-run: not writing to reports/)")
         return 0
@@ -185,6 +201,8 @@ def main() -> int:
     p_report = sub.add_parser("report", help="Stage 3: AI synthesis -> reports/DATE.md")
     p_report.add_argument("--dry-run", action="store_true",
                           help="print the report but don't write reports/DATE.md")
+    p_report.add_argument("--no-telegram", action="store_true",
+                          help="skip Telegram even if TG_TOKEN/TG_CHAT_ID are set")
 
     args = parser.parse_args()
     load_env()

@@ -1,0 +1,47 @@
+# ============================================================
+# THE WEIGHTS. Tune these to change what reaches your report.
+# Bigger number = more influence. Rerun `python3 run.py filter`
+# after any change and watch the shortlist move.
+# ============================================================
+
+weights:
+  money: 3.0        # a phrase from keywords.yml `money`   - weighted highest, as you asked
+  money_regex: 2.5  # an actual dollar amount - only counts alongside a real phrase
+  pain: 1.5         # a phrase from keywords.yml `pain`
+  engagement: 1.0   # replies + upvotes (only some sources report these)
+  combo_bonus: 3.0  # pain AND money in the same post - the thing you actually want
+
+# Stop one shouty post from dominating: cap how many hits count.
+caps:
+  money: 4
+  money_regex: 2
+  pain: 5
+  engagement: 3.0
+
+# Nudge whole industries up or down. Your own industries sit at 1.0+.
+# `tech` is damped because Hacker News floods the pool.
+group_multiplier:
+  saas: 1.25        # people already paying a monthly bill
+  ecommerce: 1.20   # merchants, real revenue at stake
+  trading: 1.15
+  automotive: 1.15
+  automation: 1.10
+  fashion: 1.10
+  resell: 1.10
+  asia: 1.10
+  toys: 1.05
+  mechanics: 1.15
+  quant: 1.15
+  money: 1.05
+  webapps: 1.0
+  tech: 0.75
+
+shortlist:
+  total: 40          # how many posts reach the AI stage (keeps token use tiny)
+  max_per_group: 9   # stops any single industry taking over the report
+  min_chars: 80      # posts shorter than this are noise, unless money is mentioned
+  min_score: 2.5     # below this, not worth the AI's time
+
+  # A bare "$45" in a sales listing is not a problem worth solving.
+  # Require at least one real pain phrase OR one real money phrase.
+  require_signal: true

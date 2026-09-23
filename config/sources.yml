@@ -1,0 +1,130 @@
+# ============================================================
+# WHERE WE LOOK. Edit freely - no code changes needed.
+# Add or delete a line, rerun. Every source here was tested
+# and confirmed returning data on 2026-09-21.
+# ============================================================
+
+# How far back to look. 48 = catches weekends.
+lookback_hours: 48
+
+# ---------------------------------------------------------------
+# REDDIT - OFF. Reddit killed self-serve API keys (Responsible
+# Builder Policy). Public .json returns 403. RSS works but
+# throttles to roughly 1 request per 4 minutes per IP.
+# Flip enabled to true only if you get API creds approved.
+# ---------------------------------------------------------------
+reddit:
+  enabled: false
+  limit: 50
+  endpoints: ["new", "top?t=day"]
+  subreddits:
+    trading: [algotrading, interactivebrokers, thetagang, options, Daytrading]
+    automation: [msp, sysadmin, selfhosted, homeassistant, n8n]
+    automotive: [MechanicAdvice, AskMechanics, Autobody, AutoDetailing]
+    resell: [Flipping, Depop, poshmark, EtsySellers, Gunpla, lego]
+    asia: [Taobao, AsianBeauty, ChineseLanguage, LearnJapanese, japanlife]
+
+# ---------------------------------------------------------------
+# DISCOURSE FORUMS - free /latest.json, generous limits.
+# To add one: find any Discourse forum, paste its base URL.
+# Test it first:  curl -s https://SITE/latest.json | head -c 200
+# ---------------------------------------------------------------
+discourse:
+  page_size: 30
+  forums:
+    - url: https://forum.alpaca.markets        # trading APIs, brokers
+      group: trading
+    - url: https://community.home-assistant.io # home automation
+      group: automation
+    - url: https://community.n8n.io            # workflow automation
+      group: automation
+    - url: https://discourse.nodered.org       # flow automation
+      group: automation
+    - url: https://forum.openwrt.org           # networking
+      group: automation
+    - url: https://forum.obsidian.md           # knowledge tools
+      group: automation
+    - url: https://forum.ghost.org             # publishing / creators
+      group: automation
+    - url: https://community.frame.work        # repairable hardware
+      group: automotive
+    - url: https://community.wanikani.com      # Japanese learning
+      group: asia
+    # --- users here pay a monthly bill. strongest money signal we have. ---
+    - url: https://forum.bubble.io                # no-code, $29-529/mo plans
+      group: saas
+    - url: https://community.make.com             # automation, paid tiers
+      group: saas
+    - url: https://community.retool.com           # internal tools, per-seat pricing
+      group: saas
+    - url: https://community.baserow.io           # Airtable alternative, paid tiers
+      group: saas
+    - url: https://community.nocodb.com           # Airtable alternative, paid tiers
+      group: saas
+    - url: https://community.shopify.dev          # devs building for paying merchants
+      group: ecommerce
+
+# ---------------------------------------------------------------
+# RSS / ATOM FEEDS - niche forums, very few builders watching.
+# Most XenForo forums expose:  SITE/forums/-/index.rss
+# ---------------------------------------------------------------
+rss:
+  feeds:
+    - url: https://www.elitetrader.com/et/forums/-/index.rss
+      name: elitetrader
+      group: trading
+    - url: https://www.trade2win.com/forums/-/index.rss
+      name: trade2win
+      group: trading
+    - url: https://www.bogleheads.org/forum/feed.php
+      name: bogleheads
+      group: trading
+    - url: https://www.garagejournal.com/forum/forums/-/index.rss
+      name: garagejournal
+      group: automotive
+    - url: https://forum.purseblog.com/forums/-/index.rss
+      name: purseblog          # buyers pay for authentication services
+      group: fashion
+    - url: https://www.styleforum.net/forums/-/index.rss
+      name: styleforum
+      group: fashion
+    - url: https://www.watchuseek.com/forums/-/index.rss
+      name: watchuseek         # flippers, dealers, real money
+      group: resell
+    - url: https://www.eurobricks.com/forum/index.php?/discover/all.xml
+      name: eurobricks
+      group: toys
+    - url: https://forums.hardwarezone.com.sg/forums/-/index.rss
+      name: hardwarezone
+      group: asia
+    - url: https://www.chinese-forums.com/discover/all.xml
+      name: chinese-forums
+      group: asia
+
+# ---------------------------------------------------------------
+hackernews:
+  hits_per_query: 30
+  # Phrases that mean "money is moving and the tool is bad", not plain nouns.
+  queries:
+    - "we pay for"
+    - "paying per month"
+    - "too expensive for"
+    - "switched away from"
+    - "cheaper alternative to"
+    - "still doing this manually"
+    - "spreadsheet hell"
+    - "is there a tool for"
+    - "wish there was a tool"
+    - "hate our current"
+
+lobsters:
+  enabled: true
+
+stackexchange:
+  # Free without a key: 300 requests/day per IP. We use ~4.
+  page_size: 30
+  sites:
+    - mechanics
+    - quant
+    - money
+    - webapps

@@ -1,0 +1,168 @@
+# ============================================================
+# THE FILTER. This file decides what survives to the AI stage.
+# Edit any list, rerun `python3 run.py filter`. No code changes.
+#
+# How it works: every post gets hits counted in each list below,
+# then scored. Highest scores go to the AI. See config/scoring.yml
+# for the weights.
+# ============================================================
+
+# --- SIGNAL 1: someone is in pain -----------------------------
+# Phrases people use when a thing is annoying them.
+pain:
+  - "is there a tool"
+  - "is there any tool"
+  - "any tool that"
+  - "any software"
+  - "anyone know a way"
+  - "how do i automate"
+  - "automate this"
+  - "manually"
+  - "by hand"
+  - "tedious"
+  - "wastes time"
+  - "waste of time"
+  - "spend hours"
+  - "takes forever"
+  - "every single time"
+  - "nightmare"
+  - "frustrating"
+  - "frustrated"
+  - "drives me crazy"
+  - "i hate"
+  - "sick of"
+  - "fed up"
+  - "struggling with"
+  - "struggle to"
+  - "pain in the"
+  - "workaround"
+  - "no good solution"
+  - "can't find a"
+  - "cant find a"
+  - "wish there was"
+  - "wish there were"
+  - "why is there no"
+  - "there has to be a better"
+  - "copy and paste"
+  - "copy paste"
+  - "keep track of"
+  - "keeping track of"
+  - "spreadsheet"
+  - "unreliable"
+  - "keeps failing"
+  - "broken"
+
+# --- SIGNAL 2: money is ALREADY moving ------------------------
+# Weighted highest. This is your "willingness to pay" evidence.
+money:
+  - "i pay"
+  - "we pay"
+  - "paying for"
+  - "pay for"
+  - "paid for"
+  - "/mo"
+  - "/month"
+  - "per month"
+  - "per year"
+  - "per seat"
+  - "per user"
+  - "subscription"
+  - "subscribed"
+  - "licence"
+  - "license fee"
+  - "quote"
+  - "quoted"
+  - "invoice"
+  - "charged me"
+  - "charges me"
+  - "cost me"
+  - "costs me"
+  - "too expensive"
+  - "cheaper alternative"
+  - "alternative to"
+  - "worth the money"
+  - "hired"
+  - "hire a"
+  - "freelancer"
+  - "outsource"
+  - "outsourced"
+  - "upgrade to pro"
+  - "premium plan"
+  - "paywall"
+  - "cancel my"
+  - "cancelled my"
+  - "switched from"
+  - "switching from"
+
+# --- Money mentioned as an actual number: "$40/mo", "£200" ----
+# Regex, not plain text. Strongest single signal.
+money_regex:
+  - '[$£€]\s?\d[\d,]*(?:\.\d+)?'
+  - '\d+\s?(?:usd|eur|gbp|dollars)'
+
+# --- SIGNAL 3: kill the noise ---------------------------------
+# Any hit here and the post is dropped outright.
+exclude:
+  - "for sale"
+  - "wts"
+  - "wtb"
+  - "want to buy"
+  - "want to sell"
+  - "giveaway"
+  - "who's hiring"
+  - "whos hiring"
+  - "hiring"
+  - "job posting"
+  - "show hn"
+  - "launch hn"
+  - "daily thread"
+  - "weekly thread"
+  - "megathread"
+  - "rate my"
+  - "what did you buy"
+  - "unboxing"
+  - "introduce yourself"
+  - "new member"
+  - "happy birthday"
+  - "rip "
+  - "obituary"
+  # --- for-sale listings: a price tag is NOT a pain signal ---
+  - "bnwt"
+  - "nwot"
+  - "nwt "
+  - "fs:"
+  - "fsot"
+  - "sold"
+  - "price drop"
+  - "dropped price"
+  - "for trade"
+  - "brand new in box"
+  - "sz "
+  - "official thread"
+  - "discussion thread"
+  - "coupon"
+  # --- job ads: money moving, but it is supply not demand ---
+  - "for hire"
+  - "[hiring]"
+  - "looking for work"
+  - "available for"
+  # --- self-promo: money words, but it is an advert, not a problem ---
+  - "boilerplate"
+  - "introducing"
+  - "announcing"
+  - "now available"
+  - "just launched"
+  - "(new)"
+  - "plugin released"
+  - "showcase"
+
+# --- Too-easy-to-build / not-a-business, drop these ----------
+# Things that cannot become a product you sell.
+exclude_soft:
+  - "what do you think of my"
+  - "roast my"
+  - "feedback on my"
+  - "my first"
+  - "finally finished"
+  - "just bought"
+  - "look what i"

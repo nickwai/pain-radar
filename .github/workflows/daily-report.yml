@@ -1,0 +1,100 @@
+name: Daily Pain Radar report
+
+# Runs the full pipeline (collect -> filter -> report) every morning and
+# commits reports/DATE.md back to the repo, plus sends it to Telegram if
+# TG_TOKEN/TG_CHAT_ID secrets are set.
+#
+# WHY TWO CRON TIMES for one 7am UK run: GitHub Actions `schedule` is
+# UTC-only, no timezone support. 7am London time is 06:00 UTC during BST
+# (late Mar - late Oct) and 07:00 UTC during GMT (late Oct - late Mar).
+# Both lines are scheduled every day, year-round; the "gate" step below
+# checks the ACTUAL current London hour and skips every step after it
+# unless it's really 7am there right now - so only one of the two firings
+# ever does real work on any given day, and neither ever fires twice.
+on:
+  schedule:
+    - cron: "0 6 * * *"   # 07:00 London during BST (summer)
+    - cron: "0 7 * * *"   # 07:00 London during GMT (winter)
+  workflow_dispatch: {}   # manual "Run workflow" button - always runs,
+                          # skips the gate, for testing without waiting
+
+permissions:
+  contents: write   # needed to commit reports/DATE.md back to the repo
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gate - only proceed if it's really 7am London right now
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "manual run - skipping the DST gate"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          hour="$(TZ=Europe/London date +%H)"
+          echo "current London hour: $hour"
+          if [ "$hour" = "07" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "Not 7am London right now (this is the other DST-offset cron firing) - skipping."
+          fi
+
+      - name: Checkout
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_run == 'true'
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Stage 1 - collect
+        if: steps.gate.outputs.should_run == 'true'
+        run: python3 run.py collect
+
+      - name: Stage 2 - filter
+        if: steps.gate.outputs.should_run == 'true'
+        run: python3 run.py filter --show 25
+
+      - name: Stage 3 - AI synthesis + Telegram
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          # Reddit stays off - see config/sources.yml reddit.enabled: false.
+          # If you ever get approved Reddit API access, flip that to true
+          # and add REDDIT_CLIENT_ID / REDDIT_CLIENT_SECRET as secrets too.
+        run: python3 run.py report
+
+      - name: Show the report on the run summary page
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          latest="$(ls -t reports/*.md 2>/dev/null | head -1)"
+          if [ -n "$latest" ]; then
+            cat "$latest" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No report file was written this run." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Commit the report back to the repo
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "data: daily report $(date -u +%F)"
+            git push
+          fi

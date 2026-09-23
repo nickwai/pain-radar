@@ -45,3 +45,57 @@ shortlist:
   # A bare "$45" in a sales listing is not a problem worth solving.
   # Require at least one real pain phrase OR one real money phrase.
   require_signal: true
+
+# ============================================================
+# STAGE 3 — the AI synthesis step. Gemini clusters the shortlist into
+# distinct problems and scores each 1-5 on 4 axes; this section decides
+# how those scores combine into the final ranking, and the hard filter
+# a problem must clear to appear in the report at all.
+# ============================================================
+
+# Industries you can judge as real - edit this list any time, no code
+# change. Gemini uses it to reject ideas outside what you know.
+user_industries:
+  - technology / tech automation
+  - algorithmic and retail trading
+  - toys and collectibles (Gunpla, LEGO, action figures, trading cards)
+  - fashion (streetwear, resale, authentication)
+  - automotive (repair, detailing, dealership operations)
+  - Asian culture (import/proxy-buying, language learning, K/J/C fandom)
+
+synthesis:
+  # 1-5 axis weights -> one composite score. Money weighted highest,
+  # per your original brief: it's the strongest signal someone will pay
+  # for a fix, not just complain about the problem.
+  weights:
+    money_evidence: 3.0
+    frequency: 1.0
+    anger: 1.0
+    ease_to_build: 1.0
+
+  max_ideas: 5          # hard cap, per your brief
+  min_total_score: 8.0  # out of a 30 max (4+4+4+4 weighted) - below this, drop it.
+                         # Raise this if the report feels padded with weak ideas.
+                         # Lower it if you're getting "nothing today" too often.
+
+  # Gemini's own judgment calls, applied as a hard filter before scoring
+  # even matters - an idea failing any of these never reaches the report,
+  # regardless of score:
+  #   - near_user_industries: is this really in/near your list above?
+  #   - buildable_two_weekends: could one person ship a rough version?
+  #   - needs_team_or_capital_or_network_effect: the disqualifiers from
+  #     your brief (a licence, a team, big upfront capital, a network
+  #     effect) - if true, the idea is dropped no matter how it scores.
+
+  model: gemini-flash-latest  # Google's own floating alias for "whatever
+                           # flash model is current" - avoids ever hardcoding
+                           # a model name that later goes end-of-life
+                           # (gemini-2.5-flash already has, for new API keys,
+                           # as of this project, 2026-09 - verified live).
+                           # Override with GEMINI_MODEL env var.
+  thinking_budget: 0       # 0 = skip extended reasoning. This is clustering
+                           # + scoring against a fixed rubric, not a problem
+                           # that benefits from step-by-step thinking, and
+                           # thinking tokens are NOT free-tier-unlimited the
+                           # same way output tokens effectively are at this
+                           # volume - keep it capped.

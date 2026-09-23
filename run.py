@@ -5,6 +5,7 @@ Usage:
     python3 run.py check       # Verify Reddit credentials
     python3 run.py collect     # Stage 1: fetch raw posts -> data/raw/DATE.json
     python3 run.py filter      # Stage 2: shortlist -> data/shortlist/DATE.json
+    python3 run.py report      # Stage 3: AI synthesis -> reports/DATE.md
 """
 from __future__ import annotations
 
@@ -124,6 +125,41 @@ def cmd_filter(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_report(args: argparse.Namespace) -> int:
+    import yaml
+    from radar.synthesize import synthesize
+    from radar.report import render
+
+    shortlist_dir = ROOT / "data" / "shortlist"
+    files = sorted(shortlist_dir.glob("*.json"))
+    if not files:
+        print("No shortlist. Run: python3 run.py collect && python3 run.py filter")
+        return 1
+    shortlist_path = files[-1]
+    posts = json.loads(shortlist_path.read_text(encoding="utf-8"))
+    print(f"Synthesizing {shortlist_path.name} ({len(posts)} posts)\n")
+
+    config = yaml.safe_load((ROOT / "config" / "scoring.yml").read_text(encoding="utf-8"))
+    ideas = synthesize(posts, config)
+
+    posts_by_id = {p["id"]: p for p in posts}
+    date = shortlist_path.stem
+    report_md = render(ideas, posts_by_id, config, date=date)
+
+    print("\n" + "=" * 60)
+    print(report_md)
+
+    if args.dry_run:
+        print("(--dry-run: not writing to reports/)")
+        return 0
+
+    out_path = ROOT / "reports" / f"{date}.md"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(report_md, encoding="utf-8")
+    print(f"\nWrote report -> {out_path.relative_to(ROOT)}")
+    return 0
+
+
 def cmd_collect(_args: argparse.Namespace) -> int:
     from radar.collect import collect
 
@@ -146,11 +182,14 @@ def main() -> int:
     p_filter = sub.add_parser("filter", help="Stage 2: cut to a shortlist")
     p_filter.add_argument("--show", type=int, default=20,
                           help="how many rows to print (default 20)")
+    p_report = sub.add_parser("report", help="Stage 3: AI synthesis -> reports/DATE.md")
+    p_report.add_argument("--dry-run", action="store_true",
+                          help="print the report but don't write reports/DATE.md")
 
     args = parser.parse_args()
     load_env()
     return {"check": cmd_check, "collect": cmd_collect,
-            "filter": cmd_filter}[args.stage](args)
+            "filter": cmd_filter, "report": cmd_report}[args.stage](args)
 
 
 if __name__ == "__main__":

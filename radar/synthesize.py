@@ -244,17 +244,25 @@ def synthesize_raw(posts: list[dict], config: dict, env: dict | None = None) -> 
     )
 
 
-def validate_ideas(raw: list[Any], known_ids: set[str]) -> list[dict]:
+def validate_ideas(raw: list[Any], known_ids: set[str],
+                   rejected: list[dict] | None = None) -> list[dict]:
     """Drops anything malformed or citing IDs that don't exist. The model
     is a clusterer and a judge, not a trusted data source - every fact
-    that will appear in the report gets checked against real data here."""
+    that will appear in the report gets checked against real data here.
+
+    IMPROVEMENT [2026-09-24]: `rejected`, if given, collects every dropped
+    cluster with a `reject_reason`, so the daily rejected-clusters log can
+    show WHY Gemini's output didn't reach the report. Behaviour unchanged."""
     out = []
     for item in raw if isinstance(raw, list) else []:
         if not isinstance(item, dict):
             continue
         ids = [i for i in item.get("source_post_ids", []) if i in known_ids]
         if not ids:
-            continue  # every real post it cited was invented - drop the whole cluster
+            # every real post it cited was invented - drop the whole cluster
+            if rejected is not None:
+                rejected.append({**item, "reject_reason": "cited no real post ids (hallucinated sources)"})
+            continue
         scores = item.get("scores") or {}
         try:
             item["scores"] = {
@@ -264,22 +272,34 @@ def validate_ideas(raw: list[Any], known_ids: set[str]) -> list[dict]:
                 "ease_to_build": int(scores["ease_to_build"]),
             }
         except (KeyError, TypeError, ValueError):
+            if rejected is not None:
+                rejected.append({**item, "reject_reason": "malformed scores"})
             continue
         item["source_post_ids"] = ids
         out.append(item)
     return out
 
 
-def score_and_filter(ideas: list[dict], config: dict) -> list[dict]:
+def score_and_filter(ideas: list[dict], config: dict,
+                     rejected: list[dict] | None = None) -> list[dict]:
     syn = config["synthesis"]
     w = syn["weights"]
     kept = []
+
+    def _reject(idea: dict, reason: str) -> None:
+        # IMPROVEMENT [2026-09-24]: record instead of silently dropping.
+        if rejected is not None:
+            rejected.append({**idea, "reject_reason": reason})
+
     for idea in ideas:
         if not idea.get("near_user_industries"):
+            _reject(idea, "not near your industries")
             continue
         if not idea.get("buildable_two_weekends"):
+            _reject(idea, "not buildable in two weekends")
             continue
         if idea.get("needs_team_or_capital_or_network_effect"):
+            _reject(idea, "needs team / capital / network effect")
             continue
         s = idea["scores"]
         total = (
@@ -289,29 +309,102 @@ def score_and_filter(ideas: list[dict], config: dict) -> list[dict]:
             + s["ease_to_build"] * w["ease_to_build"]
         )
         if total < syn["min_total_score"]:
+            _reject({**idea, "total_score": round(total, 1)},
+                    f"total {round(total, 1)} below min_total_score {syn['min_total_score']}")
             continue
         idea["total_score"] = round(total, 1)
         kept.append(idea)
 
     kept.sort(key=lambda i: i["total_score"], reverse=True)
+    for idea in kept[syn["max_ideas"]:]:
+        _reject(idea, f"over max_ideas cap ({syn['max_ideas']})")
     return kept[: syn["max_ideas"]]
 
 
 def synthesize(posts: list[dict], config: dict, env: dict | None = None,
-               verbose: bool = True) -> list[dict]:
+               verbose: bool = True,
+               rejected: list[dict] | None = None) -> list[dict]:
     if not posts:
         return []
     known_ids = {p["id"] for p in posts}
     raw = synthesize_raw(posts, config, env)
     if verbose:
         print(f"  AI returned {len(raw) if isinstance(raw, list) else 0} raw clusters")
-    validated = validate_ideas(raw, known_ids)
+    validated = validate_ideas(raw, known_ids, rejected)
     if verbose:
         dropped = (len(raw) if isinstance(raw, list) else 0) - len(validated)
         if dropped:
             print(f"  dropped {dropped} malformed/hallucinated-source clusters")
-    final = score_and_filter(validated, config)
+    final = score_and_filter(validated, config, rejected)
     if verbose:
         print(f"  {len(validated)} passed validation -> {len(final)} cleared "
               f"the filter + min_total_score")
     return final
+
+
+# ------------------------------------------------------------------ triage
+# IMPROVEMENT [2026-09-24]: most of what Gemini "rejects" is rejected INSIDE
+# the clustering call (it only returns problems), so the post-filter rejected
+# list can be empty even when 30 of 34 posts were discarded. This second,
+# BEST-EFFORT call asks for one verdict per shortlisted post so the daily log
+# can show why each was skipped and which SOURCES yield real problems.
+# Never raises, never affects the report or Telegram - a failure returns [].
+
+TRIAGE_VERDICTS = ["real_problem", "help_question", "out_of_industry",
+                   "not_a_problem", "product_bug_report"]
+
+TRIAGE_SCHEMA = {
+    "type": "ARRAY",
+    "items": {"type": "OBJECT",
+              "properties": {"id": {"type": "STRING"},
+                             "verdict": {"type": "STRING", "enum": TRIAGE_VERDICTS},
+                             "reason": {"type": "STRING"}},
+              "required": ["id", "verdict", "reason"]},
+}
+
+TRIAGE_PROMPT = """For EACH post below, decide whether it describes a real, specific
+problem someone would pay to have solved, and if not, why. The reader can only
+judge ideas in these industries:
+{industries}
+
+Return a JSON array with exactly one object per post: id (the EXACT id given),
+verdict, reason (max 12 words). Verdicts:
+- real_problem: a specific problem a person/business has, that a third party could solve
+- help_question: someone asking how to use a tool or fix their own setup
+- product_bug_report: a defect in a vendor's product that only the vendor can fix
+- out_of_industry: a real problem, but outside the industries above
+- not_a_problem: news, opinion, showcase, discussion, announcement, small talk
+
+POSTS:
+{posts}
+"""
+
+
+def triage_posts(posts: list[dict], config: dict, env: dict | None = None) -> list[dict]:
+    """One verdict per shortlisted post. Best-effort: returns [] on any failure."""
+    env = env if env is not None else os.environ
+    syn = config["synthesis"]
+    key = env.get("GEMINI_API_KEY")
+    if not posts or not key or not syn.get("triage_enabled", True):
+        return []
+    model = env.get("GEMINI_MODEL", syn.get("model", "gemini-3.5-flash-lite"))
+    industries = "\n".join(f"- {i}" for i in config.get("user_industries", []))
+    prompt = TRIAGE_PROMPT.format(industries=industries, posts=_format_posts(posts))
+    payload = {"contents": [{"parts": [{"text": prompt}]}],
+               "generationConfig": {"responseMimeType": "application/json",
+                                    "responseSchema": TRIAGE_SCHEMA,
+                                    # steadier verdicts run to run (two
+                                    # untuned runs disagreed 6 vs 1 real)
+                                    "temperature": 0}}
+    url = GEMINI_URL_TMPL.format(model=model) + f"?key={key}"
+    try:
+        data = _http_post_json(url, payload, {"Content-Type": "application/json"},
+                               timeout=60)
+        rows = json.loads(data["candidates"][0]["content"]["parts"][0]["text"])
+    except Exception as exc:  # noqa: BLE001 - diagnostics must never break the report
+        # Print only the exception TYPE: the URL (and its key) can appear in str(exc).
+        print(f"[triage] skipped ({type(exc).__name__})", flush=True)
+        return []
+    known = {p["id"] for p in posts}
+    return [r for r in rows if isinstance(r, dict) and r.get("id") in known
+            and r.get("verdict") in TRIAGE_VERDICTS]

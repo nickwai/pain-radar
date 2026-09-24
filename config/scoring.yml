@@ -73,6 +73,9 @@ synthesis:
     anger: 1.0
     ease_to_build: 1.0
 
+  triage_enabled: true  # ADDED 2026-09-24: 2nd best-effort Gemini call per day that
+                        # gives a verdict per shortlisted post -> reports/rejected/.
+                        # Diagnostic only; set false to save one request/day.
   max_ideas: 5          # hard cap, per your brief
   min_total_score: 8.0  # out of a 30 max (4+4+4+4 weighted) - below this, drop it.
                          # Raise this if the report feels padded with weak ideas.

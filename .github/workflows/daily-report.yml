@@ -87,6 +87,13 @@ jobs:
           else
             echo "No report file was written this run." >> "$GITHUB_STEP_SUMMARY"
           fi
+          # IMPROVEMENT [2026-09-24]: also show what Gemini clustered but the
+          # filters cut (reports/rejected/, outside the reports/*.md glob above).
+          rej="reports/rejected/$(date -u +%F).md"
+          if [ -f "$rej" ]; then
+            printf '\n\n---\n\n' >> "$GITHUB_STEP_SUMMARY"
+            cat "$rej" >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Commit the report back to the repo
         if: steps.gate.outputs.should_run == 'true'

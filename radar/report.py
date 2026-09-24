@@ -60,3 +60,94 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
         lines.append("")
 
     return "\n".join(lines)
+
+
+def render_rejected(rejected: list[dict], posts_by_id: dict[str, dict], config: dict,
+                    date: str | None = None) -> str:
+    """IMPROVEMENT [2026-09-24]: what Gemini clustered but the filters cut, and
+    why. Lives in reports/rejected/ (NOT reports/*.md, which the workflow's
+    "latest report" glob and "already done today?" gate both read).
+    Purpose: tune sources/thresholds from evidence - a cluster cut for a
+    low score is a near-miss; one cut for `not near industries` says the
+    sources drift outside your list."""
+    date = date or dt.date.today().isoformat()
+    w = config["synthesis"]["weights"]
+    lines = [f"# Rejected clusters — {date}", ""]
+    if not rejected:
+        lines.append("Gemini returned no clusters that were then cut. "
+                     "Either it found no problems at all, or everything it "
+                     "found is in the report.")
+        return "\n".join(lines) + "\n"
+    lines.append(f"{len(rejected)} cluster{'s' if len(rejected) != 1 else ''} "
+                 "cut after Gemini clustered them. Not ideas - near-misses and "
+                 "the reason each was dropped.")
+    lines.append("")
+    for i, c in enumerate(rejected, 1):
+        s = c.get("scores") or {}
+        if not all(k in s for k in w):
+            s = {}  # malformed scores: nothing meaningful to print
+        total = c.get("total_score")
+        if total is None and s:
+            try:
+                total = round(sum(s[k] * w[k] for k in w), 1)
+            except (KeyError, TypeError):
+                total = None
+        title = c.get("problem_one_line") or "(no title)"
+        lines.append(f"## {i}. {title}")
+        lines.append("")
+        lines.append(f"**Cut because:** {c.get('reject_reason', 'unknown')}")
+        if s:
+            lines.append(f"**Scores:** money {s.get('money_evidence')} · "
+                         f"frequency {s.get('frequency')} · anger {s.get('anger')} · "
+                         f"ease {s.get('ease_to_build')} · total {total}")
+        for label, key in [("Industry check", "industry_reason"),
+                           ("Buildable check", "buildable_reason"),
+                           ("Blocker check", "blocker_reason")]:
+            if c.get(key):
+                lines.append(f"**{label}:** {c[key]}")
+        if c.get("who_has_it"):
+            lines.append(f"**Who:** {c['who_has_it']}")
+        for pid in c.get("source_post_ids") or []:
+            post = posts_by_id.get(pid)
+            if post:
+                lines.append(f"- [{post['title']}]({post['url']}) — {post['channel']}")
+        lines.append("")
+    return "\n".join(lines)
+
+
+def _md_title(text: str) -> str:
+    """Square brackets in a post title (e.g. "[SOLVED] ...") break [text](url)."""
+    return (text or "").replace("[", "(").replace("]", ")")
+
+
+def render_triage(triage: list[dict], posts_by_id: dict[str, dict]) -> str:
+    """IMPROVEMENT [2026-09-24]: per-post verdicts + per-source yield. The
+    yield table is the point: it says which sources deliver real problems
+    and which only pass the keyword filter (billing bug reports etc)."""
+    if not triage:
+        return ""
+    order = ["real_problem", "help_question", "product_bug_report",
+             "out_of_industry", "not_a_problem"]
+    counts: dict[str, int] = {}
+    per_src: dict[str, dict[str, int]] = {}
+    for r in triage:
+        counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
+        ch = posts_by_id.get(r["id"], {}).get("channel", "?")
+        per_src.setdefault(ch, {}).setdefault(r["verdict"], 0)
+        per_src[ch][r["verdict"]] += 1
+    lines = ["", "---", "", "# What Gemini did with each shortlisted post", ""]
+    lines.append(f"{len(triage)} posts triaged: " +
+                 ", ".join(f"{counts.get(v, 0)} {v}" for v in order) + ".")
+    lines += ["", "**Yield by source** (real problems / posts shortlisted):", "",
+              "| Source | Real / total | Other verdicts |", "|---|---|---|"]
+    for ch, c in sorted(per_src.items(), key=lambda kv: (-kv[1].get("real_problem", 0), -sum(kv[1].values()))):
+        others = ", ".join(f"{n} {v}" for v, n in c.items() if v != "real_problem")
+        lines.append(f"| {ch} | {c.get('real_problem', 0)} / {sum(c.values())} | {others} |")
+    lines += ["", "**Per post:**", ""]
+    for v in order:
+        for r in triage:
+            if r["verdict"] == v:
+                post = posts_by_id.get(r["id"], {})
+                lines.append(f"- `{v}` — [{_md_title((post.get('title') or r['id'])[:80])}]"
+                             f"({post.get('url', '')}) ({post.get('channel', '?')}): {r['reason']}")
+    return "\n".join(lines) + "\n"

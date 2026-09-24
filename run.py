@@ -127,8 +127,8 @@ def cmd_filter(args: argparse.Namespace) -> int:
 
 def cmd_report(args: argparse.Namespace) -> int:
     import yaml
-    from radar.synthesize import synthesize
-    from radar.report import render
+    from radar.synthesize import synthesize, triage_posts
+    from radar.report import render, render_rejected, render_triage
 
     shortlist_dir = ROOT / "data" / "shortlist"
     files = sorted(shortlist_dir.glob("*.json"))
@@ -140,11 +140,17 @@ def cmd_report(args: argparse.Namespace) -> int:
     print(f"Synthesizing {shortlist_path.name} ({len(posts)} posts)\n")
 
     config = yaml.safe_load((ROOT / "config" / "scoring.yml").read_text(encoding="utf-8"))
-    ideas = synthesize(posts, config)
+    # IMPROVEMENT [2026-09-24]: collect clusters Gemini produced but the
+    # filters cut, so they can be reviewed (reports/rejected/DATE.md).
+    rejected: list[dict] = []
+    ideas = synthesize(posts, config, rejected=rejected)
 
     posts_by_id = {p["id"]: p for p in posts}
     date = shortlist_path.stem
     report_md = render(ideas, posts_by_id, config, date=date)
+    rejected_md = render_rejected(rejected, posts_by_id, config, date=date)
+    # Best-effort per-post verdicts (never raises; [] on failure -> section omitted).
+    rejected_md += render_triage(triage_posts(posts, config), posts_by_id)
 
     print("\n" + "=" * 60)
     print(report_md)
@@ -173,6 +179,10 @@ def cmd_report(args: argparse.Namespace) -> int:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(report_md, encoding="utf-8")
     print(f"\nWrote report -> {out_path.relative_to(ROOT)}")
+    rej_path = ROOT / "reports" / "rejected" / f"{date}.md"
+    rej_path.parent.mkdir(parents=True, exist_ok=True)
+    rej_path.write_text(rejected_md, encoding="utf-8")
+    print(f"Wrote rejected clusters ({len(rejected)}) -> {rej_path.relative_to(ROOT)}")
     return 0
 
 

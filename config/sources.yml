@@ -63,6 +63,20 @@ discourse:
       group: saas
     - url: https://community.shopify.dev          # devs building for paying merchants
       group: ecommerce
+    # --- ADDED 2026-09-24 after probing 30 candidates by keyword pass-rate.
+    # forum.cursor.com + community.openai.com were added then REMOVED the same
+    # day: they passed the keyword filter (20-23%) but Gemini's per-post
+    # triage found 0 real problems in 9 shortlisted posts - all vendor bug
+    # reports / billing glitches only the vendor can fix. Keyword pass-rate
+    # is NOT the same as real problems; judge sources by the triage yield
+    # table in reports/rejected/. These three are small samples (n=4-21/wk),
+    # unproven - re-check the yield table after a week and cut what shows 0.
+    - url: https://community.fly.io                # paid hosting, per-usage bills
+      group: saas
+    - url: https://community.coda.io               # docs/automation, paid tiers
+      group: saas
+    - url: https://community.glideapps.com         # no-code apps, paid tiers
+      group: saas
 
 # ---------------------------------------------------------------
 # RSS / ATOM FEEDS - niche forums, very few builders watching.

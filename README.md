@@ -33,6 +33,13 @@ Also fixed 2026-09-24: the old "London hour == 07" gate skipped runs when
 GitHub delivered the cron hours late (green run, no report). Gate is now
 "no reports/<UTC date>.md yet" plus retry crons.
 
+## 📅 Scheduled review — Thu 2026-10-08
+
+`.github/workflows/review.yml` builds `reports/review-2026-10-08.md` (14-day
+digest: ideas/day, source yield from Gemini triage, checklist) and sends a
+Telegram summary. Manual: `python3 run.py review [--since D --until D] [--dry-run]`.
+Changes to sources/thresholds should cite a number from that digest.
+
 ## What it does
 
 Every morning (once Stage 4 exists — for now, run by hand):

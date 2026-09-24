@@ -186,6 +186,28 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_review(args: argparse.Namespace) -> int:
+    """Two-week review digest -> reports/review-UNTIL.md (+ Telegram)."""
+    import datetime as dt
+    from radar.review import build
+
+    until = args.until or today()
+    since = args.since or (dt.date.fromisoformat(until) - dt.timedelta(days=14)).isoformat()
+    full, short = build(ROOT / "reports", since, until)
+    print(full)
+    if args.dry_run:
+        return 0
+    out = ROOT / "reports" / f"review-{until}.md"
+    out.write_text(full, encoding="utf-8")
+    print(f"Wrote {out.relative_to(ROOT)}")
+    tg_token, tg_chat = os.environ.get("TG_TOKEN"), os.environ.get("TG_CHAT_ID")
+    if tg_token and tg_chat:
+        from radar.telegram import send
+        ok, detail = send(short, tg_token, tg_chat)
+        print(f"[telegram] {'sent' if ok else 'FAILED'}: {detail}")
+    return 0
+
+
 def cmd_collect(_args: argparse.Namespace) -> int:
     from radar.collect import collect
 
@@ -214,10 +236,16 @@ def main() -> int:
     p_report.add_argument("--no-telegram", action="store_true",
                           help="skip Telegram even if TG_TOKEN/TG_CHAT_ID are set")
 
+    p_rev = sub.add_parser("review", help="Two-week review digest -> reports/review-DATE.md")
+    p_rev.add_argument("--since", help="YYYY-MM-DD (default: 14 days before --until)")
+    p_rev.add_argument("--until", help="YYYY-MM-DD (default: today UTC)")
+    p_rev.add_argument("--dry-run", action="store_true", help="print only; write nothing, send nothing")
+
     args = parser.parse_args()
     load_env()
     return {"check": cmd_check, "collect": cmd_collect,
-            "filter": cmd_filter, "report": cmd_report}[args.stage](args)
+            "filter": cmd_filter, "report": cmd_report,
+            "review": cmd_review}[args.stage](args)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,87 @@
+name: Pain Radar 2-week review
+
+# One-off review (set 2026-09-24): on Thu 2026-10-08 build a digest of the
+# last 14 days of reports + Gemini triage, commit it as
+# reports/review-2026-10-08.md and send a short Telegram summary.
+#
+# Same lesson as daily-report.yml: GitHub `schedule` fires late or gets
+# dropped, so there are several crons on the day and the gate is
+# idempotent ("digest for that date not written yet"), never "exactly now".
+# The year check stops the cron (which has no year field) re-firing on
+# every 8 Oct forever. Manual "Run workflow" always runs, any day.
+on:
+  schedule:
+    - cron: "0 8 8 10 *"
+    - cron: "0 10 8 10 *"
+    - cron: "0 13 8 10 *"
+    - cron: "0 16 8 10 *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Gate - right year, and not already done
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          elif [ "$(date -u +%Y)" != "2026" ]; then
+            echo "not 2026 - one-off review already past, skipping."
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          elif [ -f "reports/review-2026-10-08.md" ]; then
+            echo "review already written - nothing to do."
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Python
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_run == 'true'
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Build digest + Telegram
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          # Scheduled runs pin the review date; a manual run uses today.
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            python3 run.py review --until 2026-10-08
+          else
+            python3 run.py review
+          fi
+          cat "$(ls -t reports/review-*.md | head -1)" >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Commit the digest
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/
+          if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi
+          git commit -m "data: 2-week review digest"
+          for attempt in 1 2 3; do
+            git fetch origin master
+            if git rebase origin/master; then
+              git push origin master && exit 0
+            else
+              git rebase --abort; exit 1
+            fi
+            sleep 5
+          done
+          exit 1

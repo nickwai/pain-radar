@@ -8,16 +8,20 @@ solution.
 $0 budget. Free API tiers only, no card anywhere. Built for a beginner
 coder to run and tune without touching Python.
 
-## Status (2026-09-23 23:37 BST)
+## Status (2026-09-24)
 
 | Stage | State |
 |---|---|
-| 1 — collect (28 free sources) | ✅ working |
-| 2 — filter (pain + money keyword scoring) | ✅ working |
-| 3 — AI synthesis (Gemini clustering/scoring) | ✅ working — multiple clean end-to-end runs, both locally and on GitHub Actions. Pinned to `gemini-3.5-flash-lite` (not a `-latest` alias, see "known rough edges" below for why). |
-| 4 — GitHub Actions cron (7am Europe/London, DST-aware) | ✅ working — pipeline runs clean, commits `reports/DATE.md` back to the repo. |
-| Telegram delivery | ❌ **BROKEN on GitHub Actions specifically** — see "Open issue" right below. Works fine from this machine's local `.env`. |
-| 5 — this README / tuning guide | ✅ this file |
+| 1 — collect (~30 free sources) | ✅ working. Reddit RSS evaluated and REJECTED (429s even at 15s spacing, 0-16% yield). cursor + openai forums tried and removed (0 real problems, all vendor bug reports). Added fly.io / coda / glide forums (small, unproven). |
+| 2 — filter (pain + money keyword scoring) | ✅ working. Keyword pass rate is NOT the same as real problems — judge sources by triage yield. |
+| 3 — AI synthesis (Gemini clustering/scoring) | ✅ working. Pinned `gemini-3.5-flash-lite`. Nondeterministic: same post scored 18.0 then 14.0. |
+| 3b — rejected-clusters log + per-post triage | ✅ new. `reports/rejected/DATE.md`: clusters cut after clustering (with reason) + a temp-0 Gemini verdict per shortlisted post and a per-source yield table. Best-effort, never breaks the report. Also on the run summary page. |
+| 4 — GitHub Actions cron | ✅ working. Gate is now idempotent ("no `reports/<UTC date>.md` yet") with retry crons — GitHub delivers `schedule` hours late. |
+| Telegram delivery | ✅ working (was mis-pasted secrets, see below) |
+| 5 — 2-week review | 📅 Thu 2026-10-08, `review.yml` → `reports/review-2026-10-08.md` + Telegram |
+
+**Why ~1 idea/day:** sources are mostly help-desk forums; of ~34 shortlisted
+posts Gemini finds ~1-6 real problems. The score bar is not the limiter.
 
 ## ✅ Resolved 2026-09-24 — Telegram on Actions
 

@@ -19,59 +19,19 @@ coder to run and tune without touching Python.
 | Telegram delivery | ❌ **BROKEN on GitHub Actions specifically** — see "Open issue" right below. Works fine from this machine's local `.env`. |
 | 5 — this README / tuning guide | ✅ this file |
 
-## ⚠️ Open issue — continue troubleshooting here (as of 2026-09-23 23:37 BST)
+## ✅ Resolved 2026-09-24 — Telegram on Actions
 
-**Symptom:** every GitHub Actions run's Telegram step fails with the exact
-same error:
-```
-[telegram] FAILED: HTTP 404: {"ok":false,"error_code":404,"description":"Not Found"}
-```
-This is a 404 from Telegram's own API — it means the token in the request
-URL doesn't match any real bot. This is the SAME error signature that, on
-this machine's local `.env`, turned out to mean "only half the token got
-pasted (missing the `<digits>:` prefix)".
+Cause: the GitHub secrets were wrong, not the code. `TG_TOKEN` was 55 chars
+(the whole `TG_TOKEN=<token>` line pasted, prefix included) and `TG_CHAT_ID`
+held a 46-char non-numeric value. Correct shapes: token 46 chars
+(`<10 digits>:<35 chars>`), chat id 10 digits. Re-pasted values only (no
+`NAME=` prefix, no quotes) and the message delivered. If it ever 404s again,
+suspect the secrets first; add a temporary step printing `${#TG_TOKEN}` and a
+regex shape check (lengths/booleans only, never the value).
 
-**What's confirmed working (ruled out):**
-- The bot itself is real and the token is good: `getMe` against the
-  **local** `.env` value returns `200 OK` right now (just re-verified).
-- Local token: **46 characters**, 10 leading digits + `:` + secret. If you
-  re-check the GitHub secret tomorrow, this is the length/shape to match.
-- The report pipeline itself (Gemini synthesis, the actual report content)
-  is fully healthy — this run produced a real report with no errors before
-  the Telegram step.
-
-**What's NOT yet confirmed — the actual gap:**
-- The `TG_TOKEN` **secret value on GitHub** has never been directly
-  verified — Secrets are write-only, can't be viewed once saved, so there's
-  no way to confirm what's actually stored there vs. what was intended.
-- The secret was updated once already (after the first `404`) and the
-  error came back identical on the very next run. Either the update didn't
-  fully take, or the same partial-paste mistake happened again, or
-  something else entirely (a hidden trailing newline from a multi-line
-  clipboard copy is a real, common, easy-to-miss cause of exactly this).
-
-**Concrete next steps for tomorrow:**
-1. Add a **temporary, safe** debug step to `.github/workflows/daily-report.yml`
-   that prints `echo "TG_TOKEN length: ${#TG_TOKEN}"` (a bare number is
-   never treated as secret-shaped, so GitHub won't mask it, and it reveals
-   nothing about the actual value) — compare that number against the `46`
-   above.
-2. If the length differs: the secret is wrong/incomplete. Re-copy fresh
-   from `cat .env` on this machine (not from BotFather's chat, to remove a
-   whole class of copy error) and re-paste into the GitHub secret. Watch
-   for a trailing newline if pasting from a file viewer rather than a
-   plain-text editor.
-3. If the length matches but it STILL 404s: something more interesting is
-   going on (an invisible character mid-string, a different kind of
-   mismatch) — at that point, log the length AND a partial hash
-   (`echo "TG_TOKEN sha256: $(echo -n "$TG_TOKEN" | sha256sum)"`, still
-   safe to print) and compare against
-   `echo -n "$(grep '^TG_TOKEN=' .env | cut -d= -f2-)" | sha256sum` run
-   locally — an exact hash match proves the values are byte-identical, a
-   mismatch proves they're genuinely different and narrows it to "the
-   paste is wrong" definitively rather than "something else is broken."
-4. Remove the debug step once resolved — it doesn't leak the secret, but
-   there's no reason to leave debug output in a working pipeline.
+Also fixed 2026-09-24: the old "London hour == 07" gate skipped runs when
+GitHub delivered the cron hours late (green run, no report). Gate is now
+"no reports/<UTC date>.md yet" plus retry crons.
 
 ## What it does
 

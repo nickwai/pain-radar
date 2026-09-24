@@ -4,19 +4,23 @@ name: Daily Pain Radar report
 # commits reports/DATE.md back to the repo, plus sends it to Telegram if
 # TG_TOKEN/TG_CHAT_ID secrets are set.
 #
-# WHY TWO CRON TIMES for one 7am UK run: GitHub Actions `schedule` is
-# UTC-only, no timezone support. 7am London time is 06:00 UTC during BST
-# (late Mar - late Oct) and 07:00 UTC during GMT (late Oct - late Mar).
-# Both lines are scheduled every day, year-round; the "gate" step below
-# checks the ACTUAL current London hour and skips every step after it
-# unless it's really 7am there right now - so only one of the two firings
-# ever does real work on any given day, and neither ever fires twice.
+# WHY MULTIPLE CRON TIMES + AN "ALREADY DONE?" GATE (fixed 2026-09-24):
+# GitHub Actions `schedule` is UTC-only AND best-effort - under load it
+# fires minutes to HOURS late, or drops runs. The old gate demanded the
+# London hour be EXACTLY 07, so on 2026-09-24 both crons fired ~5.5h late
+# (11:33Z / 12:26Z), the gate saw hour 12/13, skipped every step, and the run
+# still showed green - no report. Now: several crons through the morning,
+# and the gate is "no report exists yet for today's date" (idempotent), so
+# the first firing that lands does the work and every later one is a no-op.
+# 06:00 + 07:00 UTC keep the intended ~7am London delivery in BST / GMT.
 on:
   schedule:
-    - cron: "0 6 * * *"   # 07:00 London during BST (summer)
-    - cron: "0 7 * * *"   # 07:00 London during GMT (winter)
-  workflow_dispatch: {}   # manual "Run workflow" button - always runs,
-                          # skips the gate, for testing without waiting
+    - cron: "0 6 * * *"    # 07:00 London during BST
+    - cron: "0 7 * * *"    # 07:00 London during GMT
+    - cron: "30 8 * * *"   # retry if the above were delayed/dropped
+    - cron: "30 10 * * *"  # retry
+    - cron: "30 13 * * *"  # last retry
+  workflow_dispatch: {}   # manual "Run workflow" button - always runs
 
 permissions:
   contents: write   # needed to commit reports/DATE.md back to the repo
@@ -25,26 +29,24 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-      - name: Gate - only proceed if it's really 7am London right now
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Gate - skip if today's report already exists
         id: gate
         run: |
+          # UTC date matches radar/report.py's dt.date.today() on the runner.
+          today="$(date -u +%F)"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "manual run - skipping the DST gate"
+            echo "manual run - always proceeding"
             echo "should_run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          hour="$(TZ=Europe/London date +%H)"
-          echo "current London hour: $hour"
-          if [ "$hour" = "07" ]; then
-            echo "should_run=true" >> "$GITHUB_OUTPUT"
-          else
+          elif [ -f "reports/$today.md" ]; then
+            echo "reports/$today.md already exists - nothing to do."
             echo "should_run=false" >> "$GITHUB_OUTPUT"
-            echo "Not 7am London right now (this is the other DST-offset cron firing) - skipping."
+          else
+            echo "no report for $today yet - running."
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Checkout
-        if: steps.gate.outputs.should_run == 'true'
-        uses: actions/checkout@v4
 
       - name: Set up Python
         if: steps.gate.outputs.should_run == 'true'

@@ -67,6 +67,20 @@ jobs:
         if: steps.gate.outputs.should_run == 'true'
         run: python3 run.py filter --show 25
 
+      # TEMPORARY DEBUG (2026-09-24): Telegram 404s on Actions. Prints only
+      # lengths/booleans, never the values. REMOVE once Telegram works.
+      - name: DEBUG - Telegram secret shape (temporary)
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          echo "TG_TOKEN length: ${#TG_TOKEN}"
+          echo "TG_CHAT_ID length: ${#TG_CHAT_ID}"
+          if printf '%s' "$TG_TOKEN" | grep -Eq '^[0-9]{8,10}:[A-Za-z0-9_-]{35}$'; then echo "TG_TOKEN shape: OK"; else echo "TG_TOKEN shape: BAD"; fi
+          if printf '%s' "$TG_TOKEN" | grep -Eq '[[:space:]"'"'"']'; then echo "TG_TOKEN has whitespace/quote: YES"; else echo "TG_TOKEN has whitespace/quote: no"; fi
+          if printf '%s' "$TG_CHAT_ID" | grep -Eq '^-?[0-9]+$'; then echo "TG_CHAT_ID numeric: yes"; else echo "TG_CHAT_ID numeric: NO"; fi
+
       - name: Stage 3 - AI synthesis + Telegram
         if: steps.gate.outputs.should_run == 'true'
         env:

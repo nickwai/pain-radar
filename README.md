@@ -37,8 +37,15 @@ turns only some of those into ideas. The score bar is not the limiter.
 **First idea from one of your own industries:** 2026-09-26, trading — a
 tradovate feature request (daily trade-count lock-out for prop traders).
 It was the one idea that held up across all four 09-26 runs (score 21.0).
-Open check before building: whether Tradovate's API is usable on prop-firm
-accounts and what it costs.
+Checked the same day — **verdict: weak, don't build as a product.** Prop-firm
+accounts get no Tradovate API (forum consensus; personal API needs a $1,000
+funded account + $25/mo, market data extra), so the report's "API script"
+first step is impossible for the people asking. The only route is browser
+automation, needing each prop firm's approval. Already covered: Tradovate's
+own daily-loss auto-lock + Manual Lockout (on Tradovate Prop since
+2026-06-24), TradeReign (paid, advertises max-trades-per-day lockouts), and
+the free MIT `trevislee/tradovate-lockout` (loss limits only). Only
+recurring scheduled lockouts looked uncovered.
 
 ## 📅 Scheduled review — Thu 2026-10-08
 
@@ -59,6 +66,11 @@ Open questions to settle there, with the data:
   many were worth reading. If they're weak, set `second_pass: false`.
   Posts still listed under "Real problems that did not become ideas" were
   rejected twice.
+- **Idea sanity checks.** Gemini's "first step" assumed an API that the
+  target users can't access (Tradovate, 09-26), and missed existing
+  competitors. Worth adding to the clustering prompt: "is there already a
+  tool/built-in feature for this?" and "can the target user actually get
+  the access the first step needs?" — decide from how often it recurs.
 - **Coverage gaps left:** hardwarezone still spans only ~2.7h (subforum
   feeds would help); styleforum ~7h (its new-thread feed is broken);
   purseblog 403 on every variant; fashion and toys have no seller-side

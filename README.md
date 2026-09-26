@@ -22,6 +22,7 @@ coder to run and tune without touching Python.
 | 3 — AI synthesis (Gemini clustering/scoring) | ✅ working. Pinned `gemini-3.5-flash-lite`. Nondeterministic: same post scored 18.0 then 14.0; the Baserow freeze post got ease 5 (reported) in one 09-26 run and ease 2 ("not buildable") in another; a real problem can be clustered one run and skipped the next. |
 | 3a — per-post triage | ✅ Second Gemini call (temp 0) gives every shortlisted post a verdict: `real_problem`, `paid_gig`, `help_question`, `product_bug_report`, `out_of_industry`, `not_a_problem`. Best-effort: if it fails, the report still runs, without gating or gigs. |
 | 3a2 — second clustering pass | ✅ 2026-09-26. Posts triage marked `real_problem` that the first clustering call left out are re-clustered in one extra call (same prompt, same judgement), only when there are any. Ideas from it say *Found on the second clustering pass* in the report. `synthesis.second_pass: false` turns it off. First live run (09-26): 7 real_problem, first pass used 1, second pass got 6 → 3 clusters, all cut (1 already reported, 2 not buildable); 3 posts skipped by both passes. Judgement was not lenient. |
+| 3a3 — idea sanity checks | ✅ 2026-09-26. Clustering prompt now asks per idea: `existing_solutions` (tools or the platform's own built-in feature already solving it — shown as **Already exists** in report + Telegram, lowers scores, not a hard cut) and `target_user_has_access` + `access_reason` (can the person actually get the API/data/account access a first version needs — if `false` the idea is cut). Live check: the Tradovate lock-out idea now comes back access=false, money 1, and is cut. Existing-solution names are only as good as the model's knowledge (it said "third-party risk management desktop apps", not TradeReign) — verify before building. |
 | 3b — triage gate | ✅ 2026-09-26. Ideas may only cite posts triaged `real_problem` (a help question leaked into the 09-26 report before this). |
 | 3c — gigs | ✅ 2026-09-26. `paid_gig` posts get a **Gigs** section in the report + Telegram, unscored. |
 | 3d — cross-day dedupe | ✅ 2026-09-26 (`radar/history.py`). Reads links from the last `dedupe_days` (30) of `reports/DATE.md`. An idea is dropped only if ALL its posts were reported before; gigs are dropped if already shown. Discourse URLs match on topic id. No state file. |
@@ -66,11 +67,9 @@ Open questions to settle there, with the data:
   many were worth reading. If they're weak, set `second_pass: false`.
   Posts still listed under "Real problems that did not become ideas" were
   rejected twice.
-- **Idea sanity checks.** Gemini's "first step" assumed an API that the
-  target users can't access (Tradovate, 09-26), and missed existing
-  competitors. Worth adding to the clustering prompt: "is there already a
-  tool/built-in feature for this?" and "can the target user actually get
-  the access the first step needs?" — decide from how often it recurs.
+- **Idea sanity checks (3a3).** Count ideas cut for access, and read the
+  "Already exists" lines: are they specific and right, or vague? If the
+  access check cuts good ideas, loosen the prompt wording.
 - **Coverage gaps left:** hardwarezone still spans only ~2.7h (subforum
   feeds would help); styleforum ~7h (its new-thread feed is broken);
   purseblog 403 on every variant; fashion and toys have no seller-side

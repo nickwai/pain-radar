@@ -42,6 +42,12 @@ RESPONSE_SCHEMA = {
             "buildable_reason": {"type": "STRING"},
             "needs_team_or_capital_or_network_effect": {"type": "BOOLEAN"},
             "blocker_reason": {"type": "STRING"},
+            # Sanity checks added 2026-09-26 after the Tradovate idea: its
+            # first step needed an API prop-firm traders can't get, and it
+            # missed tools that already do it.
+            "existing_solutions": {"type": "STRING"},
+            "target_user_has_access": {"type": "BOOLEAN"},
+            "access_reason": {"type": "STRING"},
             "scores": {
                 "type": "OBJECT",
                 "properties": {
@@ -59,6 +65,7 @@ RESPONSE_SCHEMA = {
             "source_post_ids", "near_user_industries", "industry_reason",
             "buildable_two_weekends", "buildable_reason",
             "needs_team_or_capital_or_network_effect", "blocker_reason",
+            "existing_solutions", "target_user_has_access", "access_reason",
             "scores", "first_step",
         ],
     },
@@ -86,6 +93,19 @@ TASK:
      needs a team, a licence/certification, meaningful upfront capital, or
      only works once many people already use it (a marketplace, a social
      feature). If true here, it's disqualified regardless of the rest.
+   - existing_solutions: name the tools, apps, open-source projects, or
+     BUILT-IN features of the platform involved that already solve this
+     fully or partly - check the platform itself first, it often already
+     has the setting. "none known" only if you genuinely know of none.
+     A problem an existing option already solves well is not an
+     opportunity: let that lower money_evidence and anger honestly.
+   - target_user_has_access: can the person in who_has_it actually get
+     the API, data, or account access a first version needs - free or
+     cheap, without partner approval? Platforms often lock APIs to paid
+     tiers, approved vendors, or certain account types (e.g. brokers deny
+     API access on prop-firm accounts). If false, the idea is dropped.
+     access_reason: one line saying what access is needed and why it is
+     or isn't available.
 3. Score 1-5 on each (1=weak signal, 5=strong):
    - frequency: how many DIFFERENT posts/people hit this
    - anger: how frustrated do they sound (real cost/time lost, not mild "meh")
@@ -100,7 +120,8 @@ TASK:
    manual work, nothing) - this IS the evidence for money_evidence, so be
    concrete.
 7. first_step: one concrete, buildable-this-weekend suggestion. Not "build
-   an MVP" - the actual first thing to build or validate.
+   an MVP" - the actual first thing to build or validate. It must work
+   with the access the target user really has (see above).
 
 Return ONLY the JSON array matching the schema. If nothing here is a real
 problem, return an empty array [].
@@ -300,6 +321,10 @@ def score_and_filter(ideas: list[dict], config: dict,
             continue
         if idea.get("needs_team_or_capital_or_network_effect"):
             _reject(idea, "needs team / capital / network effect")
+            continue
+        # `is False`, not falsy: a backend that omits the field (Groq) passes.
+        if idea.get("target_user_has_access") is False:
+            _reject(idea, "target user can't get the access a first version needs")
             continue
         s = idea["scores"]
         total = (

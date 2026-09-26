@@ -71,6 +71,8 @@ def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str,
         lines.append(f"<b>{i}. {_esc(idea['problem_one_line'])}</b>")
         lines.append(f"👤 <b>Who:</b> {_esc(idea['who_has_it'])}")
         lines.append(f"🔧 <b>Doing about it now:</b> {_esc(idea['current_workaround'])}")
+        if idea.get("existing_solutions"):
+            lines.append(f"🧰 <b>Already exists:</b> {_esc(idea['existing_solutions'])}")
 
         score_bits = [f"{AXIS_EMOJI[k]} {v}/5" for k, v in s.items()]
         lines.append(f"📊 {'  '.join(score_bits)}  ·  <b>total {idea['total_score']}</b>")

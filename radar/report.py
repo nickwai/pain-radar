@@ -55,6 +55,9 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
         lines.append("")
         lines.append(f"**Who:** {idea['who_has_it']}")
         lines.append(f"**Doing about it now:** {idea['current_workaround']}")
+        if idea.get("existing_solutions"):
+            lines.append(f"**Already exists:** {idea['existing_solutions']} "
+                         "*(from the model's knowledge - verify before building)*")
         if idea.get("second_pass"):
             lines.append("*Found on the second clustering pass (triage said real "
                          "problem, the first pass skipped it).*")
@@ -130,7 +133,9 @@ def render_rejected(rejected: list[dict], posts_by_id: dict[str, dict], config: 
                          f"ease {s.get('ease_to_build')} · total {total}")
         for label, key in [("Industry check", "industry_reason"),
                            ("Buildable check", "buildable_reason"),
-                           ("Blocker check", "blocker_reason")]:
+                           ("Blocker check", "blocker_reason"),
+                           ("Access check", "access_reason"),
+                           ("Already exists", "existing_solutions")]:
             if c.get(key):
                 lines.append(f"**{label}:** {c[key]}")
         if c.get("who_has_it"):

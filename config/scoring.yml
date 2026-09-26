@@ -91,6 +91,9 @@ synthesis:
                         # gives a verdict per shortlisted post -> reports/rejected/.
                         # Diagnostic only; set false to save one request/day.
   max_ideas: 5          # hard cap, per your brief
+  temperature: 0         # ADDED 2026-09-26: clustering call randomness. Was unset
+                         # (model default) and the same post flipped between runs.
+                         # 0 = most repeatable. Remove the line to use the default.
   second_pass: true     # ADDED 2026-09-26: re-cluster real_problem posts the first
                         # clustering call skipped (one extra Gemini request, only
                         # when there are any). Ideas from it are marked in the report.

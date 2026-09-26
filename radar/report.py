@@ -58,6 +58,8 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
         if idea.get("existing_solutions"):
             lines.append(f"**Already exists:** {idea['existing_solutions']} "
                          "*(from the model's knowledge - verify before building)*")
+        if idea.get("access_reason"):
+            lines.append(f"**Access check:** {idea['access_reason']}")
         if idea.get("second_pass"):
             lines.append("*Found on the second clustering pass (triage said real "
                          "problem, the first pass skipped it).*")

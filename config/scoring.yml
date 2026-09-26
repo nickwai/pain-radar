@@ -91,6 +91,9 @@ synthesis:
                         # gives a verdict per shortlisted post -> reports/rejected/.
                         # Diagnostic only; set false to save one request/day.
   max_ideas: 5          # hard cap, per your brief
+  second_pass: true     # ADDED 2026-09-26: re-cluster real_problem posts the first
+                        # clustering call skipped (one extra Gemini request, only
+                        # when there are any). Ideas from it are marked in the report.
   dedupe_days: 30       # ADDED 2026-09-26: skip ideas whose posts were ALL in a
                         # report in the last N days, and gigs already reported.
                         # Read from reports/DATE.md links. 0 = off.

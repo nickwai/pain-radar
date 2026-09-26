@@ -55,6 +55,9 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
         lines.append("")
         lines.append(f"**Who:** {idea['who_has_it']}")
         lines.append(f"**Doing about it now:** {idea['current_workaround']}")
+        if idea.get("second_pass"):
+            lines.append("*Found on the second clustering pass (triage said real "
+                         "problem, the first pass skipped it).*")
         lines.append("")
 
         lines.append("**Sources:**")
@@ -119,7 +122,8 @@ def render_rejected(rejected: list[dict], posts_by_id: dict[str, dict], config: 
         title = c.get("problem_one_line") or "(no title)"
         lines.append(f"## {i}. {title}")
         lines.append("")
-        lines.append(f"**Cut because:** {c.get('reject_reason', 'unknown')}")
+        lines.append(f"**Cut because:** {c.get('reject_reason', 'unknown')}"
+                     f"{' (second pass)' if c.get('second_pass') else ''}")
         if s:
             lines.append(f"**Scores:** money {s.get('money_evidence')} · "
                          f"frequency {s.get('frequency')} · anger {s.get('anger')} · "

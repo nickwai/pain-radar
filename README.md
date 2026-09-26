@@ -21,6 +21,7 @@ coder to run and tune without touching Python.
 | 2b — always_channels | ✅ 2026-09-26. Owner communities in `scoring.yml always_channels` skip the pain/money score test (0/22 dealerrefresh, 0/12 ninjatrader passed it); up to `max_always` (10), round-robin per channel. Both 2a and 2b go on top of `shortlist.total`, never displacing posts. |
 | 3 — AI synthesis (Gemini clustering/scoring) | ✅ working. Pinned `gemini-3.5-flash-lite`. Nondeterministic: same post scored 18.0 then 14.0; a real problem can be clustered one run and skipped the next. |
 | 3a — per-post triage | ✅ Second Gemini call (temp 0) gives every shortlisted post a verdict: `real_problem`, `paid_gig`, `help_question`, `product_bug_report`, `out_of_industry`, `not_a_problem`. Best-effort: if it fails, the report still runs, without gating or gigs. |
+| 3a2 — second clustering pass | ✅ 2026-09-26. Posts triage marked `real_problem` that the first clustering call left out are re-clustered in one extra call (same prompt, same judgement), only when there are any. Ideas from it say *Found on the second clustering pass* in the report. `synthesis.second_pass: false` turns it off. |
 | 3b — triage gate | ✅ 2026-09-26. Ideas may only cite posts triaged `real_problem` (a help question leaked into the 09-26 report before this). |
 | 3c — gigs | ✅ 2026-09-26. `paid_gig` posts get a **Gigs** section in the report + Telegram, unscored. |
 | 3d — cross-day dedupe | ✅ 2026-09-26 (`radar/history.py`). Reads links from the last `dedupe_days` (30) of `reports/DATE.md`. An idea is dropped only if ALL its posts were reported before; gigs are dropped if already shown. Discourse URLs match on topic id. No state file. |
@@ -51,9 +52,10 @@ Open questions to settle there, with the data:
   one). Topics are right; posts are ads. Keep or drop on yield.
 - **New sources** (ninjatrader, tradovate, bunpro, woocommerce): yield per
   source over two weeks.
-- **Clustering vs triage disagreement.** Check the "Real problems that did
-  not become ideas" sections. If the same kind of post keeps landing
-  there, feed those posts back to clustering for a second pass.
+- **Second clustering pass.** Count ideas marked *second pass* and how
+  many were worth reading. If they're weak, set `second_pass: false`.
+  Posts still listed under "Real problems that did not become ideas" were
+  rejected twice.
 - **Coverage gaps left:** hardwarezone still spans only ~2.7h (subforum
   feeds would help); styleforum ~7h (its new-thread feed is broken);
   purseblog 403 on every variant; fashion and toys have no seller-side
@@ -68,11 +70,12 @@ Every morning on GitHub Actions (or by hand, see below):
    dollar amounts, cuts noise (sale listings, job ads, self-promo), keeps
    the top ~30-40 in `data/shortlist/DATE.json`. On top of that it adds
    hiring posts (up to 6) and posts from small owner communities (up to 10).
-3. **Report** — two Gemini calls. One gives each post a verdict (triage);
+3. **Report** — two Gemini calls (three when needed). One gives each post a verdict (triage);
    the other clusters related posts into distinct problems, judges each
    against your filter (near your industries, buildable in two weekends,
    no team/licence/capital/network-effect blocker) and scores 1-5 on
-   frequency / anger / money-evidence / ease-to-build. Python then keeps
+   frequency / anger / money-evidence / ease-to-build. Real problems the
+   clustering skipped get a second clustering call. Python then keeps
    only ideas backed by `real_problem` posts, drops ideas already reported
    in the last 30 days, applies the weights, the hard filter and the top-5
    cap. Writes `reports/DATE.md` (ideas + gigs), `reports/rejected/DATE.md`
@@ -179,7 +182,7 @@ save, rerun — that's the whole workflow.
 
 | Service | Free limit | This project's usage |
 |---|---|---|
-| Gemini (`gemini-3.5-flash-lite`, pinned) | ~1,500 requests/day | 2 per run (clustering + triage) |
+| Gemini (`gemini-3.5-flash-lite`, pinned) | ~1,500 requests/day | 2-3 per run (triage + clustering, + second pass when needed) |
 | Groq (fallback, untested) | generous | 0 unless Gemini fails |
 | HN Algolia | ~10k/hr soft | 11/run |
 | Stack Exchange (no key) | 300/day/IP | ~4/run |

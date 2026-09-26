@@ -346,6 +346,37 @@ def gate_by_triage(ideas: list[dict], triage: list[dict],
     return out
 
 
+def second_pass(raw: list[Any], posts: list[dict], triage: list[dict],
+                config: dict, env: dict | None = None,
+                verbose: bool = True) -> list[dict]:
+    """ADDED 2026-09-26: triage and clustering disagree run to run - on 09-26
+    triage marked 4 posts real_problem and clustering used 1. Re-cluster ONLY
+    the real_problem posts no first-pass cluster cited, with the same prompt
+    and the same skeptic judgement (crowding among ~40 posts is the likely
+    cause). One extra call, only when there are orphans; best-effort - a
+    failure keeps the first pass. Clusters are marked second_pass=True."""
+    if not triage or not config["synthesis"].get("second_pass", True):
+        return []
+    cited = {pid for c in raw if isinstance(c, dict)
+             for pid in (c.get("source_post_ids") or [])}
+    real = {r["id"] for r in triage if r["verdict"] == "real_problem"}
+    orphans = [p for p in posts if p["id"] in real and p["id"] not in cited]
+    if not orphans:
+        return []
+    try:
+        raw2 = synthesize_raw(orphans, config, env)
+    except Exception as exc:  # noqa: BLE001 - the first pass already worked
+        print(f"  [second pass] skipped ({type(exc).__name__})", flush=True)
+        return []
+    raw2 = [c for c in raw2 if isinstance(c, dict)] if isinstance(raw2, list) else []
+    for c in raw2:
+        c["second_pass"] = True
+    if verbose:
+        print(f"  second pass: {len(orphans)} orphan real_problem posts -> "
+              f"{len(raw2)} more clusters")
+    return raw2
+
+
 def synthesize(posts: list[dict], config: dict, env: dict | None = None,
                verbose: bool = True,
                rejected: list[dict] | None = None,
@@ -355,8 +386,10 @@ def synthesize(posts: list[dict], config: dict, env: dict | None = None,
         return []
     known_ids = {p["id"] for p in posts}
     raw = synthesize_raw(posts, config, env)
+    raw = raw if isinstance(raw, list) else []
     if verbose:
-        print(f"  AI returned {len(raw) if isinstance(raw, list) else 0} raw clusters")
+        print(f"  AI returned {len(raw)} raw clusters")
+    raw += second_pass(raw, posts, triage or [], config, env, verbose)
     validated = validate_ideas(raw, known_ids, rejected)
     if verbose:
         dropped = (len(raw) if isinstance(raw, list) else 0) - len(validated)

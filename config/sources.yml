@@ -87,32 +87,41 @@ discourse:
 # Most XenForo forums expose:  SITE/forums/-/index.rss
 # ---------------------------------------------------------------
 rss:
+  # COVERAGE FIX 2026-09-26: default forum feeds list the latest REPLIES, so a busy
+  # forum's feed spanned minutes (bogleheads 0.2h, hardwarezone 0.1h of the 48h
+  # lookback). Switched to "new threads" feeds where the software has one:
+  #   XenForo  ?order=post_date   phpBB  ?mode=topics   Invision  paged (page_url)
+  # Measured span after -> before is noted on each feed. Re-measure with
+  # the probe in README if a feed looks thin.
   feeds:
-    - url: https://www.elitetrader.com/et/forums/-/index.rss
+    - url: https://www.elitetrader.com/et/forums/-/index.rss?order=post_date   # 84h (was 13.7h)
       name: elitetrader
       group: trading
-    - url: https://www.trade2win.com/forums/-/index.rss
+    - url: https://www.trade2win.com/forums/-/index.rss?order=post_date   # full window, ~1 new thread/48h
+      also_urls: [https://www.trade2win.com/forums/-/index.rss]   # + recent replies (~10h)
       name: trade2win
       group: trading
-    - url: https://www.bogleheads.org/forum/feed.php
+    - url: https://www.bogleheads.org/forum/feed.php?mode=topics   # 18.9h (was 0.2h)
       name: bogleheads
       group: trading
-    - url: https://www.garagejournal.com/forum/forums/-/index.rss
+    - url: https://www.garagejournal.com/forum/forums/-/index.rss?order=post_date   # 52h (was 1.9h)
       name: garagejournal
       group: automotive
-    - url: https://forum.purseblog.com/forums/-/index.rss
+    - url: https://forum.purseblog.com/forums/-/index.rss   # 403 on every variant 2026-09-26
       name: purseblog          # buyers pay for authentication services
       group: fashion
-    - url: https://www.styleforum.net/forums/-/index.rss
+    - url: https://www.styleforum.net/forums/-/index.rss   # 7.2h; ?order=post_date returns 1 spam item
       name: styleforum
       group: fashion
-    - url: https://www.watchuseek.com/forums/-/index.rss
+    - url: https://www.watchuseek.com/forums/-/index.rss?order=post_date   # 9.7h (was 0.6h)
       name: watchuseek         # flippers, dealers, real money
       group: resell
     - url: https://www.eurobricks.com/forum/index.php?/discover/all.xml
+      page_url: "https://www.eurobricks.com/forum/index.php?/discover/all.xml/&page={page}"
+      max_pages: 4             # ~2.7h/page, all activity; 4 pages ~11h (was 2.7h)
       name: eurobricks
       group: toys
-    - url: https://forums.hardwarezone.com.sg/forums/-/index.rss
+    - url: https://forums.hardwarezone.com.sg/forums/-/index.rss?order=post_date   # 2.7h (was 0.1h) - huge forum
       name: hardwarezone
       group: asia
     - url: https://www.chinese-forums.com/discover/all.xml

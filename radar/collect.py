@@ -141,19 +141,52 @@ def fetch_rss(cfg: dict, cutoff: int) -> list[dict]:
     out: list[dict] = []
     for feed in cfg.get("feeds", []):
         name = feed.get("name") or feed["url"]
-        try:
-            resp = requests.get(feed["url"], headers={"User-Agent": FEED_UA},
-                                timeout=TIMEOUT)
-            if resp.status_code != 200:
-                log(f"  {name:<18} HTTP {resp.status_code}")
-                continue
-            items = parse_feed(resp.content, name, feed.get("group", "general"))
-        except Exception as exc:  # noqa: BLE001
-            log(f"  {name:<18} {type(exc).__name__}: {exc}")
+        # Optional paging (added 2026-09-26) for feeds that support it
+        # (Invision: page_url with {page}); stop once past the lookback.
+        items: list[dict] = []
+        pages = 0
+        for page in range(1, (feed.get("max_pages", 1) if feed.get("page_url") else 1) + 1):
+            url = feed["url"] if page == 1 else feed["page_url"].format(page=page)
+            try:
+                resp = requests.get(url, headers={"User-Agent": FEED_UA},
+                                    timeout=TIMEOUT)
+                if resp.status_code != 200:
+                    log(f"  {name:<18} HTTP {resp.status_code}"
+                        f"{f' (page {page})' if page > 1 else ''}")
+                    break
+                batch = parse_feed(resp.content, name, feed.get("group", "general"))
+            except Exception as exc:  # noqa: BLE001
+                log(f"  {name:<18} {type(exc).__name__}: {exc}")
+                break
+            pages += 1
+            known = {i["id"] for i in items}
+            items += [i for i in batch if i["id"] not in known]
+            dated = [i["created_utc"] for i in batch if i["created_utc"]]
+            if not batch or not dated or min(dated) < cutoff:
+                break
+            time.sleep(0.8)
+        if not pages:
             continue
+        # Extra feeds merged in, e.g. a quiet forum's reply feed next to its
+        # new-threads feed (trade2win: 1 new thread in 48h, 11 recent replies).
+        for extra in feed.get("also_urls", []):
+            time.sleep(0.8)
+            try:
+                resp = requests.get(extra, headers={"User-Agent": FEED_UA},
+                                    timeout=TIMEOUT)
+                if resp.status_code == 200:
+                    known = {i["id"] for i in items}
+                    items += [i for i in parse_feed(resp.content, name,
+                                                    feed.get("group", "general"))
+                              if i["id"] not in known]
+            except Exception:  # noqa: BLE001 - the main feed already worked
+                pass
         # Many forum feeds omit dates; keep those rather than lose the source.
         kept = [i for i in items if i["created_utc"] == 0 or i["created_utc"] >= cutoff]
-        log(f"  {name:<18} {len(kept):>3} kept / {len(items):>3} in feed")
+        dated = [i["created_utc"] for i in kept if i["created_utc"]]
+        span = f"  spans {(max(dated) - min(dated)) / 3600:.1f}h" if dated else ""
+        log(f"  {name:<18} {len(kept):>3} kept / {len(items):>3} in feed{span}"
+            f"{f'  pages={pages}' if pages > 1 else ''}")
         out += kept
         time.sleep(0.8)
     return out

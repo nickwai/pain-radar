@@ -247,8 +247,18 @@ def fetch_discourse(cfg: dict, cutoff: int) -> list[dict]:
 
 # ---------------------------------------------------------------- hn / lobsters / se
 
+def _norm_phrase(text: str) -> str:
+    return re.sub(r"\s+", " ", text.replace("\u2019", "'")).lower()
+
+
 def fetch_hackernews(cfg: dict, cutoff: int) -> list[dict]:
+    """FIX [2026-09-26]: Algolia matches loosely (prefixes, any word order,
+    words missing), so only ~1% of hits for "we pay for" contained the
+    phrase, and 30 hits covered ~2h of the 48h window. Now: fetch the whole
+    window in one request (hitsPerPage up to 1000) and, with phrase_match,
+    keep only hits whose text really contains the query phrase."""
     out: list[dict] = []
+    phrase_match = cfg.get("phrase_match", True)
     for query in cfg.get("queries", []):
         resp = requests.get(
             "https://hn.algolia.com/api/v1/search_by_date",
@@ -261,19 +271,29 @@ def fetch_hackernews(cfg: dict, cutoff: int) -> list[dict]:
             timeout=TIMEOUT,
         )
         resp.raise_for_status()
-        for hit in resp.json().get("hits", []):
+        data = resp.json()
+        hits = data.get("hits", [])
+        kept = 0
+        for hit in hits:
+            title = hit.get("title") or hit.get("story_title") or ""
+            text = strip_html(hit.get("story_text") or hit.get("comment_text"))
+            if phrase_match and _norm_phrase(query) not in _norm_phrase(f"{title} {text}"):
+                continue
+            kept += 1
             out.append(record(
                 id=f"hn:{hit['objectID']}",
                 source="hackernews",
                 channel=f"HN:{query}",
                 group="tech",
-                title=hit.get("title") or hit.get("story_title") or "",
-                text=strip_html(hit.get("story_text") or hit.get("comment_text")),
+                title=title,
+                text=text,
                 url=f"https://news.ycombinator.com/item?id={hit['objectID']}",
                 created_utc=hit.get("created_at_i"),
                 score=hit.get("points"),
                 comments=hit.get("num_comments"),
             ))
+        more = " (window NOT fully covered)" if data.get("nbHits", 0) > len(hits) else ""
+        log(f"  HN {query!r:<28} {kept:>3} kept / {len(hits):>4} hits{more}")
         time.sleep(0.4)
     return out
 

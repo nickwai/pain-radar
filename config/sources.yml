@@ -121,7 +121,10 @@ rss:
 
 # ---------------------------------------------------------------
 hackernews:
-  hits_per_query: 30
+  hits_per_query: 1000  # Algolia max. Was 30 = ~2h of the 48h window (2026-09-26).
+  phrase_match: true    # keep only hits containing the EXACT query phrase. Algolia's
+                        # own matching is loose: ~1% of "we pay for" hits had the
+                        # phrase. Quoted/advancedSyntax search returns ~0 (stop words).
   # Phrases that mean "money is moving and the tool is bad", not plain nouns.
   queries:
     - "we pay for"

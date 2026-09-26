@@ -98,11 +98,14 @@ def shortlist(posts: list[dict], keywords: dict, scoring: dict,
     hiring_exclude = (compile_phrases(keywords["hiring_exclude"])
                       if keywords.get("hiring_exclude") else None)
     rules = scoring["shortlist"]
+    always_channels = set(rules.get("always_channels") or [])
     stats = {"start": len(posts), "excluded": 0, "too_short": 0,
-             "low_score": 0, "duplicate": 0, "no_signal": 0, "hiring": 0}
+             "low_score": 0, "duplicate": 0, "no_signal": 0, "hiring": 0,
+             "always": 0}
 
     scored: list[dict] = []
     gigs: list[dict] = []
+    always: list[dict] = []
     seen_titles: set[str] = set()
 
     for post in posts:
@@ -140,6 +143,12 @@ def shortlist(posts: list[dict], keywords: dict, scoring: dict,
             stats["too_short"] += 1
             continue
 
+        # Owner communities: skip the signal/score test (added 2026-09-26).
+        if post["channel"] in always_channels:
+            stats["always"] += 1
+            always.append({**post, "signals": {**breakdown, "always": True}})
+            continue
+
         if rules.get("require_signal") and not (breakdown["pain"] or breakdown["money"]):
             stats["no_signal"] += 1
             continue
@@ -164,8 +173,16 @@ def shortlist(posts: list[dict], keywords: dict, scoring: dict,
         if len(picked) >= rules["total"]:
             break
 
-    # Gigs go on top of `total`, not instead of real posts.
+    # Gigs and always-channel posts go on top of `total`, not instead of real posts.
     picked += gigs[: rules.get("max_gigs", 6)]
+    # Round-robin across channels (best score first within each) - scores
+    # here are ~0, so a plain sort let one busy forum take every slot.
+    by_ch: dict[str, list[dict]] = {}
+    for post in sorted(always, key=lambda p: p["signals"]["score"], reverse=True):
+        by_ch.setdefault(post["channel"], []).append(post)
+    fair = [q for rnd in range(max((len(v) for v in by_ch.values()), default=0))
+            for q in (v[rnd] for v in by_ch.values() if rnd < len(v))]
+    picked += fair[: rules.get("max_always", 10)]
 
     stats["scored"] = len(scored)
     stats["picked"] = len(picked)
@@ -174,6 +191,7 @@ def shortlist(posts: list[dict], keywords: dict, scoring: dict,
     if verbose:
         print(f"  start        {stats['start']:>4}")
         print(f"  -hiring      {stats['hiring']:>4}  (someone hiring - sent to AI as gigs, max {rules.get('max_gigs', 6)})")
+        print(f"  -always      {stats['always']:>4}  (owner communities, no score test, max {rules.get('max_always', 10)})")
         print(f"  -excluded    {stats['excluded']:>4}  (noise words in title)")
         print(f"  -duplicate   {stats['duplicate']:>4}  (same title seen already)")
         print(f"  -too short   {stats['too_short']:>4}  (under {rules['min_chars']} chars, no money)")
@@ -192,7 +210,8 @@ def preview(picked: list[dict], limit: int = 20) -> None:
     print("-" * 118)
     for post in picked[:limit]:
         sig = post["signals"]
-        mark = "  HIRE" if sig.get("hiring") else ("  YES" if sig.get("combo") else "    -")
+        mark = ("  HIRE" if sig.get("hiring") else "  ALW" if sig.get("always")
+                else "  YES" if sig.get("combo") else "    -")
         print(f"{sig['score']:>6.1f} {mark:>5} {sig['money'] + sig['cash']:>2} "
               f"{sig['pain']:>4}  {post['group']:<11} "
               f"{post['channel'][:22]:<22} {post['title'][:48]}")

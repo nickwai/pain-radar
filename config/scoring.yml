@@ -44,6 +44,17 @@ shortlist:
   max_gigs: 6        # hiring-pass posts (keywords.yml `hiring_regex`) added ON TOP
                      # of `total`, skipping score/quota. Keeps a flood of job ads
                      # from eating the token budget.
+  # Small, high-value owner communities whose posts rarely use the generic
+  # pain/money phrases (dealer ops, platform feature requests) - measured
+  # 2026-09-26: 0 of 22 dealerrefresh and 0 of 12 ninjatrader posts passed.
+  # These skip the signal/score test (exclude, duplicate and min_chars still
+  # apply) and are added on top of `total`, best score first.
+  always_channels:
+    - dealerrefresh
+    - forum.ninjatrader.com
+    - community.tradovate.com
+    - community.bunpro.jp
+  max_always: 10
 
   # A bare "$45" in a sales listing is not a problem worth solving.
   # Require at least one real pain phrase OR one real money phrase.

@@ -81,6 +81,14 @@ discourse:
       group: saas
     - url: https://community.glideapps.com         # no-code apps, paid tiers
       group: saas
+    # Added 2026-09-26 - seller/owner communities in YOUR industries (probed 45,
+    # these passed). Low volume; listed in scoring.yml always_channels.
+    - url: https://forum.ninjatrader.com           # paid trading platform, ~3/day
+      group: trading
+    - url: https://community.tradovate.com         # futures broker feature requests, <1/day
+      group: trading
+    - url: https://community.bunpro.jp             # paid Japanese-learning SRS, ~1.5/day
+      group: asia
 
 # ---------------------------------------------------------------
 # RSS / ATOM FEEDS - niche forums, very few builders watching.
@@ -127,6 +135,12 @@ rss:
     - url: https://www.chinese-forums.com/discover/all.xml
       name: chinese-forums
       group: asia
+    - url: https://forum.dealerrefresh.com/forums/-/index.rss?order=post_date
+      name: dealerrefresh      # car dealership ops (CRM, leads, photos), ~3/day - added 2026-09-26
+      group: automotive
+    - url: https://wordpress.org/support/plugin/woocommerce/feed
+      name: woocommerce        # shop owners' store problems, long posts - added 2026-09-26
+      group: ecommerce
 
 # ---------------------------------------------------------------
 hackernews:

@@ -80,6 +80,9 @@ synthesis:
                         # gives a verdict per shortlisted post -> reports/rejected/.
                         # Diagnostic only; set false to save one request/day.
   max_ideas: 5          # hard cap, per your brief
+  dedupe_days: 30       # ADDED 2026-09-26: skip ideas whose posts were ALL in a
+                        # report in the last N days, and gigs already reported.
+                        # Read from reports/DATE.md links. 0 = off.
   min_total_score: 8.0  # out of a 30 max (4+4+4+4 weighted) - below this, drop it.
                          # Raise this if the report feels padded with weak ideas.
                          # Lower it if you're getting "nothing today" too often.

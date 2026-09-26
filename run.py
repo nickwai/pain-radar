@@ -128,6 +128,7 @@ def cmd_filter(args: argparse.Namespace) -> int:
 def cmd_report(args: argparse.Namespace) -> int:
     import yaml
     from radar.synthesize import synthesize, triage_posts
+    from radar.history import drop_seen_gigs, reported_urls
     from radar.report import gigs_from_triage, render, render_rejected, render_triage
 
     shortlist_dir = ROOT / "data" / "shortlist"
@@ -146,14 +147,22 @@ def cmd_report(args: argparse.Namespace) -> int:
     # Best-effort per-post verdicts (never raises; [] on failure -> no gating,
     # section omitted). Run first so non-real_problem posts can't reach the report.
     triage = triage_posts(posts, config)
-    ideas = synthesize(posts, config, rejected=rejected, triage=triage)
+    date = shortlist_path.stem
+    seen = reported_urls(ROOT / "reports", before=date,
+                         days=config["synthesis"].get("dedupe_days", 30))
+    ideas = synthesize(posts, config, rejected=rejected, triage=triage, seen=seen)
 
     posts_by_id = {p["id"]: p for p in posts}
-    date = shortlist_path.stem
-    gigs = gigs_from_triage(triage)
+    gigs, old_gigs = drop_seen_gigs(gigs_from_triage(triage), posts_by_id, seen)
+    if old_gigs:
+        print(f"  dropped {len(old_gigs)} gigs already in an earlier report")
     report_md = render(ideas, posts_by_id, config, date=date, gigs=gigs)
     rejected_md = render_rejected(rejected, posts_by_id, config, date=date)
     rejected_md += render_triage(triage, posts_by_id)
+    if old_gigs:
+        rejected_md += "\n**Gigs not shown again (already reported):**\n\n" + "".join(
+            f"- {posts_by_id[g['id']]['title']} — {posts_by_id[g['id']]['url']}\n"
+            for g in old_gigs)
 
     print("\n" + "=" * 60)
     print(report_md)

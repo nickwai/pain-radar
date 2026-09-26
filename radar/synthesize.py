@@ -349,7 +349,8 @@ def gate_by_triage(ideas: list[dict], triage: list[dict],
 def synthesize(posts: list[dict], config: dict, env: dict | None = None,
                verbose: bool = True,
                rejected: list[dict] | None = None,
-               triage: list[dict] | None = None) -> list[dict]:
+               triage: list[dict] | None = None,
+               seen: dict[str, str] | None = None) -> list[dict]:
     if not posts:
         return []
     known_ids = {p["id"] for p in posts}
@@ -365,6 +366,13 @@ def synthesize(posts: list[dict], config: dict, env: dict | None = None,
     if verbose and len(gated) != len(validated):
         print(f"  dropped {len(validated) - len(gated)} clusters triage marked "
               f"as not real problems")
+    if seen:
+        from radar.history import drop_seen_ideas
+        fresh = drop_seen_ideas(gated, {p["id"]: p for p in posts}, seen, rejected)
+        if verbose and len(fresh) != len(gated):
+            print(f"  dropped {len(gated) - len(fresh)} clusters already in an "
+                  f"earlier report")
+        gated = fresh
     final = score_and_filter(gated, config, rejected)
     if verbose:
         print(f"  {len(gated)} passed validation + triage -> {len(final)} cleared "

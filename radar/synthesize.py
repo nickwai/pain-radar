@@ -380,8 +380,11 @@ def synthesize(posts: list[dict], config: dict, env: dict | None = None,
 # can show why each was skipped and which SOURCES yield real problems.
 # Never raises, never affects the report or Telegram - a failure returns [].
 
+# paid_gig added 2026-09-26: hiring posts ("looking for an n8n freelancer")
+# are the clearest money signal the radar sees, but they are work to take,
+# not problems to productise - they get their own report section instead.
 TRIAGE_VERDICTS = ["real_problem", "help_question", "out_of_industry",
-                   "not_a_problem", "product_bug_report"]
+                   "not_a_problem", "product_bug_report", "paid_gig"]
 
 TRIAGE_SCHEMA = {
     "type": "ARRAY",
@@ -403,6 +406,9 @@ verdict, reason (max 12 words). Verdicts:
 - help_question: someone asking how to use a tool or fix their own setup
 - product_bug_report: a defect in a vendor's product that only the vendor can fix
 - out_of_industry: a real problem, but outside the industries above
+- paid_gig: someone looking to HIRE a freelancer/expert/contractor for paid work
+  (use this even if the work is in any industry; NOT for people advertising
+  their own services)
 - not_a_problem: news, opinion, showcase, discussion, announcement, small talk
 
 POSTS:

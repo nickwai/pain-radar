@@ -16,6 +16,7 @@ coder to run and tune without touching Python.
 | 2 — filter (pain + money keyword scoring) | ✅ working. Keyword pass rate is NOT the same as real problems — judge sources by triage yield. |
 | 3 — AI synthesis (Gemini clustering/scoring) | ✅ working. Pinned `gemini-3.5-flash-lite`. Nondeterministic: same post scored 18.0 then 14.0. |
 | 3b — rejected-clusters log + per-post triage | ✅ new. `reports/rejected/DATE.md`: clusters cut after clustering (with reason) + a temp-0 Gemini verdict per shortlisted post and a per-source yield table. Best-effort, never breaks the report. Also on the run summary page. |
+| 3c — triage gate + gigs | ✅ new 2026-09-26. Clusters may only cite posts triaged `real_problem`. Posts triaged `paid_gig` (someone hiring a freelancer) get a **Gigs** section in the report + Telegram — work to take, not ideas; not scored. Both depend on the best-effort triage call: if it fails, no gating and no gigs that day. |
 | 4 — GitHub Actions cron | ✅ working. Gate is now idempotent ("no `reports/<UTC date>.md` yet") with retry crons — GitHub delivers `schedule` hours late. |
 | Telegram delivery | ✅ working (was mis-pasted secrets, see below) |
 | 5 — 2-week review | 📅 Thu 2026-10-08, `review.yml` → `reports/review-2026-10-08.md` + Telegram |

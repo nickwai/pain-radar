@@ -40,14 +40,28 @@ def _esc(text: str) -> str:
     return html.escape(text or "", quote=False)
 
 
-def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str) -> str:
+def _gig_lines(gigs: list[dict], posts_by_id: dict[str, dict]) -> list[str]:
+    if not gigs:
+        return []
+    lines = ["💼 <b>Gigs — people offering to pay for work</b>"]
+    for g in gigs:
+        post = posts_by_id.get(g["id"], {})
+        lines.append(f'• <a href="{_esc(post.get("url", ""))}">'
+                     f'{_esc(post.get("title") or g["id"])}</a> — {_esc(g["reason"])}')
+    return lines
+
+
+def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str,
+                   gigs: list[dict] | None = None) -> str:
     """HTML-formatted (Telegram parse_mode=HTML), not the file Markdown."""
+    gig_lines = _gig_lines(gigs or [], posts_by_id)
     if not ideas:
-        return (
+        text = (
             f"🔭 <b>Pain Radar — {_esc(date)}</b>\n\n"
             f"Nothing today. No problem cleared the bar this run — "
             f"quieter than usual, not a failure."
         )
+        return text + ("\n\n" + "\n".join(gig_lines) if gig_lines else "")
 
     lines = [f"🎯 <b>Pain Radar — {_esc(date)}</b>",
              f"{len(ideas)} idea{'s' if len(ideas) != 1 else ''} cleared the bar today.", ""]
@@ -69,6 +83,7 @@ def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str) -
         lines.append(f"▶️ <b>First step:</b> {_esc(idea['first_step'])}")
         lines.append("")  # blank line between ideas
 
+    lines += gig_lines
     return "\n".join(lines).rstrip()
 
 

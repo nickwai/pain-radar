@@ -10,8 +10,29 @@ from __future__ import annotations
 import datetime as dt
 
 
+def gigs_from_triage(triage: list[dict]) -> list[dict]:
+    """Posts triage marked paid_gig (someone hiring). [] when triage failed."""
+    return [r for r in triage if r.get("verdict") == "paid_gig"]
+
+
+def render_gigs(gigs: list[dict], posts_by_id: dict[str, dict]) -> list[str]:
+    """Hiring posts: paid work you could take directly. Not scored - not ideas.
+    Heading must not match `## N. ` (radar/review.py parses those as ideas)."""
+    if not gigs:
+        return []
+    lines = ["## Gigs — people offering to pay for work", "",
+             "Not product ideas: freelance jobs posted today. Check the post date "
+             "and replies before answering - good ones go fast.", ""]
+    for g in gigs:
+        post = posts_by_id.get(g["id"], {})
+        lines.append(f"- [{_md_title(post.get('title') or g['id'])}]({post.get('url', '')}) "
+                     f"— {post.get('channel', '?')}: {g['reason']}")
+    lines.append("")
+    return lines
+
+
 def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
-          date: str | None = None) -> str:
+          date: str | None = None, gigs: list[dict] | None = None) -> str:
     date = date or dt.date.today().isoformat()
     w = config["synthesis"]["weights"]
 
@@ -21,7 +42,9 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
         lines.append("**Nothing today.** No cluster cleared the filter or the "
                      f"min score bar (`{config['synthesis']['min_total_score']}`) "
                      "this run. See `data/shortlist/` for what was considered.")
-        return "\n".join(lines) + "\n"
+        lines.append("")
+        lines += render_gigs(gigs or [], posts_by_id)
+        return "\n".join(lines).rstrip() + "\n"
 
     lines.append(f"{len(ideas)} idea{'s' if len(ideas) != 1 else ''} cleared the bar today.")
     lines.append("")
@@ -59,6 +82,7 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
         lines.append("---")
         lines.append("")
 
+    lines += render_gigs(gigs or [], posts_by_id)
     return "\n".join(lines)
 
 
@@ -126,7 +150,7 @@ def render_triage(triage: list[dict], posts_by_id: dict[str, dict]) -> str:
     and which only pass the keyword filter (billing bug reports etc)."""
     if not triage:
         return ""
-    order = ["real_problem", "help_question", "product_bug_report",
+    order = ["real_problem", "paid_gig", "help_question", "product_bug_report",
              "out_of_industry", "not_a_problem"]
     counts: dict[str, int] = {}
     per_src: dict[str, dict[str, int]] = {}

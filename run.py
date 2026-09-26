@@ -128,7 +128,7 @@ def cmd_filter(args: argparse.Namespace) -> int:
 def cmd_report(args: argparse.Namespace) -> int:
     import yaml
     from radar.synthesize import synthesize, triage_posts
-    from radar.report import render, render_rejected, render_triage
+    from radar.report import gigs_from_triage, render, render_rejected, render_triage
 
     shortlist_dir = ROOT / "data" / "shortlist"
     files = sorted(shortlist_dir.glob("*.json"))
@@ -150,7 +150,8 @@ def cmd_report(args: argparse.Namespace) -> int:
 
     posts_by_id = {p["id"]: p for p in posts}
     date = shortlist_path.stem
-    report_md = render(ideas, posts_by_id, config, date=date)
+    gigs = gigs_from_triage(triage)
+    report_md = render(ideas, posts_by_id, config, date=date, gigs=gigs)
     rejected_md = render_rejected(rejected, posts_by_id, config, date=date)
     rejected_md += render_triage(triage, posts_by_id)
 
@@ -167,7 +168,7 @@ def cmd_report(args: argparse.Namespace) -> int:
         if tg_token and tg_chat_id:
             from radar.telegram import format_message, send
 
-            tg_text = format_message(ideas, posts_by_id, date)
+            tg_text = format_message(ideas, posts_by_id, date, gigs=gigs)
             delivered, detail = send(tg_text, tg_token, tg_chat_id)
             print(f"\n[telegram] {'sent' if delivered else 'FAILED'}: {detail}")
         else:

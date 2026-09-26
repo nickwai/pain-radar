@@ -321,9 +321,35 @@ def score_and_filter(ideas: list[dict], config: dict,
     return kept[: syn["max_ideas"]]
 
 
+def gate_by_triage(ideas: list[dict], triage: list[dict],
+                   rejected: list[dict] | None = None) -> list[dict]:
+    """FIX [2026-09-26]: the clustering call and the triage call judge posts
+    independently, so a post triage called `help_question` could still be
+    cited by a cluster and reach the report (09-26: Shopify billing question).
+    Drop cited posts whose verdict is anything but real_problem; a cluster
+    left with no posts goes to the rejected log. Posts with no verdict are
+    kept, and an empty triage (call failed/disabled) gates nothing."""
+    if not triage:
+        return ideas
+    verdict = {r["id"]: r["verdict"] for r in triage}
+    out = []
+    for idea in ideas:
+        ids = idea["source_post_ids"]
+        keep = [i for i in ids if verdict.get(i, "real_problem") == "real_problem"]
+        if not keep:
+            if rejected is not None:
+                why = ", ".join(sorted({verdict[i] for i in ids}))
+                rejected.append({**idea, "reject_reason": f"triage says not a real problem ({why})"})
+            continue
+        idea["source_post_ids"] = keep
+        out.append(idea)
+    return out
+
+
 def synthesize(posts: list[dict], config: dict, env: dict | None = None,
                verbose: bool = True,
-               rejected: list[dict] | None = None) -> list[dict]:
+               rejected: list[dict] | None = None,
+               triage: list[dict] | None = None) -> list[dict]:
     if not posts:
         return []
     known_ids = {p["id"] for p in posts}
@@ -335,9 +361,13 @@ def synthesize(posts: list[dict], config: dict, env: dict | None = None,
         dropped = (len(raw) if isinstance(raw, list) else 0) - len(validated)
         if dropped:
             print(f"  dropped {dropped} malformed/hallucinated-source clusters")
-    final = score_and_filter(validated, config, rejected)
+    gated = gate_by_triage(validated, triage or [], rejected)
+    if verbose and len(gated) != len(validated):
+        print(f"  dropped {len(validated) - len(gated)} clusters triage marked "
+              f"as not real problems")
+    final = score_and_filter(gated, config, rejected)
     if verbose:
-        print(f"  {len(validated)} passed validation -> {len(final)} cleared "
+        print(f"  {len(gated)} passed validation + triage -> {len(final)} cleared "
               f"the filter + min_total_score")
     return final
 

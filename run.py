@@ -143,14 +143,16 @@ def cmd_report(args: argparse.Namespace) -> int:
     # IMPROVEMENT [2026-09-24]: collect clusters Gemini produced but the
     # filters cut, so they can be reviewed (reports/rejected/DATE.md).
     rejected: list[dict] = []
-    ideas = synthesize(posts, config, rejected=rejected)
+    # Best-effort per-post verdicts (never raises; [] on failure -> no gating,
+    # section omitted). Run first so non-real_problem posts can't reach the report.
+    triage = triage_posts(posts, config)
+    ideas = synthesize(posts, config, rejected=rejected, triage=triage)
 
     posts_by_id = {p["id"]: p for p in posts}
     date = shortlist_path.stem
     report_md = render(ideas, posts_by_id, config, date=date)
     rejected_md = render_rejected(rejected, posts_by_id, config, date=date)
-    # Best-effort per-post verdicts (never raises; [] on failure -> section omitted).
-    rejected_md += render_triage(triage_posts(posts, config), posts_by_id)
+    rejected_md += render_triage(triage, posts_by_id)
 
     print("\n" + "=" * 60)
     print(report_md)

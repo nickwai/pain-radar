@@ -19,13 +19,13 @@ coder to run and tune without touching Python.
 | 2 — filter (pain + money keyword scoring) | ✅ working. Industry-keyword study 2026-09-26 (914 posts, 58 phrases): no keywords added — every lift was sale listings, news or hobby chat. Judge sources by triage yield, not keyword pass rate. |
 | 2a — hiring pass | ✅ 2026-09-26. `hiring_regex` / `hiring_exclude` (keywords.yml) send up to `max_gigs` (6) hiring posts to the AI, bypassing `exclude` and scoring. |
 | 2b — always_channels | ✅ 2026-09-26. Owner communities in `scoring.yml always_channels` skip the pain/money score test (0/22 dealerrefresh, 0/12 ninjatrader passed it); up to `max_always` (10), round-robin per channel. Both 2a and 2b go on top of `shortlist.total`, never displacing posts. |
-| 3 — AI synthesis (Gemini clustering/scoring) | ✅ working. Pinned `gemini-3.5-flash-lite`. Nondeterministic: same post scored 18.0 then 14.0; a real problem can be clustered one run and skipped the next. |
+| 3 — AI synthesis (Gemini clustering/scoring) | ✅ working. Pinned `gemini-3.5-flash-lite`. Nondeterministic: same post scored 18.0 then 14.0; the Baserow freeze post got ease 5 (reported) in one 09-26 run and ease 2 ("not buildable") in another; a real problem can be clustered one run and skipped the next. |
 | 3a — per-post triage | ✅ Second Gemini call (temp 0) gives every shortlisted post a verdict: `real_problem`, `paid_gig`, `help_question`, `product_bug_report`, `out_of_industry`, `not_a_problem`. Best-effort: if it fails, the report still runs, without gating or gigs. |
-| 3a2 — second clustering pass | ✅ 2026-09-26. Posts triage marked `real_problem` that the first clustering call left out are re-clustered in one extra call (same prompt, same judgement), only when there are any. Ideas from it say *Found on the second clustering pass* in the report. `synthesis.second_pass: false` turns it off. |
+| 3a2 — second clustering pass | ✅ 2026-09-26. Posts triage marked `real_problem` that the first clustering call left out are re-clustered in one extra call (same prompt, same judgement), only when there are any. Ideas from it say *Found on the second clustering pass* in the report. `synthesis.second_pass: false` turns it off. First live run (09-26): 7 real_problem, first pass used 1, second pass got 6 → 3 clusters, all cut (1 already reported, 2 not buildable); 3 posts skipped by both passes. Judgement was not lenient. |
 | 3b — triage gate | ✅ 2026-09-26. Ideas may only cite posts triaged `real_problem` (a help question leaked into the 09-26 report before this). |
 | 3c — gigs | ✅ 2026-09-26. `paid_gig` posts get a **Gigs** section in the report + Telegram, unscored. |
 | 3d — cross-day dedupe | ✅ 2026-09-26 (`radar/history.py`). Reads links from the last `dedupe_days` (30) of `reports/DATE.md`. An idea is dropped only if ALL its posts were reported before; gigs are dropped if already shown. Discourse URLs match on topic id. No state file. |
-| 3e — rejected log | ✅ `reports/rejected/DATE.md`: ideas cut after clustering (with reason), **real problems that did not become ideas** (triage said `real_problem`, clustering never used them — added 2026-09-26), gigs not repeated, and every post's verdict with a per-source yield table. |
+| 3e — rejected log | ✅ `reports/rejected/DATE.md`: ideas cut after clustering (with reason), **real problems that did not become ideas** (triage said `real_problem`, neither clustering pass used them — added 2026-09-26), gigs not repeated, and every post's verdict with a per-source yield table. |
 | 4 — GitHub Actions cron | ✅ working. Gate is idempotent ("no `reports/<UTC date>.md` yet") with retry crons — GitHub delivers `schedule` hours late. A manual run (Actions → Run workflow) always runs and overwrites today's report. |
 | Telegram delivery | ✅ working |
 | 5 — 2-week review | 📅 Thu 2026-10-08, `review.yml` → `reports/review-2026-10-08.md` + Telegram |
@@ -36,6 +36,9 @@ turns only some of those into ideas. The score bar is not the limiter.
 
 **First idea from one of your own industries:** 2026-09-26, trading — a
 tradovate feature request (daily trade-count lock-out for prop traders).
+It was the one idea that held up across all four 09-26 runs (score 21.0).
+Open check before building: whether Tradovate's API is usable on prop-firm
+accounts and what it costs.
 
 ## 📅 Scheduled review — Thu 2026-10-08
 

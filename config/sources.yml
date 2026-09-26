@@ -125,18 +125,24 @@ hackernews:
   phrase_match: true    # keep only hits containing the EXACT query phrase. Algolia's
                         # own matching is loose: ~1% of "we pay for" hits had the
                         # phrase. Quoted/advancedSyntax search returns ~0 (stop words).
-  # Phrases that mean "money is moving and the tool is bad", not plain nouns.
+  ask_hn: true          # ADDED 2026-09-26: every Ask HN story in the window (~30/day),
+                        # no phrase filter - they are questions by nature, and the best
+                        # HN pain threads live there ("Who's still keeping a DOS machine
+                        # up because the business depends on it?", 166 comments).
+  # Phrases, matched EXACTLY in the text (phrase_match). Reworded 2026-09-26 from
+  # 48h counts: the old long phrases ("we pay for", "is there a tool for") had
+  # 0-1 exact hits. Dropped "manually"/"spreadsheet": 55/34 hits, all coding chatter.
   queries:
-    - "we pay for"
-    - "paying per month"
-    - "too expensive for"
-    - "switched away from"
-    - "cheaper alternative to"
-    - "still doing this manually"
-    - "spreadsheet hell"
-    - "is there a tool for"
-    - "wish there was a tool"
-    - "hate our current"
+    - "alternative to"     # 23 hits/48h
+    - "too expensive"      # 17
+    - "willing to pay"     # 13
+    - "per month"          # 11
+    - "a month for"        # 6
+    - "wish there was an"  # ~3 ("an alternative to carbonite")
+    - "price hike"         # 3
+    - "overpriced"         # 3
+    - "pricing is"         # 3
+    - "vendor lock-in"     # 2
 
 lobsters:
   enabled: true

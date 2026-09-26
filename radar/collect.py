@@ -295,6 +295,29 @@ def fetch_hackernews(cfg: dict, cutoff: int) -> list[dict]:
         more = " (window NOT fully covered)" if data.get("nbHits", 0) > len(hits) else ""
         log(f"  HN {query!r:<28} {kept:>3} kept / {len(hits):>4} hits{more}")
         time.sleep(0.4)
+    if cfg.get("ask_hn"):
+        resp = requests.get(
+            "https://hn.algolia.com/api/v1/search_by_date",
+            params={"tags": "ask_hn", "numericFilters": f"created_at_i>{cutoff}",
+                    "hitsPerPage": cfg.get("hits_per_query", 30)},
+            timeout=TIMEOUT,
+        )
+        resp.raise_for_status()
+        hits = resp.json().get("hits", [])
+        for hit in hits:
+            out.append(record(
+                id=f"hn:{hit['objectID']}",
+                source="hackernews",
+                channel="HN:ask",
+                group="tech",
+                title=hit.get("title") or "",
+                text=strip_html(hit.get("story_text")),
+                url=f"https://news.ycombinator.com/item?id={hit['objectID']}",
+                created_utc=hit.get("created_at_i"),
+                score=hit.get("points"),
+                comments=hit.get("num_comments"),
+            ))
+        log(f"  HN {'Ask HN':<28} {len(hits):>3} stories")
     return out
 
 

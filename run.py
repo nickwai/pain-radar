@@ -129,7 +129,8 @@ def cmd_report(args: argparse.Namespace) -> int:
     import yaml
     from radar.synthesize import synthesize, triage_posts
     from radar.history import drop_seen_gigs, reported_urls
-    from radar.report import gigs_from_triage, render, render_rejected, render_triage
+    from radar.report import (gigs_from_triage, render, render_orphans,
+                              render_rejected, render_triage)
 
     shortlist_dir = ROOT / "data" / "shortlist"
     files = sorted(shortlist_dir.glob("*.json"))
@@ -158,6 +159,7 @@ def cmd_report(args: argparse.Namespace) -> int:
         print(f"  dropped {len(old_gigs)} gigs already in an earlier report")
     report_md = render(ideas, posts_by_id, config, date=date, gigs=gigs)
     rejected_md = render_rejected(rejected, posts_by_id, config, date=date)
+    rejected_md += render_orphans(triage, ideas + rejected, posts_by_id)
     rejected_md += render_triage(triage, posts_by_id)
     if old_gigs:
         rejected_md += "\n**Gigs not shown again (already reported):**\n\n" + "".join(

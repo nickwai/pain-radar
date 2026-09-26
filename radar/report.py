@@ -139,6 +139,28 @@ def render_rejected(rejected: list[dict], posts_by_id: dict[str, dict], config: 
     return "\n".join(lines)
 
 
+def render_orphans(triage: list[dict], clusters: list[dict],
+                   posts_by_id: dict[str, dict]) -> str:
+    """ADDED 2026-09-26: posts triage called real_problem that no cluster
+    cited - neither a reported idea nor a cut one. The clustering and triage
+    calls disagree run to run (09-26: 4 real_problem, 1 cluster), and these
+    posts were otherwise invisible. Not scored - worth a manual look."""
+    cited = {pid for c in clusters for pid in (c.get("source_post_ids") or [])}
+    orphans = [r for r in triage if r["verdict"] == "real_problem" and r["id"] not in cited]
+    if not orphans:
+        return ""
+    lines = ["", "---", "", "# Real problems that did not become ideas", "",
+             f"{len(orphans)} post{'s' if len(orphans) != 1 else ''} triage marked "
+             "`real_problem`, but the clustering call never turned into an idea "
+             "(not in the report, not cut above). Unscored - read them yourself; "
+             "if one keeps showing up here, it is a missed idea.", ""]
+    for r in orphans:
+        post = posts_by_id.get(r["id"], {})
+        lines.append(f"- [{_md_title((post.get('title') or r['id'])[:80])}]"
+                     f"({post.get('url', '')}) ({post.get('channel', '?')}): {r['reason']}")
+    return "\n".join(lines) + "\n"
+
+
 def _md_title(text: str) -> str:
     """Square brackets in a post title (e.g. "[SOLVED] ...") break [text](url)."""
     return (text or "").replace("[", "(").replace("]", ")")

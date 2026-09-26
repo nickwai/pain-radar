@@ -155,7 +155,7 @@ def render_orphans(triage: list[dict], clusters: list[dict],
         return ""
     lines = ["", "---", "", "# Real problems that did not become ideas", "",
              f"{len(orphans)} post{'s' if len(orphans) != 1 else ''} triage marked "
-             "`real_problem`, but the clustering call never turned into an idea "
+             "`real_problem`, but neither clustering pass turned into an idea "
              "(not in the report, not cut above). Unscored - read them yourself; "
              "if one keeps showing up here, it is a missed idea.", ""]
     for r in orphans:

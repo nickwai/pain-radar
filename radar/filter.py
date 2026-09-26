@@ -91,15 +91,37 @@ def shortlist(posts: list[dict], keywords: dict, scoring: dict,
         "exclude": compile_phrases(keywords["exclude"]),
         "exclude_soft": compile_phrases(keywords["exclude_soft"]),
     }
+    # Hiring pass (added 2026-09-26). Optional keys so an old keywords.yml
+    # still works - no hiring_regex, no gigs.
+    hiring = (compile_regexes(keywords["hiring_regex"])
+              if keywords.get("hiring_regex") else None)
+    hiring_exclude = (compile_phrases(keywords["hiring_exclude"])
+                      if keywords.get("hiring_exclude") else None)
     rules = scoring["shortlist"]
     stats = {"start": len(posts), "excluded": 0, "too_short": 0,
-             "low_score": 0, "duplicate": 0, "no_signal": 0}
+             "low_score": 0, "duplicate": 0, "no_signal": 0, "hiring": 0}
 
     scored: list[dict] = []
+    gigs: list[dict] = []
     seen_titles: set[str] = set()
 
     for post in posts:
         blob = f"{post['title']} {post['text']}"
+
+        # Someone wants to hire: bypass `exclude` (which drops "hiring" in a
+        # title) and scoring - the AI triage decides if it is a real gig.
+        m = hiring.search(blob) if hiring else None
+        if m and not (hiring_exclude and hiring_exclude.search(post["title"])):
+            key = normalise_title(post["title"])
+            if key and key in seen_titles:
+                stats["duplicate"] += 1
+                continue
+            seen_titles.add(key)
+            stats["hiring"] += 1
+            gigs.append({**post, "signals": {**score_post(post, pats, scoring),
+                                             "hiring": True,
+                                             "hiring_matched": m.group(0)[:60]}})
+            continue
 
         if pats["exclude"].search(post["title"]) or pats["exclude_soft"].search(post["title"]):
             stats["excluded"] += 1
@@ -142,12 +164,16 @@ def shortlist(posts: list[dict], keywords: dict, scoring: dict,
         if len(picked) >= rules["total"]:
             break
 
+    # Gigs go on top of `total`, not instead of real posts.
+    picked += gigs[: rules.get("max_gigs", 6)]
+
     stats["scored"] = len(scored)
     stats["picked"] = len(picked)
     stats["per_group"] = per_group
 
     if verbose:
         print(f"  start        {stats['start']:>4}")
+        print(f"  -hiring      {stats['hiring']:>4}  (someone hiring - sent to AI as gigs, max {rules.get('max_gigs', 6)})")
         print(f"  -excluded    {stats['excluded']:>4}  (noise words in title)")
         print(f"  -duplicate   {stats['duplicate']:>4}  (same title seen already)")
         print(f"  -too short   {stats['too_short']:>4}  (under {rules['min_chars']} chars, no money)")
@@ -166,7 +192,7 @@ def preview(picked: list[dict], limit: int = 20) -> None:
     print("-" * 118)
     for post in picked[:limit]:
         sig = post["signals"]
-        mark = "  YES" if sig.get("combo") else "    -"
+        mark = "  HIRE" if sig.get("hiring") else ("  YES" if sig.get("combo") else "    -")
         print(f"{sig['score']:>6.1f} {mark:>5} {sig['money'] + sig['cash']:>2} "
               f"{sig['pain']:>4}  {post['group']:<11} "
               f"{post['channel'][:22]:<22} {post['title'][:48]}")

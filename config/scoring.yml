@@ -41,6 +41,9 @@ shortlist:
   max_per_group: 9   # stops any single industry taking over the report
   min_chars: 80      # posts shorter than this are noise, unless money is mentioned
   min_score: 2.5     # below this, not worth the AI's time
+  max_gigs: 6        # hiring-pass posts (keywords.yml `hiring_regex`) added ON TOP
+                     # of `total`, skipping score/quota. Keeps a flood of job ads
+                     # from eating the token budget.
 
   # A bare "$45" in a sales listing is not a problem worth solving.
   # Require at least one real pain phrase OR one real money phrase.

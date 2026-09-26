@@ -166,3 +166,33 @@ exclude_soft:
   - "finally finished"
   - "just bought"
   - "look what i"
+
+# --- SIGNAL 4: someone wants to HIRE (added 2026-09-26) -------
+# Separate pass, runs BEFORE `exclude` above (which drops "hiring" in a
+# title). A match skips scoring and goes straight to the AI as a possible
+# gig; Gemini triage labels it `paid_gig` and it lands in the report's
+# Gigs section. Capped by `max_gigs` in scoring.yml. Regex, matched on
+# title + body. Checked against 3 days of raw posts: 4 hits, all real gigs.
+hiring_regex:
+  - '\blooking for (?:an?|some|someone|experienced|a skilled) (?:[\w./&+-]+ ){0,4}(?:freelancer|developer|dev|expert|consultant|contractor|builder|specialist|programmer|engineer|designer|agency|professional|pro)s?\b'
+  - '\b(?:need|seeking|searching for|want to hire|wanting to hire|hire) (?:an?|some|experienced) (?:[\w./&+-]+ ){0,4}(?:freelancer|developer|dev|expert|consultant|contractor|builder|specialist|programmer|engineer|designer|agency|professional)s?\b'
+  - '\b(?:freelancer|developer|dev|expert|consultant|contractor|builder|specialist|programmer|engineer|designer)s? (?:needed|wanted|required)\b'
+  - '\b(?:paid|budget for (?:the|this)) (?:gig|project|task|job|work|engagement)\b'
+  - '\bbudget\s*(?::|is|of|around)\s*[$£€]?\d'
+  - '\[(?:paid|hiring|job|gig)\]'
+  - '\bwe(?:''re| are) hiring\b'
+  - '\bwilling to pay (?:someone|a freelancer|an expert|for help|for someone)\b'
+  - '\blooking for someone (?:to|who can) (?:build|help|set up|create|develop|automate)\b'
+  - '\bbuscamos\b.{0,40}\bfreelancer'
+
+# Supply side: people SELLING their services, or job-board threads.
+# Any hit in the TITLE and the post is not a gig (normal filter applies).
+hiring_exclude:
+  - "for hire"
+  - "looking for work"
+  - "available for"
+  - "who's hiring"
+  - "whos hiring"
+  - "job posting"
+  - "hire me"
+  - "my services"

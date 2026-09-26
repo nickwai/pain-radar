@@ -19,7 +19,7 @@ coder to run and tune without touching Python.
 | 2 — filter (pain + money keyword scoring) | ✅ working. Industry-keyword study 2026-09-26 (914 posts, 58 phrases): no keywords added — every lift was sale listings, news or hobby chat. Judge sources by triage yield, not keyword pass rate. |
 | 2a — hiring pass | ✅ 2026-09-26. `hiring_regex` / `hiring_exclude` (keywords.yml) send up to `max_gigs` (6) hiring posts to the AI, bypassing `exclude` and scoring. |
 | 2b — always_channels | ✅ 2026-09-26. Owner communities in `scoring.yml always_channels` skip the pain/money score test (0/22 dealerrefresh, 0/12 ninjatrader passed it); up to `max_always` (10), round-robin per channel. Both 2a and 2b go on top of `shortlist.total`, never displacing posts. |
-| 3 — AI synthesis (Gemini clustering/scoring) | ✅ working. Pinned `gemini-3.5-flash-lite`. Nondeterministic: same post scored 18.0 then 14.0; the Baserow freeze post got ease 5 (reported) in one 09-26 run and ease 2 ("not buildable") in another; a real problem can be clustered one run and skipped the next. |
+| 3 — AI synthesis (Gemini clustering/scoring) | ✅ working. Pinned `gemini-3.5-flash-lite`. Nondeterministic: same post scored 18.0 then 14.0; the Baserow freeze post got ease 5 (reported) in one 09-26 run and ease 2 ("not buildable") in another; a real problem can be clustered one run and skipped the next. Main cause found 09-26: the clustering call set no temperature (model default); now `synthesis.temperature: 0` (see 3a3). Triage (already temp 0) still drifted: 4-7 real_problem in earlier 09-26 runs, 13 in the last, including help questions and showcases. |
 | 3a — per-post triage | ✅ Second Gemini call (temp 0) gives every shortlisted post a verdict: `real_problem`, `paid_gig`, `help_question`, `product_bug_report`, `out_of_industry`, `not_a_problem`. Best-effort: if it fails, the report still runs, without gating or gigs. |
 | 3a2 — second clustering pass | ✅ 2026-09-26. Posts triage marked `real_problem` that the first clustering call left out are re-clustered in one extra call (same prompt, same judgement), only when there are any. Ideas from it say *Found on the second clustering pass* in the report. `synthesis.second_pass: false` turns it off. First live run (09-26): 7 real_problem, first pass used 1, second pass got 6 → 3 clusters, all cut (1 already reported, 2 not buildable); 3 posts skipped by both passes. Judgement was not lenient. |
 | 3a3 — idea sanity checks | ✅ 2026-09-26. Clustering prompt now asks per idea: `existing_solutions` (tools or the platform's own built-in feature already solving it — shown as **Already exists** in report + Telegram, lowers scores, not a hard cut) and `target_user_has_access` + `access_reason` (can the person actually get the API/data/account access a first version needs — if `false` the idea is cut). Live check: the Tradovate lock-out idea now comes back access=false, money 1, and is cut. The access reason is shown for kept ideas too (report + Telegram). Clustering now runs at `synthesis.temperature: 0` — before, no temperature was set and the same post flipped between runs; live check: a 34-post shortlist gave the identical cluster twice, but a 2-post test still varied (0/0/1 clusters), so it narrows the variation without removing it. The access answer itself is still unreliable (Shopify email-template idea: access=true in one run, false in another). Existing-solution names are only as good as the model's knowledge (it said "third-party risk management desktop apps", not TradeReign) — verify before building. |
@@ -37,7 +37,10 @@ turns only some of those into ideas. The score bar is not the limiter.
 
 **First idea from one of your own industries:** 2026-09-26, trading — a
 tradovate feature request (daily trade-count lock-out for prop traders).
-It was the one idea that held up across all four 09-26 runs (score 21.0).
+It was the one idea that held up across all five 09-26 runs (score 21.0) —
+including the run after the access check was added, where it passed with an
+incorrect "Already exists" line and an API first step, which led to the
+temperature-0 fix.
 Checked the same day — **verdict: weak, don't build as a product.** Prop-firm
 accounts get no Tradovate API (forum consensus; personal API needs a $1,000
 funded account + $25/mo, market data extra), so the report's "API script"
@@ -68,8 +71,14 @@ Open questions to settle there, with the data:
   Posts still listed under "Real problems that did not become ideas" were
   rejected twice.
 - **Idea sanity checks (3a3).** Count ideas cut for access, and read the
-  "Already exists" lines: are they specific and right, or vague? If the
-  access check cuts good ideas, loosen the prompt wording.
+  "Already exists" and "Access check" lines: are they specific and right,
+  or vague? If the access check cuts good ideas, loosen the prompt wording.
+- **Stability after temperature 0.** Do the same posts still flip between
+  days (cut one day, reported the next)? If yes, add voting: cluster 2-3
+  times and keep only ideas every run agrees on (+2-3 Gemini requests/day).
+- **Triage drift.** real_problem count per day and how many are really help
+  questions/showcases. If triage stays loose, the second pass and the
+  "did not become ideas" list fill with noise.
 - **Coverage gaps left:** hardwarezone still spans only ~2.7h (subforum
   feeds would help); styleforum ~7h (its new-thread feed is broken);
   purseblog 403 on every variant; fashion and toys have no seller-side

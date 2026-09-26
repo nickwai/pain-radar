@@ -31,6 +31,10 @@ reddit:
 # ---------------------------------------------------------------
 discourse:
   page_size: 30
+  max_pages: 3   # ADDED 2026-09-26: /latest.json returns only 30 topics - on a busy
+                 # forum (n8n) that is ~18h, shorter than lookback_hours. Keep paging
+                 # while the oldest topic is still inside the lookback, up to this cap.
+                 # Quiet forums stop after page 1 (no extra requests).
   forums:
     - url: https://forum.alpaca.markets        # trading APIs, brokers
       group: trading

@@ -161,21 +161,25 @@ def fetch_rss(cfg: dict, cutoff: int) -> list[dict]:
 
 # ---------------------------------------------------------------- discourse
 
-def discourse_bodies(base: str) -> dict[str, str]:
-    """/latest.json has no post text; /latest.rss does. Join them on topic id."""
-    try:
-        resp = requests.get(f"{base}/latest.rss", headers={"User-Agent": FEED_UA},
-                            timeout=TIMEOUT)
-        if resp.status_code != 200:
-            return {}
-        bodies: dict[str, str] = {}
-        for item in parse_feed(resp.content, "tmp", "tmp"):
-            match = re.search(r"/t/[^/]+/(\d+)", item["url"])
-            if match:
-                bodies[match.group(1)] = item["text"]
-        return bodies
-    except Exception:  # noqa: BLE001 - body text is a bonus, never a blocker
-        return {}
+def discourse_bodies(base: str, pages: int = 1) -> dict[str, str]:
+    """/latest.json has no post text; /latest.rss does. Join them on topic id.
+    `pages`: fetch as many RSS pages as JSON pages were fetched (2026-09-26)."""
+    bodies: dict[str, str] = {}
+    for page in range(pages):
+        try:
+            resp = requests.get(f"{base}/latest.rss", params={"page": page} if page else None,
+                                headers={"User-Agent": FEED_UA}, timeout=TIMEOUT)
+            if resp.status_code != 200:
+                break
+            for item in parse_feed(resp.content, "tmp", "tmp"):
+                match = re.search(r"/t/[^/]+/(\d+)", item["url"])
+                if match:
+                    bodies.setdefault(match.group(1), item["text"])
+        except Exception:  # noqa: BLE001 - body text is a bonus, never a blocker
+            break
+        if page + 1 < pages:
+            time.sleep(0.6)
+    return bodies
 
 
 def fetch_discourse(cfg: dict, cutoff: int) -> list[dict]:
@@ -183,25 +187,43 @@ def fetch_discourse(cfg: dict, cutoff: int) -> list[dict]:
     for forum in cfg.get("forums", []):
         base = forum["url"].rstrip("/")
         short = base.replace("https://", "")
-        try:
-            resp = requests.get(f"{base}/latest.json", params={"order": "created"},
-                                headers={"User-Agent": FEED_UA}, timeout=TIMEOUT)
-            if resp.status_code != 200:
-                log(f"  {short:<30} HTTP {resp.status_code}")
-                continue
-            topics = resp.json().get("topic_list", {}).get("topics", [])
-        except Exception as exc:  # noqa: BLE001
-            log(f"  {short:<30} {type(exc).__name__}")
+        # Page until the oldest topic is past the lookback (added 2026-09-26:
+        # n8n's 30 newest topics span ~18h, so page 1 alone missed posts).
+        topics: list[dict] = []
+        pages = 0
+        for page in range(cfg.get("max_pages", 1)):
+            try:
+                params = {"order": "created", **({"page": page} if page else {})}
+                resp = requests.get(f"{base}/latest.json", params=params,
+                                    headers={"User-Agent": FEED_UA}, timeout=TIMEOUT)
+                if resp.status_code != 200:
+                    log(f"  {short:<30} HTTP {resp.status_code} (page {page + 1})")
+                    break
+                data = resp.json().get("topic_list", {})
+            except Exception as exc:  # noqa: BLE001
+                log(f"  {short:<30} {type(exc).__name__} (page {page + 1})")
+                break
+            batch = data.get("topics", [])
+            pages += 1
+            topics += batch
+            unpinned = [parse_date(t.get("created_at")) for t in batch if not t.get("pinned")]
+            if not batch or not data.get("more_topics_url") or not unpinned \
+                    or min(unpinned) < cutoff:
+                break
+            time.sleep(0.6)
+        if not pages:
             continue
 
         time.sleep(0.6)
-        bodies = discourse_bodies(base)
+        bodies = discourse_bodies(base, pages)
+        seen_ids: set[int] = set()
 
         kept = 0
         for topic in topics:
             created = parse_date(topic.get("created_at"))
-            if created < cutoff or topic.get("pinned"):
+            if created < cutoff or topic.get("pinned") or topic["id"] in seen_ids:
                 continue
+            seen_ids.add(topic["id"])
             body = bodies.get(str(topic["id"])) or strip_html(topic.get("excerpt"))
             out.append(record(
                 id=f"discourse:{short}:{topic['id']}",
@@ -217,7 +239,8 @@ def fetch_discourse(cfg: dict, cutoff: int) -> list[dict]:
             ))
             kept += 1
         flag = f"bodies={len(bodies)}" if bodies else "bodies=0 (rss blocked)"
-        log(f"  {short:<30} {kept:>3} kept / {len(topics):>3} latest  {flag}")
+        log(f"  {short:<30} {kept:>3} kept / {len(topics):>3} latest  {flag}"
+            f"{f'  pages={pages}' if pages > 1 else ''}")
         time.sleep(0.6)
     return out
 

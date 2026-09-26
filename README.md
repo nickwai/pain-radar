@@ -13,6 +13,7 @@ coder to run and tune without touching Python.
 | Stage | State |
 |---|---|
 | 1 — collect (~30 free sources) | ✅ working. Reddit RSS evaluated and REJECTED (429s even at 15s spacing, 0-16% yield). cursor + openai forums tried and removed (0 real problems, all vendor bug reports). Added fly.io / coda / glide forums (small, unproven). |
+| 1b — Discourse paging | ✅ new 2026-09-26. `/latest.json` gives only 30 topics (~18h on n8n, less than the 48h lookback). Collector now pages (`discourse.max_pages: 3`) while the oldest topic is inside the lookback; RSS bodies fetched for the same pages. n8n: 30 → 50 posts. |
 | 2 — filter (pain + money keyword scoring) | ✅ working. Keyword pass rate is NOT the same as real problems — judge sources by triage yield. |
 | 3 — AI synthesis (Gemini clustering/scoring) | ✅ working. Pinned `gemini-3.5-flash-lite`. Nondeterministic: same post scored 18.0 then 14.0. |
 | 3b — rejected-clusters log + per-post triage | ✅ new. `reports/rejected/DATE.md`: clusters cut after clustering (with reason) + a temp-0 Gemini verdict per shortlisted post and a per-source yield table. Best-effort, never breaks the report. Also on the run summary page. |

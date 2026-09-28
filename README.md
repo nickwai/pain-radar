@@ -8,7 +8,7 @@ solution. Also lists freelance gigs (people hiring) it spots on the way.
 $0 budget. Free API tiers only, no card anywhere. Built for a beginner
 coder to run and tune without touching Python.
 
-## Status (2026-09-26)
+## Status (2026-09-28)
 
 | Stage | State |
 |---|---|
@@ -27,13 +27,18 @@ coder to run and tune without touching Python.
 | 3c — gigs | ✅ 2026-09-26. `paid_gig` posts get a **Gigs** section in the report + Telegram, unscored. |
 | 3d — cross-day dedupe | ✅ 2026-09-26 (`radar/history.py`). Reads links from the last `dedupe_days` (30) of `reports/DATE.md`. An idea is dropped only if ALL its posts were reported before; gigs are dropped if already shown. Discourse URLs match on topic id. No state file. |
 | 3e — rejected log | ✅ `reports/rejected/DATE.md`: ideas cut after clustering (with reason), **real problems that did not become ideas** (triage said `real_problem`, neither clustering pass used them — added 2026-09-26), gigs not repeated, and every post's verdict with a per-source yield table. |
+| 3f — money floor | ✅ 2026-09-28. `synthesis.min_money_evidence: 3` cuts any idea whose "Money already spent" score is below 3, before the total-score check. Reason: easy-to-build ideas with money 1 cleared `min_total_score` on ease alone (09-27 and 09-28 NinjaTrader drawing-tool ideas, both money 1 — nobody pays for a workaround). Of the 6 ideas reported 09-23→09-28, 3 would have been cut (money 2, 1, 1). Cut ideas go to the rejected log with the reason. Expect more "Nothing today" days. Set to 1 to turn off. |
 | 4 — GitHub Actions cron | ✅ working. Gate is idempotent ("no `reports/<UTC date>.md` yet") with retry crons — GitHub delivers `schedule` hours late. A manual run (Actions → Run workflow) always runs and overwrites today's report. |
 | Telegram delivery | ✅ working |
 | 5 — 2-week review | 📅 Thu 2026-10-08, `review.yml` → `reports/review-2026-10-08.md` + Telegram |
 
 **Why ~1 idea/day:** most sources are help-desk forums; of ~30-40
 shortlisted posts Gemini finds ~1-6 real problems, and clustering often
-turns only some of those into ideas. The score bar is not the limiter.
+turns only some of those into ideas. The total-score bar is not the limiter;
+since 09-28 the money floor (3f) is, on purpose — an empty day beats an idea
+nobody would pay for. Next lever (10-08 review): sources where people already
+pay (paid-software reviews, hiring/freelance posts, "switched from X over
+price" threads) rather than free feature-request forums.
 
 **First idea from one of your own industries:** 2026-09-26, trading — a
 tradovate feature request (daily trade-count lock-out for prop traders).
@@ -199,14 +204,15 @@ save, rerun — that's the whole workflow.
 - `synthesis` — Stage 3's weights (`money_evidence` weighted highest, per
   the brief), `max_ideas` (default 5), `min_total_score` (raise it if the
   report feels padded, lower it if you're seeing "Nothing today" too
-  often), `dedupe_days` (30; 0 = off), `triage_enabled`.
+  often), `min_money_evidence` (3; drops ideas nobody already pays to
+  solve, 1 = off), `dedupe_days` (30; 0 = off), `triage_enabled`.
 
 ## Free-tier limits, and where this sits inside them
 
 | Service | Free limit | This project's usage |
 |---|---|---|
 | Gemini (`gemini-3.5-flash-lite`, pinned) | ~1,500 requests/day | 2-3 per run (triage + clustering, + second pass when needed) |
-| Groq (fallback, untested) | generous | 0 unless Gemini fails |
+| Groq (fallback, not configured) | generous | 0 — no `GROQ_API_KEY` secret on Actions, so a Gemini failure fails the run (decided 09-28: retry crons are enough) |
 | HN Algolia | ~10k/hr soft | 11/run |
 | Stack Exchange (no key) | 300/day/IP | ~4/run |
 | Discourse / RSS forums | none published, but throttle on bursts | ~60/run, spaced with delays |
@@ -223,7 +229,9 @@ save, rerun — that's the whole workflow.
   ~160 chars, trade2win ~100), which limits what the keyword filter can see.
 - Gemini free tier genuinely rate-limits/503s under load sometimes —
   `run.py report` retries automatically with backoff (~1 min budget)
-  before giving up. Pin `synthesis.model` in `config/scoring.yml` to a
+  before giving up. On 2026-09-28 three runs failed on sustained 503
+  "high demand" and a run at 19:12 succeeded; the retry crons /
+  a manual re-run are the recovery path (no Groq fallback). Pin `synthesis.model` in `config/scoring.yml` to a
   named, non-preview model (not a `-latest` alias) - a floating alias
   silently repointed to a brand-new preview model with a 20-requests/DAY
   cap during this project's build, which looked exactly like a sustained

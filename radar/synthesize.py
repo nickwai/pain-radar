@@ -333,6 +333,10 @@ def score_and_filter(ideas: list[dict], config: dict,
             _reject(idea, "target user can't get the access a first version needs")
             continue
         s = idea["scores"]
+        if s["money_evidence"] < syn["min_money_evidence"]:
+            _reject(idea, f"money_evidence {s['money_evidence']} below "
+                          f"min_money_evidence {syn['min_money_evidence']}")
+            continue
         total = (
             s["money_evidence"] * w["money_evidence"]
             + s["frequency"] * w["frequency"]

@@ -103,6 +103,9 @@ synthesis:
   min_total_score: 8.0  # out of a 30 max (4+4+4+4 weighted) - below this, drop it.
                          # Raise this if the report feels padded with weak ideas.
                          # Lower it if you're getting "nothing today" too often.
+  min_money_evidence: 3  # ADDED 2026-09-28: drop ideas where nobody is already paying
+                         # (1-5 axis). Easy-to-build ideas with money 1 were clearing
+                         # min_total_score on ease alone. Set 1 to turn off.
 
   # Gemini's own judgment calls, applied as a hard filter before scoring
   # even matters - an idea failing any of these never reaches the report,

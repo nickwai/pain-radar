@@ -40,7 +40,8 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
 
     if not ideas:
         lines.append("**Nothing today.** No cluster cleared the filter or the "
-                     f"min score bar (`{config['synthesis']['min_total_score']}`) "
+                     f"min score bar (`{config['synthesis']['min_total_score']}`, "
+                     f"money ≥ `{config['synthesis']['min_money_evidence']}`) "
                      "this run. See `data/shortlist/` for what was considered.")
         lines.append("")
         lines += render_gigs(gigs or [], posts_by_id)

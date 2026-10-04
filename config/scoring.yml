@@ -54,6 +54,8 @@ shortlist:
     - forum.ninjatrader.com
     - community.tradovate.com
     - community.bunpro.jp
+    - lawnsite-bizops       # added 2026-10-04, trades trial
+    - contractortalk-biz    # added 2026-10-04, trades trial
   max_always: 10
 
   # A bare "$45" in a sales listing is not a problem worth solving.
@@ -76,6 +78,9 @@ user_industries:
   - fashion (streetwear, resale, authentication)
   - automotive (repair, detailing, dealership operations)
   - Asian culture (import/proxy-buying, language learning, K/J/C fandom)
+  - trades and field-service business operations (lawn care, landscaping,
+    contractors - estimating, invoicing, scheduling, crews; added 2026-10-04,
+    2-week trial, review ~2026-10-18)
 
 synthesis:
   # 1-5 axis weights -> one composite score. Money weighted highest,

@@ -141,6 +141,15 @@ rss:
     - url: https://wordpress.org/support/plugin/woocommerce/feed
       name: woocommerce        # shop owners' store problems, long posts - added 2026-09-26
       group: ecommerce
+    # Trade business sub-forums, added 2026-10-04 (docs/source-study-2026-10-04.md):
+    # owners discussing invoicing, estimates, crews, software. Low volume
+    # (~0.5 and ~0.15 posts/day) but triage found 14/15 and 7/15 real problems.
+    - url: https://www.lawnsite.com/forums/business-operations.20/index.rss?order=post_date
+      name: lawnsite-bizops    # lawn care / landscaping business owners
+      group: trades
+    - url: https://www.contractortalk.com/forums/business.16/index.rss?order=post_date
+      name: contractortalk-biz # general contractors and trades business
+      group: trades
 
 # ---------------------------------------------------------------
 hackernews:

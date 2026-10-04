@@ -39,6 +39,14 @@ since 09-28 the money floor (3f) is, on purpose — an empty day beats an idea
 nobody would pay for. Next lever (10-08 review): sources where people already
 pay (paid-software reviews, hiring/freelance posts, "switched from X over
 price" threads) rather than free feature-request forums.
+**2026-10-04 trial (review ~2026-10-18):** a source study
+(`docs/source-study-2026-10-04.md`) found app-store/review-site complaints
+are vendor-only, while trade business sub-forums are full of owners' real
+problems. Added industry "trades and field-service business operations"
+plus `lawnsite-bizops` and `contractortalk-biz` as always_channels (~6
+posts per 48h). Judge by: real_problem count from those two channels in the
+rejected log, and whether any idea survives a competitor check (crowded
+market: Jobber, Housecall Pro, LMN).
 
 **First idea from one of your own industries:** 2026-09-26, trading — a
 tradovate feature request (daily trade-count lock-out for prop traders).

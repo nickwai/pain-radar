@@ -259,6 +259,20 @@ now "no reports/<UTC date>.md yet" plus retry crons.
 **2026-09-26 — same idea on several days.** Forums keep old topics on
 `/latest` while they get replies; fixed by cross-day dedupe (3d).
 
+**2026-10-04 — an ad became the top idea.** The 10-04 report's idea (score
+26, money 5, "no-code workflows fail silently") came from an n8n post
+selling the poster's own tool (matrixverify.dev); its "$2,500–8,000 per
+failure" figures were sales copy. The pitch sat at the END of the post,
+past the 600-char cut, so the AI never saw it. Fix: the AI now gets head
+(450) + tail (200) of each long post, a `[promo signals: ...]` line from a
+regex run on the full text (`PROMO_RE` in `radar/synthesize.py`), and a new
+triage verdict `self_promo`, which `gate_by_triage` drops like any non-
+`real_problem`. Live test: the Matrix post → `self_promo`; help questions
+with "I built"/"I created" stayed `help_question`. Side effect: HA/n8n
+showcase posts now read `self_promo` instead of `not_a_problem` in the
+triage log. Competitors for that idea (all existing): watchflow.io,
+NotiLens, FlowGuard, Pulse, Matrix, Healthchecks.io/Cronitor.
+
 ## Repo
 
 Public at https://github.com/nickwai/pain-radar (needed for free GitHub

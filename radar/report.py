@@ -184,8 +184,8 @@ def render_triage(triage: list[dict], posts_by_id: dict[str, dict]) -> str:
     and which only pass the keyword filter (billing bug reports etc)."""
     if not triage:
         return ""
-    order = ["real_problem", "paid_gig", "help_question", "product_bug_report",
-             "out_of_industry", "not_a_problem"]
+    order = ["real_problem", "paid_gig", "self_promo", "help_question",
+             "product_bug_report", "out_of_industry", "not_a_problem"]
     counts: dict[str, int] = {}
     per_src: dict[str, dict[str, int]] = {}
     for r in triage:

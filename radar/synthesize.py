@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
 import urllib.request
 import urllib.error
@@ -81,7 +82,10 @@ TASK:
 1. Group the posts below into distinct PROBLEMS. Multiple posts can be the
    same problem (that's a stronger signal - people independently hit the
    same wall). A post with no real problem in it (a sale listing, a
-   showcase, small talk) should not become a cluster at all.
+   showcase, small talk) should not become a cluster at all. Neither
+   should a post selling the poster's OWN product or service (watch for
+   "[promo signals: ...]" lines) - its pain story and dollar figures are
+   sales copy, and the problem already has a seller.
 2. For each problem cluster, judge honestly - be a skeptic, not a cheerleader:
    - near_user_industries: is this genuinely in or near the list above?
      A vague tech tie-in doesn't count.
@@ -131,12 +135,49 @@ POSTS:
 """
 
 
+# ADDED 2026-10-04: self-promotion signals. The 10-04 top idea (score 26,
+# money 5) came from an n8n post selling the poster's own tool: the pain
+# story and the "$2,500-8,000" figures were its sales copy, and the pitch
+# (product domain, "free, 20+ users") sat in the LAST lines - past the
+# 600-char cut, so neither AI call ever saw it. Matched on the FULL text and
+# shown to the AI as a hint; the AI decides (triage verdict self_promo).
+PROMO_RE = re.compile(
+    r"\b(?:i|we)(?:'ve| have)? (?:built|made|created|launched|shipped)\b"
+    r"|\bmy (?:tool|app|product|saas|startup|extension|plugin)\b"
+    r"|\bfree (?:tier|plan|trial)\b|\bwaitlist\b|\bbeta (?:users|testers|access)\b"
+    r"|\b(?:sign up|try it)(?: free| here| now|:)"
+    r"|\b[a-z0-9-]+\.(?:dev|io|app|ai|so|sh)\b",
+    re.IGNORECASE)
+
+# Platform/code domains that show up in ordinary posts, not product pitches.
+PROMO_DOMAIN_IGNORE = {"n8n.io", "home-assistant.io", "ghcr.io", "github.io",
+                       "hackster.io", "this.app", "window.app", "self.app"}
+
+HEAD_CHARS, TAIL_CHARS = 450, 200
+
+
+def _promo_hints(text: str) -> list[str]:
+    seen: list[str] = []
+    for m in PROMO_RE.finditer(text or ""):
+        hit = m.group(0).lower()
+        if hit not in seen and hit not in PROMO_DOMAIN_IGNORE:
+            seen.append(hit)
+    return seen[:4]
+
+
 def _format_posts(posts: list[dict]) -> str:
     lines = []
     for p in posts:
-        text = (p.get("text") or "")[:600]
+        full = p.get("text") or ""
+        # Head + tail, not just head: promos put their call-to-action last.
+        if len(full) > HEAD_CHARS + TAIL_CHARS:
+            text = f"{full[:HEAD_CHARS]} [...] {full[-TAIL_CHARS:]}"
+        else:
+            text = full
+        hints = _promo_hints(f"{p['title']} {full}")
+        hint_line = f"\n[promo signals: {', '.join(hints)}]" if hints else ""
         lines.append(
-            f"[id={p['id']}] ({p['group']}/{p['channel']}) {p['title']}\n{text}"
+            f"[id={p['id']}] ({p['group']}/{p['channel']}) {p['title']}\n{text}{hint_line}"
         )
     return "\n\n".join(lines)
 
@@ -459,8 +500,11 @@ def synthesize(posts: list[dict], config: dict, env: dict | None = None,
 # paid_gig added 2026-09-26: hiring posts ("looking for an n8n freelancer")
 # are the clearest money signal the radar sees, but they are work to take,
 # not problems to productise - they get their own report section instead.
+# self_promo added 2026-10-04: see PROMO_RE. Not real_problem, so
+# gate_by_triage drops any cluster that cites only promo posts.
 TRIAGE_VERDICTS = ["real_problem", "help_question", "out_of_industry",
-                   "not_a_problem", "product_bug_report", "paid_gig"]
+                   "not_a_problem", "product_bug_report", "paid_gig",
+                   "self_promo"]
 
 TRIAGE_SCHEMA = {
     "type": "ARRAY",
@@ -485,6 +529,10 @@ verdict, reason (max 12 words). Verdicts:
 - paid_gig: someone looking to HIRE a freelancer/expert/contractor for paid work
   (use this even if the work is in any industry; NOT for people advertising
   their own services)
+- self_promo: the poster is selling or promoting their OWN product, tool,
+  service or course (even if it opens with a pain story or loss figures).
+  Lines "[promo signals: ...]" show phrases found in the full post; they are
+  hints, not proof - "I built a workflow" in a help request is not promo
 - not_a_problem: news, opinion, showcase, discussion, announcement, small talk
 
 POSTS:

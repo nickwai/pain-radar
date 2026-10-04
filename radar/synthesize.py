@@ -83,9 +83,10 @@ TASK:
    same problem (that's a stronger signal - people independently hit the
    same wall). A post with no real problem in it (a sale listing, a
    showcase, small talk) should not become a cluster at all. Neither
-   should a post selling the poster's OWN product or service (watch for
-   "[promo signals: ...]" lines) - its pain story and dollar figures are
-   sales copy, and the problem already has a seller.
+   should a post selling the poster's OWN product or service, a consultant
+   fishing for clients, or a "how I fixed it" tip post (watch for
+   "[promo signals: ...]" lines) - their pain stories and dollar figures
+   are sales copy, or the problem is already solved.
 2. For each problem cluster, judge honestly - be a skeptic, not a cheerleader:
    - near_user_industries: is this genuinely in or near the list above?
      A vague tech tie-in doesn't count.
@@ -146,7 +147,12 @@ PROMO_RE = re.compile(
     r"|\bmy (?:tool|app|product|saas|startup|extension|plugin)\b"
     r"|\bfree (?:tier|plan|trial)\b|\bwaitlist\b|\bbeta (?:users|testers|access)\b"
     r"|\b(?:sign up|try it)(?: free| here| now|:)"
-    r"|\b[a-z0-9-]+\.(?:dev|io|app|ai|so|sh)\b",
+    r"|\b[a-z0-9-]+\.(?:dev|io|app|ai|so|sh)\b"
+    # Widened 2026-10-04: consultants fishing for clients and "how I fixed
+    # it" tip posts (both 10-01 ideas came from these, see README).
+    r"|\bhappy to (?:share|help|chat)\b|\b(?:dm|pm|message) me\b"
+    r"|\b(?:teams|clients|companies) (?:i|we) (?:speak|talk|work) (?:to|with)\b"
+    r"|\bthe fix (?:is|was)\b|\bhere'?s (?:how|what)\b|\bbook a call\b",
     re.IGNORECASE)
 
 # Platform/code domains that show up in ordinary posts, not product pitches.
@@ -529,10 +535,18 @@ verdict, reason (max 12 words). Verdicts:
 - paid_gig: someone looking to HIRE a freelancer/expert/contractor for paid work
   (use this even if the work is in any industry; NOT for people advertising
   their own services)
-- self_promo: the poster is selling or promoting their OWN product, tool,
-  service or course (even if it opens with a pain story or loss figures).
+- self_promo: the poster is a SELLER, not someone stuck with the problem:
+  * promoting their OWN product, tool, service or course (even if it opens
+    with a pain story or loss figures)
+  * a consultant/agency fishing for clients: asks "how are you handling X?"
+    and offers to share what they have seen work, mentions the teams or
+    clients they talk to, invites DMs or calls
+  * a "how I fixed it" tip or case-study post: the poster already solved it
+    and is showing the fix (a solved problem is not a problem to sell to)
   Lines "[promo signals: ...]" show phrases found in the full post; they are
-  hints, not proof - "I built a workflow" in a help request is not promo
+  hints, not proof - "I built a workflow" in a help request is not promo.
+  A business owner describing their OWN unsolved problem is real_problem
+  even if they mention what they sell
 - not_a_problem: news, opinion, showcase, discussion, announcement, small talk
 
 POSTS:

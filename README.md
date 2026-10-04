@@ -272,6 +272,16 @@ with "I built"/"I created" stayed `help_question`. Side effect: HA/n8n
 showcase posts now read `self_promo` instead of `not_a_problem` in the
 triage log. Competitors for that idea (all existing): watchflow.io,
 NotiLens, FlowGuard, Pulse, Matrix, Healthchecks.io/Cronitor.
+Same day, widened: a competitor check of all 4 ideas reported so far found
+0 worth building, and 3 of the 4 source posts were sellers - the ad above,
+a "how I fixed it" tip post (10-01, HTTP 200 on failure) and a consultant
+fishing for clients (10-01, Zoho Books UK). `self_promo` now also covers
+lead-gen posts and solved-problem tip posts, with extra regex signals
+("happy to share", "teams I speak to", "the fix is", "DM me"). Live test,
+16 posts: all 3 seller posts → `self_promo`, the genuine 09-29 Gmail agency
+post stayed `real_problem`, 6/6 help questions unchanged, 5/6 real problems
+unchanged - the 6th was an ad ("Free 4-minute security check") that old
+triage had wrongly called real.
 
 ## Repo
 

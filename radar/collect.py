@@ -7,10 +7,12 @@ from __future__ import annotations
 import datetime as dt
 import email.utils
 import html
+import json
 import os
 import re
 import time
 import xml.etree.ElementTree as ET
+from pathlib import Path
 from typing import Any
 
 import requests
@@ -137,10 +139,15 @@ def parse_feed(xml_bytes: bytes, name: str, group: str) -> list[dict]:
     return out
 
 
-def fetch_rss(cfg: dict, cutoff: int) -> list[dict]:
+def fetch_rss(cfg: dict, cutoff: int, local: str = "skip") -> list[dict]:
+    """local="skip" (GitHub Actions): ignore feeds marked `fetch: local`.
+    local="only" (home PC, `run.py collect-local`): fetch ONLY those."""
     out: list[dict] = []
     for feed in cfg.get("feeds", []):
         name = feed.get("name") or feed["url"]
+        is_local = feed.get("fetch") == "local"
+        if (local == "skip" and is_local) or (local == "only" and not is_local):
+            continue
         # Optional paging (added 2026-09-26) for feeds that support it
         # (Invision: page_url with {page}); stop once past the lookback.
         items: list[dict] = []
@@ -461,6 +468,44 @@ def fetch_reddit(cfg: dict, cutoff: int) -> list[dict]:
 
 # ---------------------------------------------------------------- entry
 
+# ---------------------------------------------------------------- local feeds
+# ADDED 2026-10-07: some forums block GitHub Actions' datacenter IPs on every
+# User-Agent (probe run 37700107958: watchuseek/lawnsite/contractortalk 409,
+# eurobricks/chinese-forums 403; all 200 from the home PC). Those feeds carry
+# `fetch: local` in sources.yml; the home PC fetches them
+# (`run.py collect-local`, systemd timer painradar-local-feeds) and pushes
+# data/local/latest.json, which CI merges here.
+LOCAL_FILE = Path(__file__).resolve().parent.parent / "data" / "local" / "latest.json"
+LOCAL_MAX_AGE_H = 30
+
+
+def local_feeds_status(path: Path = LOCAL_FILE) -> tuple[list[dict], str]:
+    """(posts, one-line status) from the home-PC file. Never raises."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        posts, fetched = data["posts"], int(data["fetched_at"])
+    except FileNotFoundError:
+        return [], "MISSING - home PC has not pushed data/local/latest.json"
+    except Exception as exc:  # noqa: BLE001
+        return [], f"UNREADABLE ({type(exc).__name__})"
+    age_h = (time.time() - fetched) / 3600
+    feeds = ", ".join(data.get("feeds", []))
+    state = "ok" if age_h <= LOCAL_MAX_AGE_H else f"STALE (> {LOCAL_MAX_AGE_H}h - PC off?)"
+    return posts, f"{state}: {len(posts)} posts fetched {age_h:.1f}h ago from {feeds}"
+
+
+def collect_local(config_path: str = "config/sources.yml") -> dict:
+    """Home-PC side: fetch only `fetch: local` feeds."""
+    with open(config_path, encoding="utf-8") as fh:
+        cfg = yaml.safe_load(fh)
+    cutoff = int(time.time()) - cfg.get("lookback_hours", 48) * 3600
+    feeds = [f.get("name") or f["url"] for f in cfg.get("rss", {}).get("feeds", [])
+             if f.get("fetch") == "local"]
+    log(f"local feeds: {', '.join(feeds)}")
+    posts = safe("local rss TOTAL", fetch_rss, cfg.get("rss", {}), cutoff, local="only")
+    return {"fetched_at": int(time.time()), "feeds": feeds, "posts": posts}
+
+
 def collect(config_path: str = "config/sources.yml") -> list[dict]:
     with open(config_path, encoding="utf-8") as fh:
         cfg = yaml.safe_load(fh)
@@ -479,6 +524,10 @@ def collect(config_path: str = "config/sources.yml") -> list[dict]:
     if cfg.get("rss"):
         log("rss feeds:")
         posts += safe("rss TOTAL", fetch_rss, cfg["rss"], cutoff)
+        local_posts, status = local_feeds_status()
+        log(f"  local feeds (home PC) {status}")
+        posts += [p for p in local_posts
+                  if p.get("created_utc", 0) == 0 or p["created_utc"] >= cutoff]
     if cfg.get("hackernews"):
         log("hackernews:")
         posts += safe("hn algolia", fetch_hackernews, cfg["hackernews"], cutoff)

@@ -123,17 +123,20 @@ rss:
       group: fashion
     - url: https://www.watchuseek.com/forums/-/index.rss?order=post_date   # 9.7h (was 0.6h)
       name: watchuseek         # flippers, dealers, real money
+      fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
       group: resell
     - url: https://www.eurobricks.com/forum/index.php?/discover/all.xml
       page_url: "https://www.eurobricks.com/forum/index.php?/discover/all.xml/&page={page}"
       max_pages: 4             # ~2.7h/page, all activity; 4 pages ~11h (was 2.7h)
       name: eurobricks
+      fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
       group: toys
     - url: https://forums.hardwarezone.com.sg/forums/-/index.rss?order=post_date   # 2.7h (was 0.1h) - huge forum
       name: hardwarezone
       group: asia
     - url: https://www.chinese-forums.com/discover/all.xml
       name: chinese-forums
+      fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
       group: asia
     - url: https://forum.dealerrefresh.com/forums/-/index.rss?order=post_date
       name: dealerrefresh      # car dealership ops (CRM, leads, photos), ~3/day - added 2026-09-26
@@ -146,9 +149,11 @@ rss:
     # (~0.5 and ~0.15 posts/day) but triage found 14/15 and 7/15 real problems.
     - url: https://www.lawnsite.com/forums/business-operations.20/index.rss?order=post_date
       name: lawnsite-bizops    # lawn care / landscaping business owners
+      fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
       group: trades
     - url: https://www.contractortalk.com/forums/business.16/index.rss?order=post_date
       name: contractortalk-biz # general contractors and trades business
+      fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
       group: trades
 
 # ---------------------------------------------------------------

@@ -48,6 +48,23 @@ posts per 48h). Judge by: real_problem count from those two channels in the
 rejected log, and whether any idea survives a competitor check (crowded
 market: Jobber, Housecall Pro, LMN).
 
+**2026-10-07 — 6 feeds were never live in CI.** GitHub Actions' log showed
+watchuseek, lawnsite-bizops, contractortalk-biz (HTTP 409, one forum network)
+and eurobricks, chinese-forums, purseblog (403) failing on EVERY run since
+09-23, while all but purseblog return 200 from the home PC. A probe run (3
+User-Agents incl. a browser and Feedly) got the same 403/409 → IP block, not
+UA. Fix: those 5 feeds carry `fetch: local` in `config/sources.yml`; the home
+PC runs `tools/push_local_feeds.sh` (systemd user timer
+`painradar-local-feeds`, 05:40 + 17:40 London, Persistent) →
+`python3 run.py collect-local` → commits `data/local/latest.json`; the
+Actions collect skips those feeds and merges that file (posts still filtered
+by the 48h lookback). The rejected log ends with
+`**Local-fetch feeds (home PC):** ok / STALE / MISSING …` so a PC that was
+off shows up. purseblog is 403 everywhere — left as is. Log on the PC:
+`data/raw/local_feeds.log` (gitignored). ⚠️ The 10-04 source study and the
+09-26 industry-keyword study were measured from the PC, so they included
+sources the daily report never saw.
+
 **First idea from one of your own industries:** 2026-09-26, trading — a
 tradovate feature request (daily trade-count lock-out for prop traders).
 It was the one idea that held up across all five 09-26 runs (score 21.0) —

@@ -161,6 +161,9 @@ def cmd_report(args: argparse.Namespace) -> int:
     rejected_md = render_rejected(rejected, posts_by_id, config, date=date)
     rejected_md += render_orphans(triage, ideas + rejected, posts_by_id)
     rejected_md += render_triage(triage, posts_by_id)
+    # ADDED 2026-10-07: say whether the home-PC feeds made it into this run.
+    from radar.collect import local_feeds_status
+    rejected_md += f"\n**Local-fetch feeds (home PC):** {local_feeds_status()[1]}\n"
     if old_gigs:
         rejected_md += "\n**Gigs not shown again (already reported):**\n\n" + "".join(
             f"- {posts_by_id[g['id']]['title']} — {posts_by_id[g['id']]['url']}\n"
@@ -236,11 +239,26 @@ def cmd_collect(_args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_collect_local(_args: argparse.Namespace) -> int:
+    """ADDED 2026-10-07: home-PC fetch of feeds that block GitHub Actions
+    (`fetch: local` in sources.yml). Writes data/local/latest.json, which the
+    systemd timer painradar-local-feeds commits + pushes for CI to merge."""
+    from radar.collect import LOCAL_FILE, collect_local
+
+    data = collect_local(str(ROOT / "config" / "sources.yml"))
+    LOCAL_FILE.parent.mkdir(parents=True, exist_ok=True)
+    LOCAL_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"\nWrote {len(data['posts'])} posts from {len(data['feeds'])} feeds -> "
+          f"{LOCAL_FILE.relative_to(ROOT)}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="stage", required=True)
     sub.add_parser("check", help="Verify Reddit credentials work")
     sub.add_parser("collect", help="Stage 1: fetch raw posts")
+    sub.add_parser("collect-local", help="Home PC only: fetch feeds that block GitHub Actions")
     p_filter = sub.add_parser("filter", help="Stage 2: cut to a shortlist")
     p_filter.add_argument("--show", type=int, default=20,
                           help="how many rows to print (default 20)")
@@ -258,6 +276,7 @@ def main() -> int:
     args = parser.parse_args()
     load_env()
     return {"check": cmd_check, "collect": cmd_collect,
+            "collect-local": cmd_collect_local,
             "filter": cmd_filter, "report": cmd_report,
             "review": cmd_review}[args.stage](args)
 

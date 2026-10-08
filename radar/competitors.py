@@ -35,6 +35,7 @@ from radar.synthesize import call_gemini
 HN_URL = "https://hn.algolia.com/api/v1/search"
 GH_URL = "https://api.github.com/search/repositories"
 VERDICTS = ["crowded", "partial", "open"]
+COVERS = ["main_use", "part", "unrelated"]
 
 QUERY_SCHEMA = {
     "type": "ARRAY",
@@ -60,15 +61,15 @@ JUDGE_SCHEMA = {
     "items": {"type": "OBJECT",
               "properties": {
                   "idea": {"type": "INTEGER"},
-                  "verdict": {"type": "STRING", "enum": VERDICTS},
                   "competitors": {"type": "ARRAY", "items": {
                       "type": "OBJECT",
                       "properties": {"name": {"type": "STRING"},
                                      "result_id": {"type": "STRING"},
+                                     "covers": {"type": "STRING", "enum": COVERS},
                                      "note": {"type": "STRING"}},
-                      "required": ["name", "result_id", "note"]}},
+                      "required": ["name", "result_id", "covers", "note"]}},
                   "gap": {"type": "STRING"}},
-              "required": ["idea", "verdict", "competitors", "gap"]},
+              "required": ["idea", "competitors", "gap"]},
 }
 
 JUDGE_PROMPT = """You check whether side-project ideas are already solved. Be a
@@ -80,22 +81,20 @@ GitHub repositories) with ids like r3. Most results are unrelated noise -
 ignore those.
 
 Per idea return:
-- verdict:
-  * crowded: an existing option (a search result, a well-known product, or
-    the platform's OWN built-in feature) already solves the MAIN use for this
-    person at a price they would accept - even if it is not perfect. Also
-    crowded when 2+ tools already target this exact problem: others saw it
-    first. Not worth building.
-  * partial: existing options miss a gap that THIS person would pay for and
-    you can name concretely. A gap that only restates the problem in more
-    words ("automated, tamper-proof X") is not a gap - that is crowded or open.
-  * open: nothing found or known solves it.
-  Default to crowded when unsure between crowded and partial.
-- competitors: up to 4 real options. result_id = the EXACT id of the search
+- competitors: up to 5 real options - search results, well-known products, or
+  the platform's OWN built-in feature. result_id = the EXACT id of the search
   result it came from, or "" if you know it from memory (only name products
-  you are sure exist; never invent one).
-- gap: one line - what is left that a new tool could do. For crowded, say
-  why it's covered.
+  you are sure exist; never invent one). covers, for each:
+  * main_use: this person could use it TODAY for the core of the problem,
+    even if it is clunky, generic, or needs some setup. A free script or a
+    built-in setting that does the job counts.
+  * part: it handles a real piece of the problem, or the whole problem for
+    a different kind of user / platform.
+  * unrelated: noise - do not list these at all.
+  Judge what the option DOES, not how polished it is. "Not tamper-proof",
+  "not agency-ready", "not multi-platform" do not demote main_use to part.
+- gap: one line - what is left that a new tool could do, concretely. If
+  nothing real is left, say so.
 
 IDEAS:
 {ideas}
@@ -152,6 +151,19 @@ def gather(queries: list[str], n: int, env) -> list[dict]:
     return list(out.values())
 
 
+def verdict_from(comps: list[dict]) -> str:
+    """FIX 2026-10-08: the model's own crowded/partial/open flipped between
+    runs on identical input (CI said partial for both known-crowded test
+    ideas, local said crowded) - "partial" with a reworded problem as the
+    "gap" was an escape hatch. Now the model only rates each competitor and
+    this rule decides: any main_use, or 2+ part = crowded; 1 part = partial."""
+    main = sum(c["covers"] == "main_use" for c in comps)
+    part = sum(c["covers"] == "part" for c in comps)
+    if main or part >= 2:
+        return "crowded"
+    return "partial" if part else "open"
+
+
 def _idea_line(i: int, idea: dict) -> str:
     return (f"[{i}] {idea['problem_one_line']}\n    who: {idea['who_has_it']}\n"
             f"    believed to exist: {idea.get('existing_solutions') or 'none given'}")
@@ -203,24 +215,28 @@ def check(ideas: list[dict], config: dict, env=None, verbose: bool = True,
                                         "gap": "", "queries": []}
         return ideas
 
-    by_idea = {r["idea"]: r for r in rows if isinstance(r, dict) and r.get("verdict") in VERDICTS}
+    by_idea = {r["idea"]: r for r in rows if isinstance(r, dict)}
     cut = set(cc.get("cut_verdicts", ["crowded"]))
     kept = []
     for i, idea in enumerate(ideas, 1):
         r = by_idea.get(i)
         comps = []
-        for c in (r or {}).get("competitors", [])[:4]:
+        for c in (r or {}).get("competitors", [])[:5]:
+            if c.get("covers") not in ("main_use", "part"):
+                continue
             hit = results.get((c.get("result_id") or "").strip())
             comps.append({"name": c.get("name", "?"), "note": c.get("note", ""),
+                          "covers": c["covers"],
                           "url": hit["url"] if hit else "", "verified": bool(hit)})
+        verdict = verdict_from(comps) if r else "not run"
         idea["competitor_check"] = {
-            "verdict": r["verdict"] if r else "not run",
+            "verdict": verdict,
             "competitors": comps, "gap": (r or {}).get("gap", ""),
             "queries": idea.pop("_queries", [])}
-        if r and r["verdict"] in cut:
+        if verdict in cut:
             if rejected is not None:
                 rejected.append({**idea, "reject_reason":
-                                 f"competitor check: {r['verdict']} - {r.get('gap', '')}"})
+                                 f"competitor check: {verdict} - {r.get('gap', '')}"})
             continue
         kept.append(idea)
     if verbose:

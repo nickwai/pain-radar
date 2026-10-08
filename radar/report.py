@@ -41,7 +41,9 @@ def render_competitors(cc: dict | None) -> list[str]:
     for c in cc.get("competitors", []):
         name = f"[{_md_title(c['name'])}]({c['url']})" if c.get("url") else \
             f"{c['name']} *(from model memory, unverified)*"
-        lines.append(f"- {name}: {c.get('note', '')}")
+        covers = {"main_use": " — covers the main use", "part": " — covers part"}.get(
+            c.get("covers", ""), "")
+        lines.append(f"- {name}{covers}: {c.get('note', '')}")
     if cc.get("queries"):
         lines.append(f"*Searched HN + GitHub for: {'; '.join(cc['queries'])}*")
     return lines

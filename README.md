@@ -1,18 +1,20 @@
 # Pain Radar
 
-A free daily report of real problems people complained about in the last
-24-48 hours — filtered for ones a solo person could plausibly build a rough
-version of in two weekends, where someone's already paying for a bad
-solution. Also lists freelance gigs (people hiring) it spots on the way.
+A free scanner of real problems people complain about in niche forums —
+filtered for ones a solo person could plausibly build a rough version of in
+two weekends, where someone's already paying for a bad solution. Since
+2026-10-08: a daily run pools the real problems (and freelance gigs), a
+weekly run turns the pool into ideas, checks each against existing
+competitors, and lists tasks different people keep paying freelancers for.
 
 $0 budget. Free API tiers only, no card anywhere. Built for a beginner
 coder to run and tune without touching Python.
 
-## Status (2026-09-28)
+## Status (2026-10-08)
 
 | Stage | State |
 |---|---|
-| 1 — collect (39 sources) | ✅ 21 Discourse forums, 12 forum RSS feeds, HN (10 phrases + Ask HN), Lobsters, 4 Stack Exchange sites. ~620-660 raw posts/day. Reddit REJECTED (see below). |
+| 1 — collect (39 sources) | ✅ 21 Discourse forums, 12 forum RSS feeds, HN (8 phrases + Ask HN; 2 cut 10-08), Lobsters, 4 Stack Exchange sites. ~620-660 raw posts/day. Reddit REJECTED (see below). |
 | 1a — full-window coverage | ✅ 2026-09-26. Feeds only return their newest ~20-30 items, which on busy forums spanned minutes of the 48h lookback. Fixed per source type: Discourse pages `/latest.json` (`discourse.max_pages: 3`; n8n 30 → 50 posts); forum RSS switched to new-thread feeds (XenForo `?order=post_date`, phpBB `?mode=topics`, Invision paging via `page_url`/`max_pages`, `also_urls` to merge a reply feed). Span of 48h window, before → after: elitetrader 13.7→45h, bogleheads 0.2→18h, garagejournal 1.9→45h, watchuseek 0.6→9.7h, eurobricks 2.7→18.7h, hardwarezone 0.1→2.7h. The collect log prints each feed's span. |
 | 1b — HN phrase match | ✅ 2026-09-26. Algolia matches loosely (~1% of hits contained the query phrase). One request per query now fetches the whole window (`hits_per_query: 1000`) and `phrase_match: true` keeps only real phrase hits. Queries reworded from measured 48h exact-hit counts; plus every Ask HN story (`ask_hn: true`). ~145 posts/48h. |
 | 1c — owner/seller sources | ✅ 2026-09-26. Probed 45 seller/shop-owner communities; added dealerrefresh (car dealer ops), ninjatrader + tradovate (paying traders), bunpro (paid Japanese SRS), woocommerce (shop owners). Rejected: autogeekonline, toyark, cgccomics (hobby/sale chat), prestashop (spam), squarespace (CSS help). No usable fashion or toy seller source exists with a free feed. |
@@ -33,16 +35,18 @@ coder to run and tune without touching Python.
 | 5 — 2-week review | ✅ Every second Thursday (`review.yml`, gate: last `reports/review-*.md` 13+ days old; next 2026-10-22, 2026-11-05). Digest: weekly ideas, competitor verdicts, weekly cuts by reason, pooled per day, source yield, checklist + Telegram. First one (2026-10-08): 8 ideas / 15 days, 0 survived a manual competitor check → 6-8 below. |
 | 6 — pool + weekly ideas | ✅ 2026-10-08. `scoring.yml pool.enabled`: the daily run only triages and saves `real_problem` posts to `data/pool/DATE.json` (committed by CI); daily report + Telegram = pool count + gigs. `weekly.yml` (Mondays) runs `python3 run.py weekly`: clusters the last `pool.days` (14) of the pool at once (one copy per topic) → `reports/week-DATE.md` + `reports/rejected/week-DATE.md` + Telegram. Repeat pains across days now add up to one cluster instead of dying alone. `pool.enabled: false` = old daily ideas. |
 | 7 — competitor check | ✅ 2026-10-08 (`radar/competitors.py`). Ideas that clear the bar get 3 search queries (Gemini) → HN Show HN + GitHub repo search → Gemini rates each competitor (covers main use / part; kind: platform feature / dedicated tool / big suite) and `verdict_from()` decides: any main-use or 2+ part = `crowded`, 1 part = `partial`, else `open`; big all-in-one suites the person does not already use are listed but not counted (`count_big_suites: false`). Test: `python3 run.py check-competitors` or the "Competitor check test" workflow. `crowded` is cut (`competitor_check.cut_verdicts`). Live test: the 10-04 n8n silent-failure and 09-26 Tradovate lock-out ideas both come back crowded with real links. Gemini Google Search grounding was the plan, but the free tier gives it 0 quota (429 on every model) and DuckDuckGo blocks scripts — so paid SaaS that never posted on HN can be missed; names from model memory are marked *unverified*. |
-| 9 — repeated paid jobs | ✅ 2026-10-08 (`radar/gigs.py`). Daily run saves every `paid_gig` post to `data/gigs/DATE.json`; the weekly run groups the 14-day window by concrete task (one Gemini call) and lists tasks paid for by 2+ DIFFERENT payers (`gigs.min_repeat`) under **Repeated paid jobs** in the weekly report + Telegram, with a product idea when a template/tool could replace the hire. Job ads for staff roles, sellers, job seekers and one company's cross-posts are ignored. Not scored, not competitor-checked - leads. A task shown in an earlier weekly report repeats only if a new gig joined it. Backfilled 09-29→10-08 (19 gigs): 0 repeats - expected, gigs are rare (~1-2/day). |
 | 8 — source cuts | ✅ 2026-10-08, from review yield: bogleheads (4/38, personal investing advice), woocommerce (0/6), HN "too expensive" (0/20), HN "willing to pay" (0/11). |
+| 9 — repeated paid jobs | ✅ 2026-10-08 (`radar/gigs.py`). Daily run saves every `paid_gig` post to `data/gigs/DATE.json`; the weekly run groups the 14-day window by concrete task (one Gemini call) and lists tasks paid for by 2+ DIFFERENT payers (`gigs.min_repeat`) under **Repeated paid jobs** in the weekly report + Telegram, with a product idea when a template/tool could replace the hire. Job ads for staff roles, sellers, job seekers and one company's cross-posts are ignored. Not scored, not competitor-checked - leads. A task shown in an earlier weekly report repeats only if a new gig joined it. Backfilled 09-29→10-08 (19 gigs): 0 repeats - expected, gigs are rare (~1-2/day). |
 
-**Why ~1 idea/day:** most sources are help-desk forums; of ~30-40
-shortlisted posts Gemini finds ~1-6 real problems, and clustering often
-turns only some of those into ideas. The total-score bar is not the limiter;
-since 09-28 the money floor (3f) is, on purpose — an empty day beats an idea
-nobody would pay for. Next lever (10-08 review): sources where people already
-pay (paid-software reviews, hiring/freelance posts, "switched from X over
-price" threads) rather than free feature-request forums.
+**Why weekly, not daily (2026-10-08 review):** most sources are help-desk
+forums; of ~40-50 shortlisted posts triage finds ~0-5 real problems a day,
+and each day's few were clustered alone, so a pain seen once never gathered
+the repeat evidence to clear the money floor (3f). 15 days gave 8 ideas, 8
+empty days, and 0 ideas that survived a manual competitor check. Pooling 14
+days and clustering weekly lets repeats add up; the competitor check (7)
+cuts what already exists. Empty weeks are still expected and accepted — an
+empty week beats an idea nobody would pay for. If the pool stays under ~10
+posts/week, the fix is sources where people already pay, not tuning.
 **2026-10-08 — pool backfill showed triage was too loose.** `tools/backfill_pool.py`
 re-fetched the bodies of the 09-29→10-06 `real_problem` posts (from the
 rejected logs) and re-triaged them with today's prompt (self_promo filter,
@@ -93,60 +97,75 @@ recurring scheduled lockouts looked uncovered.
 
 ## 📅 Scheduled review — every second Thursday
 
-`.github/workflows/review.yml` builds `reports/review-2026-10-08.md` (14-day
-digest: ideas/day, source yield from Gemini triage, checklist) and sends a
-Telegram summary. Manual: `python3 run.py review [--since D --until D] [--dry-run]`.
-Changes to sources/thresholds should cite a number from that digest.
+`.github/workflows/review.yml` fires every Thursday and runs when the newest
+`reports/review-*.md` is 13+ days old (next: 2026-10-22, 2026-11-05). It
+writes `reports/review-DATE.md` — weekly ideas, competitor verdicts, weekly
+cuts by reason, repeated paid jobs, real problems pooled per day, source
+yield from Gemini triage, checklist — and sends a Telegram summary. Manual:
+`python3 run.py review [--since D --until D] [--dry-run]` (a manual workflow
+run restarts the 2-week cycle). A one-time cloud routine also summarises the
+10-22 review at 17:00 UTC. Changes to sources/thresholds should cite a number
+from the digest.
 
-Open questions to settle there, with the data:
+Questions for the **2026-10-22** review, with the data:
 
-- **HN yield.** 0 real problems of 9 HN posts on the first run with the new
-  queries. If still ~0, cut HN or its 9-post shortlist share.
-- **dealerrefresh** is mostly vendors pitching to dealers (0/3 real on day
-  one). Topics are right; posts are ads. Keep or drop on yield.
-- **New sources** (ninjatrader, tradovate, bunpro, woocommerce): yield per
-  source over two weeks.
-- **Second clustering pass.** Count ideas marked *second pass* and how
-  many were worth reading. If they're weak, set `second_pass: false`.
-  Posts still listed under "Real problems that did not become ideas" were
-  rejected twice.
-- **Idea sanity checks (3a3).** Count ideas cut for access, and read the
-  "Already exists" and "Access check" lines: are they specific and right,
-  or vague? If the access check cuts good ideas, loosen the prompt wording.
-- **Stability after temperature 0.** Do the same posts still flip between
-  days (cut one day, reported the next)? If yes, add voting: cluster 2-3
-  times and keep only ideas every run agrees on (+2-3 Gemini requests/day).
-- **Triage drift.** real_problem count per day and how many are really help
-  questions/showcases. If triage stays loose, the second pass and the
-  "did not become ideas" list fill with noise.
-- **Coverage gaps left:** hardwarezone still spans only ~2.7h (subforum
-  feeds would help); styleforum ~7h (its new-thread feed is broken);
-  purseblog 403 on every variant; fashion and toys have no seller-side
-  source.
+- **Big-suite rule.** Ideas kept while a competitor was marked *big suite -
+  not counted*: does that suite already solve it for the person in "Who"?
+  If mostly yes, set `competitor_check.count_big_suites: true`.
+- **Competitor verdicts.** Crowded / partial / open counts; any open or
+  partial idea missing an obvious existing product? The model's own verdict
+  was unstable (CI vs local), which is why code decides now (7).
+- **Trades trial** (added 10-04, feeds live in CI only since 10-07):
+  real problems from `lawnsite-bizops` / `contractortalk-biz`; keep or drop
+  the trades industry in `user_industries`.
+- **Pool size.** Real problems pooled per day. Under ~10/week = source problem.
+- **Self-promo filter.** 0 real problems on 10-07 and 10-08 right after it
+  was widened; read those days' `self_promo` verdicts for genuine problems.
+- **Repeated paid jobs.** Any at all? If empty after a month, add hiring
+  sources rather than changing the grouping.
+
+Settled at the 2026-10-08 review: HN "too expensive" / "willing to pay",
+bogleheads and woocommerce cut (zero or off-topic yield); daily clustering
+replaced by the weekly pool.
 
 ## What it does
 
-Every morning on GitHub Actions (or by hand, see below):
+**Daily** on GitHub Actions (`daily-report.yml`, or by hand, see below):
 
 1. **Collect** — pulls ~620-660 posts from 39 sources into `data/raw/DATE.json`.
 2. **Filter** — scores every post on pain phrases + money phrases + real
    dollar amounts, cuts noise (sale listings, job ads, self-promo), keeps
    the top ~30-40 in `data/shortlist/DATE.json`. On top of that it adds
    hiring posts (up to 6) and posts from small owner communities (up to 10).
-3. **Report** — two Gemini calls (three when needed). One gives each post a verdict (triage);
-   the other clusters related posts into distinct problems, judges each
-   against your filter (near your industries, buildable in two weekends,
-   no team/licence/capital/network-effect blocker) and scores 1-5 on
-   frequency / anger / money-evidence / ease-to-build. Real problems the
-   clustering skipped get a second clustering call. Python then keeps
-   only ideas backed by `real_problem` posts, drops ideas already reported
-   in the last 30 days, applies the weights, the hard filter and the top-5
-   cap. Writes `reports/DATE.md` (ideas + gigs), `reports/rejected/DATE.md`
-   (everything that was cut and why) and sends the ideas + gigs to Telegram.
+3. **Report (pool mode)** — one Gemini call gives each shortlisted post a
+   verdict (triage). `real_problem` posts are saved to `data/pool/DATE.json`,
+   `paid_gig` posts to `data/gigs/DATE.json` (both committed by CI). Writes
+   `reports/DATE.md` (pool count, today's pooled posts, gigs) and
+   `reports/rejected/DATE.md` (every verdict + per-source yield) and sends a
+   one-line Telegram heartbeat plus gigs. No ideas today.
 
-If nothing clears the bar, the report says **"Nothing today"** — never
-padded to look busy, that was the whole point of the brief this was built
-against.
+**Weekly**, Mondays (`weekly.yml` → `python3 run.py weekly`):
+
+4. **Cluster** — the last 14 days of the pool (one copy per forum topic) go
+   to Gemini, which clusters related posts into distinct problems, judges
+   each against your filter (near your industries, buildable in two
+   weekends, no team/licence/capital/network-effect blocker, the target
+   user has the access a first version needs) and scores 1-5 on frequency /
+   anger / money-evidence / ease-to-build. Orphan posts get a second
+   clustering call. Python drops ideas already reported in the last 30
+   days, applies the weights, the money floor, the hard filter and the
+   top-5 cap.
+5. **Competitor check** — survivors are searched on HN Show HN + GitHub;
+   ideas judged `crowded` are cut.
+6. **Repeated paid jobs** — the window's gigs grouped by concrete task;
+   tasks paid for by 2+ different payers are listed as leads.
+7. Writes `reports/week-DATE.md` + `reports/rejected/week-DATE.md`, sends
+   Telegram.
+
+If nothing clears the bar, the weekly report says **"Nothing this week"** —
+never padded to look busy, that was the whole point of the brief this was
+built against. `pool.enabled: false` in `config/scoring.yml` restores the
+old daily ideas.
 
 ## Why no Reddit
 
@@ -190,9 +209,13 @@ Edit `.env`:
 python3 run.py check              # ping every source, ~30s - find dead feeds
 python3 run.py collect            # Stage 1 -> data/raw/DATE.json, ~2 min
 python3 run.py filter --show 25   # Stage 2 -> data/shortlist/DATE.json
-python3 run.py report             # Stage 3 -> reports/DATE.md + rejected/ + Telegram
+python3 run.py report             # Stage 3 -> triage -> data/pool/ + data/gigs/ + reports/DATE.md + Telegram
 python3 run.py report --dry-run   # same, but prints instead of writing/sending
+python3 run.py weekly             # Stage 4 -> reports/week-DATE.md + Telegram (--dry-run, --no-telegram, --until D)
+python3 run.py check-competitors  # test the competitor check on 3 fixed ideas (prints only)
 python3 run.py review             # 14-day digest -> reports/review-DATE.md
+python3 tools/backfill_pool.py --since D --until D [--verdict paid_gig --out data/gigs]
+                                  # one-off: seed the pool from old rejected logs
 ```
 
 Run them in order — each stage reads the previous stage's most recent
@@ -200,8 +223,9 @@ output file, not necessarily today's date (so a missed day doesn't break
 the chain, it just works on stale data until you re-collect).
 
 Forums throttle repeated hits: collect once a day, don't loop it. To test
-the whole pipeline in the cloud, use Actions → "Daily Pain Radar report" →
-Run workflow (it overwrites today's report and sends Telegram again).
+in the cloud, use Actions → "Daily Pain Radar report" / "Weekly Pain Radar
+ideas" → Run workflow (overwrites today's report and sends Telegram again),
+or "Competitor check test" (prints only, writes and sends nothing).
 
 ## Tuning it yourself — no code, ever
 
@@ -241,14 +265,23 @@ save, rerun — that's the whole workflow.
   report feels padded, lower it if you're seeing "Nothing today" too
   often), `min_money_evidence` (3; drops ideas nobody already pays to
   solve, 1 = off), `dedupe_days` (30; 0 = off), `triage_enabled`.
+- `pool` — `enabled` (weekly pool mode; false = old daily ideas), `days`
+  (14, the window the weekly run clusters), `weekday` (only for the "next
+  weekly" date in daily messages; the real schedule is `weekly.yml`).
+- `competitor_check` — `enabled`, `queries_per_idea`, `results_per_query`,
+  `cut_verdicts` (`[crowded]`; add `partial` to be stricter),
+  `count_big_suites` (false: all-in-one suites the person doesn't use don't
+  make an idea crowded).
+- `gigs` — `enabled`, `min_repeat` (2 different payers for a repeated job).
 
 ## Free-tier limits, and where this sits inside them
 
 | Service | Free limit | This project's usage |
 |---|---|---|
-| Gemini (`gemini-3.5-flash-lite`, pinned) | ~1,500 requests/day | 2-3 per run (triage + clustering, + second pass when needed) |
+| Gemini (`gemini-3.5-flash-lite`, pinned) | ~1,500 requests/day | daily: 1 (triage). weekly: 2-3 clustering + 2 competitor + 1 gigs. Google Search grounding: 0 free quota, not used |
+| GitHub search API | 30/min with token, 10 without | weekly: ~6 per idea that clears the bar (`GITHUB_TOKEN` in CI) |
 | Groq (fallback, not configured) | generous | 0 — no `GROQ_API_KEY` secret on Actions, so a Gemini failure fails the run (decided 09-28: retry crons are enough) |
-| HN Algolia | ~10k/hr soft | 11/run |
+| HN Algolia | ~10k/hr soft | 9/daily run + ~3 per checked idea weekly |
 | Stack Exchange (no key) | 300/day/IP | ~4/run |
 | Discourse / RSS forums | none published, but throttle on bursts | ~60/run, spaced with delays |
 
@@ -317,6 +350,24 @@ lead-gen posts and solved-problem tip posts, with extra regex signals
 post stayed `real_problem`, 6/6 help questions unchanged, 5/6 real problems
 unchanged - the 6th was an ad ("Free 4-minute security check") that old
 triage had wrongly called real.
+
+**2026-10-08 — 2-week review: 0 of 8 ideas worth building.** Daily
+clustering produced 8 ideas in 15 days (8 empty days) and none survived a
+manual competitor check. Re-triaging the old `real_problem` posts with full
+bodies and the self_promo filter kept only 6 of 38 (14 were sellers), so
+the old triage was far too generous. Changes: weekly pool (6), competitor
+check (7), source cuts (8), repeated paid jobs (9), 2-week review recurring.
+
+**2026-10-08 — competitor verdict flipped between runs.** The first CI test
+of the competitor check called both known-crowded test ideas `partial`
+(locally: `crowded`); the model's "gap" just restated the problem in more
+words. Fix: the model rates each competitor (main use / part / unrelated,
+and its kind), and `verdict_from()` in code decides. Big suites the person
+doesn't use no longer count (a lawn-care test idea was cut for Jobber).
+
+**2026-10-08 — one agency counted as a repeated job.** The first gigs dry
+run grouped a single agency's job ad cross-posted to n8n + Make. Now the
+model reports `distinct_payers` and staff/employment ads are ignored.
 
 ## Repo
 

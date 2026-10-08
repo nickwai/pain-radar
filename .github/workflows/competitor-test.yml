@@ -1,0 +1,30 @@
+name: Competitor check test
+
+# ADDED 2026-10-08: manual only. Runs radar/competitors.py on 3 fixed fake
+# ideas (run.py COMPETITOR_TEST_IDEAS: 2 known crowded + 1 control) with the
+# real CI secrets and IP. Prints results to the log and run summary; writes
+# no report, sends no Telegram, commits nothing. Fails if a verdict is off.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - run: python3 -m pip install -r requirements.txt
+      - name: Competitor check on fake ideas
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -o pipefail
+          python3 run.py check-competitors | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

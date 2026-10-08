@@ -320,6 +320,48 @@ def cmd_weekly(args: argparse.Namespace) -> int:
     return 0
 
 
+# Fixed test ideas for `check-competitors`. Expected verdicts come from the
+# manual checks of 2026-09-26 (Tradovate) and 2026-10-04 (n8n): both crowded.
+# The lawn-care one is a made-up control - it should NOT come back crowded
+# just because the judge cuts everything.
+COMPETITOR_TEST_IDEAS = [
+    ("crowded", {"problem_one_line": "No-code automation workflows (n8n, Make) fail silently "
+                 "on invalid data states with no alert",
+                 "who_has_it": "automation agency running client workflows in n8n/Make",
+                 "existing_solutions": "n8n error workflow"}),
+    ("crowded", {"problem_one_line": "Prop-firm futures traders on Tradovate need an automatic "
+                 "scheduled lockout after N trades per day",
+                 "who_has_it": "prop-firm futures trader on Tradovate",
+                 "existing_solutions": "none known"}),
+    ("not crowded", {"problem_one_line": "Lawn care business owners re-type crew timesheets "
+                     "from paper into payroll every week",
+                     "who_has_it": "owner of a 3-8 crew lawn care business",
+                     "existing_solutions": "none given"}),
+]
+
+
+def cmd_check_competitors(_args: argparse.Namespace) -> int:
+    """ADDED 2026-10-08: run radar/competitors.py on COMPETITOR_TEST_IDEAS.
+    Prints only - no report, no Telegram. Exit 1 if a verdict is off."""
+    import yaml
+    from radar.competitors import check
+    from radar.report import render_competitors
+
+    config = yaml.safe_load((ROOT / "config" / "scoring.yml").read_text(encoding="utf-8"))
+    ideas = [dict(i) for _, i in COMPETITOR_TEST_IDEAS]
+    check(ideas, config)
+    bad = 0
+    for (expected, _), idea in zip(COMPETITOR_TEST_IDEAS, ideas):
+        got = idea["competitor_check"]["verdict"]
+        ok = (got == "crowded") == (expected == "crowded") and got != "not run"
+        bad += not ok
+        print(f"\n{'PASS' if ok else 'FAIL'}  expected {expected}, got {got}: "
+              f"{idea['problem_one_line'][:70]}")
+        print("\n".join(render_competitors(idea["competitor_check"])))
+    print(f"\n{len(ideas) - bad}/{len(ideas)} verdicts as expected")
+    return 1 if bad else 0
+
+
 def cmd_review(args: argparse.Namespace) -> int:
     """Two-week review digest -> reports/review-UNTIL.md (+ Telegram)."""
     import datetime as dt
@@ -392,6 +434,9 @@ def main() -> int:
     p_week.add_argument("--no-telegram", action="store_true",
                         help="skip Telegram even if TG_TOKEN/TG_CHAT_ID are set")
 
+    sub.add_parser("check-competitors",
+                   help="Test the competitor check on fixed fake ideas (prints only)")
+
     p_rev = sub.add_parser("review", help="Two-week review digest -> reports/review-DATE.md")
     p_rev.add_argument("--since", help="YYYY-MM-DD (default: 14 days before --until)")
     p_rev.add_argument("--until", help="YYYY-MM-DD (default: today UTC)")
@@ -402,7 +447,8 @@ def main() -> int:
     return {"check": cmd_check, "collect": cmd_collect,
             "collect-local": cmd_collect_local,
             "filter": cmd_filter, "report": cmd_report,
-            "weekly": cmd_weekly, "review": cmd_review}[args.stage](args)
+            "weekly": cmd_weekly, "check-competitors": cmd_check_competitors,
+            "review": cmd_review}[args.stage](args)
 
 
 if __name__ == "__main__":

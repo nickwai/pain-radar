@@ -36,6 +36,7 @@ HN_URL = "https://hn.algolia.com/api/v1/search"
 GH_URL = "https://api.github.com/search/repositories"
 VERDICTS = ["crowded", "partial", "open"]
 COVERS = ["main_use", "part", "unrelated"]
+KINDS = ["platform_feature", "dedicated_tool", "big_suite"]
 
 QUERY_SCHEMA = {
     "type": "ARRAY",
@@ -66,8 +67,9 @@ JUDGE_SCHEMA = {
                       "properties": {"name": {"type": "STRING"},
                                      "result_id": {"type": "STRING"},
                                      "covers": {"type": "STRING", "enum": COVERS},
+                                     "kind": {"type": "STRING", "enum": KINDS},
                                      "note": {"type": "STRING"}},
-                      "required": ["name", "result_id", "covers", "note"]}},
+                      "required": ["name", "result_id", "covers", "kind", "note"]}},
                   "gap": {"type": "STRING"}},
               "required": ["idea", "competitors", "gap"]},
 }
@@ -93,6 +95,16 @@ Per idea return:
   * unrelated: noise - do not list these at all.
   Judge what the option DOES, not how polished it is. "Not tamper-proof",
   "not agency-ready", "not multi-platform" do not demote main_use to part.
+  kind, for each:
+  * platform_feature: a built-in feature of the platform/product this person
+    ALREADY uses (n8n's error workflow for an n8n user; Tradovate's lockout
+    for a Tradovate trader). A big suite they already run counts here.
+  * dedicated_tool: a product, plugin, script or service built for this
+    specific job (any price, open source included).
+  * big_suite: a broad all-in-one business suite (field-service, CRM, ERP,
+    practice management - e.g. Jobber, ServiceTitan, Salesforce, HubSpot)
+    where this is one feature among many and the person would have to adopt
+    the whole suite to get it.
 - gap: one line - what is left that a new tool could do, concretely. If
   nothing real is left, say so.
 
@@ -151,12 +163,18 @@ def gather(queries: list[str], n: int, env) -> list[dict]:
     return list(out.values())
 
 
-def verdict_from(comps: list[dict]) -> str:
+def verdict_from(comps: list[dict], count_big_suites: bool = False) -> str:
     """FIX 2026-10-08: the model's own crowded/partial/open flipped between
     runs on identical input (CI said partial for both known-crowded test
     ideas, local said crowded) - "partial" with a reworded problem as the
     "gap" was an escape hatch. Now the model only rates each competitor and
     this rule decides: any main_use, or 2+ part = crowded; 1 part = partial."""
+    # 2026-10-08: big suites don't count by default - nearly every business
+    # problem is "covered" by some all-in-one suite the person doesn't use
+    # (the lawn-care timesheet test idea was cut for Jobber/ServiceTitan).
+    # Switching suites is the real cost; a focused tool can still sell.
+    # Still listed in the report. competitor_check.count_big_suites: true = old rule.
+    comps = [c for c in comps if count_big_suites or c.get("kind") != "big_suite"]
     main = sum(c["covers"] == "main_use" for c in comps)
     part = sum(c["covers"] == "part" for c in comps)
     if main or part >= 2:
@@ -227,8 +245,9 @@ def check(ideas: list[dict], config: dict, env=None, verbose: bool = True,
             hit = results.get((c.get("result_id") or "").strip())
             comps.append({"name": c.get("name", "?"), "note": c.get("note", ""),
                           "covers": c["covers"],
+                          "kind": c.get("kind", "dedicated_tool"),
                           "url": hit["url"] if hit else "", "verified": bool(hit)})
-        verdict = verdict_from(comps) if r else "not run"
+        verdict = verdict_from(comps, cc.get("count_big_suites", False)) if r else "not run"
         idea["competitor_check"] = {
             "verdict": verdict,
             "competitors": comps, "gap": (r or {}).get("gap", ""),

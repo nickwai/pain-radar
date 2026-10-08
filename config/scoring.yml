@@ -162,3 +162,9 @@ competitor_check:
   queries_per_idea: 3
   results_per_query: 5
   cut_verdicts: [crowded]   # add `partial` to be stricter
+  # Verdict rule (radar/competitors.py verdict_from): any competitor covering
+  # the main use, or 2+ covering part = crowded; 1 part = partial; else open.
+  count_big_suites: false   # ADDED 2026-10-08: all-in-one suites the person
+                            # doesn't already use (Jobber, ServiceTitan,
+                            # Salesforce...) are listed but don't count.
+                            # true = they count like any competitor.

@@ -43,6 +43,8 @@ def render_competitors(cc: dict | None) -> list[str]:
             f"{c['name']} *(from model memory, unverified)*"
         covers = {"main_use": " — covers the main use", "part": " — covers part"}.get(
             c.get("covers", ""), "")
+        if c.get("kind") == "big_suite":
+            covers += " (big suite - not counted)"
         lines.append(f"- {name}{covers}: {c.get('note', '')}")
     if cc.get("queries"):
         lines.append(f"*Searched HN + GitHub for: {'; '.join(cc['queries'])}*")

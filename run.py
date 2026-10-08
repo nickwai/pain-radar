@@ -238,6 +238,10 @@ def _report_pool_day(args, posts, config, triage, date, seen) -> int:
     pool_dir = ROOT / "data" / "pool"
     posts_by_id = {p["id"]: p for p in posts}
     pooled = [] if args.dry_run else save_day(pool_dir, date, posts, triage)
+    # ADDED 2026-10-08: every paid_gig post too (before the shown-already
+    # dedupe), for the weekly repeated-jobs check (radar/gigs.py).
+    if not args.dry_run:
+        save_day(ROOT / "data" / "gigs", date, posts, triage, verdict="paid_gig")
     if args.dry_run:  # show what would be pooled, write nothing
         pooled = [{**posts_by_id[r["id"]], "triage_reason": r["reason"]}
                   for r in triage if r["verdict"] == "real_problem"]
@@ -275,9 +279,10 @@ def cmd_weekly(args: argparse.Namespace) -> int:
     reports/week-DATE.md + reports/rejected/week-DATE.md, send Telegram."""
     import yaml
     from radar.competitors import check
-    from radar.history import reported_urls
+    from radar.gigs import repeated_jobs
+    from radar.history import norm_url, reported_urls
     from radar.pool import load_window
-    from radar.report import render, render_orphans, render_rejected
+    from radar.report import render, render_jobs, render_orphans, render_rejected
     from radar.synthesize import synthesize
     from radar.telegram import format_message
 
@@ -302,13 +307,27 @@ def cmd_weekly(args: argparse.Namespace) -> int:
     ideas = synthesize(posts, config, rejected=rejected, triage=triage, seen=seen) if posts else []
     ideas = check(ideas, config, rejected=rejected)
 
+    # Repeated paid jobs (2026-10-08). A task already shown in an earlier
+    # weekly report is shown again only if a NEW gig joined it.
+    gigs = load_window(ROOT / "data" / "gigs", until, days)
+    jobs = repeated_jobs(gigs, config)
+    gigs_by_id = {g["id"]: g for g in gigs}
+    if jobs:
+        week_seen = reported_urls(ROOT / "reports", before=until, days=days,
+                                  weekly_only=True)
+        jobs = [j for j in jobs if not all(
+            norm_url(gigs_by_id[g].get("url", "")) in week_seen for g in j["gig_ids"])]
+    jobs_section = render_jobs(jobs, gigs_by_id, len(gigs))
+
     posts_by_id = {p["id"]: p for p in posts}
-    report_md = render(ideas, posts_by_id, config, date=until, period=period, intro=intro)
+    report_md = render(ideas, posts_by_id, config, date=until, period=period, intro=intro,
+                       jobs_section=jobs_section)
     rejected_md = render_rejected(rejected, posts_by_id, config, date=f"week {period}")
     rejected_md += render_orphans(triage, ideas + rejected, posts_by_id)
     print("\n" + "=" * 60)
     print(report_md)
-    _send_telegram(format_message(ideas, posts_by_id, until, period=period, intro=intro), args)
+    _send_telegram(format_message(ideas, posts_by_id, until, period=period, intro=intro,
+                                  jobs=jobs), args)
     if args.dry_run:
         print("(--dry-run: not writing to reports/)")
         return 0

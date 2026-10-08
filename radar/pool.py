@@ -24,13 +24,14 @@ DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})\.json$")
 
 
 def save_day(pool_dir: Path, date: str, posts: list[dict],
-             triage: list[dict]) -> list[dict]:
-    """Write the day's real_problem posts (full post + triage reason).
+             triage: list[dict], verdict: str = "real_problem") -> list[dict]:
+    """Write the day's posts with this triage verdict (full post + reason) -
+    real_problem -> data/pool/, paid_gig -> data/gigs/ (2026-10-08).
     Returns what was written. An empty triage (call failed) writes nothing,
     so a failed day never overwrites a good file from an earlier run."""
     if not triage:
         return []
-    reasons = {r["id"]: r["reason"] for r in triage if r["verdict"] == "real_problem"}
+    reasons = {r["id"]: r["reason"] for r in triage if r["verdict"] == verdict}
     real = [{**p, "triage_reason": reasons[p["id"]], "pooled_on": date}
             for p in posts if p["id"] in reasons]
     pool_dir.mkdir(parents=True, exist_ok=True)

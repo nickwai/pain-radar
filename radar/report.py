@@ -51,9 +51,37 @@ def render_competitors(cc: dict | None) -> list[str]:
     return lines
 
 
+def render_jobs(jobs: list[dict] | None, gigs_by_id: dict[str, dict],
+                n_gigs: int) -> list[str]:
+    """ADDED 2026-10-08 (radar/gigs.py): tasks different people paid for.
+    jobs None = check failed/off. Heading must not match `## N. `."""
+    lines = ["## Repeated paid jobs", ""]
+    if jobs is None:
+        return lines + [f"*Check did not run ({n_gigs} gigs in the window).*", ""]
+    if not jobs:
+        return lines + [f"No task was paid for twice among {n_gigs} gigs in the window.", ""]
+    lines += [f"Tasks that different people paid for, from {n_gigs} gigs in the window. "
+              "Not scored - leads: a job people keep hiring for is one a tool could do.", ""]
+    for j in jobs:
+        lines.append(f"**{j['job_one_line']}** — {len(j['gig_ids'])} posts")
+        lines.append(f"- Who pays: {j['who_pays']}")
+        if j.get("productizable") and j.get("product_idea"):
+            lines.append(f"- Could be a product: {j['product_idea']}")
+        else:
+            lines.append("- Not productizable (needs a person each time)")
+        lines.append(f"- Evidence: {j['why']}")
+        for gid in j["gig_ids"]:
+            g = gigs_by_id.get(gid, {})
+            lines.append(f"  - [{_md_title(g.get('title') or gid)}]({g.get('url', '')}) "
+                         f"— {g.get('channel', '?')}, {g.get('pooled_on', '?')}")
+        lines.append("")
+    return lines
+
+
 def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
           date: str | None = None, gigs: list[dict] | None = None,
-          period: str | None = None, intro: str = "") -> str:
+          period: str | None = None, intro: str = "",
+          jobs_section: list[str] | None = None) -> str:
     """period (weekly report, 2026-10-08): e.g. "2026-09-28 → 2026-10-12",
     used in the title and wording instead of a single day."""
     date = date or dt.date.today().isoformat()
@@ -71,6 +99,7 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
                      "or the competitor check this run. See the rejected log for "
                      "what was considered.")
         lines.append("")
+        lines += jobs_section or []
         lines += render_gigs(gigs or [], posts_by_id)
         return "\n".join(lines).rstrip() + "\n"
 
@@ -121,6 +150,7 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
         lines.append("---")
         lines.append("")
 
+    lines += jobs_section or []
     lines += render_gigs(gigs or [], posts_by_id)
     return "\n".join(lines)
 

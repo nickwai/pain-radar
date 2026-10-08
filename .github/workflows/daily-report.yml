@@ -103,7 +103,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # data/pool/ (2026-10-08): the day's real problems, read by weekly.yml.
-          git add reports/ data/pool/
+          git add reports/ data/pool/ data/gigs/
           if git diff --cached --quiet; then
             echo "Nothing new to commit."
             exit 0

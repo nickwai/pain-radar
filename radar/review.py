@@ -19,6 +19,7 @@ WEEK_RE = re.compile(r"^week-(\d{4}-\d{2}-\d{2})\.md$")
 # Daily report in pool mode (2026-10-08): "**3 real problems added to the pool today.**"
 POOLED_RE = re.compile(r"\*\*(\d+) real problems? added to the pool today")
 CUT_RE = re.compile(r"^\*\*Cut because:\*\* (.+)$", re.M)
+JOB_RE = re.compile(r"^\*\*(.+)\*\* — (\d+) posts$", re.M)  # radar/gigs.py section
 COMP_RE = re.compile(r"^\*\*Competitor check:\*\* (\w[\w ]*?)(?: —|$)", re.M)
 
 
@@ -92,11 +93,15 @@ def build(reports_dir: Path, since: str, until: str) -> tuple[str, str]:
     # daily reports carry only the pooled count.
     weeks = [d for d in _dates(reports_dir, since, WEEK_RE) if d <= until]
     per_week, verdicts, cuts = {}, defaultdict(int), defaultdict(int)
+    jobs: list[str] = []
     for d in weeks:
         text = (reports_dir / f"week-{d}.md").read_text(encoding="utf-8")
         per_week[d] = parse_report(text)
         for v in COMP_RE.findall(text):
             verdicts[v] += 1
+        if "## Repeated paid jobs" in text:
+            jobs += [f"{d}: {t} ({n} posts)" for t, n in
+                     JOB_RE.findall(text.split("## Repeated paid jobs", 1)[1])]
         rej = rej_dir / f"week-{d}.md"
         if rej.exists():
             for r in CUT_RE.findall(rej.read_text(encoding="utf-8")):
@@ -126,7 +131,8 @@ def build(reports_dir: Path, since: str, until: str) -> tuple[str, str]:
                   (", ".join(f"{n} {v}" for v, n in sorted(verdicts.items())) or "none"),
                   "**Weekly cuts by reason:** " +
                   (", ".join(f"{n} {k}" for k, n in sorted(cuts.items(), key=lambda kv: -kv[1]))
-                   or "none")]
+                   or "none"),
+                  "**Repeated paid jobs:** " + ("; ".join(jobs) or "none")]
     else:
         lines.append("No weekly reports in this window (pool mode started 2026-10-08).")
     if pooled:
@@ -178,6 +184,8 @@ def build(reports_dir: Path, since: str, until: str) -> tuple[str, str]:
     if verdicts or cuts:
         short.append("Competitor: " + (", ".join(f"{n} {v}" for v, n in verdicts.items()) or "-")
                      + f" · cut as crowded: {sum(n for k, n in cuts.items() if 'crowded' in k)}")
+    if jobs:
+        short.append(f"Repeated paid jobs: {len(jobs)}")
     if n_ideas:
         short.append(f"(+{n_ideas} old daily-mode ideas)")
     if agg:

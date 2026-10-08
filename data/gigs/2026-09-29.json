@@ -1,0 +1,58 @@
+[
+  {
+    "id": "discourse:community.make.com:116131",
+    "source": "backfill",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "One broken Make workflow? $49 fixed repair after a scope check",
+    "text": "If your Make workflow stops with an error, creates duplicate spreadsheet rows, or puts dates in the wrong format, I can help investigate one clearly defined problem. The $49 USD pilot covers one agreed repair in an existing scenario, a before/after test, and short instructions explaining the change. Target delivery is two business days after we confirm the scope and funding. New integrations, paid subscriptions, and complete rebuilds are quoted separately. I use AI-assisted debugging and testing. This is a new service; I am not claiming client results or certifications I have not earned. Reply with the apps involved, what should happen, what happens instead, and a redacted error message. Please do not post passwords, access tokens, customer records, or other private information. I will confirm whether the issue fits the pilot before we agree to any work.",
+    "url": "https://community.make.com/t/one-broken-make-workflow-49-fixed-repair-after-a-scope-check/116131",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Offering a paid fixed repair service for Make workflows.",
+    "pooled_on": "2026-09-29"
+  },
+  {
+    "id": "discourse:community.n8n.io:317595",
+    "source": "backfill",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "(HIRING) n8n + Looker Studio builder for marketing reporting (Meta Ads, Google A",
+    "text": "Hi all — I’m starting an automation service for small marketing and PR agencies in India. Looking for an n8n builder for a paid test project, with ongoing work if it goes well. WHAT WE’RE BUILDING A weekly automated client report: Pull Meta Ads, Google Ads and GA4 data for multiple ad accounts Store in Google Sheets or BigQuery Looker Studio dashboard (one template reused across clients) AI-written 3–5 line summary of week-on-week changes (OpenAI/Claude API) Email delivery every Monday 9am IST (WhatsApp later) Error alerts if any step fails PAID TEST (fixed price) One Meta Ads account + GA4 → Sheet → Looker Studio → Monday email with AI summary + error alert. Handover via Loom walkthrough. Budget: ₹[10,000] (~US$[115]) | Timeline: 7 days AFTER THE TEST New client setups (templated) + monthly maintenance retainer. Target: 10–15 client agencies over the next 12 months. MUST-HAVES Proven work with Meta Marketing API and/or Google Ads API Builds inside MY n8n, Google and Meta accounts (I own everything) Documents what you build (Loom + simple diagram) IST working-hours overlap; India-based preferred TO APPLY, email [merrill.sequeira@gmail.com] with: 1–2 examples of marketing reporting / ads API work (screenshots or Loom) How you’d approach this in 5–6 lines Which tools you’d use, and roughly what my monthly bill for them would be at 5, 15 and 30 agencies (~6 ad accounts each). I pay the tools directly; I just need to know how your design affects running cost. Fixed quote for the test + hourly rate for later work Availability over the next 4 weeks Please don’t send generic proposals — I’ll only reply to applications that answer all 5 points.",
+    "url": "https://community.n8n.io/t/hiring-n8n-looker-studio-builder-for-marketing-reporting-meta-ads-google-ads-ga4-paid-test-ongoing-india-ist/317595",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Hiring an n8n and Looker Studio builder for marketing reporting.",
+    "pooled_on": "2026-09-29"
+  },
+  {
+    "id": "discourse:community.n8n.io:317073",
+    "source": "backfill",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "(HIRING) Multi-Agent B2B Lead Gen System | n8n + LangGraph | Energy Storage (Na/",
+    "text": "We are Henan Zhuowei New Energy, a manufacturer selling sodium-ion & lithium-ion battery energy storage systems worldwide. We’re seeking an experienced AI Agent developer with deep expertise in n8n and LangGraph to build our multi-agent global lead acquisition system (Codex-style architecture). Project Scope: POC (2–4 weeks, fixed price) Automatically discover and enrich qualified B2B leads within the energy storage sector Build AI agents to research target company profiles and craft highly personalized outreach emails Develop end-to-end workflows in n8n, integrating LLMs and CRM Requirements Solid proven experience building production-ready agents with n8n, LangGraph or CrewAI Hands-on experience with B2B lead generation automation Only official APIs allowed. No unauthorized scraping. Deliverables: Exportable n8n workflow JSON, technical documentation, working demo Engagement Terms Fixed-price POC project, fully remote, project-based contract. This is not a full-time role . Please DM me with links or demos of your relevant past agent automation projects. 中文备注：可以中文沟通，欢迎国内开发者私信。",
+    "url": "https://community.n8n.io/t/hiring-multi-agent-b2b-lead-gen-system-n8n-langgraph-energy-storage-na-li-battery/317073",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Hiring an AI Agent developer for a multi-agent lead gen system.",
+    "pooled_on": "2026-09-29"
+  },
+  {
+    "id": "discourse:forum.bubble.io:401045",
+    "source": "backfill",
+    "channel": "forum.bubble.io",
+    "group": "saas",
+    "title": "US-Based Bubble Developer Needed – Take Over Existing Marketplace Build – Paid P",
+    "text": "I’m looking for an experienced US-based Bubble developer to take over development of an existing web app and get it through a functional beta launch. The platform is PeerRate, a two-sided peer-to-peer marketplace with additional functionality around transactions, user reputation, negotiated offers/terms and payments. I don’t want to publicly post the entire business model, but I have a detailed functional specification that I can share with the developer I select. The app is already in rough-draft form in Bubble. The basic UI, user accounts, marketplace, listings, dashboards and branding have been started. I’m not looking for someone to simply design pages — I need someone who understands Bubble well enough to build the actual backend functionality and finish the application. Current scope includes buyer/seller accounts, listings, offers and counteroffers, transaction states, buyer/seller dashboards, reputation/rating logic, Stripe/Stripe Connect integration, automated payment workflows, contextual messaging, notifications, admin controls, privacy rules, fulfillment/disputes, responsive design and final beta testing. I already know how I want the platform to function and have documented it in detail. I need someone who can take that direction, build it correctly, and work through the technical decisions with me where necessary. I’m specifically looking for someone who is: US-based Experienced with Bubble beyond basic website development Comfortable taking over an existing Bubble project Experienced with backend workflows and APIs Ideally experienced with Stripe Connect/marketplace payments Able to show Bubble applications they personally built Communicative and available for calls/screenshares This is paid work and I’m ready to get started. I’m open to hourly or milestone-based arrangements, but I want to hire someone who can actually take ownership of the development process and potentially stay involved as PeerRate grows. The Bubble app, Stripe account, domain and all project assets will remain under my ownership. Developer access will be provided through the appropriate collaborator permissions. If interested, DM me your location/time zone, Bubble experience, examples of applications you’ve built, experience with Stripe/marketplace applications, rate, and current availability.",
+    "url": "https://forum.bubble.io/t/us-based-bubble-developer-needed-take-over-existing-marketplace-build-paid-project/401045",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Looking to hire a Bubble developer to take over marketplace app.",
+    "pooled_on": "2026-09-29"
+  }
+]

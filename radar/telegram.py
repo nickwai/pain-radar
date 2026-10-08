@@ -53,10 +53,15 @@ def _gig_lines(gigs: list[dict], posts_by_id: dict[str, dict]) -> list[str]:
 
 def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str,
                    gigs: list[dict] | None = None, period: str | None = None,
-                   intro: str = "") -> str:
+                   intro: str = "", jobs: list[dict] | None = None) -> str:
     """HTML-formatted (Telegram parse_mode=HTML), not the file Markdown.
     period: weekly report (2026-10-08), e.g. "2026-09-28 → 2026-10-12"."""
     gig_lines = _gig_lines(gigs or [], posts_by_id)
+    # ADDED 2026-10-08: repeated paid jobs (radar/gigs.py), weekly only.
+    for j in jobs or []:
+        idea = f" → build: {j['product_idea']}" if j.get("productizable") and j.get("product_idea") else ""
+        gig_lines.append(f"🔁 <b>Paid for {len(j['gig_ids'])}x:</b> {_esc(j['job_one_line'])}"
+                         f" ({_esc(j['who_pays'])}){_esc(idea)}")
     title = f"week {period}" if period else date
     when = "this week" if period else "today"
     intro_txt = f"{_esc(intro)}\n" if intro else ""

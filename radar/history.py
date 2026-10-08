@@ -25,7 +25,8 @@ def norm_url(url: str) -> str:
     return f"{m.group(1)}/t/{m.group(2)}" if m else url
 
 
-def reported_urls(reports_dir: Path, before: str, days: int) -> dict[str, str]:
+def reported_urls(reports_dir: Path, before: str, days: int,
+                  weekly_only: bool = False) -> dict[str, str]:
     """{normalised url: latest date it was in a daily or weekly report}, for reports in
     [before - days, before). Today's own report is never counted, so a
     same-day re-run doesn't dedupe against itself. days <= 0 disables."""
@@ -36,6 +37,8 @@ def reported_urls(reports_dir: Path, before: str, days: int) -> dict[str, str]:
     for f in sorted(reports_dir.glob("*.md")):
         m = DATE_RE.match(f.name)  # skips review-*.md; rejected/ is a subdir
         if not m or not since <= m.group(1) < before:
+            continue
+        if weekly_only and not f.name.startswith("week-"):
             continue
         for url in LINK_RE.findall(f.read_text(encoding="utf-8")):
             seen[norm_url(url)] = m.group(1)

@@ -9,6 +9,7 @@ API. Anything else (forum RSS) gets title + triage reason only. Skips
 sources cut since (CUT_CHANNELS). Never overwrites an existing pool file.
 
 Usage: python3 tools/backfill_pool.py --since 2026-09-29 --until 2026-10-08
+       python3 tools/backfill_pool.py --since ... --until ... --verdict paid_gig --out data/gigs
 """
 from __future__ import annotations
 
@@ -26,7 +27,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from radar.collect import FEED_UA, record, strip_html  # noqa: E402
 
-LINE_RE = re.compile(r"^- `real_problem` — \[(.+)\]\((https?://[^)\s]+)\) \(([^)]+)\): (.*)$")
+LINE_TMPL = r"^- `{verdict}` — \[(.+)\]\((https?://[^)\s]+)\) \(([^)]+)\): (.*)$"
 CUT_CHANNELS = {"bogleheads", "woocommerce"}
 
 
@@ -59,9 +60,13 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--since", required=True)
     ap.add_argument("--until", required=True)
+    ap.add_argument("--verdict", default="real_problem",
+                    help="paid_gig + --out data/gigs to seed the gigs pool (2026-10-08)")
+    ap.add_argument("--out", default="data/pool")
     args = ap.parse_args()
+    line_re = re.compile(LINE_TMPL.format(verdict=args.verdict))
     grp = groups()
-    pool_dir = ROOT / "data" / "pool"
+    pool_dir = ROOT / args.out
     pool_dir.mkdir(parents=True, exist_ok=True)
     for f in sorted((ROOT / "reports" / "rejected").glob("20*.md")):
         date = f.stem
@@ -73,7 +78,7 @@ def main() -> int:
             continue
         posts = []
         for line in f.read_text(encoding="utf-8").splitlines():
-            m = LINE_RE.match(line)
+            m = line_re.match(line)
             if not m:
                 continue
             title, url, channel, reason = m.groups()

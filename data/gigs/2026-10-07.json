@@ -1,0 +1,30 @@
+[
+  {
+    "id": "discourse:community.frame.work:85307",
+    "source": "backfill",
+    "channel": "community.frame.work",
+    "group": "automotive",
+    "title": "(US-NY) Framework Laptop 13 Intel i5-1240P Mainboard - Working, M.2 Mount Damage",
+    "text": "Device: Framework Laptop 13 12th Gen Intel Core i5-1240P Mainboard Included Parts: Mainboard only. No RAM, SSD, or Wi-Fi card. Original Purchase Date: February 8th, 2023 Region/Country: New York, USA Price: $190 shipped within the continental US / $175 local. PayPal Goods & Services preferred. Open to reasonable offers. Shipment: Tracked shipping within the continental US. Pictures of the actual laptop/parts: IMG_3765.cleaned 1920×1607 627 KB IMG_3766.cleaned 2080×1512 477 KB I recently upgraded my Framework Laptop 13 to an AMD 7840U mainboard, so I’m selling the original i5-1240P board. The board is fully functional and was working normally immediately before removal. Important defect: the M.2 SSD retaining standoff/mount is missing/damaged. I used the laptop successfully with the NVMe SSD secured in place with electrical tape, but the buyer should plan to repair the mount or use another secure method of retaining the SSD. Please see the close-up photo (the hole where the mount should be is visible on the left of the close-up photo). Aside from the damaged M.2 retaining mount, I’m not aware of any functional issues with the board. Happy to provide additional photos or information.",
+    "url": "https://community.frame.work/t/us-ny-framework-laptop-13-intel-i5-1240p-mainboard-working-m-2-mount-damaged/85307",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "User is selling secondhand hardware parts.",
+    "pooled_on": "2026-10-07"
+  },
+  {
+    "id": "discourse:community.n8n.io:319256",
+    "source": "backfill",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Looking for n8n / AI Automation Specialist – Paid QA & Stress Testing",
+    "text": "Hi everyone, I’m looking for an experienced n8n specialist to review and stress-test several AI agents I’ve already built before I demonstrate them to paying clients. Stack includes n8n, Vapi, Twilio, ElevenLabs, OpenAI/Claude and APIs/webhooks . I’m looking for someone who can review existing workflows, identify bugs/failure points, test edge cases and error handling, check integrations and AI behaviour, and recommend/fix anything that isn’t client-ready. I’m not looking for the agents to be rebuilt from scratch. I’d like to start with one agent as a paid trial , with ongoing work available if we’re a good fit. If interested, please DM me with: Your location/time zone Your rate Relevant n8n/AI experience Any Vapi/Twilio/ElevenLabs experience Examples of similar work Thanks",
+    "url": "https://community.n8n.io/t/looking-for-n8n-ai-automation-specialist-paid-qa-stress-testing/319256",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Poster is looking to hire an n8n specialist for paid QA and stress testing.",
+    "pooled_on": "2026-10-07"
+  }
+]

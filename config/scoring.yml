@@ -168,3 +168,10 @@ competitor_check:
                             # doesn't already use (Jobber, ServiceTitan,
                             # Salesforce...) are listed but don't count.
                             # true = they count like any competitor.
+
+# Repeated paid jobs (radar/gigs.py, added 2026-10-08): the daily run saves
+# paid_gig posts to data/gigs/; the weekly run groups the pool.days window by
+# concrete task and lists tasks different people paid for. 1 Gemini call/week.
+gigs:
+  enabled: true
+  min_repeat: 2     # posts needed for a task to count as repeated

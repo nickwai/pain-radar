@@ -1,0 +1,16 @@
+[
+  {
+    "id": "backfill:https://forum.dealerrefresh.com/threads/https-www-eblock-com.13593/",
+    "source": "backfill",
+    "channel": "dealerrefresh",
+    "group": "automotive",
+    "title": "https://www.eblock.com/",
+    "text": "https://www.eblock.com/. Dealership complaining about bad auction management and suspected fraud.",
+    "url": "https://forum.dealerrefresh.com/threads/https-www-eblock-com.13593/",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Dealership complaining about bad auction management and suspected fraud.",
+    "pooled_on": "2026-09-30"
+  }
+]

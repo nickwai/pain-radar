@@ -31,23 +31,46 @@ def render_gigs(gigs: list[dict], posts_by_id: dict[str, dict]) -> list[str]:
     return lines
 
 
+def render_competitors(cc: dict | None) -> list[str]:
+    """ADDED 2026-10-08: radar/competitors.py result. Verified = the name came
+    from a real search result (link shown); unverified = model memory."""
+    if not cc:
+        return []
+    lines = [f"**Competitor check:** {cc['verdict']}"
+             + (f" — {cc['gap']}" if cc.get("gap") else "")]
+    for c in cc.get("competitors", []):
+        name = f"[{_md_title(c['name'])}]({c['url']})" if c.get("url") else \
+            f"{c['name']} *(from model memory, unverified)*"
+        lines.append(f"- {name}: {c.get('note', '')}")
+    if cc.get("queries"):
+        lines.append(f"*Searched HN + GitHub for: {'; '.join(cc['queries'])}*")
+    return lines
+
+
 def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
-          date: str | None = None, gigs: list[dict] | None = None) -> str:
+          date: str | None = None, gigs: list[dict] | None = None,
+          period: str | None = None, intro: str = "") -> str:
+    """period (weekly report, 2026-10-08): e.g. "2026-09-28 → 2026-10-12",
+    used in the title and wording instead of a single day."""
     date = date or dt.date.today().isoformat()
     w = config["synthesis"]["weights"]
+    when = "this week" if period else "today"
 
-    lines = [f"# Pain Radar — {date}", ""]
+    lines = [f"# Pain Radar — {'week ' + period if period else date}", ""]
+    if intro:
+        lines += [intro, ""]
 
     if not ideas:
-        lines.append("**Nothing today.** No cluster cleared the filter or the "
+        lines.append(f"**Nothing {when}.** No cluster cleared the filter or the "
                      f"min score bar (`{config['synthesis']['min_total_score']}`, "
                      f"money ≥ `{config['synthesis']['min_money_evidence']}`) "
-                     "this run. See `data/shortlist/` for what was considered.")
+                     "or the competitor check this run. See the rejected log for "
+                     "what was considered.")
         lines.append("")
         lines += render_gigs(gigs or [], posts_by_id)
         return "\n".join(lines).rstrip() + "\n"
 
-    lines.append(f"{len(ideas)} idea{'s' if len(ideas) != 1 else ''} cleared the bar today.")
+    lines.append(f"{len(ideas)} idea{'s' if len(ideas) != 1 else ''} cleared the bar {when}.")
     lines.append("")
 
     for i, idea in enumerate(ideas, 1):
@@ -65,6 +88,9 @@ def render(ideas: list[dict], posts_by_id: dict[str, dict], config: dict,
             lines.append("*Found on the second clustering pass (triage said real "
                          "problem, the first pass skipped it).*")
         lines.append("")
+        comp = render_competitors(idea.get("competitor_check"))
+        if comp:
+            lines += comp + [""]
 
         lines.append("**Sources:**")
         for pid in idea["source_post_ids"]:
@@ -141,6 +167,7 @@ def render_rejected(rejected: list[dict], posts_by_id: dict[str, dict], config: 
                            ("Already exists", "existing_solutions")]:
             if c.get(key):
                 lines.append(f"**{label}:** {c[key]}")
+        lines += render_competitors(c.get("competitor_check"))
         if c.get("who_has_it"):
             lines.append(f"**Who:** {c['who_has_it']}")
         for pid in c.get("source_post_ids") or []:
@@ -209,3 +236,31 @@ def render_triage(triage: list[dict], posts_by_id: dict[str, dict]) -> str:
                 lines.append(f"- `{v}` — [{_md_title((post.get('title') or r['id'])[:80])}]"
                              f"({post.get('url', '')}) ({post.get('channel', '?')}): {r['reason']}")
     return "\n".join(lines) + "\n"
+
+
+def render_daily_pool(date: str, pooled: list[dict], pool_size: int, days: int,
+                      next_weekly: str, gigs: list[dict],
+                      posts_by_id: dict[str, dict], triage_ok: bool) -> str:
+    """ADDED 2026-10-08: daily report in pool mode. No clustering today - the
+    real problems found go to data/pool/ and are clustered together weekly.
+    Must not contain `## N. ` headings (review.py reads those as ideas)."""
+    lines = [f"# Pain Radar — {date}", ""]
+    if not triage_ok:
+        lines += ["**Triage failed today** - nothing was added to the pool. "
+                  "Check the Stage 3 log for `[triage] skipped`.", ""]
+    else:
+        lines += [f"**{len(pooled)} real problem{'s' if len(pooled) != 1 else ''} added "
+                  f"to the pool today.** Pool now holds {pool_size} over the last "
+                  f"{days} days. Ideas are clustered from the whole pool weekly - "
+                  f"next: {next_weekly} (`reports/week-{next_weekly}.md`).", ""]
+        if pooled:
+            # <url> autolinks, NOT [title](url): radar/history.py treats every
+            # `](url)` in reports/DATE.md as already reported, which would make
+            # the weekly run drop the very posts it pooled.
+            lines += ["## Pooled today", ""]
+            for p in pooled:
+                lines.append(f"- {_md_title(p['title'][:90])} ({p['channel']}): "
+                             f"{p['triage_reason']} <{p['url']}>")
+            lines.append("")
+    lines += render_gigs(gigs, posts_by_id)
+    return "\n".join(lines).rstrip() + "\n"

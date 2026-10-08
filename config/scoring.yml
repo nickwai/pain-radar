@@ -139,3 +139,26 @@ synthesis:
                            # model accepts the field - gemini-3.5-flash-lite
                            # returns a 400 INVALID_ARGUMENT if you set this,
                            # it doesn't just ignore it (confirmed live).
+
+# ============================================================
+# POOL + WEEKLY (added 2026-10-08, from the 2-week review: 8 ideas in 15
+# days, 0 survived a manual competitor check). The daily run only triages
+# and saves real_problem posts to data/pool/DATE.json; `run.py weekly`
+# (Mondays, .github/workflows/weekly.yml) clusters the whole window at once
+# so a problem seen on several days becomes one strong cluster.
+# ============================================================
+pool:
+  enabled: true     # false = old behaviour: cluster + report ideas every day
+  days: 14          # window the weekly run clusters (weeks overlap on purpose:
+                    # a near-miss gets a second chance with new evidence)
+  weekday: 0        # 0 = Monday. Only used for "next weekly" in daily messages;
+                    # the real schedule is the cron in weekly.yml.
+
+# Competitor check (radar/competitors.py) on ideas that cleared the bar:
+# HN Show HN + GitHub search, Gemini judges crowded / partial / open.
+# 2 Gemini calls per weekly run, ~6 searches per idea.
+competitor_check:
+  enabled: true
+  queries_per_idea: 3
+  results_per_query: 5
+  cut_verdicts: [crowded]   # add `partial` to be stricter

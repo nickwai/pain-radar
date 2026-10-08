@@ -109,9 +109,6 @@ rss:
       also_urls: [https://www.trade2win.com/forums/-/index.rss]   # + recent replies (~10h)
       name: trade2win
       group: trading
-    - url: https://www.bogleheads.org/forum/feed.php?mode=topics   # 18.9h (was 0.2h)
-      name: bogleheads
-      group: trading
     - url: https://www.garagejournal.com/forum/forums/-/index.rss?order=post_date   # 52h (was 1.9h)
       name: garagejournal
       group: automotive
@@ -141,9 +138,6 @@ rss:
     - url: https://forum.dealerrefresh.com/forums/-/index.rss?order=post_date
       name: dealerrefresh      # car dealership ops (CRM, leads, photos), ~3/day - added 2026-09-26
       group: automotive
-    - url: https://wordpress.org/support/plugin/woocommerce/feed
-      name: woocommerce        # shop owners' store problems, long posts - added 2026-09-26
-      group: ecommerce
     # Trade business sub-forums, added 2026-10-04 (docs/source-study-2026-10-04.md):
     # owners discussing invoicing, estimates, crews, software. Low volume
     # (~0.5 and ~0.15 posts/day) but triage found 14/15 and 7/15 real problems.
@@ -169,10 +163,11 @@ hackernews:
   # Phrases, matched EXACTLY in the text (phrase_match). Reworded 2026-09-26 from
   # 48h counts: the old long phrases ("we pay for", "is there a tool for") had
   # 0-1 exact hits. Dropped "manually"/"spreadsheet": 55/34 hits, all coding chatter.
+  # CUT 2026-10-08 (2-week review, triage yield): "too expensive" 0/20 and
+  # "willing to pay" 0/11 real problems. Also cut: bogleheads (4/38, personal
+  # investing advice, not business pain) and woocommerce (0/6) RSS feeds.
   queries:
     - "alternative to"     # 23 hits/48h
-    - "too expensive"      # 17
-    - "willing to pay"     # 13
     - "per month"          # 11
     - "a month for"        # 6
     - "wish there was an"  # ~3 ("an alternative to carbonite")

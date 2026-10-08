@@ -1,0 +1,16 @@
+[
+  {
+    "id": "discourse:community.retool.com:67557",
+    "source": "backfill",
+    "channel": "community.retool.com",
+    "group": "saas",
+    "title": "Request for a time-boxed Business Cloud evaluation without payment method",
+    "text": "Hello Retool team, We have created a Free Retool Cloud workspace for a bounded, non-production technical evaluation: Workspace: https://nexoracore.retool.com/ We need to validate Business-tier capabilities required for our security and governance proof, specifically: Audit logs Rich permissions Resource environment permissions Could you please enable a time-boxed Retool Business Cloud evaluation for this workspace? We cannot add a payment method or accept automatic conversion to a paid subscription. Please confirm the evaluation expiry date and that the evaluation creates no automatic paid commitment. We will use the evaluation only for this bounded non-production validation. Thank you.",
+    "url": "https://community.retool.com/t/request-for-a-time-boxed-business-cloud-evaluation-without-payment-method/67557",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Business needs a time-boxed evaluation of enterprise software features.",
+    "pooled_on": "2026-10-06"
+  }
+]

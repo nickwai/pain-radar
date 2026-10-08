@@ -5,7 +5,8 @@ Usage:
     python3 run.py check       # Verify Reddit credentials
     python3 run.py collect     # Stage 1: fetch raw posts -> data/raw/DATE.json
     python3 run.py filter      # Stage 2: shortlist -> data/shortlist/DATE.json
-    python3 run.py report      # Stage 3: AI synthesis -> reports/DATE.md
+    python3 run.py report      # Stage 3: triage -> data/pool/ (+ reports/DATE.md)
+    python3 run.py weekly      # Stage 4: cluster the pool -> reports/week-DATE.md
 """
 from __future__ import annotations
 
@@ -151,6 +152,8 @@ def cmd_report(args: argparse.Namespace) -> int:
     date = shortlist_path.stem
     seen = reported_urls(ROOT / "reports", before=date,
                          days=config["synthesis"].get("dedupe_days", 30))
+    if (config.get("pool") or {}).get("enabled"):
+        return _report_pool_day(args, posts, config, triage, date, seen)
     ideas = synthesize(posts, config, rejected=rejected, triage=triage, seen=seen)
 
     posts_by_id = {p["id"]: p for p in posts}
@@ -200,6 +203,120 @@ def cmd_report(args: argparse.Namespace) -> int:
     rej_path.parent.mkdir(parents=True, exist_ok=True)
     rej_path.write_text(rejected_md, encoding="utf-8")
     print(f"Wrote rejected clusters ({len(rejected)}) -> {rej_path.relative_to(ROOT)}")
+    return 0
+
+
+def next_weekly_date(date: str, weekday: int) -> str:
+    """The weekly run's date on/after `date` (weekday: Monday=0)."""
+    d = dt.date.fromisoformat(date)
+    return (d + dt.timedelta(days=(weekday - d.weekday()) % 7)).isoformat()
+
+
+def _send_telegram(text: str, args: argparse.Namespace) -> None:
+    if args.dry_run or args.no_telegram:
+        return
+    tg_token, tg_chat = os.environ.get("TG_TOKEN"), os.environ.get("TG_CHAT_ID")
+    if not (tg_token and tg_chat):
+        print("\n[telegram] skipped - TG_TOKEN/TG_CHAT_ID not set in .env")
+        return
+    from radar.telegram import send
+    ok, detail = send(text, tg_token, tg_chat)
+    print(f"\n[telegram] {'sent' if ok else 'FAILED'}: {detail}")
+
+
+def _report_pool_day(args, posts, config, triage, date, seen) -> int:
+    """ADDED 2026-10-08 (pool.enabled): no clustering today. Save the day's
+    real_problem posts to data/pool/DATE.json; `run.py weekly` clusters the
+    window. The daily report + Telegram carry the pool count and gigs."""
+    from radar.collect import local_feeds_status
+    from radar.history import drop_seen_gigs
+    from radar.pool import load_window, save_day
+    from radar.report import gigs_from_triage, render_daily_pool, render_triage
+    from radar.telegram import format_daily_pool
+
+    pool_cfg = config["pool"]
+    pool_dir = ROOT / "data" / "pool"
+    posts_by_id = {p["id"]: p for p in posts}
+    pooled = [] if args.dry_run else save_day(pool_dir, date, posts, triage)
+    if args.dry_run:  # show what would be pooled, write nothing
+        pooled = [{**posts_by_id[r["id"]], "triage_reason": r["reason"]}
+                  for r in triage if r["verdict"] == "real_problem"]
+    pool_size = len(load_window(pool_dir, date, pool_cfg.get("days", 14)))
+    nxt = next_weekly_date(date, pool_cfg.get("weekday", 0))
+    gigs, old_gigs = drop_seen_gigs(gigs_from_triage(triage), posts_by_id, seen)
+    report_md = render_daily_pool(date, pooled, pool_size, pool_cfg.get("days", 14),
+                                  nxt, gigs, posts_by_id, bool(triage))
+    rejected_md = (f"# Triage — {date}\n\nPool mode: no clustering today; "
+                   f"real_problem posts went to data/pool/{date}.json.\n")
+    rejected_md += render_triage(triage, posts_by_id)
+    rejected_md += f"\n**Local-fetch feeds (home PC):** {local_feeds_status()[1]}\n"
+    if old_gigs:
+        rejected_md += "\n**Gigs not shown again (already reported):**\n\n" + "".join(
+            f"- {posts_by_id[g['id']]['title']} — {posts_by_id[g['id']]['url']}\n"
+            for g in old_gigs)
+    print("\n" + "=" * 60)
+    print(report_md)
+    _send_telegram(format_daily_pool(date, pooled, pool_size, nxt, gigs, posts_by_id,
+                                     bool(triage)), args)
+    if args.dry_run:
+        print("(--dry-run: not writing to reports/ or data/pool/)")
+        return 0
+    (ROOT / "reports" / f"{date}.md").write_text(report_md, encoding="utf-8")
+    rej_path = ROOT / "reports" / "rejected" / f"{date}.md"
+    rej_path.parent.mkdir(parents=True, exist_ok=True)
+    rej_path.write_text(rejected_md, encoding="utf-8")
+    print(f"\nPooled {len(pooled)} -> data/pool/{date}.json; wrote reports/{date}.md")
+    return 0
+
+
+def cmd_weekly(args: argparse.Namespace) -> int:
+    """ADDED 2026-10-08: cluster every pooled real problem of the last
+    pool.days days at once, competitor-check what clears the bar, write
+    reports/week-DATE.md + reports/rejected/week-DATE.md, send Telegram."""
+    import yaml
+    from radar.competitors import check
+    from radar.history import reported_urls
+    from radar.pool import load_window
+    from radar.report import render, render_orphans, render_rejected
+    from radar.synthesize import synthesize
+    from radar.telegram import format_message
+
+    config = yaml.safe_load((ROOT / "config" / "scoring.yml").read_text(encoding="utf-8"))
+    days = (config.get("pool") or {}).get("days", 14)
+    until = args.until or today()
+    since = (dt.date.fromisoformat(until) - dt.timedelta(days=days - 1)).isoformat()
+    period = f"{since} → {until}"
+    posts = load_window(ROOT / "data" / "pool", until, days)
+    pooled_days = len({p.get("pooled_on") for p in posts})
+    intro = (f"Clustered {len(posts)} real problems pooled on {pooled_days} "
+             f"day{'s' if pooled_days != 1 else ''}.")
+    print(f"Weekly {period}: {len(posts)} pooled posts\n")
+
+    # Every pooled post is already triaged real_problem: hand that verdict on
+    # so the triage gate passes them and the second pass re-clusters orphans.
+    triage = [{"id": p["id"], "verdict": "real_problem", "reason": p.get("triage_reason", "")}
+              for p in posts]
+    rejected: list[dict] = []
+    seen = reported_urls(ROOT / "reports", before=until,
+                         days=config["synthesis"].get("dedupe_days", 30))
+    ideas = synthesize(posts, config, rejected=rejected, triage=triage, seen=seen) if posts else []
+    ideas = check(ideas, config, rejected=rejected)
+
+    posts_by_id = {p["id"]: p for p in posts}
+    report_md = render(ideas, posts_by_id, config, date=until, period=period, intro=intro)
+    rejected_md = render_rejected(rejected, posts_by_id, config, date=f"week {period}")
+    rejected_md += render_orphans(triage, ideas + rejected, posts_by_id)
+    print("\n" + "=" * 60)
+    print(report_md)
+    _send_telegram(format_message(ideas, posts_by_id, until, period=period, intro=intro), args)
+    if args.dry_run:
+        print("(--dry-run: not writing to reports/)")
+        return 0
+    (ROOT / "reports" / f"week-{until}.md").write_text(report_md, encoding="utf-8")
+    rej_path = ROOT / "reports" / "rejected" / f"week-{until}.md"
+    rej_path.parent.mkdir(parents=True, exist_ok=True)
+    rej_path.write_text(rejected_md, encoding="utf-8")
+    print(f"\nWrote reports/week-{until}.md and {rej_path.relative_to(ROOT)}")
     return 0
 
 
@@ -268,6 +385,13 @@ def main() -> int:
     p_report.add_argument("--no-telegram", action="store_true",
                           help="skip Telegram even if TG_TOKEN/TG_CHAT_ID are set")
 
+    p_week = sub.add_parser("weekly", help="Stage 4: cluster the pool -> reports/week-DATE.md")
+    p_week.add_argument("--until", help="YYYY-MM-DD, last pool day (default: today UTC)")
+    p_week.add_argument("--dry-run", action="store_true",
+                        help="print the report but don't write reports/")
+    p_week.add_argument("--no-telegram", action="store_true",
+                        help="skip Telegram even if TG_TOKEN/TG_CHAT_ID are set")
+
     p_rev = sub.add_parser("review", help="Two-week review digest -> reports/review-DATE.md")
     p_rev.add_argument("--since", help="YYYY-MM-DD (default: 14 days before --until)")
     p_rev.add_argument("--until", help="YYYY-MM-DD (default: today UTC)")
@@ -278,7 +402,7 @@ def main() -> int:
     return {"check": cmd_check, "collect": cmd_collect,
             "collect-local": cmd_collect_local,
             "filter": cmd_filter, "report": cmd_report,
-            "review": cmd_review}[args.stage](args)
+            "weekly": cmd_weekly, "review": cmd_review}[args.stage](args)
 
 
 if __name__ == "__main__":

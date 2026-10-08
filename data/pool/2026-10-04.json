@@ -1,0 +1,16 @@
+[
+  {
+    "id": "discourse:forum.ninjatrader.com:7733",
+    "source": "backfill",
+    "channel": "forum.ninjatrader.com",
+    "group": "trading",
+    "title": "Chart bars changing colors unexpectedly",
+    "text": "I’m hoping some long-term Ninjatrader users can advise Lately I’ve been using non-default bar colors for some testing a new indicator. I keep the bars black & white so that I can see easily what the indicators is doing. I load a chart template with these colors. The issue I have is that sometimes… not every time… when I switch timeframe or instrument, the bars go back to the default green/red… Like awful green/red - even the wicks are green/red, there’s no border on the bars and the bars are too thin as well. It is driving me nuts and causing me a lot of wasted time. Either setting the chart up from scratch again or manually fixing the bar colors. Any idea how to stop this happening?",
+    "url": "https://forum.ninjatrader.com/t/chart-bars-changing-colors-unexpectedly/7733",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Chart indicator resetting custom bar colors unexpectedly on timeframe switches.",
+    "pooled_on": "2026-10-04"
+  }
+]

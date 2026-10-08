@@ -1,0 +1,100 @@
+name: Weekly Pain Radar ideas
+
+# ADDED 2026-10-08 (2-week review): the daily run pools real_problem posts
+# in data/pool/; this clusters the last 14 days of the pool at once, checks
+# each surviving idea against HN + GitHub search (radar/competitors.py),
+# commits reports/week-DATE.md and sends Telegram.
+#
+# Same pattern as daily-report.yml: GitHub delivers `schedule` late or
+# drops it, so several Monday crons + an "already written?" gate. They sit
+# after the daily crons so Monday's pool file is usually in; if not, it is
+# still inside next week's 14-day window.
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+    - cron: "0 11 * * 1"
+    - cron: "0 14 * * 1"
+  workflow_dispatch: {}   # manual run - always runs, overwrites today's week file
+
+permissions:
+  contents: write
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Gate - skip if this week's report already exists
+        id: gate
+        run: |
+          today="$(date -u +%F)"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          elif [ -f "reports/week-$today.md" ]; then
+            echo "reports/week-$today.md already exists - nothing to do."
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Python
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_run == 'true'
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Cluster the pool + competitor check + Telegram
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # GitHub repo search: 30/min vs 10
+        run: python3 run.py weekly
+
+      - name: Show the report on the run summary page
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          f="reports/week-$(date -u +%F).md"
+          [ -f "$f" ] && cat "$f" >> "$GITHUB_STEP_SUMMARY" || echo "No weekly report written." >> "$GITHUB_STEP_SUMMARY"
+          rej="reports/rejected/week-$(date -u +%F).md"
+          if [ -f "$rej" ]; then
+            printf '\n\n---\n\n' >> "$GITHUB_STEP_SUMMARY"
+            cat "$rej" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Commit the report back to the repo
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+            exit 0
+          fi
+          git commit -m "data: weekly report $(date -u +%F)"
+          # Rebase-and-retry: see the long note in daily-report.yml.
+          for attempt in 1 2 3; do
+            git fetch origin master
+            if git rebase origin/master; then
+              if git push origin master; then
+                echo "Pushed on attempt $attempt."
+                exit 0
+              fi
+            else
+              git rebase --abort
+              echo "Rebase conflict on attempt $attempt - not retrying blindly."
+              exit 1
+            fi
+            echo "Push/rebase race on attempt $attempt, retrying..."
+            sleep 5
+          done
+          exit 1

@@ -2,7 +2,9 @@ name: Daily Pain Radar report
 
 # Runs the full pipeline (collect -> filter -> report) every morning and
 # commits reports/DATE.md back to the repo, plus sends it to Telegram if
-# TG_TOKEN/TG_CHAT_ID secrets are set.
+# TG_TOKEN/TG_CHAT_ID secrets are set. Since 2026-10-08 (scoring.yml
+# pool.enabled) "report" only triages and pools real problems in
+# data/pool/DATE.json; ideas come from weekly.yml.
 #
 # WHY MULTIPLE CRON TIMES + AN "ALREADY DONE?" GATE (fixed 2026-09-24):
 # GitHub Actions `schedule` is UTC-only AND best-effort - under load it
@@ -100,7 +102,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/
+          # data/pool/ (2026-10-08): the day's real problems, read by weekly.yml.
+          git add reports/ data/pool/
           if git diff --cached --quiet; then
             echo "Nothing new to commit."
             exit 0

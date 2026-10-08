@@ -201,7 +201,8 @@ def _http_post_json(url: str, payload: dict, headers: dict, timeout: int = 90) -
 
 
 def call_gemini(prompt: str, model: str, api_key: str, thinking_budget: int | None,
-                retries: int = 5, temperature: float | None = 0) -> list[dict]:
+                retries: int = 5, temperature: float | None = 0,
+                schema: dict | None = None) -> Any:
     """Free-tier Gemini genuinely 503s/429s/times-out under real load - this
     isn't hypothetical, it happened repeatedly while building this. A cron
     run has no one watching it retry by hand, so this backs off for real:
@@ -214,7 +215,7 @@ def call_gemini(prompt: str, model: str, api_key: str, thinking_budget: int | No
     url = GEMINI_URL_TMPL.format(model=model) + f"?key={api_key}"
     generation_config: dict = {
         "responseMimeType": "application/json",
-        "responseSchema": RESPONSE_SCHEMA,
+        "responseSchema": schema or RESPONSE_SCHEMA,
     }
     # FIX 2026-09-26: no temperature was set, so Gemini used its default and
     # the same post flipped between runs (Tradovate cut, then 21.0; Baserow

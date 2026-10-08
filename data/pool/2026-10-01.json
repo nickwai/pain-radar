@@ -1,0 +1,58 @@
+[
+  {
+    "id": "discourse:community.home-assistant.io:1026880",
+    "source": "backfill",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "Remote Car Temperature Sensor",
+    "text": "Hi everyone, I’m looking for a hardware solution to monitor the temperature inside my car and ideally integrate it into Home Assistant. The car is a VW Golf 8.5 GTE, and I would like to place a small temperature sensor somewhere inside the vehicle. The main problem is that the car is often parked outside the range of my home Wi-Fi, Bluetooth or Zigbee network. So a normal Bluetooth, Wi-Fi or Zigbee temperature sensor would not really help. What I am looking for is something that can transmit the temperature independently, for example via: LTE / 4G / 5G LTE-M / NB-IoT LoRaWAN, if that would make sense or another cloud-based/mobile solution Ideally, the device should be: battery powered or rechargeable small enough to leave permanently inside the car able to work for a reasonably long time without charging able to send temperature readings even when the car is far away from my home network somehow accessible from Home Assistant, for example via MQTT, REST API, cloud integration or another workaround I do not necessarily need very frequent updates. A temperature reading every 10–30 minutes, or even less often while the car is parked, would probably be enough. Has anyone built something similar or knows suitable hardware for this? I would also be interested in DIY solutions, for example ESP32-based hardware with an LTE-M / NB-IoT modem, as long as power consumption is reasonable. Thanks!",
+    "url": "https://community.home-assistant.io/t/remote-car-temperature-sensor/1026880",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Car owner needs remote cellular temperature sensor for un-networked vehicles.",
+    "pooled_on": "2026-10-01"
+  },
+  {
+    "id": "discourse:community.frame.work:85166",
+    "source": "backfill",
+    "channel": "community.frame.work",
+    "group": "automotive",
+    "title": "13 pro trackpad only kit? or maybe a 1280p screen?",
+    "text": "Would it be possible to have a laptop 13 pro haptic trackpad that is a drop in replacement for the old mechanical one? My original trackpad seems to be getting more and more temperamental (I have adjusted it and it made a small difference), and it would be nice to have a haptic replacement without the added cost of the new input cover and lower chassis (which are way too expensive for me, though I would like them if I could afford it). Another thing is maybe a replacement for the original 1504p screen (which I think honestly a bit too high resolution for the 13in size), and a drop in replacement high refresh 1280p display would fit in really well (especially if it is cheaper).",
+    "url": "https://community.frame.work/t/13-pro-trackpad-only-kit-or-maybe-a-1280p-screen/85166",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Laptop users want affordable drop-in haptic trackpad replacements for older models.",
+    "pooled_on": "2026-10-01"
+  },
+  {
+    "id": "discourse:community.tradovate.com:12837",
+    "source": "backfill",
+    "channel": "community.tradovate.com",
+    "group": "trading",
+    "title": "Who can make a mlq4 indicator to work on tradovate",
+    "text": "Hy I’m new here and y want to know if is possible to make a mlq4 indicator to work on tradovate Tks",
+    "url": "https://community.tradovate.com/t/who-can-make-a-mlq4-indicator-to-work-on-tradovate/12837",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Trader needs a solution to convert MQL4 indicators to work on Tradovate.",
+    "pooled_on": "2026-10-01"
+  },
+  {
+    "id": "backfill:https://forum.dealerrefresh.com/threads/anyone-else-experiencing-aggressive-upsell-tactics-and-retaliation-from-cargurus.13595/",
+    "source": "backfill",
+    "channel": "dealerrefresh",
+    "group": "automotive",
+    "title": "Anyone else experiencing aggressive upsell tactics and retaliation from CarGurus",
+    "text": "Anyone else experiencing aggressive upsell tactics and retaliation from CarGurus. Dealerships experience aggressive vendor upsell tactics and retaliation over low ROI.",
+    "url": "https://forum.dealerrefresh.com/threads/anyone-else-experiencing-aggressive-upsell-tactics-and-retaliation-from-cargurus.13595/",
+    "created_utc": 0,
+    "score": 0,
+    "comments": 0,
+    "triage_reason": "Dealerships experience aggressive vendor upsell tactics and retaliation over low ROI.",
+    "pooled_on": "2026-10-01"
+  }
+]

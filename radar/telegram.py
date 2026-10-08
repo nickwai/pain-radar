@@ -52,19 +52,26 @@ def _gig_lines(gigs: list[dict], posts_by_id: dict[str, dict]) -> list[str]:
 
 
 def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str,
-                   gigs: list[dict] | None = None) -> str:
-    """HTML-formatted (Telegram parse_mode=HTML), not the file Markdown."""
+                   gigs: list[dict] | None = None, period: str | None = None,
+                   intro: str = "") -> str:
+    """HTML-formatted (Telegram parse_mode=HTML), not the file Markdown.
+    period: weekly report (2026-10-08), e.g. "2026-09-28 → 2026-10-12"."""
     gig_lines = _gig_lines(gigs or [], posts_by_id)
+    title = f"week {period}" if period else date
+    when = "this week" if period else "today"
+    intro_txt = f"{_esc(intro)}\n" if intro else ""
     if not ideas:
         text = (
-            f"🔭 <b>Pain Radar — {_esc(date)}</b>\n\n"
-            f"Nothing today. No problem cleared the bar this run — "
-            f"quieter than usual, not a failure."
+            f"🔭 <b>Pain Radar — {_esc(title)}</b>\n{intro_txt}\n"
+            f"Nothing {when}. No problem cleared the bar and the competitor "
+            f"check — an empty week beats an idea nobody would pay for."
         )
         return text + ("\n\n" + "\n".join(gig_lines) if gig_lines else "")
 
-    lines = [f"🎯 <b>Pain Radar — {_esc(date)}</b>",
-             f"{len(ideas)} idea{'s' if len(ideas) != 1 else ''} cleared the bar today.", ""]
+    lines = [f"🎯 <b>Pain Radar — {_esc(title)}</b>"]
+    if intro:
+        lines.append(_esc(intro))
+    lines += [f"{len(ideas)} idea{'s' if len(ideas) != 1 else ''} cleared the bar {when}.", ""]
 
     for i, idea in enumerate(ideas, 1):
         s = idea["scores"]
@@ -75,6 +82,13 @@ def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str,
             lines.append(f"🧰 <b>Already exists:</b> {_esc(idea['existing_solutions'])}")
         if idea.get("access_reason"):
             lines.append(f"🔑 <b>Access:</b> {_esc(idea['access_reason'])}")
+
+        cc = idea.get("competitor_check")
+        if cc:
+            names = ", ".join(c["name"] + ("" if c.get("verified") else "*")
+                              for c in cc.get("competitors", [])) or "none found"
+            lines.append(f"🔍 <b>Competitors ({_esc(cc['verdict'])}):</b> {_esc(names)}"
+                         + (f" — gap: {_esc(cc['gap'])}" if cc.get("gap") else ""))
 
         score_bits = [f"{AXIS_EMOJI[k]} {v}/5" for k, v in s.items()]
         lines.append(f"📊 {'  '.join(score_bits)}  ·  <b>total {idea['total_score']}</b>")
@@ -89,6 +103,20 @@ def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str,
 
     lines += gig_lines
     return "\n".join(lines).rstrip()
+
+
+def format_daily_pool(date: str, pooled: list[dict], pool_size: int,
+                      next_weekly: str, gigs: list[dict],
+                      posts_by_id: dict[str, dict], triage_ok: bool) -> str:
+    """ADDED 2026-10-08: one-line daily heartbeat in pool mode (+ gigs)."""
+    if not triage_ok:
+        head = "⚠️ triage failed — nothing pooled today."
+    else:
+        head = (f"{len(pooled)} real problem{'s' if len(pooled) != 1 else ''} pooled "
+                f"(pool: {pool_size}). Ideas weekly — next {next_weekly}.")
+    text = f"📥 <b>Pain Radar — {_esc(date)}</b>\n{_esc(head)}"
+    gig_lines = _gig_lines(gigs, posts_by_id)
+    return text + ("\n\n" + "\n".join(gig_lines) if gig_lines else "")
 
 
 def _split_for_telegram(text: str, limit: int = MAX_MESSAGE_CHARS) -> list[str]:

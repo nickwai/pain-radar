@@ -11,7 +11,8 @@ import datetime as dt
 import re
 from pathlib import Path
 
-DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})\.md$")
+# week-DATE.md (weekly pooled report, 2026-10-08) counts too; review-*.md not.
+DATE_RE = re.compile(r"^(?:week-)?(\d{4}-\d{2}-\d{2})\.md$")
 # `](url)` - robust to square brackets inside idea titles.
 LINK_RE = re.compile(r"\]\((https?://[^)\s]+)\)")
 # Discourse: /t/<slug>/<id>[/<post>] - slugs can change, the topic id can't.
@@ -25,7 +26,7 @@ def norm_url(url: str) -> str:
 
 
 def reported_urls(reports_dir: Path, before: str, days: int) -> dict[str, str]:
-    """{normalised url: latest date it was in a daily report}, for reports in
+    """{normalised url: latest date it was in a daily or weekly report}, for reports in
     [before - days, before). Today's own report is never counted, so a
     same-day re-run doesn't dedupe against itself. days <= 0 disables."""
     if days <= 0:

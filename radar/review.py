@@ -1,4 +1,5 @@
-"""Two-week review digest (built 2026-09-24, first run 2026-10-08).
+"""Two-week review digest (built 2026-09-24, first run 2026-10-08; every
+second Thursday since - .github/workflows/review.yml).
 
 Reads what the daily runs already committed - reports/DATE.md and
 reports/rejected/DATE.md - and summarises them so the review is about
@@ -14,15 +15,31 @@ from collections import defaultdict
 from pathlib import Path
 
 DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})\.md$")
+WEEK_RE = re.compile(r"^week-(\d{4}-\d{2}-\d{2})\.md$")
+# Daily report in pool mode (2026-10-08): "**3 real problems added to the pool today.**"
+POOLED_RE = re.compile(r"\*\*(\d+) real problems? added to the pool today")
+CUT_RE = re.compile(r"^\*\*Cut because:\*\* (.+)$", re.M)
+COMP_RE = re.compile(r"^\*\*Competitor check:\*\* (\w[\w ]*?)(?: —|$)", re.M)
 
 
-def _dates(folder: Path, since: str) -> list[str]:
+def _dates(folder: Path, since: str, pattern: re.Pattern = DATE_RE) -> list[str]:
     out = []
     for f in sorted(folder.glob("*.md")):
-        m = DATE_RE.match(f.name)
+        m = pattern.match(f.name)
         if m and m.group(1) >= since:
             out.append(m.group(1))
     return out
+
+
+def _cut_kind(reason: str) -> str:
+    """Group cut reasons: 'money_evidence 1 below ...' -> 'money_evidence below floor'."""
+    if reason.startswith("competitor check"):
+        return "competitor check: " + reason.split(":", 1)[1].split("-", 1)[0].strip()
+    if reason.startswith("money_evidence"):
+        return "money_evidence below floor"
+    if reason.startswith("total "):
+        return "total below min_total_score"
+    return re.sub(r" \(.*", "", reason)
 
 
 def parse_report(text: str) -> list[dict]:
@@ -71,14 +88,58 @@ def build(reports_dir: Path, since: str, until: str) -> tuple[str, str]:
     n_days = len(days)
     n_ideas = sum(len(v) for v in per_day.values())
     zero_days = [d for d, v in per_day.items() if not v]
-    lines = [f"# Pain Radar review — {since} → {until}", ""]
-    lines.append(f"**{n_days} daily reports, {n_ideas} ideas, {len(zero_days)} 'nothing today' days.** "
-                 f"Triage data on {triage_days} of those days.")
-    lines += ["", "## Ideas by day", "", "| Date | Ideas | Titles (score) |", "|---|---|---|"]
+    # ADDED 2026-10-08: pool mode - ideas come from reports/week-DATE.md,
+    # daily reports carry only the pooled count.
+    weeks = [d for d in _dates(reports_dir, since, WEEK_RE) if d <= until]
+    per_week, verdicts, cuts = {}, defaultdict(int), defaultdict(int)
+    for d in weeks:
+        text = (reports_dir / f"week-{d}.md").read_text(encoding="utf-8")
+        per_week[d] = parse_report(text)
+        for v in COMP_RE.findall(text):
+            verdicts[v] += 1
+        rej = rej_dir / f"week-{d}.md"
+        if rej.exists():
+            for r in CUT_RE.findall(rej.read_text(encoding="utf-8")):
+                cuts[_cut_kind(r)] += 1
+    pooled = {}
     for d in days:
-        v = per_day[d]
-        t = "; ".join(f"{i['title'][:70]} ({i['total']})" for i in v) or "—"
-        lines.append(f"| {d} | {len(v)} | {t} |")
+        m = POOLED_RE.search((reports_dir / f"{d}.md").read_text(encoding="utf-8"))
+        if m:
+            pooled[d] = int(m.group(1))
+    n_week_ideas = sum(len(v) for v in per_week.values())
+
+    lines = [f"# Pain Radar review — {since} → {until}", ""]
+    lines.append(f"**{len(weeks)} weekly reports, {n_week_ideas} weekly ideas; "
+                 f"{n_days} daily reports, {sum(pooled.values())} real problems pooled "
+                 f"on {len(pooled)} pool-mode days.** Triage data on {triage_days} days.")
+    if n_ideas:
+        lines.append(f"Old daily-mode ideas in the window: {n_ideas} "
+                     f"({len(zero_days)} 'nothing today' days).")
+    lines += ["", "## Weekly ideas", ""]
+    if weeks:
+        lines += ["| Week ending | Ideas | Titles (score) |", "|---|---|---|"]
+        for d in weeks:
+            v = per_week[d]
+            t = "; ".join(f"{i['title'][:70]} ({i['total']})" for i in v) or "—"
+            lines.append(f"| {d} | {len(v)} | {t} |")
+        lines += ["", "**Competitor verdicts on reported ideas:** " +
+                  (", ".join(f"{n} {v}" for v, n in sorted(verdicts.items())) or "none"),
+                  "**Weekly cuts by reason:** " +
+                  (", ".join(f"{n} {k}" for k, n in sorted(cuts.items(), key=lambda kv: -kv[1]))
+                   or "none")]
+    else:
+        lines.append("No weekly reports in this window (pool mode started 2026-10-08).")
+    if pooled:
+        lines += ["", "**Pooled per day:** " +
+                  ", ".join(f"{d[5:]} {n}" for d, n in pooled.items())]
+    if n_ideas:
+        lines += ["", "## Ideas by day (old daily mode)", "",
+                  "| Date | Ideas | Titles (score) |", "|---|---|---|"]
+        for d in days:
+            v = per_day[d]
+            if v or d not in pooled:
+                t = "; ".join(f"{i['title'][:70]} ({i['total']})" for i in v) or "—"
+                lines.append(f"| {d} | {len(v)} | {t} |")
 
     lines += ["", "## Source yield (real problems / shortlisted, per Gemini triage)", ""]
     if agg:
@@ -93,10 +154,12 @@ def build(reports_dir: Path, since: str, until: str) -> tuple[str, str]:
                      "may be failing. Check the Stage 3 logs for `[triage] skipped`.")
 
     lines += ["", "## Checklist — work through with real numbers, then decide", "",
-              "1. **Volume:** is ideas/day still ~1? Any 'nothing today' streaks? "
-              "(Zero days are fine; padding is not.)",
-              "2. **Quality:** read the ideas above. Would you actually build any? "
-              "Which is the best, and how many sources/posts backed it?",
+              "1. **Volume:** real problems pooled per day, ideas per week. Empty weeks are "
+              "fine; padding is not. A pool under ~10 posts/week means sources, not tuning.",
+              "2. **Quality:** read the weekly ideas. Would you actually build any? Do a "
+              "manual competitor check on the best one - did the automatic check agree "
+              "(crowded/partial/open)? If it called a crowded idea open, tighten "
+              "radar/competitors.py JUDGE_PROMPT.",
               "3. **Sources:** cut zero-yield sources above; is any source doing most of the work? "
               "Do your industries (toys, fashion, automotive, asia, trading) appear at all?",
               "4. **Rejections:** read reports/rejected/*.md - are `near_user_industries` / "
@@ -110,7 +173,13 @@ def build(reports_dir: Path, since: str, until: str) -> tuple[str, str]:
     full = "\n".join(lines) + "\n"
 
     short = [f"📋 Pain Radar 2-week review ({since} → {until})",
-             f"{n_days} reports · {n_ideas} ideas · {len(zero_days)} empty days"]
+             f"{len(weeks)} weekly reports · {n_week_ideas} ideas · "
+             f"{sum(pooled.values())} real problems pooled"]
+    if verdicts or cuts:
+        short.append("Competitor: " + (", ".join(f"{n} {v}" for v, n in verdicts.items()) or "-")
+                     + f" · cut as crowded: {sum(n for k, n in cuts.items() if 'crowded' in k)}")
+    if n_ideas:
+        short.append(f"(+{n_ideas} old daily-mode ideas)")
     if agg:
         top = sorted(agg.items(), key=lambda kv: -kv[1][0])[:3]
         short.append("Top sources: " + ", ".join(f"{s} {r}/{t}" for s, (r, t, _) in top))

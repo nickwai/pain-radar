@@ -30,7 +30,7 @@ coder to run and tune without touching Python.
 | 3f — money floor | ✅ 2026-09-28. `synthesis.min_money_evidence: 3` cuts any idea whose "Money already spent" score is below 3, before the total-score check. Reason: easy-to-build ideas with money 1 cleared `min_total_score` on ease alone (09-27 and 09-28 NinjaTrader drawing-tool ideas, both money 1 — nobody pays for a workaround). Of the 6 ideas reported 09-23→09-28, 3 would have been cut (money 2, 1, 1). Cut ideas go to the rejected log with the reason. Expect more "Nothing today" days. Set to 1 to turn off. |
 | 4 — GitHub Actions cron | ✅ working. Gate is idempotent ("no `reports/<UTC date>.md` yet") with retry crons — GitHub delivers `schedule` hours late. A manual run (Actions → Run workflow) always runs and overwrites today's report. |
 | Telegram delivery | ✅ working |
-| 5 — 2-week review | ✅ Thu 2026-10-08, `reports/review-2026-10-08.md`: 8 ideas / 15 days, 0 survived a manual competitor check. Led to 6-8 below. |
+| 5 — 2-week review | ✅ Every second Thursday (`review.yml`, gate: last `reports/review-*.md` 13+ days old; next 2026-10-22, 2026-11-05). Digest: weekly ideas, competitor verdicts, weekly cuts by reason, pooled per day, source yield, checklist + Telegram. First one (2026-10-08): 8 ideas / 15 days, 0 survived a manual competitor check → 6-8 below. |
 | 6 — pool + weekly ideas | ✅ 2026-10-08. `scoring.yml pool.enabled`: the daily run only triages and saves `real_problem` posts to `data/pool/DATE.json` (committed by CI); daily report + Telegram = pool count + gigs. `weekly.yml` (Mondays) runs `python3 run.py weekly`: clusters the last `pool.days` (14) of the pool at once (one copy per topic) → `reports/week-DATE.md` + `reports/rejected/week-DATE.md` + Telegram. Repeat pains across days now add up to one cluster instead of dying alone. `pool.enabled: false` = old daily ideas. |
 | 7 — competitor check | ✅ 2026-10-08 (`radar/competitors.py`). Ideas that clear the bar get 3 search queries (Gemini) → HN Show HN + GitHub repo search → Gemini verdict `crowded` / `partial` / `open`, citing results by id. `crowded` is cut (`competitor_check.cut_verdicts`). Live test: the 10-04 n8n silent-failure and 09-26 Tradovate lock-out ideas both come back crowded with real links. Gemini Google Search grounding was the plan, but the free tier gives it 0 quota (429 on every model) and DuckDuckGo blocks scripts — so paid SaaS that never posted on HN can be missed; names from model memory are marked *unverified*. |
 | 8 — source cuts | ✅ 2026-10-08, from review yield: bogleheads (4/38, personal investing advice), woocommerce (0/6), HN "too expensive" (0/20), HN "willing to pay" (0/11). |
@@ -90,7 +90,7 @@ own daily-loss auto-lock + Manual Lockout (on Tradovate Prop since
 the free MIT `trevislee/tradovate-lockout` (loss limits only). Only
 recurring scheduled lockouts looked uncovered.
 
-## 📅 Scheduled review — Thu 2026-10-08
+## 📅 Scheduled review — every second Thursday
 
 `.github/workflows/review.yml` builds `reports/review-2026-10-08.md` (14-day
 digest: ideas/day, source yield from Gemini triage, checklist) and sends a

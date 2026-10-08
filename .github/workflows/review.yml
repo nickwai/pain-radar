@@ -1,20 +1,22 @@
 name: Pain Radar 2-week review
 
-# One-off review (set 2026-09-24): on Thu 2026-10-08 build a digest of the
-# last 14 days of reports + Gemini triage, commit it as
-# reports/review-2026-10-08.md and send a short Telegram summary.
+# Every second Thursday (made recurring 2026-10-08; first run Thu
+# 2026-10-08): digest of the last 14 days of reports - weekly ideas,
+# competitor verdicts, pooled counts, source yield from Gemini triage -
+# committed as reports/review-DATE.md + a short Telegram summary.
 #
-# Same lesson as daily-report.yml: GitHub `schedule` fires late or gets
-# dropped, so there are several crons on the day and the gate is
-# idempotent ("digest for that date not written yet"), never "exactly now".
-# The year check stops the cron (which has no year field) re-firing on
-# every 8 Oct forever. Manual "Run workflow" always runs, any day.
+# Cron has no "every 2 weeks", so it fires every Thursday and the gate runs
+# only when the newest reports/review-*.md is 13+ days old (13, not 14, so
+# a late Thursday run never slips a whole week). Several crons because
+# GitHub `schedule` fires late or gets dropped; the gate makes them
+# idempotent. Next runs: 2026-10-22, 2026-11-05, ...
+# Manual "Run workflow" always runs (and restarts the 2-week cycle).
 on:
   schedule:
-    - cron: "0 8 8 10 *"
-    - cron: "0 10 8 10 *"
-    - cron: "0 13 8 10 *"
-    - cron: "0 16 8 10 *"
+    - cron: "0 8 * * 4"
+    - cron: "0 10 * * 4"
+    - cron: "0 13 * * 4"
+    - cron: "0 16 * * 4"
   workflow_dispatch: {}
 
 permissions:
@@ -27,19 +29,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Gate - right year, and not already done
+      - name: Gate - 13+ days since the last review
         id: gate
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          last="$(ls reports/review-*.md 2>/dev/null | sed -E 's/.*review-([0-9-]+)\.md/\1/' | sort | tail -1)"
+          if [ -z "$last" ]; then
+            echo "no earlier review - running."
+            echo "should_run=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          age=$(( ( $(date -u +%s) - $(date -u -d "$last" +%s) ) / 86400 ))
+          if [ "$age" -ge 13 ]; then
+            echo "last review $last ($age days ago) - running."
             echo "should_run=true" >> "$GITHUB_OUTPUT"
-          elif [ "$(date -u +%Y)" != "2026" ]; then
-            echo "not 2026 - one-off review already past, skipping."
-            echo "should_run=false" >> "$GITHUB_OUTPUT"
-          elif [ -f "reports/review-2026-10-08.md" ]; then
-            echo "review already written - nothing to do."
-            echo "should_run=false" >> "$GITHUB_OUTPUT"
           else
-            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "last review $last ($age days ago) - off week, skipping."
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Set up Python
@@ -59,12 +66,7 @@ jobs:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: |
-          # Scheduled runs pin the review date; a manual run uses today.
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            python3 run.py review --until 2026-10-08
-          else
-            python3 run.py review
-          fi
+          python3 run.py review
           cat "$(ls -t reports/review-*.md | head -1)" >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Commit the digest

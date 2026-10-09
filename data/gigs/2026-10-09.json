@@ -1,0 +1,88 @@
+[
+  {
+    "id": "discourse:community.n8n.io:319710",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Looking for an AI Automation Mentor — Open to Unpaid Internship",
+    "text": "I’m a Software Engineering graduate and currently building my career in AI Automation and n8n. I’ve completed my n8n courses and learned the fundamentals of workflow automation, APIs, webhooks, AI integrations, databases and related concepts. I’ve also built few projects. Now, I’m looking for an experienced AI Automation Engineer, n8n developer where I can learn by working on real projects. I’m specifically looking for something like an unpaid internship/apprenticeship, where I can: • Work on real client projects • Gain experience with testing, debugging, deployment, and maintenance • Get guidance and feedback from someone experienced • Contribute to the team while developing my skills I’m a beginner, but I’m serious about learning, willing to put in the work, and already have a portfolio that I can share. GitHub Its-Fatima - Overview Its-Fatima has 3 repositories available. Follow their code on GitHub. If you’re working in AI automation and are open to mentoring a beginner or taking on an unpaid intern, I’d really appreciate the opportunity. 1 post - 1 participant Read full topic",
+    "url": "https://community.n8n.io/t/looking-for-an-ai-automation-mentor-open-to-unpaid-internship/319710",
+    "created_utc": 1791459437,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for an experienced AI Automation Engineer"
+    },
+    "triage_reason": "Job seeker looking for an unpaid mentorship or internship role.",
+    "pooled_on": "2026-10-09"
+  },
+  {
+    "id": "discourse:forum.bubble.io:401402",
+    "source": "discourse",
+    "channel": "forum.bubble.io",
+    "group": "saas",
+    "title": "Looking for consultants to help expand an app",
+    "text": "I’m looking for a group of consultants to help greatly expand on an app that’s already been built. Here’s the background - I can provide more information as needed. I built and continue to maintain (and add features to) an app on Bubble for a large non-profit. It was 2024 and is now a daily-use application for the non-profit. The app won an innovation award in 2025, and then was subsequently used as the basis for a grant proposal to expand the application beyond this single non-profit to all non-profits in the state. Last week we found out we won the grant and now need to start planning. There is a LOT to consider here as we expand beyond a single organization, and we are looking for a partner to help with architecting and building out the app. If you are interested, please reach out to me by sending me a direct message. Please give me an idea of the work you’ve done in the past on Bubble and the size of your team. You would be a sub-contractor on this project, so a general sense of your rates would also be useful. I don’t need a formal proposal at this point, just an expression of interest. Please don’t hesitate to reach out if you have more questions, and I’m happy to provide more details via email. Look forward to hearing from folks! 3 posts - 3 participants Read full topic",
+    "url": "https://forum.bubble.io/t/looking-for-consultants-to-help-expand-an-app/401402",
+    "created_utc": 1791476321,
+    "score": 1,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.9,
+      "multiplier": 1.25,
+      "score": 1.12,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for a group of consultants"
+    },
+    "triage_reason": "App founder looking to hire consultants to expand an existing app.",
+    "pooled_on": "2026-10-09"
+  },
+  {
+    "id": "discourse:community.make.com:116932",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Hiring Czech Specialist based in CZ for Make.com and AI Workflow WordPress, FAPI, Ecomail – Replies in Czech only",
+    "text": "Hi Makers, I am looking for an experienced freelancer based in the Czech Republic to set up an automation and AI backbone for my creative studio and membership platform, Almarande.com (Instagram: @alma.rande ). Our tech stack: WordPress + Elementor FAPI (sales and membership) Vimeo Ecomail + domain inboxes @almarande.com Meta Pixel installed Key workflows needed: Voice-to-Newsletter: Structuring audio notes from mobile via LLM prompt directly into Ecomail drafts. Support Assistant: Sorting @almarande.com inquiries and drafting replies for 1-click human approval. Data connection between FAPI and Ecomail. Welcome bonus: Hands-on experience with Meta Ads (video creative briefs and campaign setup). Important condition / Důležitá podmínka: Protože projekt funguje na českém trhu a veškerá další spolupráce probíhá výhradně v mateřském jazyce, odpovězte mi prosím, rovnou v češtině. Budu ráda za: Vaše zkušenosti s Make.com , LLM API a FAPI/Ecomailem. Vaši lokalitu v ČR a hodinovou sazbu či model nacenění. Pohled na to, kde vidíte největší prostor pro další automatizace, které mi uvolní ruce pro tvorbu. Děkuji Jana 4 posts - 4 participants Read full topic",
+    "url": "https://community.make.com/t/hiring-czech-specialist-based-in-cz-for-make-com-and-ai-workflow-wordpress-fapi-ecomail-replies-in-czech-only/116932",
+    "created_utc": 1791471117,
+    "score": 1,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.3,
+      "multiplier": 1.25,
+      "score": 5.38,
+      "money_matched": [
+        "freelancer"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for an experienced freelancer"
+    },
+    "triage_reason": "Founder looking to hire a Czech automation freelancer for Make.com.",
+    "pooled_on": "2026-10-09"
+  }
+]

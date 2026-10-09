@@ -1,0 +1,229 @@
+[
+  {
+    "id": "discourse:community.shopify.dev:38373",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Simplest way to make variant metafield values available per line item on every new order?",
+    "text": "We need each order to arrive in our downstream system already carrying some per-line-item data that we store as variant metafields . It has to work for every order origin: online store/headless checkout, draft orders, orders created via the Admin API, and subscription renewal orders created by Skio. We’d rather not query Shopify again per line when the order arrives. Since LineItem doesn’t support metafields and line item properties can’t be set after creation (see Metafields on line items? ), we went with this, and it works on a dev store: Flow, trigger Order created. A metafield alias created on order.lineItems.variant (unstructured, set up in a Log output step). Run code with input { order { lineItems { id variant { myAlias { value } } } } }, which builds a JSON object keyed by line item id. Update order metafield writes it as one json order metafield. Our app subscribes to orders/updated with metafieldNamespaces, and the update that follows the Flow write carries the metafield. Questions : Is this the simplest supported approach, or is there a more direct way to get variant-level data onto a new order (or into its webhook payload) for all order origins? Is aliasing a metafield on a nested list element (lineItems.variant) officially supported in Run code, or does it just happen to work? What delivery guarantees does Flow give for Order created ? Is it guaranteed to run for every order, and does it retry? We want to know whether we need our own reconciliation for orders that never get the metafield. Does Order created fire for subscription renewal orders created by a third-party subscription app like Skio (via subscription billing attempts)? Is there anything about those orders that would stop the Run code input from resolving the variant metafields? 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.dev/t/simplest-way-to-make-variant-metafield-values-available-per-line-item-on-every-new-order/38373",
+    "created_utc": 1791387790,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 4,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.4,
+      "multiplier": 1.2,
+      "score": 14.88,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Needs variant metafields available per line item on every order.",
+    "pooled_on": "2026-10-09"
+  },
+  {
+    "id": "rss:trade2win:https://www.trade2win.com/threads/best-place-to-sell-business-for-crypto.243077/",
+    "source": "rss",
+    "channel": "trade2win",
+    "group": "trading",
+    "title": "Best place to sell business for crypto?",
+    "text": "Hello traders, Please advice me where is the best place to sell small (£2500+/month net profit)... Read more",
+    "url": "https://www.trade2win.com/threads/best-place-to-sell-business-for-crypto.243077/",
+    "created_utc": 1791498774,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 1,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 6.32,
+      "money_matched": [
+        "/mo"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "£2500"
+      ]
+    },
+    "triage_reason": "Trader needs advice on platforms to sell a profitable business for crypto.",
+    "pooled_on": "2026-10-09"
+  },
+  {
+    "id": "discourse:forum.alpaca.markets:19829",
+    "source": "discourse",
+    "channel": "forum.alpaca.markets",
+    "group": "trading",
+    "title": "Urgent Concern Regarding Withdrawal Denial, Account Closure, and Lack of Customer Support",
+    "text": "I am extremely frustrated and concerned about my experience with Alpaca Markets. I have been trying to contact Alpaca regarding the denial of my withdrawal request and the closure of my brokerage account. Unfortunately, Alpaca does not appear to offer access to a live customer support representative or a customer service phone number. I have submitted multiple support tickets but have yet to receive a meaningful response or resolution. Their Zendesk support system repeatedly provides generic, scripted responses that fail to address my specific concerns. This lack of personalized customer support is unacceptable, especially for a financial institution responsible for safeguarding customers’ investments and cash. My biggest concern is the safety of my funds. With my withdrawal request denied, my account being closed, and no effective way to communicate directly with a representative, I am genuinely worried about whether I will be able to recover my money. How can I speak directly with a real person at Alpaca Markets rather than continuing to send emails to support@alpaca.markets ? As a brokerage firm handling customers’ hard-earned money, Alpaca should provide a reliable way for customers to resolve urgent financial matters. I would appreciate any guidance on how to escalate this issue to Alpaca’s management or compliance department. Customers should not have to struggle to access their own money or receive basic customer support from a brokerage firm. 1 post - 1 participant Read full topic",
+    "url": "https://forum.alpaca.markets/t/urgent-concern-regarding-withdrawal-denial-account-closure-and-lack-of-customer-support/19829",
+    "created_utc": 1791400917,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 3.45,
+      "money_matched": [],
+      "pain_matched": [
+        "frustrated",
+        "struggle to"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Brokerage customer facing denied withdrawal and closed account without support.",
+    "pooled_on": "2026-10-09"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "What do you do when an estimate goes unanswered?",
+    "text": "Genuine question — I've been talking to a lot of shops lately. You send the quote, hear nothing back. Do you follow up? How many times, and how — call, text, email? Or just move on to the next job? Trying to understand what actually works vs. what everyone means to do but doesn't. What's your process?",
+    "url": "https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+    "created_utc": 1791450626,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 3.0,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Contractor seeking effective follow-up processes for unanswered project estimates.",
+    "pooled_on": "2026-10-09"
+  },
+  {
+    "id": "rss:dealerrefresh:https://forum.dealerrefresh.com/threads/new-texas-dealer-looking-for-guidance.13610/",
+    "source": "rss",
+    "channel": "dealerrefresh",
+    "group": "automotive",
+    "title": "New Texas Dealer Looking For Guidance",
+    "text": "Hello, We're a new retail dealer in Texas, specializing in classic cars. Extremely low volume. I'd like to have someone come by who is a current Texas dealer themself and show us the ropes, especially on the whole webdealer side of things. Just wanting to make sure we're doing everything 100%... Read more",
+    "url": "https://forum.dealerrefresh.com/threads/new-texas-dealer-looking-for-guidance.13610/",
+    "created_utc": 1791484030,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "New car dealer looking for in-person guidance on webdealer operations.",
+    "pooled_on": "2026-10-09"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/my-experience-with-the-state-of-kansas-its-a-long-one.524973/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "My experience with the state of Kansas (its a long one)",
+    "text": "So as many of you know I started doing apps this year. I have never had to charge sales tax because in KS labor is not taxable. (or so I thought) Well after I applied for my sales tax collection deal, I got a call about 3 weeks later telling me I was going to be audited by the sales tax division. I was a little surprised considering I had never had to charge sales tax before so I had no records but that didnt stop them. They asked for all my state and federal returns from 21-25. Ledgers... My experience with the state of Kansas (its a long one)",
+    "url": "https://www.lawnsite.com/threads/my-experience-with-the-state-of-kansas-its-a-long-one.524973/",
+    "created_utc": 1791494431,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Landscaper dealing with unexpected state sales tax audit complications.",
+    "pooled_on": "2026-10-09"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/wa-state-change-of-dba-name-advice.465037/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "WA State change of DBA name advice",
+    "text": "Hey all, Haven't been active on the forums past few years but curious if anyone can recommend resources/point of contact (or chime in on this thread) regarding changing a tradename or DBA name in the state of WA--licensed General Contractor in Western WA focused mostly on residential and multi-family rental buildings. License and bond are up for renewal in a few weeks. Per the WA DOR website [0] I can add and cancel tradenames/DBAs online but this isn't the problem. I recall reading... WA State change of DBA name advice",
+    "url": "https://www.contractortalk.com/threads/wa-state-change-of-dba-name-advice.465037/",
+    "created_utc": 1791523303,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "General contractor needing guidance on state contractor license DBA name changes.",
+    "pooled_on": "2026-10-09"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/anyone-have-a-business-use-endorsement-on-their-personal-policy.524963/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "Anyone have a business use endorsement on their personal policy?",
+    "text": "Was talking to another insurance agent and he seems to think the business use endorsement policy will be denied if i get into an accident. The truck tows a landscape trailer with mowers on it. The landscape trailer is fully insured and on its own commercial policy. Im just solo. The full commercial auto is like $3k/ year and the personal auto with the business endorsement is like $1300/year. Opinions?",
+    "url": "https://www.lawnsite.com/threads/anyone-have-a-business-use-endorsement-on-their-personal-policy.524963/",
+    "created_utc": 1791478972,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "$3",
+        "$1300"
+      ],
+      "always": true
+    },
+    "triage_reason": "Solo contractor evaluating business use insurance policy endorsements versus commercial.",
+    "pooled_on": "2026-10-09"
+  }
+]

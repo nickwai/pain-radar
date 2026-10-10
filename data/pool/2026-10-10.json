@@ -1,0 +1,33 @@
+[
+  {
+    "id": "discourse:forum.alpaca.markets:19838",
+    "source": "discourse",
+    "channel": "forum.alpaca.markets",
+    "group": "trading",
+    "title": "Why suddenly I lost my Market Data Subscription?",
+    "text": "I have been paid Monthly $7 to subscribe Alpaca Market Data for a long time, recently I opened my IRA account and transferred more than $100K into it, suddenly my paid Market Data feed got Subscription Error : net.jacobpeterson.alpaca.model.endpoint.marketdata.common.realtime.control.ErrorMessage@5869e26c[messageType=error,code=409,message=insufficient subscription I use my IRA account keys, same error!!! WHY and HOW do I get my Market Data feed back? NEED HELP ASAP!!! Still no update ticket #369671 1 post - 1 participant Read full topic",
+    "url": "https://forum.alpaca.markets/t/why-suddenly-i-lost-my-market-data-subscription/19838",
+    "created_utc": 1791465034,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 3,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 16.1,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$7",
+        "$100"
+      ]
+    },
+    "triage_reason": "Trader lost their paid market data subscription unexpectedly after account transfer.",
+    "pooled_on": "2026-10-10"
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "id": "discourse:forum.bubble.io:401402",
+    "source": "discourse",
+    "channel": "forum.bubble.io",
+    "group": "saas",
+    "title": "Looking for consultants to help expand an app",
+    "text": "I’m looking for a group of consultants to help greatly expand on an app that’s already been built. Here’s the background - I can provide more information as needed. I built and continue to maintain (and add features to) an app on Bubble for a large non-profit. It was 2024 and is now a daily-use application for the non-profit. The app won an innovation award in 2025, and then was subsequently used as the basis for a grant proposal to expand the application beyond this single non-profit to all non-profits in the state. Last week we found out we won the grant and now need to start planning. There is a LOT to consider here as we expand beyond a single organization, and we are looking for a partner to help with architecting and building out the app. If you are interested, please reach out to me by sending me a direct message. Please give me an idea of the work you’ve done in the past on Bubble and the size of your team. You would be a sub-contractor on this project, so a general sense of your rates would also be useful. I don’t need a formal proposal at this point, just an expression of interest. Please don’t hesitate to reach out if you have more questions, and I’m happy to provide more details via email. Look forward to hearing from folks! 5 posts - 5 participants Read full topic",
+    "url": "https://forum.bubble.io/t/looking-for-consultants-to-help-expand-an-app/401402",
+    "created_utc": 1791476321,
+    "score": 1,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.7,
+      "multiplier": 1.25,
+      "score": 2.12,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for a group of consultants"
+    },
+    "triage_reason": "App creator looking to hire consultants to expand their Bubble application.",
+    "pooled_on": "2026-10-10"
+  },
+  {
+    "id": "discourse:community.make.com:116932",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Hiring Czech Specialist based in CZ for Make.com and AI Workflow WordPress, FAPI, Ecomail – Replies in Czech only",
+    "text": "Hi Makers, I am looking for an experienced freelancer based in the Czech Republic to set up an automation and AI backbone for my creative studio and membership platform, Almarande.com (Instagram: @alma.rande ). Our tech stack: WordPress + Elementor FAPI (sales and membership) Vimeo Ecomail + domain inboxes @almarande.com Meta Pixel installed Key workflows needed: Voice-to-Newsletter: Structuring audio notes from mobile via LLM prompt directly into Ecomail drafts. Support Assistant: Sorting @almarande.com inquiries and drafting replies for 1-click human approval. Data connection between FAPI and Ecomail. Welcome bonus: Hands-on experience with Meta Ads (video creative briefs and campaign setup). Important condition / Důležitá podmínka: Protože projekt funguje na českém trhu a veškerá další spolupráce probíhá výhradně v mateřském jazyce, odpovězte mi prosím, rovnou v češtině. Budu ráda za: Vaše zkušenosti s Make.com , LLM API a FAPI/Ecomailem. Vaši lokalitu v ČR a hodinovou sazbu či model nacenění. Pohled na to, kde vidíte největší prostor pro další automatizace, které mi uvolní ruce pro tvorbu. Děkuji Jana 7 posts - 4 participants Read full topic",
+    "url": "https://community.make.com/t/hiring-czech-specialist-based-in-cz-for-make-com-and-ai-workflow-wordpress-fapi-ecomail-replies-in-czech-only/116932",
+    "created_utc": 1791471117,
+    "score": 2,
+    "comments": 6,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.6,
+      "multiplier": 1.25,
+      "score": 7.0,
+      "money_matched": [
+        "freelancer"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for an experienced freelancer"
+    },
+    "triage_reason": "Studio owner looking to hire a freelance specialist for Make.com setups.",
+    "pooled_on": "2026-10-10"
+  },
+  {
+    "id": "rss:dealerrefresh:https://forum.dealerrefresh.com/threads/new-texas-dealer-looking-for-guidance.13610/",
+    "source": "rss",
+    "channel": "dealerrefresh",
+    "group": "automotive",
+    "title": "New Texas Dealer Looking For Guidance",
+    "text": "Hello, We're a new retail dealer in Texas, specializing in classic cars. Extremely low volume. I'd like to have someone come by who is a current Texas dealer themself and show us the ropes, especially on the whole webdealer side of things. Just wanting to make sure we're doing everything 100%... Read more",
+    "url": "https://forum.dealerrefresh.com/threads/new-texas-dealer-looking-for-guidance.13610/",
+    "created_utc": 1791484030,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "New classic car dealer looking to hire an experienced local dealer for guidance.",
+    "pooled_on": "2026-10-10"
+  }
+]

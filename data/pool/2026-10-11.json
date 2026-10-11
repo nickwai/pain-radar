@@ -1,0 +1,119 @@
+[
+  {
+    "id": "discourse:community.make.com:117009",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "How do professionals deploy reusable Make scenarios to multiple clients?",
+    "text": "What is your goal? I want to understand the professional workflow for building, testing and deploying reusable Make automations to multiple clients, while each client uses and owns their own accounts and connections. What is the problem & what have you tried? Hi everyone, I’m currently learning Make and preparing to launch an automation business. I have already completed several Make courses and I can now build fairly complex automations, but I’m struggling with something I rarely see explained: how to professionally deploy a tested automation to real clients. Here is my current example. I built an AI-powered email and document management system using: Gmail Make AI Toolkit Airtable Google Drive It automatically classifies emails, summarizes them, processes attachments, identifies invoices/documents/prospects, stores files in Drive and records the information in different Airtable tables. The scenario works correctly in my own environment. My original idea was: Build → test with my accounts → create a reusable MASTER/template → deploy it to a client’s Make organization → reconnect the modules using the client’s accounts. To simulate a real client installation, I created a separate client environment using another person’s accounts. The client owns the accounts and invited me as a collaborator. But after importing/duplicating the automation and replacing the connections, I started encountering problems with Airtable references/mappings and some AI modules. This made me realize that my deployment approach may not be the way experienced Make professionals actually work. So I would really appreciate feedback from people who deploy Make automations for real clients: Do you develop and test the automation in your own environment first, or directly inside the client’s Make organization? If you want to sell the same automation to multiple clients, what do you actually use: Make Templates, Blueprints, duplicated scenarios, or another architecture? How do you deal with client-specific Airtable bases, table/field IDs, Drive folders and other mappings without manually rebuilding large parts of the scenario for every client? How do you test during development without filling the client’s real Gmail/Airtable/Drive with test data? Do you maintain dedicated sandbox accounts/data? How do you handle client connections securely? I don’t want clients to give me their passwords. My current approach is to have the client create/own their accounts, invite me as a collaborator, and authorize their own Gmail/other connections. Is this how you normally handle onboarding, or is there a better workflow? After delivery, does the client normally own the Make organization and all connected applications, while you keep collaborator access for maintenance? When onboarding a new client, how much configuration is realistically unavoidable? Is there a professional way to make deployment mostly reusable, or should I expect to manually configure mappings and connections for every client? My goal is not necessarily “one-click deployment”. I simply want to understand the real professional workflow from development → testing → client onboarding → deployment → maintenance, so I can build my automations correctly before selling them. I would especially appreciate answers from freelancers/agencies who have already deployed the same or similar Make automation to several different clients. Thanks a lot for your help! Screenshots (scenario flow, module settings, errors) 5 posts - 5 participants Read full topic",
+    "url": "https://community.make.com/t/how-do-professionals-deploy-reusable-make-scenarios-to-multiple-clients/117009",
+    "created_utc": 1791554794,
+    "score": 3,
+    "comments": 4,
+    "signals": {
+      "combo": true,
+      "money": 2,
+      "cash": 0,
+      "pain": 3,
+      "engagement": 1.9,
+      "multiplier": 1.25,
+      "score": 19.25,
+      "money_matched": [
+        "freelancer",
+        "invoice"
+      ],
+      "pain_matched": [
+        "manually",
+        "struggling with"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Automation builder seeks a workflow to deploy reusable scenarios to multiple clients.",
+    "pooled_on": "2026-10-11"
+  },
+  {
+    "id": "se:mechanics:102430",
+    "source": "stackexchange",
+    "channel": "mechanics.stackexchange",
+    "group": "mechanics",
+    "title": "2-stroke Expansion chamber design tools",
+    "text": "I’m evaluating approaches to designing 2-stroke expansion chambers for a Bonneville land speed record bike. What’s been your experience with the various free or paid for packages out there for accomplishing that task?",
+    "url": "https://mechanics.stackexchange.com/questions/102430/2-stroke-expansion-chamber-design-tools",
+    "created_utc": 1791572259,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 3.45,
+      "money_matched": [
+        "paid for"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Mechanic needs software/tools to design a 2-stroke expansion chamber for a motorcycle.",
+    "pooled_on": "2026-10-11"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/my-experience-with-the-state-of-kansas-its-a-long-one.524973/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "My experience with the state of Kansas (its a long one)",
+    "text": "So as many of you know I started doing apps this year. I have never had to charge sales tax because in KS labor is not taxable. (or so I thought) Well after I applied for my sales tax collection deal, I got a call about 3 weeks later telling me I was going to be audited by the sales tax division. I was a little surprised considering I had never had to charge sales tax before so I had no records but that didnt stop them. They asked for all my state and federal returns from 21-25. Ledgers... My experience with the state of Kansas (its a long one)",
+    "url": "https://www.lawnsite.com/threads/my-experience-with-the-state-of-kansas-its-a-long-one.524973/",
+    "created_utc": 1791555434,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Landscaping business owner facing an unexpected sales tax audit and record issues.",
+    "pooled_on": "2026-10-11"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/anyone-have-a-business-use-endorsement-on-their-personal-policy.524963/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "Anyone have a business use endorsement on their personal policy?",
+    "text": "Was talking to another insurance agent and he seems to think the business use endorsement policy will be denied if i get into an accident. The truck tows a landscape trailer with mowers on it. The landscape trailer is fully insured and on its own commercial policy. Im just solo. The full commercial auto is like $3k/ year and the personal auto with the business endorsement is like $1300/year. Opinions?",
+    "url": "https://www.lawnsite.com/threads/anyone-have-a-business-use-endorsement-on-their-personal-policy.524963/",
+    "created_utc": 1791643169,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "$3",
+        "$1300"
+      ],
+      "always": true
+    },
+    "triage_reason": "Landscape contractor seeking advice on commercial auto insurance policy endorsements.",
+    "pooled_on": "2026-10-11"
+  }
+]

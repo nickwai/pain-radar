@@ -33,17 +33,17 @@ coder to run and tune without touching Python.
 | 4 — GitHub Actions cron | ✅ working. Gate is idempotent ("no `reports/<UTC date>.md` yet") with retry crons — GitHub delivers `schedule` hours late. A manual run (Actions → Run workflow) always runs and overwrites today's report. |
 | Telegram delivery | ✅ working |
 | 5 — 2-week review | ✅ Every second Thursday (`review.yml`, gate: last `reports/review-*.md` 13+ days old; next 2026-10-22, 2026-11-05). Digest: weekly ideas, competitor verdicts, weekly cuts by reason, pooled per day, source yield, checklist + Telegram. First one (2026-10-08): 8 ideas / 15 days, 0 survived a manual competitor check → 6-8 below. |
-| 6 — pool + weekly ideas | ✅ 2026-10-08. `scoring.yml pool.enabled`: the daily run only triages and saves `real_problem` posts to `data/pool/DATE.json` (committed by CI); daily report + Telegram = pool count + gigs. `weekly.yml` (Mondays) runs `python3 run.py weekly`: clusters the last `pool.days` (14) of the pool at once (one copy per topic) → `reports/week-DATE.md` + `reports/rejected/week-DATE.md` + Telegram. Repeat pains across days now add up to one cluster instead of dying alone. `pool.enabled: false` = old daily ideas. |
+| 6 — pool + weekly ideas | ✅ 2026-10-08. `scoring.yml pool.enabled`: the daily run only triages and saves `real_problem` posts to `data/pool/DATE.json` (committed by CI); daily report + Telegram = pool count + gigs. `weekly.yml` (Mondays) runs `python3 run.py weekly`: clusters the last `pool.days` (7) of the pool at once (one copy per topic) → `reports/week-DATE.md` + `reports/rejected/week-DATE.md` + Telegram. Repeat pains across days now add up to one cluster instead of dying alone. `pool.enabled: false` = old daily ideas. |
 | 7 — competitor check | ✅ 2026-10-08 (`radar/competitors.py`). Ideas that clear the bar get 3 search queries (Gemini) → HN Show HN + GitHub repo search → Gemini rates each competitor (covers main use / part; kind: platform feature / dedicated tool / big suite) and `verdict_from()` decides: any main-use or 2+ part = `crowded`, 1 part = `partial`, else `open`; big all-in-one suites the person does not already use are listed but not counted (`count_big_suites: false`). Test: `python3 run.py check-competitors` or the "Competitor check test" workflow. `crowded` is cut (`competitor_check.cut_verdicts`). Live test: the 10-04 n8n silent-failure and 09-26 Tradovate lock-out ideas both come back crowded with real links. Gemini Google Search grounding was the plan, but the free tier gives it 0 quota (429 on every model) and DuckDuckGo blocks scripts — so paid SaaS that never posted on HN can be missed; names from model memory are marked *unverified*. |
 | 8 — source cuts | ✅ 2026-10-08, from review yield: bogleheads (4/38, personal investing advice), woocommerce (0/6), HN "too expensive" (0/20), HN "willing to pay" (0/11). |
-| 9 — repeated paid jobs | ✅ 2026-10-08 (`radar/gigs.py`). Daily run saves every `paid_gig` post to `data/gigs/DATE.json`; the weekly run groups the 14-day window by concrete task (one Gemini call) and lists tasks paid for by 2+ DIFFERENT payers (`gigs.min_repeat`) under **Repeated paid jobs** in the weekly report + Telegram, with a product idea when a template/tool could replace the hire. Job ads for staff roles, sellers, job seekers and one company's cross-posts are ignored. Not scored, not competitor-checked - leads. A task shown in an earlier weekly report repeats only if a new gig joined it. Backfilled 09-29→10-08 (19 gigs): 0 repeats - expected, gigs are rare (~1-2/day). |
+| 9 — repeated paid jobs | ✅ 2026-10-08 (`radar/gigs.py`). Daily run saves every `paid_gig` post to `data/gigs/DATE.json`; the weekly run groups the `pool.days` (7) window by concrete task (one Gemini call) and lists tasks paid for by 2+ DIFFERENT payers (`gigs.min_repeat`) under **Repeated paid jobs** in the weekly report + Telegram, with a product idea when a template/tool could replace the hire. Job ads for staff roles, sellers, job seekers and one company's cross-posts are ignored. Not scored, not competitor-checked - leads. A task shown in an earlier weekly report repeats only if a new gig joined it. Backfilled 09-29→10-08 (19 gigs): 0 repeats - expected, gigs are rare (~1-2/day). |
 
 **Why weekly, not daily (2026-10-08 review):** most sources are help-desk
 forums; of ~40-50 shortlisted posts triage finds ~0-5 real problems a day,
 and each day's few were clustered alone, so a pain seen once never gathered
 the repeat evidence to clear the money floor (3f). 15 days gave 8 ideas, 8
-empty days, and 0 ideas that survived a manual competitor check. Pooling 14
-days and clustering weekly lets repeats add up; the competitor check (7)
+empty days, and 0 ideas that survived a manual competitor check. Pooling a
+week (14 days until 2026-10-11, now 7) and clustering weekly lets repeats add up; the competitor check (7)
 cuts what already exists. Empty weeks are still expected and accepted — an
 empty week beats an idea nobody would pay for. If the pool stays under ~10
 posts/week, the fix is sources where people already pay, not tuning.
@@ -142,11 +142,11 @@ replaced by the weekly pool.
    `paid_gig` posts to `data/gigs/DATE.json` (both committed by CI). Writes
    `reports/DATE.md` (pool count, today's pooled posts, gigs) and
    `reports/rejected/DATE.md` (every verdict + per-source yield) and sends a
-   one-line Telegram heartbeat plus gigs. No ideas today.
+   Telegram heartbeat (count + title/link of each pooled post) plus gigs. No ideas today.
 
 **Weekly**, Mondays (`weekly.yml` → `python3 run.py weekly`):
 
-4. **Cluster** — the last 14 days of the pool (one copy per forum topic) go
+4. **Cluster** — the last 7 days (`pool.days`) of the pool (one copy per forum topic) go
    to Gemini, which clusters related posts into distinct problems, judges
    each against your filter (near your industries, buildable in two
    weekends, no team/licence/capital/network-effect blocker, the target
@@ -266,7 +266,7 @@ save, rerun — that's the whole workflow.
   often), `min_money_evidence` (3; drops ideas nobody already pays to
   solve, 1 = off), `dedupe_days` (30; 0 = off), `triage_enabled`.
 - `pool` — `enabled` (weekly pool mode; false = old daily ideas), `days`
-  (14, the window the weekly run clusters), `weekday` (only for the "next
+  (7, the window the weekly run clusters; 14 until 2026-10-11), `weekday` (only for the "next
   weekly" date in daily messages; the real schedule is `weekly.yml`).
 - `competitor_check` — `enabled`, `queries_per_idea`, `results_per_query`,
   `cut_verdicts` (`[crowded]`; add `partial` to be stricter),

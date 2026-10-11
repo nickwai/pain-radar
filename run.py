@@ -245,10 +245,10 @@ def _report_pool_day(args, posts, config, triage, date, seen) -> int:
     if args.dry_run:  # show what would be pooled, write nothing
         pooled = [{**posts_by_id[r["id"]], "triage_reason": r["reason"]}
                   for r in triage if r["verdict"] == "real_problem"]
-    pool_size = len(load_window(pool_dir, date, pool_cfg.get("days", 14)))
+    pool_size = len(load_window(pool_dir, date, pool_cfg.get("days", 7)))
     nxt = next_weekly_date(date, pool_cfg.get("weekday", 0))
     gigs, old_gigs = drop_seen_gigs(gigs_from_triage(triage), posts_by_id, seen)
-    report_md = render_daily_pool(date, pooled, pool_size, pool_cfg.get("days", 14),
+    report_md = render_daily_pool(date, pooled, pool_size, pool_cfg.get("days", 7),
                                   nxt, gigs, posts_by_id, bool(triage))
     rejected_md = (f"# Triage — {date}\n\nPool mode: no clustering today; "
                    f"real_problem posts went to data/pool/{date}.json.\n")
@@ -287,7 +287,7 @@ def cmd_weekly(args: argparse.Namespace) -> int:
     from radar.telegram import format_message
 
     config = yaml.safe_load((ROOT / "config" / "scoring.yml").read_text(encoding="utf-8"))
-    days = (config.get("pool") or {}).get("days", 14)
+    days = (config.get("pool") or {}).get("days", 7)
     until = args.until or today()
     since = (dt.date.fromisoformat(until) - dt.timedelta(days=days - 1)).isoformat()
     period = f"{since} → {until}"

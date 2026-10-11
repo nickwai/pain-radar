@@ -149,8 +149,8 @@ synthesis:
 # ============================================================
 pool:
   enabled: true     # false = old behaviour: cluster + report ideas every day
-  days: 14          # window the weekly run clusters (weeks overlap on purpose:
-                    # a near-miss gets a second chance with new evidence)
+  days: 7           # window the weekly run clusters (Tue..Mon). Was 14 with
+                    # overlapping weeks; cut to 7 on 2026-10-11 (user: 14 too long).
   weekday: 0        # 0 = Monday. Only used for "next weekly" in daily messages;
                     # the real schedule is the cron in weekly.yml.
 

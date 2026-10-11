@@ -1,14 +1,15 @@
 name: Weekly Pain Radar ideas
 
 # ADDED 2026-10-08 (2-week review): the daily run pools real_problem posts
-# in data/pool/; this clusters the last 14 days of the pool at once, checks
+# in data/pool/; this clusters the last 7 days (pool.days) of the pool, checks
 # each surviving idea against HN + GitHub search (radar/competitors.py),
 # commits reports/week-DATE.md and sends Telegram.
 #
 # Same pattern as daily-report.yml: GitHub delivers `schedule` late or
 # drops it, so several Monday crons + an "already written?" gate. They sit
-# after the daily crons so Monday's pool file is usually in; if not, it is
-# still inside next week's 14-day window.
+# after the daily crons. With a 7-day window (2026-10-11) weeks no longer
+# overlap, so Monday's pool file must be in: the 09/11 UTC crons wait (skip)
+# until today's daily report exists; the 14 UTC cron runs regardless.
 on:
   schedule:
     - cron: "0 9 * * 1"
@@ -34,6 +35,9 @@ jobs:
             echo "should_run=true" >> "$GITHUB_OUTPUT"
           elif [ -f "reports/week-$today.md" ]; then
             echo "reports/week-$today.md already exists - nothing to do."
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          elif [ ! -f "reports/$today.md" ] && [ "$(date -u +%H)" -lt 14 ]; then
+            echo "Today's daily report not in yet - waiting for a later cron."
             echo "should_run=false" >> "$GITHUB_OUTPUT"
           else
             echo "should_run=true" >> "$GITHUB_OUTPUT"

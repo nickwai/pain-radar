@@ -113,13 +113,21 @@ def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str,
 def format_daily_pool(date: str, pooled: list[dict], pool_size: int,
                       next_weekly: str, gigs: list[dict],
                       posts_by_id: dict[str, dict], triage_ok: bool) -> str:
-    """ADDED 2026-10-08: one-line daily heartbeat in pool mode (+ gigs)."""
+    """ADDED 2026-10-08: daily heartbeat in pool mode (+ gigs); pooled post
+    titles + links since 2026-10-11."""
     if not triage_ok:
         head = "⚠️ triage failed — nothing pooled today."
     else:
         head = (f"{len(pooled)} real problem{'s' if len(pooled) != 1 else ''} pooled "
                 f"(pool: {pool_size}). Ideas weekly — next {next_weekly}.")
     text = f"📥 <b>Pain Radar — {_esc(date)}</b>\n{_esc(head)}"
+    # ADDED 2026-10-11: list today's pooled posts (title + link, no score -
+    # scoring happens weekly on clusters).
+    if pooled:
+        text += "\n\n" + "\n".join(
+            f'• <a href="{_esc(p.get("url", ""))}">{_esc(p.get("title") or p["id"])}</a>'
+            f' <i>({_esc(p.get("channel") or p.get("source", ""))})</i>'
+            for p in pooled)
     gig_lines = _gig_lines(gigs, posts_by_id)
     return text + ("\n\n" + "\n".join(gig_lines) if gig_lines else "")
 

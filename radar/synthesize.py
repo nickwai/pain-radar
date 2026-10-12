@@ -509,9 +509,12 @@ def synthesize(posts: list[dict], config: dict, env: dict | None = None,
 # not problems to productise - they get their own report section instead.
 # self_promo added 2026-10-04: see PROMO_RE. Not real_problem, so
 # gate_by_triage drops any cluster that cites only promo posts.
-TRIAGE_VERDICTS = ["real_problem", "help_question", "out_of_industry",
-                   "not_a_problem", "product_bug_report", "paid_gig",
-                   "self_promo"]
+# advice_question added 2026-10-12: the trades forums pooled "what should I
+# charge / which insurance / how to pay crews" posts as real_problem - real
+# people, but the answer is someone's judgment, not a product.
+TRIAGE_VERDICTS = ["real_problem", "help_question", "advice_question",
+                   "out_of_industry", "not_a_problem", "product_bug_report",
+                   "paid_gig", "self_promo"]
 
 TRIAGE_SCHEMA = {
     "type": "ARRAY",
@@ -531,6 +534,13 @@ Return a JSON array with exactly one object per post: id (the EXACT id given),
 verdict, reason (max 12 words). Verdicts:
 - real_problem: a specific problem a person/business has, that a third party could solve
 - help_question: someone asking how to use a tool or fix their own setup
+- advice_question: someone asking other people for an opinion, rate or
+  one-off guidance - what to charge, which insurance/licence/tax/legal step,
+  how to pay staff, what others would do, where to sell. The answer is
+  knowledge or judgment, not a tool. BUT a recurring task they struggle to
+  keep up with (chasing unanswered estimates, tracking jobs, scheduling,
+  reconciling, rolling the same setup out to many clients) is real_problem
+  even if phrased "what do you do when...?" or "how do others handle...?"
 - product_bug_report: a defect in a vendor's product that only the vendor can fix
 - out_of_industry: a real problem, but outside the industries above
 - paid_gig: someone looking to HIRE a freelancer/expert/contractor for paid work

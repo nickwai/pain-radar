@@ -56,7 +56,12 @@ shortlist:
     - community.bunpro.jp
     - lawnsite-bizops       # added 2026-10-04, trades trial
     - contractortalk-biz    # added 2026-10-04, trades trial
+    - discuss.frappe.io     # added 2026-10-12, source study (shopify.com NOT here: 25/day)
   max_always: 10
+  # Busy owner communities with their own cap, on top of max_always
+  # (added 2026-10-12). Shopify merchants ~50 posts per 48h lookback.
+  always_quota:
+    community.shopify.com: 30
 
   # A bare "$45" in a sales listing is not a problem worth solving.
   # Require at least one real pain phrase OR one real money phrase.
@@ -81,6 +86,8 @@ user_industries:
   - trades and field-service business operations (lawn care, landscaping,
     contractors - estimating, invoicing, scheduling, crews; added 2026-10-04,
     2-week trial, review ~2026-10-18)
+  - e-commerce store operations (Shopify merchants - orders, fulfilment,
+    discounts, POS, B2B) and small-business ERP/accounting (added 2026-10-12)
 
 synthesis:
   # 1-5 axis weights -> one composite score. Money weighted highest,

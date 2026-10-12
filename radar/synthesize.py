@@ -152,7 +152,9 @@ PROMO_RE = re.compile(
     # it" tip posts (both 10-01 ideas came from these, see README).
     r"|\bhappy to (?:share|help|chat)\b|\b(?:dm|pm|message) me\b"
     r"|\b(?:teams|clients|companies) (?:i|we) (?:speak|talk|work) (?:to|with)\b"
-    r"|\bthe fix (?:is|was)\b|\bhere'?s (?:how|what)\b|\bbook a call\b",
+    r"|\bthe fix (?:is|was)\b|\bhere'?s (?:how|what)\b|\bbook a call\b"
+    # Widened 2026-10-12: customer-discovery posts (would-be builders).
+    r"|\bno product to promote\b|\bbefore building\b|\bresearching (?:this|the)\b",
     re.IGNORECASE)
 
 # Platform/code domains that show up in ordinary posts, not product pitches.
@@ -163,12 +165,20 @@ HEAD_CHARS, TAIL_CHARS = 450, 200
 
 
 def _promo_hints(text: str) -> list[str]:
+    """Matched phrase + the words after it (CHANGED 2026-10-12: a bare "we
+    built" mid-post did not tell the model WHAT was built - a Shopify ad
+    "why we built Payment Guard" stayed real_problem)."""
     seen: list[str] = []
-    for m in PROMO_RE.finditer(text or ""):
+    out: list[str] = []
+    text = text or ""
+    for m in PROMO_RE.finditer(text):
         hit = m.group(0).lower()
-        if hit not in seen and hit not in PROMO_DOMAIN_IGNORE:
-            seen.append(hit)
-    return seen[:4]
+        if hit in seen or hit in PROMO_DOMAIN_IGNORE:
+            continue
+        seen.append(hit)
+        after = " ".join(text[m.end():m.end() + 50].split()[:6])
+        out.append(f'"{m.group(0)} {after}"' if after else f'"{m.group(0)}"')
+    return out[:4]
 
 
 def _format_posts(posts: list[dict]) -> str:
@@ -558,6 +568,10 @@ verdict, reason (max 12 words). Verdicts:
     clients they talk to, invites DMs or calls
   * a "how I fixed it" tip or case-study post: the poster already solved it
     and is showing the fix (a solved problem is not a problem to sell to)
+  * customer discovery: a would-be builder surveying others about a problem
+    before building ("I'm a developer researching this", "no product to
+    promote", "how often does this happen to you?", "what's your biggest
+    challenge with X?") - they are not stuck with it themselves
   Lines "[promo signals: ...]" show phrases found in the full post; they are
   hints, not proof - "I built a workflow" in a help request is not promo.
   A business owner describing their OWN unsolved problem is real_problem

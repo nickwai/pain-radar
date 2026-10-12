@@ -99,6 +99,12 @@ def shortlist(posts: list[dict], keywords: dict, scoring: dict,
                       if keywords.get("hiring_exclude") else None)
     rules = scoring["shortlist"]
     always_channels = set(rules.get("always_channels") or [])
+    # ADDED 2026-10-12: busy owner communities with their OWN cap, outside
+    # the shared max_always round-robin (community.shopify.com: ~25 posts/day,
+    # the keyword filter kept 1 of its 13 real problems - merchants write
+    # "how do you handle X?" without pain/money words).
+    always_quota: dict[str, int] = rules.get("always_quota") or {}
+    always_channels |= set(always_quota)
     stats = {"start": len(posts), "excluded": 0, "too_short": 0,
              "low_score": 0, "duplicate": 0, "no_signal": 0, "hiring": 0,
              "always": 0}
@@ -180,6 +186,8 @@ def shortlist(posts: list[dict], keywords: dict, scoring: dict,
     by_ch: dict[str, list[dict]] = {}
     for post in sorted(always, key=lambda p: p["signals"]["score"], reverse=True):
         by_ch.setdefault(post["channel"], []).append(post)
+    for ch, cap in always_quota.items():
+        picked += by_ch.pop(ch, [])[:cap]
     fair = [q for rnd in range(max((len(v) for v in by_ch.values()), default=0))
             for q in (v[rnd] for v in by_ch.values() if rnd < len(v))]
     picked += fair[: rules.get("max_always", 10)]

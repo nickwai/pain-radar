@@ -67,6 +67,14 @@ discourse:
       group: saas
     - url: https://community.shopify.dev          # devs building for paying merchants
       group: ecommerce
+    # ADDED 2026-10-12 (docs/source-study-2026-10-12.md): best yield of 70
+    # candidates. Shopify merchants ~25 posts/day, ~2 genuine real/day (plus
+    # app sellers + dev customer-discovery posts triage must cut); ERPNext
+    # ~6/day, ~1 real/day, open source with an app marketplace.
+    - url: https://community.shopify.com          # merchants, paid plans + apps
+      group: ecommerce
+    - url: https://discuss.frappe.io              # ERPNext ops: manufacturing, tax, stock
+      group: saas
     # --- ADDED 2026-09-24 after probing 30 candidates by keyword pass-rate.
     # forum.cursor.com + community.openai.com were added then REMOVED the same
     # day: they passed the keyword filter (20-23%) but Gemini's per-post

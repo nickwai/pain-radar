@@ -369,6 +369,18 @@ doesn't use no longer count (a lawn-care test idea was cut for Jobber).
 run grouped a single agency's job ad cross-posted to n8n + Make. Now the
 model reports `distinct_payers` and staff/employment ads are ignored.
 
+**2026-10-12 — pool full of advice questions, too few sources.** The first
+weekly run clustered 16 pooled posts into nothing: most were "what should I
+charge / which insurance" asks. New triage verdict `advice_question`
+(non-technical asks only; tested on 55 past real_problem posts, good ones
+kept). Source study (`docs/source-study-2026-10-12.md`, 70 candidates):
+added community.shopify.com (merchants, ~25 posts/day, own cap via
+`shortlist.always_quota` because the keyword filter kept 1 of 13 real posts)
+and discuss.frappe.io (ERPNext, always_channels). Triage now treats
+customer-discovery posts ("I'm a developer researching this") as
+`self_promo`, and promo hints show the words after the match ("we built
+Payment Guard..." instead of "we built").
+
 ## Repo
 
 Public at https://github.com/nickwai/pain-radar (needed for free GitHub

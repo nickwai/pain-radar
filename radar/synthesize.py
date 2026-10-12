@@ -534,13 +534,17 @@ Return a JSON array with exactly one object per post: id (the EXACT id given),
 verdict, reason (max 12 words). Verdicts:
 - real_problem: a specific problem a person/business has, that a third party could solve
 - help_question: someone asking how to use a tool or fix their own setup
-- advice_question: someone asking other people for an opinion, rate or
+- advice_question: a NON-technical ask for other people's opinion, rate or
   one-off guidance - what to charge, which insurance/licence/tax/legal step,
-  how to pay staff, what others would do, where to sell. The answer is
-  knowledge or judgment, not a tool. BUT a recurring task they struggle to
-  keep up with (chasing unanswered estimates, tracking jobs, scheduling,
-  reconciling, rolling the same setup out to many clients) is real_problem
-  even if phrased "what do you do when...?" or "how do others handle...?"
+  how to pay staff, where to sell, personal taste. The answer is knowledge
+  or judgment, not a tool. NEVER use it when the post is about software,
+  automation, code, a platform or an app - those are help_question or
+  real_problem.
+  NOT advice_question: a business stuck on a recurring chore it does again
+  and again (chasing unanswered estimates, tracking jobs or staff,
+  scheduling, reconciling, setting the same thing up for each new client)
+  is real_problem, even if phrased "what do you do when...?" or "how do
+  other agencies handle...?"
 - product_bug_report: a defect in a vendor's product that only the vendor can fix
 - out_of_industry: a real problem, but outside the industries above
 - paid_gig: someone looking to HIRE a freelancer/expert/contractor for paid work

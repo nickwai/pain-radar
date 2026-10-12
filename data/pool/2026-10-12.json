@@ -1,0 +1,142 @@
+[
+  {
+    "id": "discourse:forum.ninjatrader.com:7771",
+    "source": "discourse",
+    "channel": "forum.ninjatrader.com",
+    "group": "trading",
+    "title": "Having trouble restoring a back up file",
+    "text": "Helllo, having trouble restoring a NTBK file. did a pc reset and saved the NTBK to a external hard drive. Now I am having trouble importing the NTBK restore file to a fresh NT 8 platform, It is giving me an error of the file path name is too long ( over 260 characters). I have 10 separate previous restore points. And all are giving me the same error. thank you in advance for any insight. THX. 5 posts - 2 participants Read full topic",
+    "url": "https://forum.ninjatrader.com/t/having-trouble-restoring-a-back-up-file/7771",
+    "created_utc": 1791701498,
+    "score": 2,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.8,
+      "multiplier": 1.15,
+      "score": 2.07,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Trader unable to restore NinjaTrader backup due to file path limits.",
+    "pooled_on": "2026-10-12"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/pricing.524985/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "pricing",
+    "text": "I am retired and would like to start cutting lawns again. How much should I charge per hour? I have mowers, 21-inch walk-behind mowers, trimmers, leaf blowers, and hedge trimmers.",
+    "url": "https://www.lawnsite.com/threads/pricing.524985/",
+    "created_utc": 1791761421,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Retired individual asking for hourly pricing guidance for lawn care.",
+    "pooled_on": "2026-10-12"
+  },
+  {
+    "id": "discourse:forum.ninjatrader.com:7770",
+    "source": "discourse",
+    "channel": "forum.ninjatrader.com",
+    "group": "trading",
+    "title": "NinjaTrader 8 – How to reliably link ATM child orders to their originating entry order?",
+    "text": "Title: NinjaTrader 8 – How to reliably associate ATM child orders with their originating entry order using StartAtmStrategy()? Hello NinjaTrader Support Team, I am developing a custom NinjaScript indicator for NinjaTrader 8 that submits an entry order using Account.CreateOrder() and attaches a selected ATM template using NinjaTrader.NinjaScript.AtmStrategy.StartAtmStrategy() . The ATM template manages two contracts, with two profit targets and two stop-loss orders. I subscribe to Account.OrderUpdate and can successfully detect the order events, including Target1 being filled and Stop1 being cancelled. My challenge is identifying exactly which child orders belong to the specific ATM instance initiated by my indicator, without scanning historical account orders or accidentally including orders from other active ATM strategies. I would appreciate clarification on the following: Does StartAtmStrategy() expose an ATM instance identifier that can be associated with the originating entry order? Is there a supported property or API method to retrieve the child orders belonging to that particular ATM instance? Can the ATM instance, entry order, and its individual target/stop orders be reliably associated using an ATM ID, order references, OrderId , OCO IDs, or another supported mechanism? What is the recommended approach when multiple ATM strategies may be active on the same instrument and account? Can this association be maintained safely throughout order-state changes, partial fills, cancellations, and order modifications? My objective is to create an internal operation identifier and maintain a reliable one-to-one mapping with the ATM’s actual orders throughout the trade lifecycle. The indicator will only modify the remaining stop-loss order after Target1 has filled and its corresponding Stop1 has been cancelled. I am using simulated accounts only. Thank you for your guidance and any relevant documentation or code examples. 3 posts - 3 participants Read full topic",
+    "url": "https://forum.ninjatrader.com/t/ninjatrader-8-how-to-reliably-link-atm-child-orders-to-their-originating-entry-order/7770",
+    "created_utc": 1791694614,
+    "score": 0,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.8,
+      "multiplier": 1.15,
+      "score": 0.92,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Trader needs to correctly associate ATM child orders in NinjaScript.",
+    "pooled_on": "2026-10-12"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/anyone-have-a-business-use-endorsement-on-their-personal-policy.524963/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "Anyone have a business use endorsement on their personal policy?",
+    "text": "Was talking to another insurance agent and he seems to think the business use endorsement policy will be denied if i get into an accident. The truck tows a landscape trailer with mowers on it. The landscape trailer is fully insured and on its own commercial policy. Im just solo. The full commercial auto is like $3k/ year and the personal auto with the business endorsement is like $1300/year. Opinions?",
+    "url": "https://www.lawnsite.com/threads/anyone-have-a-business-use-endorsement-on-their-personal-policy.524963/",
+    "created_utc": 1791754351,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "$3",
+        "$1300"
+      ],
+      "always": true
+    },
+    "triage_reason": "Solo landscaper seeking advice on commercial vs personal auto insurance.",
+    "pooled_on": "2026-10-12"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/p4p.524927/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "P4P",
+    "text": "Who does it here? I ask because I had a conversation with a guy yesterday who is looking for a job. He has a few years' experience and seems pretty sharp. Recently, the company he works for implemented P4P and told everyone that they would be making more. This company has been around for about 10 years. I have seen their trucks but dont know much about them outside of that. In the time since they implemented this (about 3 months ago) his paychecks have dropped about $200-300 a week... P4P",
+    "url": "https://www.lawnsite.com/threads/p4p.524927/",
+    "created_utc": 1791662334,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 1,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "$200"
+      ],
+      "always": true
+    },
+    "triage_reason": "Landscaping business owner asking about pay-for-performance worker compensation.",
+    "pooled_on": "2026-10-12"
+  }
+]

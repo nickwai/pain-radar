@@ -245,8 +245,13 @@ def _report_pool_day(args, posts, config, triage, date, seen) -> int:
     if args.dry_run:  # show what would be pooled, write nothing
         pooled = [{**posts_by_id[r["id"]], "triage_reason": r["reason"]}
                   for r in triage if r["verdict"] == "real_problem"]
-    pool_size = len(load_window(pool_dir, date, pool_cfg.get("days", 7)))
     nxt = next_weekly_date(date, pool_cfg.get("weekday", 0))
+    # CHANGED 2026-10-12: count only what the NEXT weekly run will cluster,
+    # (nxt - days, date]. A rolling `days` window on a Tuesday also counted
+    # last week's already-clustered posts.
+    days_left = (dt.date.fromisoformat(nxt) - dt.date.fromisoformat(date)).days
+    pool_size = len(load_window(pool_dir, date,
+                                max(pool_cfg.get("days", 7) - days_left, 1)))
     gigs, old_gigs = drop_seen_gigs(gigs_from_triage(triage), posts_by_id, seen)
     report_md = render_daily_pool(date, pooled, pool_size, pool_cfg.get("days", 7),
                                   nxt, gigs, posts_by_id, bool(triage))

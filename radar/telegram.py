@@ -13,6 +13,7 @@ into another project's files.
 """
 from __future__ import annotations
 
+import datetime as dt
 import html
 import json
 import urllib.error
@@ -118,8 +119,12 @@ def format_daily_pool(date: str, pooled: list[dict], pool_size: int,
     if not triage_ok:
         head = "⚠️ triage failed — nothing pooled today."
     else:
-        head = (f"{len(pooled)} real problem{'s' if len(pooled) != 1 else ''} pooled "
-                f"(pool: {pool_size}). Ideas weekly — next {next_weekly}.")
+        # CHANGED 2026-10-12: "N pooled (pool: M)" read as "M found, only N
+        # shown" - say plainly which number is today and which is the week.
+        when = ("later today" if next_weekly == date else
+                dt.date.fromisoformat(next_weekly).strftime("%a %m-%d"))
+        head = (f"{len(pooled)} new today · {pool_size} in this week's pool · "
+                f"ideas {when}.")
     text = f"📥 <b>Pain Radar — {_esc(date)}</b>\n{_esc(head)}"
     # ADDED 2026-10-11: list today's pooled posts (title + link, no score -
     # scoring happens weekly on clusters).
@@ -127,6 +132,8 @@ def format_daily_pool(date: str, pooled: list[dict], pool_size: int,
         text += "\n\n" + "\n".join(
             f'• <a href="{_esc(p.get("url", ""))}">{_esc(p.get("title") or p["id"])}</a>'
             f' <i>({_esc(p.get("channel") or p.get("source", ""))})</i>'
+            # ADDED 2026-10-12: triage's one-line summary (no extra AI call).
+            + (f'\n  ↳ {_esc(p["triage_reason"])}' if p.get("triage_reason") else "")
             for p in pooled)
     gig_lines = _gig_lines(gigs, posts_by_id)
     return text + ("\n\n" + "\n".join(gig_lines) if gig_lines else "")

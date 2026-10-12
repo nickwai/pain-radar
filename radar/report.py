@@ -284,8 +284,8 @@ def render_daily_pool(date: str, pooled: list[dict], pool_size: int, days: int,
                   "Check the Stage 3 log for `[triage] skipped`.", ""]
     else:
         lines += [f"**{len(pooled)} real problem{'s' if len(pooled) != 1 else ''} added "
-                  f"to the pool today.** Pool now holds {pool_size} over the last "
-                  f"{days} days. Ideas are clustered from the whole pool weekly - "
+                  f"to the pool today.** This week's pool (the {days} days up to the "
+                  f"next weekly run) holds {pool_size} so far. Ideas are clustered from the whole pool weekly - "
                   f"next: {next_weekly} (`reports/week-{next_weekly}.md`).", ""]
         if pooled:
             # <url> autolinks, NOT [title](url): radar/history.py treats every

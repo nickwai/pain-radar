@@ -266,7 +266,7 @@ def _report_pool_day(args, posts, config, triage, date, seen) -> int:
     print("\n" + "=" * 60)
     print(report_md)
     _send_telegram(format_daily_pool(date, pooled, pool_size, nxt, gigs, posts_by_id,
-                                     bool(triage)), args)
+                                     bool(triage), pool_cfg.get("list_daily", True)), args)
     if args.dry_run:
         print("(--dry-run: not writing to reports/ or data/pool/)")
         return 0
@@ -311,6 +311,17 @@ def cmd_weekly(args: argparse.Namespace) -> int:
                          days=config["synthesis"].get("dedupe_days", 30))
     ideas = synthesize(posts, config, rejected=rejected, triage=triage, seen=seen) if posts else []
     ideas = check(ideas, config, rejected=rejected)
+    # ADDED 2026-10-14: say what the competitor check cut, so an empty week
+    # shows the work done (user: show only ideas worth digging into).
+    crowded = [r for r in rejected
+               if str(r.get("reject_reason", "")).startswith("competitor check")]
+    if crowded:
+        bits = []
+        for r in crowded[:5]:
+            comps = (r.get("competitor_check") or {}).get("competitors") or []
+            bits.append(f"{r['problem_one_line'][:70]} ({comps[0]['name'] if comps else 'see log'})")
+        intro += (f" {len(crowded)} idea{'s' if len(crowded) != 1 else ''} cut as "
+                  f"crowded: " + "; ".join(bits) + ".")
 
     # Repeated paid jobs (2026-10-08). A task already shown in an earlier
     # weekly report is shown again only if a NEW gig joined it.
@@ -358,6 +369,21 @@ COMPETITOR_TEST_IDEAS = [
                  "scheduled lockout after N trades per day",
                  "who_has_it": "prop-firm futures trader on Tradovate",
                  "existing_solutions": "none known"}),
+    # ADDED 2026-10-14: manual checks that day; competitors live in the
+    # Shopify App Store (B2B Blocks / wholesale apps; SafeOptions, Option
+    # Guard, personalizer apps; Synder/A2X for payouts).
+    ("crowded", {"problem_one_line": "Shopify B2B customers on discounted catalogs cannot see "
+                 "the retail price, so they do not notice their discount",
+                 "who_has_it": "Shopify Plus merchant selling B2B and retail",
+                 "existing_solutions": "none given"}),
+    ("crowded", {"problem_one_line": "Personalised Shopify orders arrive without the engraving "
+                 "text when customers use Buy it now or express checkout",
+                 "who_has_it": "Shopify merchant selling engraved / made-to-order products",
+                 "existing_solutions": "none given"}),
+    ("crowded", {"problem_one_line": "Shopify Capital loan repayments are deducted from payouts "
+                 "as unlabeled adjustments, making bookkeeping reconciliation hard",
+                 "who_has_it": "Shopify merchant with a Shopify Capital loan who does bookkeeping",
+                 "existing_solutions": "none given"}),
     (None, {"problem_one_line": "Lawn care business owners re-type crew timesheets "
                      "from paper into payroll every week",
                      "who_has_it": "owner of a 3-8 crew lawn care business",

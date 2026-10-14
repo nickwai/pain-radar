@@ -17,14 +17,23 @@ DuckDuckGo's HTML endpoint answers 202 (bot challenge). HN + GitHub miss
 paid SaaS that never posted on HN (watchflow.io for the 10-04 idea), so the
 model may also name tools from memory - those are shown as unverified.
 
+ADDED 2026-10-14: Shopify App Store + WordPress.org plugin search. The
+10-14 manual checks found the competitors of all three Shopify ideas (B2B
+Blocks, SafeOptions, Option Guard) in the App Store, where HN/GitHub look
+blind. App Store search is server-rendered behind a Turbo frame: asking for
+the `search_page` frame returns the app cards (name, rating, reviews,
+tagline). WordPress has a free JSON plugin API.
+
 Same anti-hallucination rule as synthesize.py: Gemini cites result ids,
 never URLs; the URL is looked up here. Best-effort: any failure keeps the
 ideas and marks the check as not run.
 """
 from __future__ import annotations
 
+import html
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.parse
@@ -34,6 +43,8 @@ from radar.synthesize import call_gemini
 
 HN_URL = "https://hn.algolia.com/api/v1/search"
 GH_URL = "https://api.github.com/search/repositories"
+SHOPIFY_APPS_URL = "https://apps.shopify.com/search"
+WP_PLUGINS_URL = "https://api.wordpress.org/plugins/info/1.2/"
 VERDICTS = ["crowded", "partial", "open"]
 COVERS = ["main_use", "part", "unrelated"]
 KINDS = ["platform_feature", "dedicated_tool", "big_suite"]
@@ -51,7 +62,9 @@ each - the search engines need EVERY word to match, so fewer words find more)
 that would find an EXISTING product, plugin or open-source tool that already
 solves it. Query 1: platform name + the core noun (e.g. "n8n monitoring",
 "tradovate lockout"). Then one more platform query, and one generic query for
-the job itself. Return JSON: one object per problem with its number and queries.
+the job itself. If the problem is on Shopify or WooCommerce, write the last
+query the way a merchant types into the app store - no platform name, just
+the job (e.g. "b2b retail price", "missing personalization"). Return JSON: one object per problem with its number and queries.
 
 PROBLEMS:
 {ideas}
@@ -79,7 +92,8 @@ skeptic: a solo builder wastes weeks on an idea that already has a good answer.
 
 For each idea you get the problem, who has it, what the clustering step
 already believed exists, and real search results (HN "Show HN" posts and
-GitHub repositories) with ids like r3. Most results are unrelated noise -
+GitHub repositories, Shopify App Store apps, WordPress plugins) with ids like
+r3. An app or plugin with many reviews / installs is a strong competitor. Most results are unrelated noise -
 ignore those.
 
 Per idea return:
@@ -140,13 +154,65 @@ def search_github(query: str, n: int, token: str | None) -> list[dict]:
             for r in _get_json(url, headers).get("items", [])]
 
 
+def _get_text(url: str, headers: dict | None = None) -> str:
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (pain-radar competitor check)", **(headers or {})})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return resp.read().decode("utf-8", "replace")
+
+
+def _clean(fragment: str) -> str:
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", fragment))).strip()
+
+
+def search_shopify_apps(query: str, n: int) -> list[dict]:
+    page = _get_text(SHOPIFY_APPS_URL + "?" + urllib.parse.urlencode({"q": query}),
+                     {"Turbo-Frame": "search_page", "Accept": "text/html"})
+    out = []
+    for card in page.split('data-app-card-handle-value="')[1:]:
+        handle = card.split('"', 1)[0]
+        name = re.search(r'data-app-card-name-value="([^"]*)"', card)
+        text = _clean(card.split('role="button">', 1)[-1])[:400]
+        stars = re.search(r"([\d.]+) out of 5 stars", text)
+        reviews = re.search(r"([\d,]+) total reviews", text)
+        # tagline: after "<price note>" up to the popover markup
+        # tagline: after the review count and price note, before popover markup
+        after = text.split("total reviews", 1)[-1].split(" popover", 1)[0]
+        tag = re.sub(r"^\s*•?\s*(?:Free plan available|Free trial available|Free to install"
+                     r"|Free|From \S+|\S+/month)?\s*", "", after)
+        if not name:
+            continue
+        out.append({"title": f"{html.unescape(name.group(1))}: {tag[:120]}",
+                    "url": f"https://apps.shopify.com/{handle}",
+                    "where": "Shopify App Store",
+                    "extra": (f"{stars.group(1)} stars, {reviews.group(1)} reviews"
+                              if stars and reviews else "no reviews")})
+        if len(out) >= n:
+            break
+    return out
+
+
+def search_wp_plugins(query: str, n: int) -> list[dict]:
+    url = WP_PLUGINS_URL + "?" + urllib.parse.urlencode(
+        {"action": "query_plugins", "request[search]": query, "request[per_page]": n,
+         "request[fields][short_description]": 1})
+    return [{"title": f"{html.unescape(p['name'])}: {html.unescape(p.get('short_description') or '')[:120]}",
+             "url": f"https://wordpress.org/plugins/{p['slug']}/",
+             "where": "WordPress plugin",
+             "extra": f"{p.get('active_installs', 0)}+ installs, {p.get('num_ratings', 0)} ratings"}
+            for p in _get_json(url).get("plugins", [])[:n]]
+
+
 def gather(queries: list[str], n: int, env) -> list[dict]:
     """Search results for one idea, deduped by URL. A failed search is skipped."""
     token = env.get("GITHUB_TOKEN")
     pause = 2.5 if token else 6.5  # GitHub search: 30/min with token, 10 without
     out: dict[str, dict] = {}
     for q in queries:
-        for fn in (search_hn, lambda q2, n2: search_github(q2, n2, token)):
+        for src, fn in (("HN", search_hn),
+                        ("GitHub", lambda q2, n2: search_github(q2, n2, token)),
+                        ("Shopify apps", search_shopify_apps),
+                        ("WordPress", search_wp_plugins)):
             try:
                 hits = fn(q, n)
                 # Both APIs AND every word: a 3-word query missed the
@@ -157,7 +223,7 @@ def gather(queries: list[str], n: int, env) -> list[dict]:
                 for r in hits:
                     out.setdefault(r["url"], r)
             except (urllib.error.URLError, TimeoutError, KeyError, ValueError) as exc:
-                print(f"  [competitors] search failed for {q!r} ({type(exc).__name__})",
+                print(f"  [competitors] {src} search failed for {q!r} ({type(exc).__name__})",
                       flush=True)
         time.sleep(pause)
     return list(out.values())

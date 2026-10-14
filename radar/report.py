@@ -47,7 +47,7 @@ def render_competitors(cc: dict | None) -> list[str]:
             covers += " (big suite - not counted)"
         lines.append(f"- {name}{covers}: {c.get('note', '')}")
     if cc.get("queries"):
-        lines.append(f"*Searched HN + GitHub for: {'; '.join(cc['queries'])}*")
+        lines.append(f"*Searched HN, GitHub, Shopify App Store, WordPress plugins for: {'; '.join(cc['queries'])}*")
     return lines
 
 

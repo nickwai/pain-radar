@@ -381,6 +381,14 @@ customer-discovery posts ("I'm a developer researching this") as
 `self_promo`, and promo hints show the words after the match ("we built
 Payment Guard..." instead of "we built").
 
+**2026-10-14 — competitor check was blind to app stores.** All three
+Shopify ideas checked by hand that day had competitors in the Shopify App
+Store, which HN + GitHub never see. The check now also searches the Shopify
+App Store (server-rendered Turbo frame, no key) and the WordPress.org plugin
+API. `run.py check-competitors` has the three as known-crowded tests (6/6
+pass). Daily Telegram no longer lists pooled posts (`pool.list_daily:
+false`); the weekly message names what was cut as crowded and why.
+
 ## Repo
 
 Public at https://github.com/nickwai/pain-radar (needed for free GitHub

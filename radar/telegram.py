@@ -113,7 +113,8 @@ def format_message(ideas: list[dict], posts_by_id: dict[str, dict], date: str,
 
 def format_daily_pool(date: str, pooled: list[dict], pool_size: int,
                       next_weekly: str, gigs: list[dict],
-                      posts_by_id: dict[str, dict], triage_ok: bool) -> str:
+                      posts_by_id: dict[str, dict], triage_ok: bool,
+                      list_posts: bool = True) -> str:
     """ADDED 2026-10-08: daily heartbeat in pool mode (+ gigs); pooled post
     titles + links since 2026-10-11."""
     if not triage_ok:
@@ -124,11 +125,12 @@ def format_daily_pool(date: str, pooled: list[dict], pool_size: int,
         when = ("later today" if next_weekly == date else
                 dt.date.fromisoformat(next_weekly).strftime("%a %m-%d"))
         head = (f"{len(pooled)} new today · {pool_size} in this week's pool · "
-                f"ideas {when}.")
+                f"ideas {when}"
+                + (" (competitor-checked, only the ones worth digging)." if not list_posts else "."))
     text = f"📥 <b>Pain Radar — {_esc(date)}</b>\n{_esc(head)}"
     # ADDED 2026-10-11: list today's pooled posts (title + link, no score -
     # scoring happens weekly on clusters).
-    if pooled:
+    if pooled and list_posts:
         text += "\n\n" + "\n".join(
             f'• <a href="{_esc(p.get("url", ""))}">{_esc(p.get("title") or p["id"])}</a>'
             f' <i>({_esc(p.get("channel") or p.get("source", ""))})</i>'

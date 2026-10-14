@@ -1,0 +1,33 @@
+[
+  {
+    "id": "discourse:community.n8n.io:320861",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Anchornova Automations",
+    "text": "[FOR HIRE] Production n8n + AI Agent systems | Error-handled, confidence-routed, audit-trailed I build systems that survive real traffic — not happy-path demos. • 19 AI/automation systems shipped to production • Every system has input validation, confidence-based routing, schema-validated output, global error/dead-letter layer • Flagship: connected 6-workflow suite (support + sales + finance + BI + HR + knowledge) → client reports $190K annual impact, built in 2 weeks on self-hosted n8n • Results: 45 min → <20 sec support response · ~10 min → 4.3 sec invoices · 60–70% sales workload cut · 3× lead volume in 30 days Stack: n8n (self-hosted), Claude / OpenAI / Gemini, LangGraph, PGVector, HubSpot, WhatsApp, Stripe, Slack, Python/Node Portfolio + case studies + live walkthrough: emmanuelthompson.anchornovahq.com Fixed-price packages or $20–25/hr. Available immediately — 40+ hours per week , working asynchronously in West Africa Time (WAT / UTC+1). DM me the process that is eating time or the workflow that keeps breaking. I’ll tell you straight whether I can fix/build it and what it will take. 1 post - 3 participants Read full topic",
+    "url": "https://community.n8n.io/t/anchornova-automations/320861",
+    "created_utc": 1791823629,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 8.8,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$190",
+        "$20"
+      ]
+    },
+    "triage_reason": "Freelancer advertising production automation and AI agency services.",
+    "pooled_on": "2026-10-14"
+  }
+]

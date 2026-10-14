@@ -1,0 +1,572 @@
+[
+  {
+    "id": "discourse:community.make.com:117258",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Billing Issue",
+    "text": "What is your goal? Trying to get customer service through the chat or ticketing system is a NIGHTMARE. I am copying and pasting my issue in all of these fields. Hi Make Community, I’m hoping someone from the Make team can help me resolve an unrecognized recurring charge of $39.99. My Make account currently shows that I’m on the Free plan, so I don’t understand why I’m being charged. I tried contacting support, but the support chatbot repeatedly directed me to a ticket form that never appeared. The contact-support page only offered community resources, the Academy, the Help Center, and an option to upgrade. This has left me stuck in a loop: My account says I’m on the Free plan. I’m being charged $39.99. The chatbot says I need billing support. There is no visible way to submit a support ticket or speak with an agent. Could a Make staff member please help me identify which account or subscription is connected to this charge and explain how I can contact the billing team? For privacy, I won’t post my card or account details publicly, but I’m happy to provide the transaction date, card details, screenshots, and account email privately to an authorized Make representative. Thank you—I’d really appreciate help getting this resolved. What is the problem & what have you tried? Hi Make Community, I’m hoping someone from the Make team can help me resolve an unrecognized recurring charge of $39.99. My Make account currently shows that I’m on the Free plan, so I don’t understand why I’m being charged. I tried contacting support, but the support chatbot repeatedly directed me to a ticket form that never appeared. The contact-support page only offered community resources, the Academy, the Help Center, and an option to upgrade. This has left me stuck in a loop: My account says I’m on the Free plan. I’m being charged $39.99. The chatbot says I need billing support. There is no visible way to submit a support ticket or speak with an agent. Could a Make staff member please help me identify which account or subscription is connected to this charge and explain how I can contact the billing team? For privacy, I won’t post my card or account details publicly, but I’m happy to provide the transaction date, card details, screenshots, and account email privately to an authorized Make representative. Thank you—I’d really appreciate help getting this resolved. Error messages or input/output bundles Hi Make Community, I’m hoping someone from the Make team can help me resolve an unrecognized recurring charge of $39.99. My Make account currently shows that I’m on the Free plan, so I don’t understand why I’m being charged. I tried contacting support, but the support chatbot repeatedly directed me to a ticket form that never appeared. The contact-support page only offered community resources, the Academy, the Help Center, and an option to upgrade. This has left me stuck in a loop: My account says I’m on the Free plan. I’m being charged $39.99. The chatbot says I need billing support. There is no visible way to submit a support ticket or speak with an agent. Could a Make staff member please help me identify which account or subscription is connected to this charge and explain how I can contact the billing team? For privacy, I won’t post my card or account details publicly, but I’m happy to provide the transaction date, card details, screenshots, and account email privately to an authorized Make representative. Thank you—I’d really appreciate help getting this resolved. 2 posts - 2 participants Read full topic",
+    "url": "https://community.make.com/t/billing-issue/117258",
+    "created_utc": 1791939513,
+    "score": 1,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 3,
+      "cash": 2,
+      "pain": 1,
+      "engagement": 0.5,
+      "multiplier": 1.25,
+      "score": 23.75,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [
+        "nightmare"
+      ],
+      "cash_matched": [
+        "$39.99",
+        "$39.99",
+        "$39.99",
+        "$39.99"
+      ]
+    },
+    "triage_reason": "Merchant wrongly billed on a free plan without support response.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.baserow.io:13055",
+    "source": "discourse",
+    "channel": "community.baserow.io",
+    "group": "saas",
+    "title": "Form seems to be broken?",
+    "text": "I’ve got a form in my application that has a create row event that isn’t currently working (worked fine yesterday). When I check the form events in my application builder, all of the fields currently have this error message: Invalid formula The ‘form_data’ formula provider found ‘form_data.[field id]’ to be invalid. and it doesn’t look like there’s an option to select form data as a data source. 6 posts - 4 participants Read full topic",
+    "url": "https://community.baserow.io/t/form-seems-to-be-broken/13055",
+    "created_utc": 1791851078,
+    "score": 8,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 2.8,
+      "multiplier": 1.25,
+      "score": 5.38,
+      "money_matched": [],
+      "pain_matched": [
+        "broken"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "App builder facing a broken form event error in their application.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.fly.io:28809",
+    "source": "discourse",
+    "channel": "community.fly.io",
+    "group": "saas",
+    "title": "fly-proxy sends TCP keepalive probes every ~5 s on idle client connections, costly for cellular IoT",
+    "text": "We run an MQTT broker on Fly (TCP service on 8883 with handlers = [\"tls\"] , MQTT keepalive 270 s). Our clients are battery-powered LTE-M devices. The Fly edge sends a zero-length TCP keepalive probe on every idle client connection about every 5.12 s. The first probe comes 2–5 s after the last data. Our app never sees this traffic: the server-side socket shows only the MQTT PINGREQ/PINGRESP every 270 s. Captured on fixed broadband (macOS, idle connection to a Fly app on 66.241.125.92:443): 07:55:24.198873 IP 66.241.125.92.443 > 192.168.1.176.59731: Flags [.], ack 67, win 1024, length 0 07:55:24.199066 IP 192.168.1.176.59731 > 66.241.125.92.443: Flags [.], ack 90, win 2048, length 0 07:55:29.318453 IP 66.241.125.92.443 > 192.168.1.176.59731: Flags [.], ack 67, win 1024, length 0 07:55:29.318634 IP 192.168.1.176.59731 > 66.241.125.92.443: Flags [.], ack 90, win 2048, length 0 07:55:34.438639 IP 66.241.125.92.443 > 192.168.1.176.59731: Flags [.], ack 67, win 1024, length 0 07:55:34.438854 IP 192.168.1.176.59731 > 66.241.125.92.443: Flags [.], ack 90, win 2048, length 0 07:55:39.558423 IP 66.241.125.92.443 > 192.168.1.176.59731: Flags [.], ack 67, win 1024, length 0 A modem trace from the device on 8883 shows the same probe (seq = snd_una − 1, length 0) every 5.12 s for hours. On cellular, every probe pages the device and forces an RRC connection. Measured overnight it costs about 1.4 MB/day per device, more than 40 MB/month of pure keepalive. It also keeps the radio connected about 80 % of the time, which kills battery life. The connection itself is healthy: the device answers every probe. From TCP idle timeouts restrictions have been removed we understand the edge sets SO_KEEPALIVE / TCP_KEEPIDLE / TCP_KEEPINTVL / TCP_KEEPCNT / TCP_USER_TIMEOUT on client sockets. We couldn’t find these values or any setting for them in the docs. Questions: Is ~5 s really the intended TCP_KEEPIDLE/TCP_KEEPINTVL for client-side edge connections? Can it be raised (e.g. ≥ 300 s) or disabled per app or per service, for example as an option under [[services.ports]] ? The application already has its own keepalive. If not, what is the recommended way to serve long-lived, mostly idle TCP connections to cellular clients on Fly? Thanks! 3 posts - 2 participants Read full topic",
+    "url": "https://community.fly.io/t/fly-proxy-sends-tcp-keepalive-probes-every-5-s-on-idle-client-connections-costly-for-cellular-iot/28809",
+    "created_utc": 1791874530,
+    "score": 2,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.0,
+      "multiplier": 1.25,
+      "score": 5.0,
+      "money_matched": [
+        "/mo"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Developer experiencing costly TCP keepalive probes disrupting IoT devices.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.coda.io:61795",
+    "source": "discourse",
+    "channel": "community.coda.io",
+    "group": "saas",
+    "title": "Feature Request: Customizable @-Mention Search Priorities and Preferred Tables",
+    "text": "Feature Request: Allow users to customize @-mention search priorities Problem When using @-mentions in Superhuman Docs (formerly Coda), search results are presented in a predefined order, with people and pages frequently appearing before table rows. For users who rely extensively on table-based references within their documents, this creates unnecessary friction and significantly reduces the efficiency of the writing experience. Use case I maintain a centralized glossary (ABC) in a dedicated table within my document. This table contains terminology and definitions used throughout our internal policies and procedures. While writing these documents, I frequently insert @-mentions referencing specific glossary entries. This functionality is particularly valuable because readers can hover over a referenced term to view its definition without leaving the document. However, when I type something like @b , the search results initially show numerous colleagues and pages before eventually displaying relevant entries from my glossary. Finding the correct reference can require extensive scrolling or typing additional characters, interrupting the writing process. Suggested improvement Allow users to customize the search behavior and priority of @-mentions. Ideally, this would include: Customizable result priorities: Allow users to determine whether people, pages, tables, or table rows should appear first. Preferred tables: Allow users to designate specific tables as preferred sources for @-mentions. Contextual search: Introduce an option to search directly within a specific table, for example by using a syntax such as @ABC:term . Persistent preferences: Remember these preferences at the user or document level. Why this matters One of the key strengths of Superhuman Docs is the ability to combine structured data with traditional document editing. Using table rows as inline references creates powerful opportunities for interactive documentation, particularly for policy manuals, compliance frameworks, knowledge bases, and internal procedures. However, the current search behavior makes this functionality unnecessarily cumbersome. Workarounds such as manually copying row links or navigating back and forth between pages defeat the purpose of having an efficient inline referencing system. Expected benefit Giving users control over @-mention search priorities would significantly improve the writing experience, especially for organizations using Superhuman Docs as a centralized knowledge management and documentation platform. Even a relatively simple option to prioritize one or more specific tables would already make a substantial difference. 1 post - 1 participant Read full topic",
+    "url": "https://community.coda.io/t/feature-request-customizable-mention-search-priorities-and-preferred-tables/61795",
+    "created_utc": 1791827497,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 3.75,
+      "money_matched": [],
+      "pain_matched": [
+        "manually",
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "User experiencing friction and inefficiency with search priorities in docs.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.frame.work:85433",
+    "source": "discourse",
+    "channel": "community.frame.work",
+    "group": "automotive",
+    "title": "High power drain when suspended due to ACPI table, with workaround",
+    "text": "Framework Laptop 12 (13th Gen Intel): s2idle never reaches S0ix on Linux because BIOS sets STD3=1, keeping the NVMe root port (PEG0) in D0 This report and debug process are AI-aided. I have no deep understanding of ACPI/BIOS/firmware/Linux kernel. Related code and debug helpers, including the workaround kernel module, are on GitHub at GitHub - Ronmi/fw12-s0ix-debug · GitHub (written in Traditional Chinese). The module is a proof of concept for this report, not a recommended fix; use it at your own risk. Summary On the Framework Laptop 12 (13th Gen Intel Core), s2idle on Linux never reaches S0ix : the CPU package never goes deeper than PC3, and the battery drains about 3–5 %/hour while suspended (about 30 % overnight). The cause is in the firmware’s ACPI tables. The GNVS variable STD3 is 1 (Storage D3 enabled, but not RTD3). \\_SB.PC00.PEG0._INI copies it into PEG0.RD3C , and with RD3C != 2 : PEG0._S0W returns 0 (D0) , so the OS must keep the CPU PCIe root port of the NVMe SSD (00:06.0) in D0 during s2idle, and PEG0.GPRS returns 0, so the PXP power resource _OFF / _ON are no-ops. When RD3C is forced to 2 at runtime, everything else stays the same and the firmware’s own RTD3 path works perfectly. The root port and the SSD go to D3cold, the package reaches PC10, the system spends 99.8 % of suspend time in S0i3.0 , and drain drops to about 1 %/hour . Resume is reliable. System Item Value Model Framework Laptop 12 (13th Gen Intel Core), board FRAPMACP05 rev A5 CPU Intel Core i5-1334U (Raptor Lake-U) BIOS 03.07 (02/10/2026), 03.08 (08/20/2026) and 03.09 — all affected SSD Kingston NV3 2230 (SNV3SM31T0, SM2268XT2, DRAM-less, HMB), firmware SDX01100 OS Debian 13, Linux 7.1.13 (backports) and 7.2.6 Sleep mode s2idle (default; deep is also offered) Symptoms /sys/kernel/debug/pmc_core/slp_s0_residency_usec and the S0i2.0/S0i3.0 substate residencies stay at 0 after every suspend. With intel_pmc_core.warn_on_s0ix_failures=1 , the kernel reports CPU did not enter Package C10!!! on every resume. Package C6–C10 counters stay at 0, and only PC2/PC3 increase. There are no spurious wakeups; the only wake event is the lid (EC GPE, IRQ 9). Intel’s S0ixSelftestTool reports: “Your system achieved PC3 residency, but no PC8 residency during S2idle” . It also reports that pcieport 0000:00:06.0 stays in D0 ( PCI PM: Skipped ) and that its link is only in L1, not L1.1/L1.2. Analysis Firmware logic (from SSDT “SaSsdt” and SSDT “ADL-P-M”, BIOS 03.08) SSDT SaSsdt (rev 0x3000), \\_SB.PC00.PEG0._INI : If ((\\_SB.PC00.PEG0.PEGP.PNVM () || \\_SB.PC00.PEG0.PEGP.PAHC ())) { \\_SB.PC00.PEG0.RD3C = \\STD3 } SSDT ADL-P-M , \\_SB.PC00.PEG0 : Method (_S0W, 0, NotSerialized) { If (CondRefOf (RD3C)) { If ((RD3C == 0x02)) { Return (0x04) } } Return (Zero) // D0 } Method (GPRS, 0, NotSerialized) // gate used by PXP._ON/_OFF { ... If (CondRefOf (RD3C)) { If ((RD3C != 0x02)) { Return (Zero) } } ... Return (One) } \\_SB.PC00.PEG0.PEGP._S0W similarly returns 3 (D3hot) instead of 4 when RD3C != 2 . Since STD3 != 0 , PEGP._DSD still exposes StorageD3Enable = 1 , so Linux puts the SSD into D3hot (“simple suspend”). However, the root port is not allowed below D0. On Linux, for S0 the _S0W limit is applied whenever the device has _PRW , regardless of the user’s wakeup setting. Runtime values (read from GNVS at 0x448F9018 on BIOS 03.08) Variable Value Meaning OSYS 0x07DF sanity check (Windows 2015 _OSI ) STD3 1 Storage D3 only, not RTD3 SD2P / SDP1 0x0908000E / 1 SSD power-enable GPIO pad, active high SD2R / SDR1 0x090C0014 / 0 SSD reset (PERST#) GPIO pad, active low PEP0 100 power-on delay (ms) The RTD3 GPIOs are configured , so the hardware path is clearly wired. Only the STD3 value keeps it disabled. Kernel trace confirming the D-state decision A kprobe on acpi_pm_device_sleep_state() during suspend (stock BIOS tables): dev=\"0000:00:06.0\" ret=0 # root port: firmware allows D0 only dev=\"0000:01:00.0\" ret=3 # NVMe: D3hot only With RD3C = 2 : dev=\"0000:00:06.0\" ret=4 # D3cold dev=\"0000:01:",
+    "url": "https://community.frame.work/t/high-power-drain-when-suspended-due-to-acpi-table-with-workaround/85433",
+    "created_utc": 1791944882,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 3.45,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Laptop user experiencing high power drain during suspend mode on Linux.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697366",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Payments Is Fully Set Up, but I Still Can't Connect My Bank Account — Almost 2 Weeks Without a Solution",
+    "text": "I’m posting this because I’m extremely frustrated with how Shopify has handled an issue that has prevented me from starting my business for almost two weeks. I recently opened my Shopify store and completed the Shopify Payments setup process. A Shopify support agent confirmed that my Shopify Payments account was fully set up and verified. However, whenever I try to connect my bank account, the connection is declined, and I’m unable to proceed. After contacting Shopify Support multiple times, I was eventually informed that PayPal is one of the third-party partner that Shopify Payments work with and they are responsible for this bank account connection decline. However, nobody has been able to explain the actual reason for the decline or provide a solution. The most frustrating part is that I’m being told to wait for PayPal to respond to Shopify’s email. It has now been almost two weeks, and I’m still waiting for an explanation from PayPal. Despite repeatedly asking Shopify Support to escalate the issue through direct escalation channels rather than simply waiting for an email response, I continue to receive vague updates that the team is still investigating the root cause. I’ve had to contact multiple support agents and repeatedly push for an escalation just to get someone to follow up on the issue. Even after the case was flagged as urgent, I still haven’t received a concrete answer or a clear timeline for resolution. Let me make one thing clear: I signed up for Shopify Payments, not PayPal. I’m using Shopify’s service, and this is a problem with the payment setup process that Shopify provides to its merchants. I understand that Shopify works with third-party partners behind the scenes. However, that shouldn’t mean merchants are left waiting indefinitely with no explanation, no actionable solution, and no clear timeline simply because a third-party partner hasn’t responded. I have only just opened my store and haven’t even had the chance to start selling. I’ve done nothing wrong, yet I’m losing valuable time while paying for a service that I cannot fully use. I don’t want to use another third-party payment processor. I specifically want to use Shopify Payments, and I expect Shopify to take ownership of this issue and help resolve it. Here is what I’m asking Shopify to do: Escalate this issue through direct channels with PayPal instead of continuing to wait for an email response. Provide a clear explanation of why my bank account connection is being declined , rather than repeatedly telling me that the team is still investigating. Involve the appropriate payment leadership team and explain what alternative solution Shopify can offer if PayPal fails to respond or takes too long to respond. Provide a concrete action plan and timeline for resolution , rather than leaving me in the dark indefinitely. I chose Shopify because I expected a reliable platform that would help me launch and operate my business. Instead, almost two weeks have passed without a resolution, and I still cannot properly get started. Has anyone else experienced this issue recently? Were you eventually able to connect your bank account, and how long did it take to resolve? I would also appreciate an official response from Shopify explaining what merchants are supposed to do when a third-party partner blocks their bank account connection and provides no timely resolution. Merchants shouldn’t have to spend weeks chasing support just to get a basic payment setup issue resolved. 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-payments-is-fully-set-up-but-i-still-cant-connect-my-bank-account-almost-2-weeks-without-a-solution/697366",
+    "created_utc": 1791903438,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.4,
+      "multiplier": 1.2,
+      "score": 11.28,
+      "money_matched": [
+        "paying for"
+      ],
+      "pain_matched": [
+        "frustrated",
+        "frustrating"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant unable to connect bank account and blocked from starting business.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697047",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Price Displaying Twice",
+    "text": "Hello! I’m about to announce my store publicly, but for some reason all of my products are showing duplicate prices! I suspected that the culprit was the currency converter app I installed, but even after uninstalling it, and trying a different one, and then disabling the new one multiple times, the issue has not gone away! Please help! https://www.polamaneli.store/ 15 posts - 7 participants Read full topic",
+    "url": "https://community.shopify.com/t/price-displaying-twice/697047",
+    "created_utc": 1791841004,
+    "score": 4,
+    "comments": 14,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Store owner struggling with persistent duplicate price display issues.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697069",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Partial Catalgoues & POS Issues",
+    "text": "Hi all, In the past, I’ve used POS Location Catalogues to manage special pricing at specific store locations. I recently tried creating a Sale Catalogue containing just a handful of products, but it caused issues with our POS, with products disappearing from the system. The only thing that resolved the issue was including all 10,000 SKUs in the catalogue. The downside is that maintaining and editing pricing becomes a bit of a nightmare when every catalogue needs to include our entire product range. We’ve continued working this way, but I’m hesitant to try partial catalogues again in case it causes the same POS issues. Has anyone tried using partial catalogues recently without running into problems? I’d love to hear about your experiences. Thanks! 4 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/partial-catalgoues-pos-issues/697069",
+    "created_utc": 1791859686,
+    "score": 1,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.3,
+      "multiplier": 1.2,
+      "score": 3.36,
+      "money_matched": [],
+      "pain_matched": [
+        "nightmare"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant experiencing POS inventory errors when using partial catalogs.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697051",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "What is your stock worth? The answer turns on what your tool does with the units that have no cost on them",
+    "text": "You want one number: what the stock on the shelf is worth at cost. Shopify holds the quantities and it holds a cost per item field, but it never multiplies the two for you, so the number comes from somewhere else - a report, an app, or a spreadsheet. Wherever it comes from, it has to decide something first, and it rarely tells you what it decided. A real shop has variants with the cost field empty. Three things can happen to those units. They can be counted as costing nothing. The total still looks authoritative, it is just smaller than the truth, and nothing on the screen says so. They can be dropped instead, which produces the same quietly smaller number for a different reason. Or they can be counted as units that cannot be valued, and reported beside the figure. The first two give you a number that is wrong in a direction you cannot see, and that is the number that goes to an accountant. The check takes a minute on your own setup. Find a variant with cost per item empty and some stock on hand, note your valuation total, fill the cost in, and look again. If the total jumps by more than that one product’s worth, something had been counting other empty ones as free too. What I would like to know from people actually doing this: what share of your variants have a cost on them at all? And when the year-end number goes to your accountant, does anyone reconcile it against anything, or does it go as it comes out? 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/what-is-your-stock-worth-the-answer-turns-on-what-your-tool-does-with-the-units-that-have-no-cost-on-them/697051",
+    "created_utc": 1791844442,
+    "score": 2,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.0,
+      "multiplier": 1.2,
+      "score": 3.0,
+      "money_matched": [],
+      "pain_matched": [
+        "spreadsheet"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant dealing with missing cost data issues during inventory valuation.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697022",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Feature request: Option to retain retail compare-at prices in discounted catalogs",
+    "text": "We operate a Shopify Plus store with a lot of B2B customers. When we sign up a B2B customer and allocate them a discounted catalog, they have no indication that their pricing has been discounted. Because the discount is not displayed, they assume they are not being offered the discount they were promised. The current implementation: When you create a discounted catalog, there is an option to include compare-at price . The way this works is that the compare-at field of the catalog is also automatically populated from basic retail pricing, and the compare-at field is also discounted like the price field. The effect is that existing retail discounts are carried over to the catalog, which does have it’s use case. But non-discounted products display with the reduced price, but no indication that it is reduced from retail pricing. Our suggestion: We want an additional switch, shown when include compare-at price is on, to control adjust compare-at price . If this new switch is on (on by default) then the existing behaviour is retained and the compare-at price is also reduced. If this switch is off, then then retail compare-at price is carried over to the catalog without any adjustment. The effect is that all products in the catalog show up with a discount. Reasoning: Discounting is a powerful way of making customers feel satisfied. Our B2B program is intended to encourage long-term support from our customers, and making their savings visible will be a significant advantage. 7 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/feature-request-option-to-retain-retail-compare-at-prices-in-discounted-catalogs/697022",
+    "created_utc": 1791826425,
+    "score": 0,
+    "comments": 6,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.4,
+      "multiplier": 1.2,
+      "score": 2.88,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant struggling with B2B customers not seeing discounted pricing tiers.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697062",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Mobile App Abandoned Cart UI",
+    "text": "got a small problem that i wonder if there is a fix to it on the mobile version of the app. i often check abandoned checkouts on my phone when i have a spare time, like on the train. when i open one abandoned cart in the shopify app, i really wish i can swipe or tap to go to the next or previous checkout. just like with the order list. but for abandoned carts, i have to go back to the list and tap the next one each time. also, tapping a product inside an abandoned checkout doesn’t open the product page, like it does on the web admin. it only opens variant page of the product (?) has anyone else run into this? is there a setting i’m missing, or is it just how the app works? 5 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/mobile-app-abandoned-cart-ui/697062",
+    "created_utc": 1791851435,
+    "score": 7,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.3,
+      "multiplier": 1.2,
+      "score": 2.76,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant frustrated by inefficient mobile app UI for abandoned checkouts.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697033",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "What Happened To The J & K Shortcut",
+    "text": "I use the J & K shortcut to go between orders and enter them into our production que. We are a DIY Screen printing shop and removing this feature makes our job harder. Can we please add that back in as well as the select all feature when making custom selections for custom selections? I used to be able to hit for example. Products>3x3>select all that use “3X3” Now i have to manually enter them and once a month the code that features that breaks and i have to restart that section all over again. 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/what-happened-to-the-j-k-shortcut/697033",
+    "created_utc": 1791831453,
+    "score": 0,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.8,
+      "multiplier": 1.2,
+      "score": 2.76,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant workflow hindered by removed keyboard shortcuts and search bugs.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697050",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Capital repayments hidden under “Adjustments”",
+    "text": "Shopify now deducts my Capital repayments from payouts and labels them “Adjustments.” The same label also covers chargebacks. There is no clear, clickable breakdown in the payout view. One payout contained seven deductions totaling $1,797.41. I had to contact support to identify them. My previous eight Capital loans used separate bank debits, which made bookkeeping much easier. This update creates unnecessary accounting work. Please restore the option for separate bank repayments, or clearly label these deductions “Shopify Capital repayment,” with clickable details and itemized exports. I can not comprehend the decision process for this. Does shopify not talking to merchants anymore? Do people who makes these know accounting? or is this their new AI writing codes and we have to suffer through? Are other merchants having this problem? 5 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-capital-repayments-hidden-under-adjustments/697050",
+    "created_utc": 1791843262,
+    "score": 0,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 1,
+      "pain": 0,
+      "engagement": 1.6,
+      "multiplier": 1.2,
+      "score": 1.92,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "$1,797.41"
+      ],
+      "always": true
+    },
+    "triage_reason": "Merchant facing accounting headaches due to hidden capital loan deductions.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697049",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Rollouts: Control results not showing. Did I set it up wrong?",
+    "text": "Hi all, I ran a test in Shopify Rollout split test and it finished see below screenshot. However i can only see results for the variant. Where can i see if the variation beat the control? Did i set something wrong. Most CRO programs show split between variation vs control so you can compare results. 4 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-rollouts-control-results-not-showing-did-i-set-it-up-wrong/697049",
+    "created_utc": 1791842595,
+    "score": 2,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.4,
+      "multiplier": 1.2,
+      "score": 1.68,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant unable to view split test conversion results correctly.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697358",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Billing",
+    "text": "I am enrolled in, and have paid, the annual fee. But Shopify keeps sending me monthly bills–and threatening to cut me off if I don’t pay them. Emails to ?? don’t help and there don’t seem to be people working at Shopify to solve this problem. If this were a store with people, I could have solved the problem in minutes: “Double billing, sir. Let’s take a look. Ah, yes. Let’s just change this. . There we are. Problem solved.” 4 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/billing/697358",
+    "created_utc": 1791899858,
+    "score": 1,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.3,
+      "multiplier": 1.2,
+      "score": 1.56,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant experiencing erroneous double billing and poor support response.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697130",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify jovelea is a fraud company or what?",
+    "text": "shopify jovelea is a fraud company or what ? On 07th Oct i have order the product but today is 13th Oct there no update for delivery and no reply from there customer care email address. i think i have victim of fraud … 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-jovelea-is-a-fraud-company-or-what/697130",
+    "created_utc": 1791877439,
+    "score": 4,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.2,
+      "multiplier": 1.2,
+      "score": 1.44,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Customer worried about potential store fraud and missing order updates.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697048",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Account Hacked & Payout Account Changed - Now Locked Out of Our Account",
+    "text": "We recently got hacked and the payout account on our store was changed. We couldn’t change the payout details as it requests the current details (which are the fraud details) We raised a ticket with Shopify, secured the account changing the email, password and additional authentification. I requested for the payouts to be suspended immediately, so no money was deposited into the wrong account. This was Sunday 11th October AM. Yesterday (Monday 12th October) around 11:00am-12:00pm the account was locked. I assume this is because the Shopify team is now investigating, but I haven’t had an email confirming this, or to confirm that payouts have been suspended. The account is still locked and I’m still unsure whether payouts are suspended, the account details don’t seem to have changed, and this will be the first day payouts will be processed since the breach. I’ve raised ticket #70964814 on Sunday on the original issue, and submitted another request yesterday evening asking for an update, but given we’re locked out of the account, we can’t even sign in to “speak with a human” as it just redirects you to the submission form or the general Shopify support page What do we do now? What’s the timeline? 4 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/account-hacked-payout-account-changed-now-locked-out-of-our-account/697048",
+    "created_utc": 1791841076,
+    "score": 0,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.2,
+      "multiplier": 1.2,
+      "score": 1.44,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Store locked out and hacked with payout accounts fraudulently changed.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:community.shopify.com:697443",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Victa Mobile poor scanner performance",
+    "text": "Hi, We had the previous Shopify POS hardware, we thought we’d give Shopify’s new Victa Mobile a try since they stopped supporting the old hardware and it was getting very slow anyway. Everything looks and feels right, until we started to scan some products with the barcode scanner. It doesn’t work, the scan needs to be at the exact right distant from the code, too far or too close would not work at all. With the previous older hardware, although moving from cart to checkout became extremely laggy and slow, at least it would recognise barcodes within split of a second. The new Victa Mobile, we need seconds if not tens of seconds to just scan ONE product. This is absolutely insane, I really want to ask Shopify’s staff why did they make such design or signed off with such extremely poor scanner hardware. In short, the Victa Mobile is not useable in retail environment as a handheld standalone, the scanner is not industry standard, it’s performance is far from meeting any standards within the past 20 years. 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/victa-mobile-poor-scanner-performance/697443",
+    "created_utc": 1791934782,
+    "score": 2,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.0,
+      "multiplier": 1.2,
+      "score": 1.2,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Retailer struggling with poor barcode scanner performance on new hardware.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165182",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Feature Request: Option to skip Time Logs in Job Card per Operation (Work Order / BOM)",
+    "text": "Summary Add a checkbox “Skip Time Logs” (Yes/No) on the Operation (and/or BOM Operation / Work Order Operation) so that Job Cards for that operation can be submitted without entering time logs. Problem When a BOM has “With Operations” enabled, the Work Order creates Job Cards for each operation. On submit, ERPNext requires at least one time log: “Time logs are required for Job Card …” For many small manufacturers, operators do not track start/end time for every operation. They only need to confirm that the operation is done and record the completed quantity. Entering dummy time logs every time is extra work and gives wrong time data. Current Workaround We use a Server Script (Job Card, Before Submit) that adds a time log automatically using the planned time (time_required) from the BOM operation. This works, but it is a workaround, and every company has to build it themselves. Proposed Solution Add a checkbox “Skip Time Logs” in: Operation master (default for that operation), and/or BOM Operation row, copied to Work Order Operation If checked, the Job Card: Can be submitted with an empty Time Logs table Uses Completed Qty entered directly on the Job Card Uses planned time (time_required) for Work Order actual time and operating cost, or leaves it as planned If unchecked, keep the current behaviour (time logs mandatory). Benefits Simpler shop-floor process for operations where time tracking is not needed No dummy or incorrect time data Still keeps operation-wise progress tracking through Job Cards Version ERPNext: v16 Frappe: v16 5 posts - 4 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/feature-request-option-to-skip-time-logs-in-job-card-per-operation-work-order-bom/165182",
+    "created_utc": 1791812249,
+    "score": 0,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 1.6,
+      "multiplier": 1.25,
+      "score": 5.75,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Small manufacturer needing to skip time logs for specific operations.",
+    "pooled_on": "2026-10-14"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165174",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Attachment issue (could not find folder HOME/ATTACHMENTS",
+    "text": "Hi everyone, I am trying to upload a PDF to the purchase invoice. system hosted in Frappe Cloud, but it suddenly throws an error saying it Could not find Folder Home/attachments, or when I go into the file directory and try to upload, it says it could not find the folder Home. 2 posts - 2 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/attachment-issue-could-not-find-folder-home-attachments/165174",
+    "created_utc": 1791805810,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.4,
+      "multiplier": 1.25,
+      "score": 4.25,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "User experiencing file upload and folder path errors in cloud ERP.",
+    "pooled_on": "2026-10-14"
+  }
+]

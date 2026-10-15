@@ -10,6 +10,10 @@ competitors, and lists tasks different people keep paying freelancers for.
 $0 budget. Free API tiers only, no card anywhere. Built for a beginner
 coder to run and tune without touching Python.
 
+Sister project (2026-10-14): **Gap Radar** (`../gap-radar`, local repo) —
+products UK shoppers search for that few Amazon UK sellers serve well;
+weekly Telegram top 10 on Sundays.
+
 ## Status (2026-10-08)
 
 | Stage | State |

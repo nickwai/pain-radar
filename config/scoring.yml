@@ -163,6 +163,11 @@ pool:
                     # overlapping weeks; cut to 7 on 2026-10-11 (user: 14 too long).
   weekday: 0        # 0 = Monday. Only used for "next weekly" in daily messages;
                     # the real schedule is the cron in weekly.yml.
+  retriage: true    # ADDED 2026-10-15: weekly re-triages the whole pool in one
+                    # batch before clustering; only posts still real_problem
+                    # go on. Daily batches (~90 noisy posts) pooled 46/46 as
+                    # real, one-batch re-check kept ~16. Drops are listed in
+                    # reports/rejected/week-DATE.md. Failed call = keep all.
 
 # Competitor check (radar/competitors.py) on ideas that cleared the bar:
 # HN Show HN + GitHub + Shopify App Store + WordPress plugin search (app

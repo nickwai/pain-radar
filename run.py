@@ -163,6 +163,7 @@ def cmd_report(args: argparse.Namespace) -> int:
     report_md = render(ideas, posts_by_id, config, date=date, gigs=gigs)
     rejected_md = render_rejected(rejected, posts_by_id, config, date=date)
     rejected_md += render_orphans(triage, ideas + rejected, posts_by_id)
+    rejected_md += retriage_md
     rejected_md += render_triage(triage, posts_by_id)
     # ADDED 2026-10-07: say whether the home-PC feeds made it into this run.
     from radar.collect import local_feeds_status
@@ -286,6 +287,32 @@ def _report_pool_day(args, posts, config, triage, date, seen) -> int:
     return 0
 
 
+def _retriage_pool(posts: list[dict], config: dict) -> tuple[list[dict], str]:
+    """Keep pooled posts the one-batch re-triage still calls real_problem.
+    Returns (kept posts with the new reason, markdown listing the drops).
+    A failed call keeps everything: better a noisy week than a lost one."""
+    from radar.report import _md_title
+    from radar.synthesize import triage_posts
+
+    rows = {r["id"]: r for r in triage_posts(posts, config)}
+    if not rows:
+        print("[retriage] failed - keeping all pooled posts", flush=True)
+        return posts, "\n**Pool re-triage:** call failed - all pooled posts kept.\n"
+    kept, dropped = [], []
+    for p in posts:
+        r = rows.get(p["id"])
+        if r is None or r["verdict"] == "real_problem":
+            kept.append({**p, "triage_reason": r["reason"]} if r else p)
+        else:
+            dropped.append((p, r))
+    print(f"[retriage] {len(posts)} pooled -> {len(kept)} still real_problem", flush=True)
+    md = (f"\n**Pool re-triage:** {len(posts)} pooled -> {len(kept)} still real_problem; "
+          f"{len(dropped)} dropped (check for wrong cuts):\n\n")
+    md += "".join(f"- `{r['verdict']}` — [{_md_title(p['title'][:80])}]({p['url']}) "
+                  f"({p.get('channel', '?')}): {r['reason']}\n" for p, r in dropped)
+    return kept, md
+
+
 def cmd_weekly(args: argparse.Namespace) -> int:
     """ADDED 2026-10-08: cluster every pooled real problem of the last
     pool.days days at once, competitor-check what clears the bar, write
@@ -305,6 +332,11 @@ def cmd_weekly(args: argparse.Namespace) -> int:
     since = (dt.date.fromisoformat(until) - dt.timedelta(days=days - 1)).isoformat()
     period = f"{since} → {until}"
     posts = load_window(ROOT / "data" / "pool", until, days)
+    # ADDED 2026-10-15 (pool.retriage): second triage of the whole pool in
+    # one batch - daily triage is loose in big noisy batches.
+    retriage_md = ""
+    if posts and (config.get("pool") or {}).get("retriage"):
+        posts, retriage_md = _retriage_pool(posts, config)
     pooled_days = len({p.get("pooled_on") for p in posts})
     intro = (f"Clustered {len(posts)} real problems pooled on {pooled_days} "
              f"day{'s' if pooled_days != 1 else ''}.")

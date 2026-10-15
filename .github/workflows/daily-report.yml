@@ -42,6 +42,12 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "manual run - always proceeding"
             echo "should_run=true" >> "$GITHUB_OUTPUT"
+          elif [ -f "reports/$today.md" ] && grep -q "Triage failed today" "reports/$today.md"; then
+            # FIX 2026-10-15: on 10-13 a Gemini HTTPError wrote a "Triage
+            # failed" report at the first cron and the 4 retries then skipped
+            # it, losing the day. A failed report doesn't count as done.
+            echo "reports/$today.md says triage failed - retrying."
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
           elif [ -f "reports/$today.md" ]; then
             echo "reports/$today.md already exists - nothing to do."
             echo "should_run=false" >> "$GITHUB_OUTPUT"

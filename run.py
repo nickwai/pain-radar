@@ -229,7 +229,7 @@ def _report_pool_day(args, posts, config, triage, date, seen) -> int:
     real_problem posts to data/pool/DATE.json; `run.py weekly` clusters the
     window. The daily report + Telegram carry the pool count and gigs."""
     from radar.collect import local_feeds_status
-    from radar.history import drop_seen_gigs
+    from radar.history import drop_seen_gigs, norm_url
     from radar.pool import load_window, save_day
     from radar.report import gigs_from_triage, render_daily_pool, render_triage
     from radar.telegram import format_daily_pool
@@ -250,8 +250,16 @@ def _report_pool_day(args, posts, config, triage, date, seen) -> int:
     # (nxt - days, date]. A rolling `days` window on a Tuesday also counted
     # last week's already-clustered posts.
     days_left = (dt.date.fromisoformat(nxt) - dt.date.fromisoformat(date)).days
-    pool_size = len(load_window(pool_dir, date,
-                                max(pool_cfg.get("days", 7) - days_left, 1)))
+    window = max(pool_cfg.get("days", 7) - days_left, 1)
+    pool_size = len(load_window(pool_dir, date, window))
+    # FIX 2026-10-15: a topic stays on /latest for days and is re-triaged,
+    # so 10-15 "13 new" included 2 already pooled 10-14. The pool file keeps
+    # every re-seen post (newest wins in load_window); report + Telegram show
+    # only posts not already in this week's pool.
+    prev_day = (dt.date.fromisoformat(date) - dt.timedelta(days=1)).isoformat()
+    earlier = {norm_url(p.get("url") or p["id"])
+               for p in load_window(pool_dir, prev_day, window - 1)} if window > 1 else set()
+    pooled = [p for p in pooled if norm_url(p.get("url") or p["id"]) not in earlier]
     gigs, old_gigs = drop_seen_gigs(gigs_from_triage(triage), posts_by_id, seen)
     report_md = render_daily_pool(date, pooled, pool_size, pool_cfg.get("days", 7),
                                   nxt, gigs, posts_by_id, bool(triage))

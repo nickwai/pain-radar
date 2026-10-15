@@ -555,7 +555,12 @@ verdict, reason (max 12 words). Verdicts:
   scheduling, reconciling, setting the same thing up for each new client)
   is real_problem, even if phrased "what do you do when...?" or "how do
   other agencies handle...?"
-- product_bug_report: a defect in a vendor's product that only the vendor can fix
+- product_bug_report: only the vendor of the product can fix it - nobody
+  else could sell a fix: a bug or outage in their product, a faulty device,
+  the poster's own account/billing/payout/verification/support case, a
+  hacked or locked account, or the vendor's policy (what it allows or bans).
+  NOT product_bug_report: a missing FEATURE or a recurring workflow gap that
+  an outside app, plugin, integration or service could fill - real_problem
 - out_of_industry: a real problem, but outside the industries above
 - paid_gig: someone looking to HIRE a freelancer/expert/contractor for paid work
   (use this even if the work is in any industry; NOT for people advertising
@@ -576,7 +581,9 @@ verdict, reason (max 12 words). Verdicts:
   hints, not proof - "I built a workflow" in a help request is not promo.
   A business owner describing their OWN unsolved problem is real_problem
   even if they mention what they sell
-- not_a_problem: news, opinion, showcase, discussion, announcement, small talk
+- not_a_problem: news, opinion, showcase, discussion, announcement, small
+  talk, or a SHOPPER/consumer complaining about a store or seller (the
+  reader builds for businesses, not their customers)
 
 POSTS:
 {posts}

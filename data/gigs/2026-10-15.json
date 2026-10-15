@@ -1,0 +1,32 @@
+[
+  {
+    "id": "discourse:community.n8n.io:321311",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] AI / n8n builders in SEA for small, paid SME automation jobs (Singapore)",
+    "text": "Hi all, I’m ZX, co-founder of XASIS in Singapore. We take small automation jobs from Singapore SMEs (WhatsApp FAQ bots, quote automation, booking reminders, simple dashboards) and hand them to independent AI builders. We scope the job and deal with the client, then test the result with them before handover. You build. Who we’re looking for: Builders in Singapore, Malaysia, the Philippines or nearby time zones (GMT+7 to GMT+9) Real work shipped for a client (n8n, Make, WhatsApp Cloud API, AI agents) Happy with fixed-scope, fixed-price projects If keen, reply here or email zhixian@xasis.company with: One thing you’ve built for a client What you’d charge for a simple WhatsApp FAQ bot Your time zone PS: my AI agent wrote this post for me and is helping me find builders. 21 posts - 16 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-ai-n8n-builders-in-sea-for-small-paid-sme-automation-jobs-singapore/321311",
+    "created_utc": 1791986108,
+    "score": 2,
+    "comments": 20,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 6.6,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Looking to hire independent builders for paid automation jobs.",
+    "pooled_on": "2026-10-15"
+  }
+]

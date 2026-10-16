@@ -1,0 +1,66 @@
+[
+  {
+    "id": "discourse:community.make.com:117420",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Senior Meta Lead Gen Media Buyer | Remote | $3,000–$4,000 USD/Month",
+    "text": "Senior Meta Lead Gen Media Buyer | Remote | $3,000–$4,000 USD/Month Ready to lead Meta strategy for an account with $10,000+ in daily ad spend ? I’m sharing an opportunity through Talented for an experienced media buyer to join a US legal lead generation company serving law firms. You’ll guide an existing buying team, lead creative testing, and work directly with the founder on campaign performance. Eligible locations: You must currently live in Argentina, South Africa, Brazil, or Colombia . Work setup: Full-time remote contractor role with daily overlap of US Eastern business hours. Compensation: $3,000–$4,000 USD per month, paid directly by the client. What you’ll do: Set the Meta campaign testing plan and budget strategy. Guide junior buyers on what to test, scale, and stop. Research competitors and develop fresh, compliant ad concepts. Evaluate CPL, qualified-lead quality, and client outcomes to improve performance. Share daily performance insights and recommended actions with the founder. You could be a strong fit if you have: Managed Meta lead generation budgets of $5,000+ per day . Directed other media buyers’ testing and scaling decisions. Turned Meta Ad Library research into effective, compliant creative concepts. Diagnosed and improved declining ad account performance. Strong professional English communication skills. A professional workstation with a webcam, noise-canceling headset, and stable internet of 25 Mbps or higher . Experience in US legal, personal injury, motor vehicle accident, or other high-ticket lead generation is a plus. Application process: A video application, skill assessment, video interview, compensated practical assessment, and client interview. View the full details and apply: apply.scouttalented.com Senior Meta Lead Gen Media Buyer | $10K+/Day Ad Budgets | USA Client - Talented Join a US legal lead generation company that delivers motor vehicle accident leads exclusively to law firms across the country, and set its Meta strategy at $10K+ per day in spend. The founder built the ad program personally before growing an... Important referral instructions: When answering “How did you find us?” , select “Word of Mouth” and enter Marjorie Lorraine Dagdagan Dawal . Once you’ve completed your application, @mention me in this thread so I can submit your referral. Please have the following information ready: Full name Email used for your application Country where you currently live and are applying from ( Argentina, South Africa, Brazil, or Colombia) Role you applied for Please send your application email privately. If this sounds like your next move, I’d love to hear from you. Know someone who fits? Feel free to share this opportunity! 1 post - 1 participant Read full topic",
+    "url": "https://community.make.com/t/senior-meta-lead-gen-media-buyer-remote-3-000-4-000-usd-month/117420",
+    "created_utc": 1792136669,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 3,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 17.5,
+      "money_matched": [
+        "/mo",
+        "per month"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$3,000",
+        "$4,000",
+        "$3,000",
+        "$4,000"
+      ]
+    },
+    "triage_reason": "Someone is posting a remote job opening for a media buyer.",
+    "pooled_on": "2026-10-16"
+  },
+  {
+    "id": "discourse:community.n8n.io:321311",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] AI / n8n builders in SEA for small, paid SME automation jobs (Singapore)",
+    "text": "Hi all, I’m ZX, co-founder of XASIS in Singapore. We take small automation jobs from Singapore SMEs (WhatsApp FAQ bots, quote automation, booking reminders, simple dashboards) and hand them to independent AI builders. We scope the job and deal with the client, then test the result with them before handover. You build. Who we’re looking for: Builders in Singapore, Malaysia, the Philippines or nearby time zones (GMT+7 to GMT+9) Real work shipped for a client (n8n, Make, WhatsApp Cloud API, AI agents) Happy with fixed-scope, fixed-price projects If keen, reply here or email zhixian@xasis.company with: One thing you’ve built for a client What you’d charge for a simple WhatsApp FAQ bot Your time zone PS: my AI agent wrote this post for me and is helping me find builders. 27 posts - 21 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-ai-n8n-builders-in-sea-for-small-paid-sme-automation-jobs-singapore/321311",
+    "created_utc": 1791986108,
+    "score": 2,
+    "comments": 26,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 6.6,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "An agency owner looking to hire independent AI/n8n builders for client projects.",
+    "pooled_on": "2026-10-16"
+  }
+]

@@ -1,0 +1,201 @@
+[
+  {
+    "id": "discourse:forum.obsidian.md:119486",
+    "source": "discourse",
+    "channel": "forum.obsidian.md",
+    "group": "automation",
+    "title": "Add support for grey and brown in the new highlight colour feature",
+    "text": "Use case or problem I love the new highlight colour feature, but I would appreciate if a grey highlight was available for visual consistency with the grey of quote callouts. Since there is no grey circle emoji, imho or would work best. Proposed solution Introduce a grey highlight in the same manner as the other supported colours, via or . Current workaround (optional) To either use another highlight colour for quotes despite the mismatch with callouts, or use the Prism theme’s built-in highlights that are invoked via HTML as <mark class=\"grey\">text</mark> Related feature requests (optional) Couldn’t find any. 3 posts - 2 participants Read full topic",
+    "url": "https://forum.obsidian.md/t/add-support-for-grey-and-brown-in-the-new-highlight-colour-feature/119486",
+    "created_utc": 1792139507,
+    "score": 1,
+    "comments": 2,
+    "signals": {
+      "combo": true,
+      "money": 2,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.9,
+      "multiplier": 1.1,
+      "score": 12.54,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "User is requesting a missing UI feature for custom grey highlight colors.",
+    "pooled_on": "2026-10-16"
+  },
+  {
+    "id": "discourse:community.shopify.com:698797",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify UI Update Frustrations",
+    "text": "As someone who serves as the sole captain of uploading and updating Shopify PIPs - who else HATES the new UI update? The open text field is much more convenient than the + sign prerequisite. We have dozens of metafields, most with single line text. The + button makes it much more difficult and tedious to edit every line of text content. For example: when trying to highlight/select text now within a text box, the UI thinks I’m trying to re-order the metafields, preventing me from being able to highlight text at all. This would be especially time consuming for anyone uploading copy, because instead of one large copy and paste between a document and Shopify, there now as to be individual copies/pastes for each text type - adding about 30-40 minutes to a standard PIP creation that already takes 30 minutes. As someone who creates upwards of 25 PIPs per month and that task being only 10% of my role in Shopify, it creates deep inefficiencies not only creating content, but editing content and see the full view of each metafield now that there is also a “Show More” CTA to visualize the all PIP content. I’ve already submit my feedback with support, but there’s no going back from this update. I feel like they really pulled the rug out from under us with these added clicks, especially with Q4/holiday on the horizon. TIME is critical when it comes to uploading and editing all content. PLEASE Shopify devs: Revert back to the previous metafield entries ASAP. 5 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-ui-update-frustrations/698797",
+    "created_utc": 1792092630,
+    "score": 1,
+    "comments": 4,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 1.7,
+      "multiplier": 1.2,
+      "score": 12.84,
+      "money_matched": [
+        "per month"
+      ],
+      "pain_matched": [
+        "copy and paste",
+        "tedious"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "A merchant frustrated by a new Shopify UI update making metafield editing tedious.",
+    "pooled_on": "2026-10-16"
+  },
+  {
+    "id": "discourse:community.shopify.com:698122",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Please allow traditional pocket knives in Shopify Catalog",
+    "text": "We’re a small shop in eastern Kentucky selling traditional Case XX folding pocket knives, like trappers, stockmen and Sod Buster Jrs. People carry them to work, hand them down and collect them. Shopify Catalog currently excludes “Pocket Collectible Knives,” so only 31 of our 256 products show up there, and the rest can’t be found through Shop, Shop MCP or AI shopping tools. These knives are legal to sell across the US, and Google Merchant Center and eBay list them without trouble. We’d ask Shopify to allow traditional folding pocket knives, separate from tactical or restricted blades. If you sell knives too, please add your voice below. Larry Jude, Pigeon Roost Knives 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/please-allow-traditional-pocket-knives-in-shopify-catalog/698122",
+    "created_utc": 1791995619,
+    "score": 1,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.5,
+      "multiplier": 1.2,
+      "score": 0.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "A small merchant requesting that traditional folding pocket knives be included in Shopify Catalog.",
+    "pooled_on": "2026-10-16"
+  },
+  {
+    "id": "discourse:community.shopify.com:698713",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Show opening hours with local time zones and more emails",
+    "text": "Some ideas: Customer service hours added to store profile settings. Time zone is great, but it would be nice to say 8–6 p.m. CET for people. More than one email address… maybe a few for reference, like [email removed] [email removed] and [email removed] Since the contact page is auto-synced now, it would be good to add a privacy email for privacy auto-sync. So we are complaint 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/show-opening-hours-with-local-time-zones-and-more-emails/698713",
+    "created_utc": 1792070764,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.4,
+      "multiplier": 1.2,
+      "score": 0.48,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "A merchant proposing feature additions for customer service hours and privacy emails.",
+    "pooled_on": "2026-10-16"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "What do you do when an estimate goes unanswered?",
+    "text": "Genuine question — I've been talking to a lot of shops lately. You send the quote, hear nothing back. Do you follow up? How many times, and how — call, text, email? Or just move on to the next job? Trying to understand what actually works vs. what everyone means to do but doesn't. What's your process?",
+    "url": "https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+    "created_utc": 1792128387,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 3.0,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Contractors dealing with unanswered estimates and follow-up workflow challenges.",
+    "pooled_on": "2026-10-16"
+  },
+  {
+    "id": "discourse:community.bunpro.jp:226139",
+    "source": "discourse",
+    "channel": "community.bunpro.jp",
+    "group": "asia",
+    "title": "Turn off red coloured text",
+    "text": "For some grammar points, the grammar structure is split across multiple parts of a sentence. In these exercises, the part of the grammatical structure that is already present is highlighted in red, as shown in the example below. Untitled 1879×926 39.5 KB My problem is that I can often guess what I need to fill in just by looking at the red text. Instead of learning how the grammar works, I end up matching the red part to the missing part of the grammar structure. Is there a way to disable this colouring? I’ve looked through the settings but haven’t been able to find an option for it. 1 post - 1 participant Read full topic",
+    "url": "https://community.bunpro.jp/t/turn-off-red-coloured-text/226139",
+    "created_utc": 1792143385,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "A language learner requesting a settings option to disable red grammar hints.",
+    "pooled_on": "2026-10-16"
+  },
+  {
+    "id": "rss:dealerrefresh:https://forum.dealerrefresh.com/threads/what-actually-breaks-first-at-30-60-90-in-bhph-collections-%E2%80%94-the-follow-up-not-the-customer.13623/",
+    "source": "rss",
+    "channel": "dealerrefresh",
+    "group": "automotive",
+    "title": "What actually breaks first at 30/60/90 in BHPH collections — the follow-up, not the customer",
+    "text": "In the shops we work with, what breaks first at 30/60/90 isn't the customer — it's the follow-up. A collector starts a text conversation with a past-due customer, gets pulled into something else, and never follows up. At 60 days the customer disputes something and nobody can reconstruct what was... Read more",
+    "url": "https://forum.dealerrefresh.com/threads/what-actually-breaks-first-at-30-60-90-in-bhph-collections-%E2%80%94-the-follow-up-not-the-customer.13623/",
+    "created_utc": 1792097119,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Automotive dealerships struggling with recurring follow-up chores in collections.",
+    "pooled_on": "2026-10-16"
+  }
+]

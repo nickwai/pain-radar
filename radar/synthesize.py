@@ -154,7 +154,15 @@ PROMO_RE = re.compile(
     r"|\b(?:teams|clients|companies) (?:i|we) (?:speak|talk|work) (?:to|with)\b"
     r"|\bthe fix (?:is|was)\b|\bhere'?s (?:how|what)\b|\bbook a call\b"
     # Widened 2026-10-12: customer-discovery posts (would-be builders).
-    r"|\bno product to promote\b|\bbefore building\b|\bresearching (?:this|the)\b",
+    r"|\bno product to promote\b|\bbefore building\b|\bresearching (?:this|the)\b"
+    # Widened 2026-10-17: 3 vendor posts pooled 10-16/17 - "Disclosure: I
+    # build n8n automations" (cut by HEAD_CHARS), "in the shops we work
+    # with... we built our AI Collector" (RSS excerpt), a tutorial for the
+    # poster's own n8n community node.
+    r"|\bdisclosure\b|\b(?:i|we) build\b"
+    r"|\b(?:shops|stores|dealers|dealerships|merchants|agencies|customers) "
+    r"(?:i|we) (?:speak|talk|work) (?:to|with)\b"
+    r"|\bcommunity node\b|\bthere(?:'s| is) a better way\b",
     re.IGNORECASE)
 
 # Platform/code domains that show up in ordinary posts, not product pitches.

@@ -1,0 +1,120 @@
+[
+  {
+    "id": "discourse:community.shopify.dev:38683",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "How to bulk edit the new \"Has no standardized identifier\" Checkbox?",
+    "text": "I’m trying to get our store compliant with the new EU rules going into effect November 1st. We have hundreds of variants requiring the “Has no standardized identifier” box to be checked in order to pass customs. Am I missing something, or is there no way to automate this? We are also working on a replacement for our customizer app, which will probably not be ready by November 1st. Meaning we will have to set every single variant manually not once, but twice… 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.dev/t/how-to-bulk-edit-the-new-has-no-standardized-identifier-checkbox/38683",
+    "created_utc": 1792283085,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [
+        "automate this",
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Merchant needs a way to bulk edit standardized identifiers for EU rules.",
+    "pooled_on": "2026-10-18"
+  },
+  {
+    "id": "discourse:community.shopify.com:699950",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Selling wholesale on Shopify: how do you notice when a B2B buyer stops reordering?",
+    "text": "For those selling wholesale or B2B on Shopify: how do you catch a regular buyer who has quietly stopped ordering? Shopify B2B covers companies, catalogs and payment terms, but I haven’t found anything built in that flags “this account usually orders every 3 weeks and it’s been 7”. What I mostly see is someone exporting orders now and then, sorting by last order date and emailing whoever looks late, which tends to slip on busy weeks. Disclosure: I build n8n automations for Shopify B2B, and while testing a reorder reminder two things surprised me: A fixed rule like “remind after 30 days” fits almost nobody. Buyers have very different rhythms, so using each buyer’s own typical gap between past orders worked much better. Buyers whose last order hasn’t shipped yet should be skipped. A “time to reorder?” email while they’re still waiting for the last delivery looks careless. Curious how others handle it: Do you track reorder timing per buyer, or just by a fixed number of days? Does the follow-up come from sales personally, or an automated email? Has anyone found that a pre-filled “reorder the same items” link actually gets used by B2B buyers? 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/selling-wholesale-on-shopify-how-do-you-notice-when-a-b2b-buyer-stops-reordering/699950",
+    "created_utc": 1792230114,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.4,
+      "multiplier": 1.2,
+      "score": 0.48,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant needs automated flagging when wholesale B2B buyers stop reordering.",
+    "pooled_on": "2026-10-18"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165260",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Entry of Purchase Invoice without PO details, How to link",
+    "text": "What if we have made a purchase order in ERPNext, the material is received, and we create a new invoice manually in spite of creating an invoice via e purchase order? How can we track that the material that the the material received is against the same purchase order? How to reduce this type of work, where few materials come without PO and few come with PO. How to map in ERPNEXT 2 posts - 2 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/entry-of-purchase-invoice-without-po-details-how-to-link/165260",
+    "created_utc": 1792248872,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 3,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.4,
+      "multiplier": 1.25,
+      "score": 17.38,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "ERPNext user needs a streamlined way to map and link invoices received without POs.",
+    "pooled_on": "2026-10-18"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165265",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Extending Frappe CRM: Creating a lightweight Quotation/Proposal custom DocType without ERPNext",
+    "text": "Hi everyone I am currently deploying a lean, high-performance commercial suite based exclusively on Frappe Framework and Frappe CRM for an implementation where only require sales pipeline management and messaging. The standard Frappe CRM features (Leads, Deals, pipeline management, and WhatsApp integration) are perfect for workflow. However, there is a critical requirement that is missing from the core CRM app: generating formal Quotation/Proposal PDFs for clients without pulling in the massive overhead of ERPNext. No everybody needs full accounting, stock valuation, or warehouse management modules—they just need to quote and sell. To solve this, I want to build a custom lightweight solution inside a dedicated custom app. I would love to get the community’s feedback, best practices, or potential pitfalls regarding my architectural design. My Proposed Design: I intend to create a new custom DocType called CRM Quotation with the following logic: Hybrid Relationships (Fields): • deal: An optional Link field pointing to CRM Deal. • party_type: A Select field with options: CRM Organization and CRM Contact. • party: A Dynamic Link field dependent on party_type. • items: A Table field (Child DocType) pulling products and rates from the CRM catalog. Creation Workflows (Dual Entry-Points): • Workflow A (From Deal): A Vue 3 custom action button injected via CRM Form Script into the CRM Deal view. Clicking it fetches the current Deal ID, automatically maps the associated Organization/Contact, copies the pre-selected products into the child table, and redirects the salesperson to the pre-filled CRM Quotation. • Workflow B (Standalone / Free Creation): Creating a quotation directly from the custom app menu or awesomebar. The deal field remains empty, allowing the salesperson to freely choose a party_type (Organization or Contact), select any client from the CRM database, and add items manually. Output: A standard Frappe Print Format to export clean, professional PDFs to send via email or WhatsApp. Questions for the Community: Since Frappe CRM v16 uses a modern Vue 3 interface, what is the recommended way to inject custom top-bar action buttons or tab panel elements into the CRM Deal view seamlessly? Are there official UI script conventions or hooks I should look at? Has anyone else built a lightweight quoting extension specifically for Frappe CRM? Are there any hidden dependencies or upcoming roadmaps in the core CRM app that might conflict with a custom CRM Quotation DocType? Any recommendations on handling tax calculations (like a flat local VAT) cleanly within the Server Script controller for this custom setup? Looking forward to your insights, technical advice, or suggestions! Best regards 1 post - 1 participant Read full topic",
+    "url": "https://discuss.frappe.io/t/extending-frappe-crm-creating-a-lightweight-quotation-proposal-custom-doctype-without-erpnext/165265",
+    "created_utc": 1792270205,
+    "score": 1,
+    "comments": 0,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.1,
+      "multiplier": 1.25,
+      "score": 9.5,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Needs a lightweight quotation and proposal custom DocType built on Frappe Framework without ERPNext.",
+    "pooled_on": "2026-10-18"
+  }
+]

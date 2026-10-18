@@ -1,0 +1,63 @@
+[
+  {
+    "id": "discourse:community.n8n.io:322016",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "N8n + MirrorFly Developer for Video Conferencing Automation",
+    "text": "Hi everyone, I’m looking for an experienced automation developer who can help me build a video conferencing automation system using n8n + MirrorFly + API integrations. This is a paid freelance project with clear requirements and a defined scope. I’ll keep this as concise and technical as possible so you know exactly what’s involved. Project Overview I need to build an automated video conferencing workflow using n8n and MirrorFly that will: Create video meetings automatically based on predefined triggers. Generate meeting details and share them with participants. Schedule meetings using calendar integrations. Send meeting invitations and reminders through email or messaging services. Manage meeting related events through webhooks and APIs. (Optional add-on) Automate meeting recordings and post meeting notifications. All of this needs to run through n8n workflows, with MirrorFly providing the video conferencing capabilities. Core Requirements 1. MirrorFly Video Conferencing Integration Integrate MirrorFly Video Call API and SDK. Create and manage video meetings through supported APIs. Generate or retrieve meeting joining details. Handle meeting events through webhooks or callbacks where supported. Support one to one and group video calls. Connect MirrorFly with n8n using HTTP requests, webhooks, or a custom integration where required. 2. Meeting Scheduling and Management Trigger meeting creation from form submissions, CRM updates, or other events. Integrate with Google Calendar, Calendly, or similar scheduling services. Send meeting invitations to participants. Schedule automatic reminders before meetings. Handle meeting cancellations and rescheduling. 3. Automated Notifications Send meeting details through email or supported messaging services. Notify participants when a meeting is scheduled, updated, or cancelled. Send reminders at predefined intervals. Support optional Slack or Microsoft Teams notifications. Use structured data to pass meeting details between workflows. 4. CRM Integration Integrate with HubSpot, Salesforce, or Pipedrive to: Trigger meeting workflows based on CRM events. Associate meetings with relevant contacts or deals. Update CRM records when meetings are scheduled or completed. Store meeting details and supported recording links. 5. Post Meeting Automation Trigger workflows when a meeting ends, using supported events or callbacks. Send follow up emails to participants. Update CRM records with meeting status. Store meeting metadata and recording links when available. Trigger additional workflows based on meeting outcomes. 6. Optional Premium Feature: Meeting Recording and Streaming If you have experience with video recording and streaming integrations, please mention it. This feature may include: Automating meeting recording through supported MirrorFly capabilities. Retrieving recording details or links. Triggering workflows when recordings become available. Integrating supported RTMP or HLS streaming workflows where required. Tech Stack You must be comfortable with: n8n: Webhooks, HTTP Request nodes, conditional logic, API integrations, and asynchronous workflows. MirrorFly: Video Call API, SDK integration, and supported meeting capabilities. Calendar APIs: Google Calendar, Calendly, or similar services. CRM integrations: HubSpot, Salesforce, or Pipedrive. Backend development: JavaScript or other technologies when a custom integration is required. Deliverables Fully configured n8n workflows. MirrorFly integration with the required video conferencing functionality. Automated meeting scheduling and notification workflows. Documentation for future maintenance. One handover and training session. 30 days of bug support after delivery. Budget The budget is flexible depending on experience, but roughly: Base system: £800–£1,000 Advanced features and integrations: £800–£1,200 Payment can be arranged through an agreed platform. How to Apply Please reply with: Your experience with n8n and API integrations. Your expe",
+    "url": "https://community.n8n.io/t/n8n-mirrorfly-developer-for-video-conferencing-automation/322016",
+    "created_utc": 1792183091,
+    "score": 4,
+    "comments": 47,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 3.3,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "£800",
+        "£1,000",
+        "£800",
+        "£1,200"
+      ],
+      "hiring": true,
+      "hiring_matched": "looking for an experienced automation developer"
+    },
+    "triage_reason": "Looking to hire an automation developer for a paid project.",
+    "pooled_on": "2026-10-18"
+  },
+  {
+    "id": "discourse:community.glideapps.com:87763",
+    "source": "discourse",
+    "channel": "community.glideapps.com",
+    "group": "saas",
+    "title": "Safe First Contact — Somatic Triage & Privacy-Focused PWA",
+    "text": "I am seeking a certified Glide Expert to build “Safe First Contact,” a specialized Progressive Web App (PWA) designed for somatic triage, grounding, and personal logging. The primary focus of the app is to support individuals experiencing ontological shock—a state of acute disorientation, physical stress, or cognitive overwhelm following high-impact, intense, or unexplained personal events. The interface must be calm, reassuring, low-friction, and built on a strict privacy-first model. ​Key Features & Functional Requirements: ​Somatic Triage & Grounding Workflow: Step-by-step physical grounding prompts designed to help users regulate their nervous system and manage acute stress or panic. ​Interactive Body-Mapping & Taxonomy: Structured logging tools to record physical sensations, location, environmental factors, and timeline details. ​Secure Vault & Media Attachment: Local entry for witness details, time-stamping, GPS tagging, and encrypted storage for photo/media attachments. ​Privacy Architecture: Built for total user anonymity, strict data isolation, and row-level privacy. ​Platform: Glide (PWA) Target Audience: Mobile users (iOS and Android web browsers) Role Required: End-to-end setup (Database architecture, UI/UX layout, user flows, and final testing/handover). ​How to Apply: Please send a direct message (DM) on the forum or reply below with examples of past Glide projects, your estimated timeline, and price range. Thank you! 1 post - 1 participant Read full topic",
+    "url": "https://community.glideapps.com/t/safe-first-contact-somatic-triage-privacy-focused-pwa/87763",
+    "created_utc": 1792195727,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "seeking a certified Glide Expert"
+    },
+    "triage_reason": "Looking to hire a certified Glide Expert for a web app build.",
+    "pooled_on": "2026-10-18"
+  }
+]

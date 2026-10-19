@@ -1,0 +1,144 @@
+[
+  {
+    "id": "discourse:community.home-assistant.io:1029283",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "What is the best way to migrate Home data in spreadsheets to a relational database (ideally using HA infrastructure)",
+    "text": "Hi everyone, I’ve been searching for solutions to this for a while and can’t seem to find anything similar, so am reaching out to the community. TL;DR: can I use the MariaDB HA App to create a completely separate relational database for utility purposes, that is backed up as part of HA, and doesn’t interfere with the regular HA DB? If not, is there an alternative? What I’m trying to achieve: I have a lot of home-related information sitting in various spreadsheets (both Google Sheets and local Calc files). Things like a list of all the light bulbs (smart and not) in the house, a list of devices in the house, a backlog of Home Assistant bugs and enhancements, a set of household maintenance tasks etc. I would love to have these in a way more accessible to Home Assistant automations, e.g. so that I can capture an idea for the backlog from my System dashboard, or look at the house maintenance tasks that are overdue. I would love it if it were part of the Home Assistant ecosystem, so it’s backed up along with everything else. I am competent with SQL but not with docker/proxmox etc What I have considered: I have looked at the Google Sheets implementation, but it is very limited and seems designed for logging events to a spreadsheet. I have searched for integrations that seem to cover some specific use cases e.g. “lighting inventory” but didn’t find anything that suits – and would rather not have one-off solutions for each category I have considered a Postgres instance sitting inside a docker instance, and this is not doable as (a) I’m running on HAOS on a raspberry pi so AFAIK I can’t just spin up another docker instance (b) I really am not very good with docker (c) it would need a separate backup solution (I’m also not very good with rsync ) I do have a Postgres database sitting on a utility PC, so could add a new database there and access from homeassistant, but then I still have the headache of managing backups. (The data that is on currently on there can easily be recreated, which is why I’m not backing it up). I have considered adding tables to the HA database and from threads on here that seems a really bad idea and I can see why I’ve looked in the HA App Store. There’s a MariaDB app that says it’s a SQL database, but this seems to be for the purpose of replacing the HA database, rather than adding a separate database . The documentation doesn’t seem to be clear on whether I could just install a separate database instance within the HA ecosystem – but if so this might be ideal. Almost everything I’ve come across on the forum about adding tables or databases is relating to history solutions rather than an additional database for alternative uses. Thanks in advance for any advice. 5 posts - 2 participants Read full topic",
+    "url": "https://community.home-assistant.io/t/what-is-the-best-way-to-migrate-home-data-in-spreadsheets-to-a-relational-database-ideally-using-ha-infrastructure/1029283",
+    "created_utc": 1792260445,
+    "score": 0,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 3,
+      "engagement": 1.6,
+      "multiplier": 1.1,
+      "score": 6.71,
+      "money_matched": [],
+      "pain_matched": [
+        "spreadsheet"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Home Assistant user needs a separate relational database for utility data.",
+    "pooled_on": "2026-10-19"
+  },
+  {
+    "id": "discourse:community.shopify.dev:38683",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "How to bulk edit the new \"Has no standardized identifier\" Checkbox?",
+    "text": "I’m trying to get our store compliant with the new EU rules going into effect November 1st. We have hundreds of variants requiring the “Has no standardized identifier” box to be checked in order to pass customs. Am I missing something, or is there no way to automate this? We are also working on a replacement for our customizer app, which will probably not be ready by November 1st. Meaning we will have to set every single variant manually not once, but twice… 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.dev/t/how-to-bulk-edit-the-new-has-no-standardized-identifier-checkbox/38683",
+    "created_utc": 1792283085,
+    "score": 1,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.1,
+      "multiplier": 1.2,
+      "score": 3.72,
+      "money_matched": [],
+      "pain_matched": [
+        "automate this",
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Merchant needs bulk editing capabilities for new EU compliance checkboxes.",
+    "pooled_on": "2026-10-19"
+  },
+  {
+    "id": "discourse:community.shopify.com:700544",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "How often do you sync supplier stock with your Shopify store?",
+    "text": "I run a small dropshipping store and built an automation that syncs supplier stock to Shopify every 4 hours. It works, but I still worry about the gap: an item can sell out at the supplier between syncs and a customer can still order it. For those of you with supplier-based inventory: How often do you sync? Do you keep a safety buffer (for example, showing 0 when the supplier has fewer than 5)? How do you handle the occasional order for something that’s actually gone? Curious what’s worked for others. 6 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/how-often-do-you-sync-supplier-stock-with-your-shopify-store/700544",
+    "created_utc": 1792372301,
+    "score": 10,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Dropshipper dealing with inventory sync delays and safety buffers.",
+    "pooled_on": "2026-10-19"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165260",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Entry of Purchase Invoice without PO details, How to link",
+    "text": "What if we have made a purchase order in ERPNext, the material is received, and we create a new invoice manually in spite of creating an invoice via e purchase order? How can we track that the material that the the material received is against the same purchase order? How to reduce this type of work, where few materials come without PO and few come with PO. How to map in ERPNEXT 2 posts - 2 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/entry-of-purchase-invoice-without-po-details-how-to-link/165260",
+    "created_utc": 1792248872,
+    "score": 1,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 3,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.5,
+      "multiplier": 1.25,
+      "score": 17.5,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "ERP user needs a workflow to map invoices received without POs.",
+    "pooled_on": "2026-10-19"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/title-anyone-using-ai-to-answer-calls.525019/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "Title: Anyone using AI to answer calls?",
+    "text": "I've been testing one with my brother's landscaping company. Some of it works pretty well, but the part I watch is whether it gets the caller's number right, knows what jobs we don't take, and doesn't screw up the calendar. Anybody else tried one? What's been the biggest headache?",
+    "url": "https://www.lawnsite.com/threads/title-anyone-using-ai-to-answer-calls.525019/",
+    "created_utc": 1792362184,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Landscaping business owner seeking feedback on automating phone answering and scheduling.",
+    "pooled_on": "2026-10-19"
+  }
+]

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "discourse:community.n8n.io:322445",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] Shopify tracking + n8n specialist, part-time ongoing, $35/hr guaranteed + revenue share",
+    "text": "Hi all, I’m Boston. I run Young Automation Studio, a new agency on Upwork. We fix Shopify tracking (Meta Pixel / Conversions API duplicates, GA4 purchases), tune up Klaviyo, and build n8n automations for Shopify stores. From December we add lead-response and CRM automations for service businesses and agencies. We use AI heavily to scope, draft and prototype, so we need an expert to build it right, test it, and be the person clients talk to. What you’d do Deliver 72-hour Tracking Fix Sprints: Meta Pixel + Conversions API de-duplication (event_id), GA4 purchase events from Shopify Customer Events, and cleanup after Shopify retired Additional Scripts. Klaviyo health checks and flow tune-ups (abandoned checkout, browse, post-purchase, winback), plus deliverability basics (SPF, DKIM, DMARC). n8n builds for Shopify, and from December lead-response / CRM builds (GoHighLevel, HubSpot). Review AI-drafted workflows and our demos before clients see them. Own client calls: usually 1–3 short calls a week, scheduled within 24 hours. Everything else is written. Be the named specialist on our Upwork agency proposals, as a non-exclusive member. You keep your own profile and clients. Must have Hands-on Shopify tracking since checkout extensibility: Customer Events / custom pixels, Meta CAPI de-duplication, GA4 purchase events, Tag Manager. Production n8n (or Make): webhooks, error handling, duplicate protection. At least 3 hours a day of overlap with 9 AM–5 PM US Eastern on weekdays. Clear spoken and written English. Strong pluses Top Rated or Rising Talent on Upwork, with a Job Success Score of 90%+. Klaviyo flow work (the Klaviyo certificate, or take the free one in week 1). GoHighLevel or HubSpot. Terms $35/hr guaranteed for 5–8.5 hours a week (QA, demos, setup), paid weekly via Wise. Plus a 25–30% revenue share on every job you lead, from day one, on what the agency receives after Upwork fees and refunds. On a typical job that works out to roughly $45–65/hr. Non-exclusive. We pay for the Connects. No account sharing, ever, in either direction. Reserved hours over Black Friday weekend (26 Nov – 1 Dec), agreed in writing. Starts with a paid test: $105, 3-hour cap. To apply, send me a direct message with: Your Upwork profile link, badge and JSS (or say if you don’t have one). Your time zone, and your overlap with 9–5 US Eastern. A Shopify tracking problem you fixed since the move to Customer Events: what was wrong, and how you proved it was fixed. Links to 1–2 n8n or Make builds (screenshots or a Loom are fine). Klaviyo: which flows have you built or audited? Do you have the certificate? How many hours can you reserve for 26 Nov – 1 Dec? A 1-minute Loom introducing yourself, face on, so we know the profile is yours. Shortlisted applicants hear back within 48 hours. 9 posts - 9 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-shopify-tracking-n8n-specialist-part-time-ongoing-35-hr-guaranteed-revenue-share/322445",
+    "created_utc": 1792351975,
+    "score": 0,
+    "comments": 8,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 12.1,
+      "money_matched": [
+        "we pay"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$35",
+        "$35",
+        "$45",
+        "$105,"
+      ],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Agency owner looking to hire a Shopify and n8n specialist.",
+    "pooled_on": "2026-10-19"
+  },
+  {
+    "id": "discourse:community.make.com:117567",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Need Make.com Expert to Debug & Launch Existing Outreach Automation",
+    "text": "Absolutely. Since you’re posting under Hire a Pro → Hire Help , I’d make it clear that you want someone to debug and finish an existing Make build , not rebuild everything from scratch. Title: Need Make.com Expert to Debug & Launch Existing Outreach Automation Post body: Hi everyone, I’m looking for an experienced Make.com professional to help me diagnose and finish an existing automation for my staffing company. The system is already largely built and includes: Apify / Indeed job sourcing Apollo contact search and enrichment AI-based decision-maker ranking HubSpot company/contact handling Gmail draft creation Manual approval before sending A separate outreach sending scenario Day 4 and Day 9 follow-ups Reply, bounce, opt-out, and manual-review handling Duplicate-send protection using deterministic action keys Pending-before-send protection and failure handling Make Data Stores for outreach status and action history The main issue is with the dedicated Maverick Outreach Sending scenario. The scenario currently validates successfully with no blocking errors, but Run Once ends before the first module executes . I also cloned the scenario into a separate runtime-test copy, and the clone shows the same behavior. The original scenario had an older BlueprintValidationError , but those issues were corrected and the current blueprint now validates cleanly. I have already checked the external connections: Gmail connection is available and read access works Make AI connection is available no obvious expired or disconnected connection is shown I am looking for someone who can: audit the existing build diagnose why execution stops before module 1 inspect the scenario/runtime configuration and connections fix only what is actually broken safely test the sending flow help me get the production scenario launched review the build for any serious reliability issues before launch Important: I do not want the system rebuilt from scratch unless there is a genuine technical reason. A lot of work has already gone into the current setup. Please reply or message me with: your experience with complex make scenarios whether you have debugged scenarios that fail during initialization / before the first module runs your hourly rate or estimated diagnostic/fix cost your availability I can provide screenshots, execution IDs, scenario details, and a sanitized blueprint after we connect. Thanks! 14 posts - 14 participants Read full topic",
+    "url": "https://community.make.com/t/need-make-com-expert-to-debug-launch-existing-outreach-automation/117567",
+    "created_utc": 1792391483,
+    "score": 1,
+    "comments": 13,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 3.0,
+      "multiplier": 1.25,
+      "score": 13.12,
+      "money_matched": [
+        "hire a"
+      ],
+      "pain_matched": [
+        "broken"
+      ],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for an experienced Make.com professional"
+    },
+    "triage_reason": "User looking to hire a Make.com expert for debugging.",
+    "pooled_on": "2026-10-19"
+  }
+]

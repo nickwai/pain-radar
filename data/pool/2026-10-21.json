@@ -1,0 +1,259 @@
+[
+  {
+    "id": "discourse:community.shopify.dev:38775",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Cart validation functions can't see draft order metafields on draftOrderComplete",
+    "text": "Hey folks We’ve hit something with cart validation functions and draft orders and wanted to check whether it’s expected or a gap. Since validation functions now run when a draft order is completed (via draftOrderComplete , or “Mark as paid” in the admin), we’d love for our validation to read data we store on the draft. But the function’s cart never seems to include the draft order’s metafields, so a metafield-based check can’t pass for any draft. Where this hurts: Merchants completing drafts in the admin are fine. They get the unresolved business rule modal, click “Ignore and create order”, and carry on. Apps that create and complete drafts through the Admin API can’t do that. For example, helpdesk apps like Gorgias re-ship an order by duplicating it into a draft and completing it. There’s no API equivalent of the ignore button, so draftOrderComplete just returns the validation error and the draft gets stuck. That’s true even when the data the validation needs is already on the draft as a metafield. One merchant ended up with a pile of open re-ship drafts that their team had to find and push through by hand. How to reproduce (Admin API 2026-07): Create a draft with draftOrderCreate and metafields: [{namespace: \"my_app\", key: \"selection\", type: \"json\", value: \"{…}\"}] . The metafield is right there in the response. Read the draft back. Still there. Call draftOrderComplete(id, paymentPending: true) . Our function’s input query asks for cart { metafield(namespace: \"my_app\", key: \"selection\") { jsonValue } } , but at buyerJourney.step: CHECKOUT_COMPLETION that field comes through as null , so the draft stays open with our validation error in userErrors . What does work: Draft customAttributes show up fine through cart.attribute(key:) . On the draft’s invoice-link checkout, a cart metafield written by a checkout UI extension is visible as you’d expect. A couple of related things we noticed: There’s no documented way for a function to know the cart came from a draft order. The draft order → order metafield copy (“Matching draft order definition”) can only be set up in the admin. MetafieldCapabilities on 2026-07, 2026-10 and unstable only has cartToOrderCopyable , so apps can’t create that link for merchants. A few questions: Is it intended that draft order metafields aren’t passed to validation functions as cart metafields? Could they be exposed (maybe only when a matching draft order definition exists), or could the function input get a documented “this is a draft order” signal? Is there, or could there be, a way for an API caller to complete a draft despite a validation error, like the admin’s “Ignore and create order”? Is an API for linking draft order and order metafield definitions on the roadmap? Happy to share more details if that helps. Thanks a lot! 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.dev/t/cart-validation-functions-cant-see-draft-order-metafields-on-draftordercomplete/38775",
+    "created_utc": 1792570451,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.0,
+      "multiplier": 1.2,
+      "score": 9.0,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "by hand"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Draft order metafields missing from cart validation functions.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "discourse:community.shopify.dev:38748",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "No event when a variant is added to or removed from a variant-scoped collection (api 2026-10)",
+    "text": "Hi Shopify team, We use Events (api_version 2026-10) to keep per-collection data in our app in step with collection membership. The new collections model with variant-scoped sources is a great addition for our merchants. One thing we noticed: when a variant is added to or removed from a variant-scoped collection while its product stays in the collection, no event is delivered. We checked this on a development store with a parent collection.* subscription and a product.* subscription, both without a query_filter. Changing the selection through collectionUpdate (selectionsToAdd / selectionsToRemove) and through the admin “Select variants to include” dialog did not produce a delivery, even though the collection’s updatedAt changed. Adding or removing a whole product delivered collection.products within a second, as expected. Our app keeps a manual variant order per collection, so a variant the merchant removes can keep showing in app-rendered storefront content until we notice the change some other way. It would be really helpful to have a trigger for variant membership changes, for example collection.variants with collectionId and variantsId variables, or variant entries in fields_changed of collection.products. A query field like ProductVariant.inCollection(id:) would be a nice addition as well, since today only Product.inCollection and Product.variantsInCollection are available. Thanks for considering it! 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.dev/t/no-event-when-a-variant-is-added-to-or-removed-from-a-variant-scoped-collection-api-2026-10/38748",
+    "created_utc": 1792508098,
+    "score": 5,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.3,
+      "multiplier": 1.2,
+      "score": 8.76,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Missing webhook events for variant-scoped collection updates.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "discourse:forum.obsidian.md:119650",
+    "source": "discourse",
+    "channel": "forum.obsidian.md",
+    "group": "automation",
+    "title": "Open the aliases property type",
+    "text": "Use case or problem For presentation and/or organization purposes, it would be nice to have a proper “title” or “display name” property. However, there is no “aliases” property type visible from the available options; manually changing it in types.json just changes the icon, and it doesn’t index the contents of the property like an actual alias Proposed solution Allow for custom properties to inherit the function of the “aliases” one Current workaround (optional) Use only the “aliases” property, or not have the title available in the quick switcher Related feature requests (optional) 6 posts - 3 participants Read full topic",
+    "url": "https://forum.obsidian.md/t/open-the-aliases-property-type/119650",
+    "created_utc": 1792526726,
+    "score": 0,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 2.0,
+      "multiplier": 1.1,
+      "score": 5.5,
+      "money_matched": [],
+      "pain_matched": [
+        "manually",
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Feature request for an official aliases property type in Obsidian.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "discourse:community.fly.io:28868",
+    "source": "discourse",
+    "channel": "community.fly.io",
+    "group": "saas",
+    "title": "Background worker stops processing after a connection interruption",
+    "text": "Hey everyone, We’ve occasionally had background jobs stop processing on Fly. The worker machine still shows as running, but tasks pile up in Redis until we manually restart it. Our latest incident happened on October 16, when Fly reported platform-wide host reboots. We’re unsure whether the two are connected. We also have a standby machine, but it doesn’t seem to take over in this situation. Has anyone experienced something similar? Could a Fly host/network interruption trigger this, and should our worker automatically reconnect afterward? Would appreciate any guidance from the Fly team or others who’ve experienced this 5 posts - 3 participants Read full topic",
+    "url": "https://community.fly.io/t/background-worker-stops-processing-after-a-connection-interruption/28868",
+    "created_utc": 1792427655,
+    "score": 0,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.6,
+      "multiplier": 1.25,
+      "score": 3.88,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Background workers stopping after connection loss without auto-reconnect.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "discourse:community.shopify.com:701561",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Usability issue: £0.00 compare-at price looks like placeholder text",
+    "text": "I’d like to raise a usability issue with the Compare-at price field in the product editor. A saved value of £0.00 appears so faint that it looks like placeholder text, making it difficult to distinguish an actual zero value from an empty field. This distinction has real consequences. We recently discovered a large number of products in our store had a saved compare-at price of £0.00 rather than a blank value. This prevented them from matching our “Full Priced Products” collection’s “Compare-at price is not set” condition. We have now adjusted the collection rules to accommodate both values, but merchants shouldn’t need a workaround because the interface makes two different states look so similar. A simple change to the styling so saved values are clearly distinguishable from placeholders. Darker text, or even making saved values bold, would help. An empty field and a saved £0.00 should be visually unmistakable. This appears to be a small interface change, but it would make a meaningful difference to merchants and help prevent confusing collection and pricing issues. 5 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/usability-issue-0-00-compare-at-price-looks-like-placeholder-text/701561",
+    "created_utc": 1792556037,
+    "score": 0,
+    "comments": 4,
+    "signals": {
+      "combo": true,
+      "money": 0,
+      "cash": 2,
+      "pain": 1,
+      "engagement": 1.6,
+      "multiplier": 1.2,
+      "score": 7.32,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [
+        "£0.00",
+        "£0.00",
+        "£0.00",
+        "£0.00"
+      ],
+      "always": true
+    },
+    "triage_reason": "UX issue where £0.00 compare-at price looks like placeholder text.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "discourse:community.shopify.com:700903",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Customers redirected to cloned checkout that captures card details — anyone else affected?",
+    "text": "We’re investigating customer reports of an external checkout redirect affecting three of our Shopify stores. Customers are taken to checkout-guard[.]top , where a counterfeit checkout displays their actual basket. We’ve retrieved its client-side source code, which is designed to collect card and billing details, display a payment error, then redirect the customer back to the genuine Shopify checkout to complete payment. This means resulting orders can look normal in Shopify admin. We’ve reported our findings to Shopify and contacted our app providers. We haven’t yet established how the redirect is being triggered and haven’t reliably reproduced it ourselves. Has anyone else encountered this domain or behaviour, or identified the source of a similar redirect? The counterfeit checkout’s code includes the distinctive misspellings “CHECKIOUT” and “checkiout”. We also found references to “Vitamin A Swim” in the counterfeit checkout’s source code, including sourceId: \"vitaminaswim-clone\" , copied branding/legal text and a Shopify address-autocomplete endpoint associated with shop ID 26687963179 . This suggests the fake checkout uses a cloned swimwear-store template. It does not establish that Vitamin A Swim is involved in the attack. We’ve shared the endpoint details privately with Shopify. Please don’t post customer information or payment details here. Any technical findings that could help connect the incidents would be appreciated. 7 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/customers-redirected-to-cloned-checkout-that-captures-card-details-anyone-else-affected/700903",
+    "created_utc": 1792426890,
+    "score": 10,
+    "comments": 6,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "External malicious checkout redirect capturing store card details.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "discourse:community.shopify.com:701444",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Proxy Bot E1 7AA",
+    "text": "Can anyone help with how to stop a proxy bot. The IP address changes all the time. The address and name the only constant is the postcode E1 7AA. This has been happening for the past month. Shopify don’t care!! 5 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/proxy-bot-e1-7aa/701444",
+    "created_utc": 1792509402,
+    "score": 1,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.7,
+      "multiplier": 1.2,
+      "score": 2.04,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Persistent proxy bot attacks causing checkout spam from a specific postcode.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "discourse:community.shopify.com:700879",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "On the Grow plan, why does B2B checkout hide local pickup when a third-party carrier-calculated rate is in the shipping zone?",
+    "text": "So why does shopify b2b disable local pickup when I add third party calculated shipping? How does this make any sense? 4 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/on-the-grow-plan-why-does-b2b-checkout-hide-local-pickup-when-a-third-party-carrier-calculated-rate-is-in-the-shipping-zone/700879",
+    "created_utc": 1792424061,
+    "score": 0,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.2,
+      "multiplier": 1.2,
+      "score": 1.44,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "B2B checkout configuration quirk disabling local pickup when using carrier rates.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "discourse:community.tradovate.com:12853",
+    "source": "discourse",
+    "channel": "community.tradovate.com",
+    "group": "trading",
+    "title": "Convert tradingview csv to tradeovate csv format",
+    "text": "the subject says it all - how (if possible) can I convert the tradingview csv file that I downloaded to a tradeovate csv format. the software i have only inputs tradeovate csv format, topstep csv format or tradezella csv format. 1 post - 1 participant Read full topic",
+    "url": "https://community.tradovate.com/t/convert-tradingview-csv-to-tradeovate-csv-format/12853",
+    "created_utc": 1792426205,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Need for a file format converter between TradingView and Tradeovate CSVs.",
+    "pooled_on": "2026-10-21"
+  }
+]

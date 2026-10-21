@@ -1,0 +1,93 @@
+[
+  {
+    "id": "discourse:community.frame.work:85557",
+    "source": "discourse",
+    "channel": "community.frame.work",
+    "group": "automotive",
+    "title": "[US-NY] Framework Laptop 16 DIY Edition, Ryzen 9 7840HS, 64GB RAM, 1TB SSD, Black Bezel, black Spacers",
+    "text": "Framework Laptop 16 DIY Edition, Ryzen 9 7840HS, 64GB RAM, 1TB SSD, Black Bezel, black Spacers Condition: Very good. minor scratches shown in the photos. These are cosmetic only. The screen and all functions work perfectly. Specifications: Processor: AMD Ryzen 9 7940HS Graphics: none Memory: 64GB DDR5-5600 (2 × 32GB) Storage: 1TB Keyboard: International English linux Bezel: Black Spacers: 2 × black Battery: About 89% health, 70 charge cycles. Full charge capacity is 76,100 mWh against a design capacity of 85,001 mWh (from the Windows battery report). Included: Laptop with the configuration above Framework 60W power adapter with EU power cable (slightly scratched) Additional Expansion Bay Shell 2 × USB-C, 2 × USB-A, 1 × HDMI (3rd Gen), and 1 × MicroSD expansion cards, 1 × DisplayPort Framework screwdriver Note: This is a powerful machine, but it’s heavier than typical laptops, so it suits desk use better than travel. Price: About $2,200 USD Open to offers. Payment: Cash (local pickup), Cash App, Zelle, or Bank of America transfer for U.S. buyers. Pickup and shipping: Local pickup in Rochester or within 2 hours driving distance from city, or shipping within the U.S, with costs agreed before purchase. I can also ship to the internationally. if you cover the costs, so message me for a quote. Photos: The first image shows the complete bundle: the closed laptop, the power adapter with its cable, the seven expansion cards, and the Framework screwdriver. The remaining photos show condition of laptop. Message me if you’re interested, and I can send more photos or details. 3 posts - 2 participants Read full topic",
+    "url": "https://community.frame.work/t/us-ny-framework-laptop-16-diy-edition-ryzen-9-7840hs-64gb-ram-1tb-ssd-black-bezel-black-spacers/85557",
+    "created_utc": 1792415340,
+    "score": 3,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 1,
+      "pain": 0,
+      "engagement": 1.1,
+      "multiplier": 1.15,
+      "score": 7.59,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$2,200"
+      ]
+    },
+    "triage_reason": "User listing a used laptop for sale and asking buyers to message.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "rss:watchuseek:https://www.watchuseek.com/threads/sugess-s465-chronograph-rose-gold.5699462/",
+    "source": "rss",
+    "channel": "watchuseek",
+    "group": "resell",
+    "title": "Sugess S465 Chronograph, rose gold",
+    "text": "Gorgeous Sugess Chrono Heritage S465, Rose Gold case, brown leather strap. 38mm diameter. Manual Wind. Watch is in perfect condition- worn only twice and is in US for quick delivery and no import duties. $139 plus shipping per quote",
+    "url": "https://www.watchuseek.com/threads/sugess-s465-chronograph-rose-gold.5699462/",
+    "created_utc": 1792486925,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 1,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 6.05,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$139"
+      ]
+    },
+    "triage_reason": "Listing a watch for sale.",
+    "pooled_on": "2026-10-21"
+  },
+  {
+    "id": "discourse:forum.bubble.io:401796",
+    "source": "discourse",
+    "channel": "forum.bubble.io",
+    "group": "saas",
+    "title": "Looking for an experienced Bubble developer to finish and grow a live AI SaaS app (web + native mobile)",
+    "text": "Hi everyone, I’m the founder of Landman Tools , a subscription app that gives right-of-way and land professionals in the energy industry (pipelines, electric transmission, renewables, public works) AI-generated prompts and field notes built for their daily work. I have deep industry experience but I’m not a developer. I built the app myself in Bubble over the past several months, and I’m now looking for an experienced Bubble developer to help me finish it, make it more robust, and take it to native mobile. What’s already built and live Signup/login, password reset (SendGrid on a custom domain), onboarding screens, and in-app account deletion AI generation through the Anthropic (Claude) API using the API Connector, with a layered prompt setup across four categories. Generation runs in backend API workflows. An “Agent Note” feature that turns field notes into clean records, with voice-to-text through OpenAI Whisper Three plans (Free / Field / Pro) with monthly generation limits, Stripe Payment Links, a working checkout webhook that updates the user’s plan, and a Stripe Customer Portal for cancellations A saved-prompt library, copy-to-clipboard, and save confirmations Deployed to Live on a custom domain with real paying users What I need help finishing (short, well-defined tasks) Better failure handling: clear the previous result when Generate is clicked, and show a clear error if the API call fails Escape user input in one API call body so quotes don’t break the JSON (I’ve already fixed this on a second call) A full QA pass across all categories and all three plan tiers on Live A recurring-charge disclosure at checkout What I’d like help with next Building the native mobile app in Bubble for the Apple App Store and Google Play. My developer accounts are set up and the backend is already refactored for it. Hardening Stripe: webhook signature verification, plus handling subscription updates and cancellations so plan changes sync automatically Performance: generation has gotten slower, and I’d like a review of how the API calls and workflows are structured Future features: better visual for voice-to-text use, a state selector, document upload, and possibly a team/company plan A general review of the app’s structure, security (privacy rules), and anything I’ve missed as a non-expert What I’m looking for Strong experience with backend workflows, the API Connector, Stripe, and ideally Bubble native mobile Bubble Certified Developer preferred Clear communication and short notes on what you changed, since I want to keep learning and be able to maintain the app myself Fixed price per milestone. I’d like to start with a small paid test task. Willingness to sign a simple NDA If you’re interested, please DM me with: Examples of Bubble apps you’ve built, especially SaaS, AI/API, or native mobile Your hourly rate or how you price fixed-scope work Your availability per week and your time zone Thanks! 7 posts - 7 participants Read full topic",
+    "url": "https://forum.bubble.io/t/looking-for-an-experienced-bubble-developer-to-finish-and-grow-a-live-ai-saas-app-web-native-mobile/401796",
+    "created_utc": 1792453051,
+    "score": 0,
+    "comments": 6,
+    "signals": {
+      "combo": false,
+      "money": 3,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.4,
+      "multiplier": 1.25,
+      "score": 14.25,
+      "money_matched": [
+        "quote",
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Looking for an experienced Bubble developer"
+    },
+    "triage_reason": "Founder looking to hire an experienced Bubble developer.",
+    "pooled_on": "2026-10-21"
+  }
+]

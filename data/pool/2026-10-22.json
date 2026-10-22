@@ -1,0 +1,213 @@
+[
+  {
+    "id": "discourse:community.shopify.dev:38748",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "No event when a variant is added to or removed from a variant-scoped collection (api 2026-10)",
+    "text": "Hi Shopify team, We use Events (api_version 2026-10) to keep per-collection data in our app in step with collection membership. The new collections model with variant-scoped sources is a great addition for our merchants. One thing we noticed: when a variant is added to or removed from a variant-scoped collection while its product stays in the collection, no event is delivered. We checked this on a development store with a parent collection.* subscription and a product.* subscription, both without a query_filter. Changing the selection through collectionUpdate (selectionsToAdd / selectionsToRemove) and through the admin “Select variants to include” dialog did not produce a delivery, even though the collection’s updatedAt changed. Adding or removing a whole product delivered collection.products within a second, as expected. Our app keeps a manual variant order per collection, so a variant the merchant removes can keep showing in app-rendered storefront content until we notice the change some other way. It would be really helpful to have a trigger for variant membership changes, for example collection.variants with collectionId and variantsId variables, or variant entries in fields_changed of collection.products. A query field like ProductVariant.inCollection(id:) would be a nice addition as well, since today only Product.inCollection and Product.variantsInCollection are available. Thanks for considering it! 4 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.dev/t/no-event-when-a-variant-is-added-to-or-removed-from-a-variant-scoped-collection-api-2026-10/38748",
+    "created_utc": 1792508098,
+    "score": 6,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.8,
+      "multiplier": 1.2,
+      "score": 9.36,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "API missing variant-scoped collection events for app developers.",
+    "pooled_on": "2026-10-22"
+  },
+  {
+    "id": "discourse:community.shopify.dev:38775",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Cart validation functions can't see draft order metafields on draftOrderComplete",
+    "text": "Hey folks We’ve hit something with cart validation functions and draft orders and wanted to check whether it’s expected or a gap. Since validation functions now run when a draft order is completed (via draftOrderComplete , or “Mark as paid” in the admin), we’d love for our validation to read data we store on the draft. But the function’s cart never seems to include the draft order’s metafields, so a metafield-based check can’t pass for any draft. Where this hurts: Merchants completing drafts in the admin are fine. They get the unresolved business rule modal, click “Ignore and create order”, and carry on. Apps that create and complete drafts through the Admin API can’t do that. For example, helpdesk apps like Gorgias re-ship an order by duplicating it into a draft and completing it. There’s no API equivalent of the ignore button, so draftOrderComplete just returns the validation error and the draft gets stuck. That’s true even when the data the validation needs is already on the draft as a metafield. One merchant ended up with a pile of open re-ship drafts that their team had to find and push through by hand. How to reproduce (Admin API 2026-07): Create a draft with draftOrderCreate and metafields: [{namespace: \"my_app\", key: \"selection\", type: \"json\", value: \"{…}\"}] . The metafield is right there in the response. Read the draft back. Still there. Call draftOrderComplete(id, paymentPending: true) . Our function’s input query asks for cart { metafield(namespace: \"my_app\", key: \"selection\") { jsonValue } } , but at buyerJourney.step: CHECKOUT_COMPLETION that field comes through as null , so the draft stays open with our validation error in userErrors . What does work: Draft customAttributes show up fine through cart.attribute(key:) . On the draft’s invoice-link checkout, a cart metafield written by a checkout UI extension is visible as you’d expect. A couple of related things we noticed: There’s no documented way for a function to know the cart came from a draft order. The draft order → order metafield copy (“Matching draft order definition”) can only be set up in the admin. MetafieldCapabilities on 2026-07, 2026-10 and unstable only has cartToOrderCopyable , so apps can’t create that link for merchants. A few questions: Is it intended that draft order metafields aren’t passed to validation functions as cart metafields? Could they be exposed (maybe only when a matching draft order definition exists), or could the function input get a documented “this is a draft order” signal? Is there, or could there be, a way for an API caller to complete a draft despite a validation error, like the admin’s “Ignore and create order”? Is an API for linking draft order and order metafield definitions on the roadmap? Happy to share more details if that helps. Thanks a lot! 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.dev/t/cart-validation-functions-cant-see-draft-order-metafields-on-draftordercomplete/38775",
+    "created_utc": 1792570451,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.0,
+      "multiplier": 1.2,
+      "score": 9.0,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "by hand"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Draft order metafields missing in cart validation functions.",
+    "pooled_on": "2026-10-22"
+  },
+  {
+    "id": "discourse:community.shopify.com:701721",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Counting stock in Shopify admin instead of spreadsheets: how stock counts work",
+    "text": "Shopify has added stock counts to admin. You create a count, staff record what is actually on the shelf using barcode scanning or manual entry, and you review the differences before any stock levels change. Each quantity shows who counted it, and several people can add to the same count without overwriting each other. If you currently count in a spreadsheet and then type adjustments in by hand, this keeps the whole process in one place. It’s most useful if you have people counting in a stockroom or on the shop floor. To run one: Go to Products > Inventory in the Shopify admin and look for stock counts there. Create a count and add products by searching or by scanning barcodes. Assign the count to the staff who will do it. They can complete it in admin or in POS. Track progress until the count is finished, then review the differences between counted and recorded quantities. Approve the changes you agree with. Stock levels don’t change until you approve. There are new permission settings that control who can run counts and who can approve them, so a stockroom person can count without being able to change stock. The catch is that Shopify hasn’t said which plans include stock counts, so check before you plan around it. The update also doesn’t name any particular barcode scanners, so if you’re buying hardware, test your own scanner first. Has anyone switched from spreadsheet counts to this? How often do you count, and do you count everything at once or work through product groups? 4 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/counting-stock-in-shopify-admin-instead-of-spreadsheets-how-stock-counts-work/701721",
+    "created_utc": 1792588164,
+    "score": 4,
+    "comments": 3,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 4,
+      "engagement": 1.6,
+      "multiplier": 1.2,
+      "score": 16.32,
+      "money_matched": [
+        "switched from"
+      ],
+      "pain_matched": [
+        "by hand",
+        "spreadsheet"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchants need efficient ways to manage inventory stock counts.",
+    "pooled_on": "2026-10-22"
+  },
+  {
+    "id": "discourse:community.shopify.com:701561",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Usability issue: £0.00 compare-at price looks like placeholder text",
+    "text": "I’d like to raise a usability issue with the Compare-at price field in the product editor. A saved value of £0.00 appears so faint that it looks like placeholder text, making it difficult to distinguish an actual zero value from an empty field. This distinction has real consequences. We recently discovered a large number of products in our store had a saved compare-at price of £0.00 rather than a blank value. This prevented them from matching our “Full Priced Products” collection’s “Compare-at price is not set” condition. We have now adjusted the collection rules to accommodate both values, but merchants shouldn’t need a workaround because the interface makes two different states look so similar. A simple change to the styling so saved values are clearly distinguishable from placeholders. Darker text, or even making saved values bold, would help. An empty field and a saved £0.00 should be visually unmistakable. This appears to be a small interface change, but it would make a meaningful difference to merchants and help prevent confusing collection and pricing issues. 5 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/usability-issue-0-00-compare-at-price-looks-like-placeholder-text/701561",
+    "created_utc": 1792556037,
+    "score": 0,
+    "comments": 4,
+    "signals": {
+      "combo": true,
+      "money": 0,
+      "cash": 2,
+      "pain": 1,
+      "engagement": 1.6,
+      "multiplier": 1.2,
+      "score": 7.32,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [
+        "£0.00",
+        "£0.00",
+        "£0.00",
+        "£0.00"
+      ],
+      "always": true
+    },
+    "triage_reason": "Admin UI usability issue affecting compare-at price fields.",
+    "pooled_on": "2026-10-22"
+  },
+  {
+    "id": "discourse:community.shopify.com:701836",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Totals are off between reports",
+    "text": "I pulled a couple of reports and then downloaded the sales data (for the day) and i’m getting 3 different numbers for all reports. First report is the standard “Total sales over time”. total shows $14,658.16 for the day across 70 orders. i pulled a “net payments by order” for the day. the total came out to $10,888.67 across 71 orders. (i slightly understand the net since it’s minus taxes BUT now there’s 1 more order?) i exported all of the orders for the day from the orders screen. same number of orders, but the total is $14,760.34. i’ve pulled a few more reports but they’re always off, either by a few dollars or by a few hundred dollars. and i know that it’s timing but there haven’t been any additional orders since i pulled the first report and the last one. 4 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/totals-are-off-between-reports/701836",
+    "created_utc": 1792640621,
+    "score": 0,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 1.2,
+      "multiplier": 1.2,
+      "score": 1.44,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "$14,658.16",
+        "$10,888.67",
+        "$14,760.34"
+      ],
+      "always": true
+    },
+    "triage_reason": "Discrepancy in reporting totals causes reconciliation headaches for stores.",
+    "pooled_on": "2026-10-22"
+  },
+  {
+    "id": "discourse:community.shopify.com:701808",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Delay in-stock email's based on inventory?",
+    "text": "Hi, Is there a Shopify-compatible app that allows my customers to sign up for re-stock notifications, and allows us to send out re-stock email notifications to my customers, but only based on available inventory? I.E. if I add 8 items back to stock then the first 8 customers on the notify list get emails? 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/delay-in-stock-emails-based-on-inventory/701808",
+    "created_utc": 1792618333,
+    "score": 1,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.9,
+      "multiplier": 1.2,
+      "score": 1.08,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchants need inventory-synced restock notification emails.",
+    "pooled_on": "2026-10-22"
+  },
+  {
+    "id": "discourse:community.bunpro.jp:226877",
+    "source": "discourse",
+    "channel": "community.bunpro.jp",
+    "group": "asia",
+    "title": "Reading Manga on iPhone - Kanji lookups?",
+    "text": "Please forgive me for owning an iPhone. Unfortunately I have never really used my phone much and my employer gives me an iPhone for free. I’m truly jealous looking at the availability of Japanese learning tools on Android. If I had to pay for my own phone, I’d switch. Currently I have my own Komga server at home, with Tailscale installed to make it reachable when I’m not home, and KMReader instealled on my iPhone so I can read things on my Komga server in the train. Lately, I’ve been reading Manga on my morning commute. The issue is, that I’m not yet at a point where I can seriously read a Manga without Furigana without looking up kanji I don’t recognize, and depending on the manga, this happens fairly often. So I’ve effectively been limiting myself to Mangas that have a solid amount of Furigana… My reading is massively behind my listening and my speaking unfortunately. So I want this to become my next focus, to align it with the rest of my Japanese. For this, I would like a setup on my iPhone, with which I can somehow (OCR?) look up words I can’t read. I have searched a lot online I couldn’t find a solid solution. Does anyone have any sort of reader on their iPhones / iPads that somehow offers a useful way to look up words? The added difficulty is that Manga are typically images, rather than selectable text… 8 posts - 6 participants Read full topic",
+    "url": "https://community.bunpro.jp/t/reading-manga-on-iphone-kanji-lookups/226877",
+    "created_utc": 1792514970,
+    "score": 6,
+    "comments": 7,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 6.6,
+      "money_matched": [
+        "pay for"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Japanese learners need text lookup solutions for manga on iOS.",
+    "pooled_on": "2026-10-22"
+  }
+]

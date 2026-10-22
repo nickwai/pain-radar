@@ -1,0 +1,29 @@
+[
+  {
+    "id": "discourse:community.shopify.com:702595",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "💸 Busco propietarios de tiendas Shopify — 25 € por probar una app",
+    "text": "¡Buenas! Estoy desarrollando una aplicación para Shopify y busco propietarios de tiendas online que quieran probarla y darme su opinión sincera. Ofrezco 25 € por participar en una prueba de aproximadamente 20 minutos . Necesitas tener una tienda Shopify activa. Probarás la aplicación y me contarás qué te gusta, qué no te gusta y qué mejorarías. No necesitas conocimientos técnicos. No pido reseñas públicas ni opiniones positivas. Solo feedback privado y sincero para mejorar el producto. Si te interesa, comenta aquí o escríbeme por privado y te explico los detalles. ¡Muchas gracias! 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.com/t/busco-propietarios-de-tiendas-shopify-25-por-probar-una-app/702595",
+    "created_utc": 1792657417,
+    "score": 4,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.4,
+      "multiplier": 1.2,
+      "score": 0.48,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Offering monetary compensation to test an app and give feedback.",
+    "pooled_on": "2026-10-22"
+  }
+]

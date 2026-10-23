@@ -1,0 +1,117 @@
+[
+  {
+    "id": "discourse:community.n8n.io:323887",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Catching Shopify orders your webhook workflow never received",
+    "text": "If your Shopify order workflow starts with a Shopify Trigger or webhook, it only runs when the webhook actually arrives. I’ve seen orders silently skipped in three ways: n8n was restarting or updating when Shopify sent the webhook. Shopify retries, but only for a limited time. The execution timed out or errored before the order was logged, and nobody re-ran it. After repeated failed deliveries Shopify removes the webhook subscription completely. From then on the workflow just never runs, with no error anywhere. None of these show up as a failed execution, so you only notice when a customer asks about their order. What I ended up building is a daily reconciliation instead of trusting the webhook: Schedule Trigger at 8:00 HTTP Request to the Shopify Admin GraphQL API for yesterday’s orders ( created_at:>=… created_at:<… ), in a loop on pageInfo.hasNextPage / endCursor . Note: the HTTP node’s built-in pagination with the Shopify OAuth2 credential fails with “refreshToken is required”, so I loop manually with an IF node back to the request. Google Sheets read of the order log the webhook workflow writes to Code node that normalizes order names ( #1001 , 1001 , or the numeric ID all match) and returns only the orders missing from the sheet Send Email with the missed orders (admin link, payment and fulfillment status), then append them to the sheet so each one is reported only once Error outputs on the Shopify and Sheets nodes go to an alert email, so a failing check doesn’t fail silently too It’s one execution a day and only needs the read_orders scope. Optional filter by order tag if you only care about e.g. wholesale orders. I made a short walkthrough of the build here: https://youtu.be/9G5w1tWDmUk Curious how others handle this: do you reconcile against Shopify, or rely on webhook retries plus checking that the subscription still exists ( webhookSubscriptions query)? 5 posts - 3 participants Read full topic",
+    "url": "https://community.n8n.io/t/catching-shopify-orders-your-webhook-workflow-never-received/323887",
+    "created_utc": 1792734255,
+    "score": 0,
+    "comments": 4,
+    "signals": {
+      "combo": true,
+      "money": 3,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.6,
+      "multiplier": 1.1,
+      "score": 16.61,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Merchants losing webhook orders need an automated reconciliation tool.",
+    "pooled_on": "2026-10-23"
+  },
+  {
+    "id": "discourse:community.n8n.io:323557",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "What did your last silent failure end up costing you?",
+    "text": "Workflows that finish green while nothing happened — the threads are full of them. What I can’t find anywhere is the money. When it last happened — what did it cost? Refund, lost client, hours of digging? What kind of workflow was it? Did you build something for it afterwards, or decide it wasn’t worth the time? Have you ever paid for a tool specifically to catch this? If yes, what and how much. If no, what would have had to be true? Asking because one person here told me diagnosing this is billable work for a consultancy, so a tool that shortens diagnosis shortens the invoice. Someone else said it’s unbillable firefighting. Opposite answers, and I can’t tell which is more common. “It cost nothing and I’d never pay for a tool to catch it” is a real answer — if it’s true, it’s the most useful one. 3 posts - 3 participants Read full topic",
+    "url": "https://community.n8n.io/t/what-did-your-last-silent-failure-end-up-costing-you/323557",
+    "created_utc": 1792607384,
+    "score": 0,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 3,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.8,
+      "multiplier": 1.1,
+      "score": 10.78,
+      "money_matched": [
+        "invoice",
+        "paid for",
+        "pay for"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Silent workflow failures cost businesses money, needing detection tools.",
+    "pooled_on": "2026-10-23"
+  },
+  {
+    "id": "discourse:community.shopify.dev:38971",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Title: Handling webhook floods for products/update (70k+ requests in 10 minutes) on a public app",
+    "text": "Hi everyone, I have a public Shopify app installed on 100+ stores, with the products/update webhook registered on each store. Some stores trigger a huge number of events. In total I receive 70k+ webhook requests in about 10 minutes , and my server goes down. My stack: PHP (CodeIgniter) with the official Shopify PHP API library. Current flow: Webhook arrives, I verify the HMAC. I trigger a cron with the product ID and shop. The cron fetches that product from Shopify (one API call per event). I update my database. So every webhook causes one cron run and one Shopify API request, which doesn’t scale. What I’m planning: The webhook endpoint only verifies the HMAC, inserts (shop, product_id) into a queue table with a unique key (so duplicates collapse into one row), and returns 200 immediately. A single cron runs every minute, groups queued products by shop, fetches them in batches of up to 250 via GraphQL nodes(ids: [...]) , and updates my database. My questions: Is this the recommended approach for high-volume products/update webhooks, or is there a better pattern? Is there any way to filter at the source, for example webhook subscription filters or includeFields , so I only receive events for the fields I care about? Would delivery via Amazon EventBridge or Google Pub/Sub be a better fit than HTTPS for this volume? Is it normal for a single store to generate thousands of products/update events per minute? Which actions typically trigger this (inventory updates, bulk edits, other apps, my own app’s writes)? Would you recommend using the webhook only as a trigger and reconciling periodically with a bulk operation ( updated_at query) instead? Are there best practices for handling retries and avoiding subscription removal when my endpoint is under heavy load? 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.dev/t/title-handling-webhook-floods-for-products-update-70k-requests-in-10-minutes-on-a-public-app/38971",
+    "created_utc": 1792731394,
+    "score": 2,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.6,
+      "multiplier": 1.2,
+      "score": 7.92,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "App developer needs a reliable architecture to handle webhook floods.",
+    "pooled_on": "2026-10-23"
+  },
+  {
+    "id": "discourse:community.shopify.com:701808",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Delay in-stock email's based on inventory?",
+    "text": "Hi, Is there a Shopify-compatible app that allows my customers to sign up for re-stock notifications, and allows us to send out re-stock email notifications to my customers, but only based on available inventory? I.E. if I add 8 items back to stock then the first 8 customers on the notify list get emails? 10 posts - 7 participants Read full topic",
+    "url": "https://community.shopify.com/t/delay-in-stock-emails-based-on-inventory/701808",
+    "created_utc": 1792618333,
+    "score": 7,
+    "comments": 9,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant needs conditional inventory-based restock email notifications.",
+    "pooled_on": "2026-10-23"
+  }
+]

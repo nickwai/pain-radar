@@ -1,0 +1,61 @@
+[
+  {
+    "id": "discourse:community.n8n.io:323862",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "N8n Expert Needed: AI WhatsApp Support Agent (Hindi + English)",
+    "text": "We’re a D2C wellness brand in India selling a digital product with a one-time payment. We get 50–100 customer queries a day on WhatsApp and email, and want an AI agent to handle most of them. What we want built An AI agent on WhatsApp Business that answers common questions (product, access, payments, refunds) in Hindi and English, using our FAQ and policy docs Order and payment lookup via Razorpay so the agent can confirm purchase status Refund requests logged to Google Sheets and routed to our team for approval Complex or unhappy conversations escalated to a human in Slack, with the full chat history The same agent handles incoming support emails (Gmail), with drafted replies for review A weekly report: query volume, top topics, resolution rate, escalations We’re open to a phased rollout, starting with steps 1–4. What we’re looking for Proven n8n experience with AI agents and RAG/knowledge-base setups Experience with WhatsApp Business Cloud API Clear documentation and handover To apply, please share: 1–2 relevant n8n projects or portfolio links Your pricing model (hourly or fixed) and estimated cost for phase 1 and the full build Estimated timeline Monthly maintenance options Expected running costs (AI/API usage, WhatsApp messaging, n8n Cloud vs self-hosted) Reply here or DM me. 2 posts - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/n8n-expert-needed-ai-whatsapp-support-agent-hindi-english/323862",
+    "created_utc": 1792729546,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.4,
+      "multiplier": 1.1,
+      "score": 0.44,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Expert Needed"
+    },
+    "triage_reason": "Brand looking to hire an n8n expert for a support agent.",
+    "pooled_on": "2026-10-23"
+  },
+  {
+    "id": "discourse:community.make.com:117972",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Digital Projects & AI Assistant — remote freelance, minimum 50%",
+    "text": "French OR Italian, plus working English.** Remote freelance · Part-time, minimum 50% · Percentage negotiable We are looking for a resourceful freelancer to work directly with the founder across business projects in different sectors. You will help turn ideas into working pages, useful tools, clear content and completed projects. You should enjoy experimenting with AI, learning unfamiliar tools and improving your work through feedback. We already work with a digital marketing agency. Understanding the basics of digital marketing will help you connect its work with the customer journey: clear landing pages, useful content, simple enquiry forms and sensible ways to check what is working. What you will work on Build and improve landing pages, forms, simple dashboards and workflows using AI-assisted coding and other suitable tools. Prepare website copy, social posts, presentations and visual assets. Research providers, compare options, follow up on requests and present recommendations supported by sources. Test customer journeys and internal tools, reproduce issues and implement straightforward fixes with appropriate review. Help improve the path from an ad, search result or social post to a customer enquiry, and coordinate practical changes with our marketing agency. Track priorities, document progress and coordinate with the operations team. Develop reusable AI prompts and templates that reduce repetitive work. Projects might include improving an onboarding flow, updating a website, comparing providers or helping test an AI telephone assistant. Priorities will be agreed for the available workload. Who we are looking for Practical examples of things you have built, improved or delivered, through professional work, personal projects or study. Strong written and spoken French OR Italian, plus working English. You do not need both French and Italian. Practical experience using AI to build, research or create, with the judgement to check its output. A basic understanding of digital marketing: acquisition channels, landing pages, calls to action, conversion goals and simple measurement. Clear writing, attention to usable interfaces and visual presentation, and reliable follow-through. Someone comfortable asking questions and handling company information carefully. Basic HTML/CSS, JavaScript, APIs or automation knowledge is useful. You should be willing to understand and test what you produce and ask for specialist help when needed. What we offer An ongoing remote freelance collaboration, part-time from a minimum of 50%, with the percentage negotiable. Scope, corresponding availability and freelance fees agreed before starting. Premium AI subscriptions funded separately. Direct collaboration with the founder and responsibility for practical projects. Regular overlap with Swiss working hours, agreed together. Apply Use our short application form: Digital Projects & AI Assistant — Application No CV or cover letter required. Tell us about a project or experiment, your contribution, and what you checked or improved. Written answers may be in French or Italian. Shortlisted candidates will be invited to a paid practical exercise and a conversation. AI use is welcome throughout; we want to understand your decisions. 1 post - 1 participant Read full topic",
+    "url": "https://community.make.com/t/digital-projects-ai-assistant-remote-freelance-minimum-50/117972",
+    "created_utc": 1792747262,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 7.5,
+      "money_matched": [
+        "freelancer",
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for a resourceful freelancer"
+    },
+    "triage_reason": "Company looking to hire a remote freelance digital assistant.",
+    "pooled_on": "2026-10-23"
+  }
+]

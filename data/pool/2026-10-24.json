@@ -1,0 +1,88 @@
+[
+  {
+    "id": "discourse:community.n8n.io:323887",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Catching Shopify orders your webhook workflow never received",
+    "text": "If your Shopify order workflow starts with a Shopify Trigger or webhook, it only runs when the webhook actually arrives. I’ve seen orders silently skipped in three ways: n8n was restarting or updating when Shopify sent the webhook. Shopify retries, but only for a limited time. The execution timed out or errored before the order was logged, and nobody re-ran it. After repeated failed deliveries Shopify removes the webhook subscription completely. From then on the workflow just never runs, with no error anywhere. None of these show up as a failed execution, so you only notice when a customer asks about their order. What I ended up building is a daily reconciliation instead of trusting the webhook: Schedule Trigger at 8:00 HTTP Request to the Shopify Admin GraphQL API for yesterday’s orders ( created_at:>=… created_at:<… ), in a loop on pageInfo.hasNextPage / endCursor . Note: the HTTP node’s built-in pagination with the Shopify OAuth2 credential fails with “refreshToken is required”, so I loop manually with an IF node back to the request. Google Sheets read of the order log the webhook workflow writes to Code node that normalizes order names ( #1001 , 1001 , or the numeric ID all match) and returns only the orders missing from the sheet Send Email with the missed orders (admin link, payment and fulfillment status), then append them to the sheet so each one is reported only once Error outputs on the Shopify and Sheets nodes go to an alert email, so a failing check doesn’t fail silently too It’s one execution a day and only needs the read_orders scope. Optional filter by order tag if you only care about e.g. wholesale orders. I made a short walkthrough of the build here: https://youtu.be/9G5w1tWDmUk Curious how others handle this: do you reconcile against Shopify, or rely on webhook retries plus checking that the subscription still exists ( webhookSubscriptions query)? 12 posts - 5 participants Read full topic",
+    "url": "https://community.n8n.io/t/catching-shopify-orders-your-webhook-workflow-never-received/323887",
+    "created_utc": 1792734255,
+    "score": 2,
+    "comments": 11,
+    "signals": {
+      "combo": true,
+      "money": 3,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 18.15,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Deals with missing Shopify webhook events and order reconciliation gaps.",
+    "pooled_on": "2026-10-24"
+  },
+  {
+    "id": "discourse:community.shopify.dev:38971",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Title: Handling webhook floods for products/update (70k+ requests in 10 minutes) on a public app",
+    "text": "Hi everyone, I have a public Shopify app installed on 100+ stores, with the products/update webhook registered on each store. Some stores trigger a huge number of events. In total I receive 70k+ webhook requests in about 10 minutes , and my server goes down. My stack: PHP (CodeIgniter) with the official Shopify PHP API library. Current flow: Webhook arrives, I verify the HMAC. I trigger a cron with the product ID and shop. The cron fetches that product from Shopify (one API call per event). I update my database. So every webhook causes one cron run and one Shopify API request, which doesn’t scale. What I’m planning: The webhook endpoint only verifies the HMAC, inserts (shop, product_id) into a queue table with a unique key (so duplicates collapse into one row), and returns 200 immediately. A single cron runs every minute, groups queued products by shop, fetches them in batches of up to 250 via GraphQL nodes(ids: [...]) , and updates my database. My questions: Is this the recommended approach for high-volume products/update webhooks, or is there a better pattern? Is there any way to filter at the source, for example webhook subscription filters or includeFields , so I only receive events for the fields I care about? Would delivery via Amazon EventBridge or Google Pub/Sub be a better fit than HTTPS for this volume? Is it normal for a single store to generate thousands of products/update events per minute? Which actions typically trigger this (inventory updates, bulk edits, other apps, my own app’s writes)? Would you recommend using the webhook only as a trigger and reconciling periodically with a bulk operation ( updated_at query) instead? Are there best practices for handling retries and avoiding subscription removal when my endpoint is under heavy load? 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.dev/t/title-handling-webhook-floods-for-products-update-70k-requests-in-10-minutes-on-a-public-app/38971",
+    "created_utc": 1792731394,
+    "score": 3,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.1,
+      "multiplier": 1.2,
+      "score": 8.52,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "App developer struggles with webhook floods causing server crashes.",
+    "pooled_on": "2026-10-24"
+  },
+  {
+    "id": "discourse:community.make.com:117948",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "How to send WhatsApp notification to my personal WhatsApp when a new order is placed on my restaurant website?",
+    "text": "What is your goal? Hi everyone, I want to build an automated restaurant order notification system using Make.com . Whenever a customer places an order on my website, I want the order details (customer name, phone number, ordered items, total price, and delivery address) to be sent automatically as a WhatsApp message to my personal WhatsApp number. My proposed workflow is: Website → Make.com Webhook → WhatsApp message to my number. I would appreciate guidance on the simplest way to implement this. What is the problem & what have you tried? i am struggling with the configuration of my whatsapp account in this, as i have zero knowledge of meta 6 posts - 3 participants Read full topic",
+    "url": "https://community.make.com/t/how-to-send-whatsapp-notification-to-my-personal-whatsapp-when-a-new-order-is-placed-on-my-restaurant-website/117948",
+    "created_utc": 1792738160,
+    "score": 0,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 2.0,
+      "multiplier": 1.25,
+      "score": 4.38,
+      "money_matched": [],
+      "pain_matched": [
+        "struggling with"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "A business owner needs help setting up restaurant order notifications via Make.",
+    "pooled_on": "2026-10-24"
+  }
+]

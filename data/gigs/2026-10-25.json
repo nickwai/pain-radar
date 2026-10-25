@@ -1,0 +1,35 @@
+[
+  {
+    "id": "discourse:community.make.com:118015",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Hiring: Make.com + Airtable + Telegram Bot Automation Specialist",
+    "text": "Budget: $25 - Quick Fix I’m looking for someone experienced with Make.com , Airtable, and Telegram bots to help finish an automation I’ve already built. What I need: I have an Airtable trading journal that automatically generates a unique Trade SKU whenever someone submits an Entry Form. I want that SKU automatically sent through Telegram to the specific person who submitted the form , using my existing Telegram bot. What’s already working: Airtable Entry Form and automatic SKU generation Airtable webhook connected to Make.com Telegram bot successfully sending dynamic SKU messages Telegram registration scenario capturing Chat IDs Existing username lookup, routing, and duplicate-prevention logic What’s left to fix: The system isn’t consistently associating each Telegram username with its corresponding Chat ID, preventing reliable delivery to individual traders. I need someone to troubleshoot the existing setup, fix recipient matching, and verify that each trader receives their own unique SKU automatically. Expected result: Trader submits Airtable Entry Form → Make.com identifies the correct Telegram account → Trader receives their unique SKU. The completed automation must work for multiple users, prevent incorrect delivery, and require no manual intervention for normal submissions. Important: I’m not looking for a complete rebuild. Most of the infrastructure is already finished. I just need someone to troubleshoot, complete, and test the integration while preserving existing functionality. Ideally, I’d like this completed within my $25 budget, but I’m open to reasonable quotes. If you’re experienced with these platforms and can confidently handle this, please reach out with your experience, price, and availability. Thank you! 26 posts - 11 participants Read full topic",
+    "url": "https://community.make.com/t/hiring-make-com-airtable-telegram-bot-automation-specialist/118015",
+    "created_utc": 1792771159,
+    "score": 1,
+    "comments": 25,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.25,
+      "score": 13.75,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$25",
+        "$25"
+      ],
+      "hiring": true,
+      "hiring_matched": "Budget: $2"
+    },
+    "triage_reason": "Looking to hire a freelancer to finish an automation setup.",
+    "pooled_on": "2026-10-25"
+  }
+]

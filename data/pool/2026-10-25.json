@@ -1,0 +1,111 @@
+[
+  {
+    "id": "discourse:community.shopify.dev:38993",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "App Pricing: no free trial for merchants already on a paid plan",
+    "text": "We use Shopify App Pricing with free trials on our paid plans. A merchant already paying for a plan who upgrades to a higher plan gets that plan’s trial again, minus days already used. Our trial is meant for first-time evaluation, not plan changes. Is there a way, per plan or per merchant, to give the trial only to merchants who have never paid, or to skip it on upgrades from a paid plan? If not, could this be considered as a feature request? 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.dev/t/app-pricing-no-free-trial-for-merchants-already-on-a-paid-plan/38993",
+    "created_utc": 1792770110,
+    "score": 1,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.1,
+      "multiplier": 1.2,
+      "score": 3.72,
+      "money_matched": [
+        "paying for"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Shopify app developer needs granular control over free trial behavior.",
+    "pooled_on": "2026-10-25"
+  },
+  {
+    "id": "discourse:community.shopify.com:703319",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Shipping should allow Dangerous Goods",
+    "text": "How many others have to buy shipping on other sites like ShipStation, Pirateship, or EasyPost or direct accounts? This off-site handling creates friction and I (wrongly) assumed that Shopify would be pursuing this as it’s not terribly difficult. They are not. Thoughts? 6 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-shipping-should-allow-dangerous-goods/703319",
+    "created_utc": 1792777209,
+    "score": 0,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.0,
+      "multiplier": 1.2,
+      "score": 2.4,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Shopify merchant frustrated by missing dangerous goods shipping support.",
+    "pooled_on": "2026-10-25"
+  },
+  {
+    "id": "discourse:community.shopify.com:704209",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Feature Request: Let Customers Choose Their Payment Currency at Checkout",
+    "text": "I’d love to see Shopify Markets introduce an option that allows international customers to choose which currency they actually pay in at checkout. We run an Italian ecommerce business selling internationally, with EUR as our base currency. Shopify Markets automatically converts prices into our customers’ local currencies, which is convenient, but it also includes a currency conversion fee. The problem is that not every customer needs or wants Shopify to handle that conversion. Many customers have multicurrency accounts or credit cards with excellent foreign exchange rates. In some cases, allowing their own bank to convert the payment would save them money. I’ve experienced this myself. I recently made a purchase denominated in US dollars and was given the option of paying in USD or EUR. I chose USD because my bank offers favourable conversion rates, and the final cost was considerably lower. Why can’t we offer our Shopify customers that same choice? Ideally, Shopify Markets would allow merchants to enable an optional currency selector at checkout: Pay in local currency: Shopify handles the conversion, including its applicable fee. Pay in the merchant’s base currency: The customer’s bank or card provider handles any necessary conversion. Both payment options should be available without changing the shipping country, leaving checkout or introducing additional steps. I’m not suggesting that Shopify should eliminate its currency conversion fees. I’m simply suggesting that customers should have the option to use the service or let their own payment provider handle the conversion. For merchants selling internationally, I believe this would be a meaningful improvement in transparency, customer experience and trust. Are there other international merchants who would like to see this feature introduced? I’d be interested to hear your thoughts, and I’d appreciate it if someone from Shopify could pass this suggestion along to the Markets and Payments product teams. 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.com/t/feature-request-let-customers-choose-their-payment-currency-at-checkout/704209",
+    "created_utc": 1792926541,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.2,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant needs currency selection flexibility in Shopify international checkout.",
+    "pooled_on": "2026-10-25"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/i%E2%80%99m-just-hemorrhaging-money-failing-leaf-season.525031/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "I’m just hemorrhaging money-failing leaf season..",
+    "text": "This will be the start to my 3rd leaf removal season, I can’t loose money this year like the others…I need help from folks that know what to do… Key Info: I’ve got good equipment and decently set up enough customers for what seems to be a decent customer log/load I can deal with 80% of my customers I can dump curb side and or “in the back 40”. if I remove leaf bags when I’m done I have a few places I can deposit them, usually whichever dump set up I’m closest to, for free... I’m just hemorrhaging money-failing leaf season..",
+    "url": "https://www.lawnsite.com/threads/i%E2%80%99m-just-hemorrhaging-money-failing-leaf-season.525031/",
+    "created_utc": 1792893996,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Landscaping business owner losing money and struggling with leaf season operations.",
+    "pooled_on": "2026-10-25"
+  }
+]

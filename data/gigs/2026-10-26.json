@@ -1,0 +1,88 @@
+[
+  {
+    "id": "discourse:community.n8n.io:324430",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] Digital Projects & AI Assistant | Remote freelance 50%+ | French or Italian",
+    "text": "Hiring project: practical digital improvements across Swiss business projects, working directly with founder Luca Bernardi. Remote freelance · Part-time, minimum 50% · Percentage negotiable We are looking for a resourceful freelancer to work directly with the founder across business projects in different sectors. You will help turn ideas into working pages, useful tools, clear content and completed projects. You should enjoy experimenting with AI, learning unfamiliar tools and improving your work through feedback. We already work with a digital marketing agency. Understanding the basics of digital marketing will help you connect its work with the customer journey: clear landing pages, useful content, simple enquiry forms and sensible ways to check what is working. What you will work on Build and improve landing pages, forms, simple dashboards and workflows using AI-assisted coding and other suitable tools. Prepare website copy, social posts, presentations and visual assets. Research providers, compare options, follow up on requests and present recommendations supported by sources. Test customer journeys and internal tools, reproduce issues and implement straightforward fixes with appropriate review. Help improve the path from an ad, search result or social post to a customer enquiry, and coordinate practical changes with our marketing agency. Track priorities, document progress and coordinate with the operations team. Develop reusable AI prompts and templates that reduce repetitive work. Projects might include improving an onboarding flow, updating a website, comparing providers or helping test an AI telephone assistant. Priorities will be agreed for the available workload. Who we are looking for Practical examples of things you have built, improved or delivered, through professional work, personal projects or study. Strong written and spoken French OR Italian, plus working English. You do not need both French and Italian. Practical experience using AI to build, research or create, with the judgement to check its output. A basic understanding of digital marketing: acquisition channels, landing pages, calls to action, conversion goals and simple measurement. Clear writing, attention to usable interfaces and visual presentation, and reliable follow-through. Someone comfortable asking questions and handling company information carefully. Basic HTML/CSS, JavaScript, APIs or automation knowledge is useful. You should be willing to understand and test what you produce and ask for specialist help when needed. What we offer An ongoing remote freelance collaboration, part-time from a minimum of 50%, with the percentage negotiable. Scope, corresponding availability and freelance fees agreed before starting. Premium AI subscriptions funded separately. Direct collaboration with the founder and responsibility for practical projects. Regular overlap with Swiss working hours, agreed together. Apply Use our short application form: Digital Projects & AI Assistant — Application No CV or cover letter required. Tell us about a project or experiment, your contribution, and what you checked or improved. Written answers may be in French or Italian. Shortlisted candidates will be invited to a paid practical exercise and a conversation. AI use is welcome throughout; we want to understand your decisions. Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-digital-projects-ai-assistant-remote-freelance-50-french-or-italian/324430",
+    "created_utc": 1792983030,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 6.6,
+      "money_matched": [
+        "freelancer",
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Founder is hiring a remote freelance digital projects and AI assistant.",
+    "pooled_on": "2026-10-26"
+  },
+  {
+    "id": "discourse:community.n8n.io:324371",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Looking for an AI WhatsApp Business Chatbot Developer — Long-Term Collaboration",
+    "text": "Hello everyone, I’m the CEO of Marca Aumentada, an artificial intelligence agency. We’re looking for experienced developers specializing in AI-powered WhatsApp Business chatbots to establish potential long-term collaborations. What we’re looking for: Experience developing chatbots for WhatsApp Business. AI integration and knowledge base implementation. Conversation automation, lead qualification, and human handoff. Ability to implement, test, and maintain chatbot solutions. To learn more about your experience, please share: Your background and examples of previous projects. The tools and technologies you work with. Your implementation and maintenance rates. Your availability for potential future collaborations. We’re currently building our network of collaborators for future projects. This is not a full-time employment offer, and we do not currently have a confirmed project available. If you’re interested, please reply to this thread or send me a private message. Thank you! Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/looking-for-an-ai-whatsapp-business-chatbot-developer-long-term-collaboration/324371",
+    "created_utc": 1792982464,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Looking for an AI WhatsApp Business Chatbot Developer"
+    },
+    "triage_reason": "AI agency CEO is hiring an experienced WhatsApp chatbot developer for collaboration.",
+    "pooled_on": "2026-10-26"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165374",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Request for Estimate: Custom ERPNext Implementation for a Construction & Interior Finishing Company",
+    "text": "Hi everyone, I’m evaluating the effort and budget required to implement a customized ERPNext solution for a small construction and interior finishing company, using Frappe Framework. I have solid experience with Python, JavaScript, web development, and Odoo, but this would be my first major ERPNext/Frappe implementation. I’d appreciate realistic estimates from developers or consultants who have delivered similar projects. 1. Company and initial setup One company and one ERPNext site. Up to 10 system users. Up to 50 employees. Initial import of approximately 100 customer, supplier, and item records. Four main roles: Administrator/Manager, Accountant, Site Manager/Engineer, and Technical Support. Standard accounting, purchasing, sales, inventory, projects, HR/payroll, and asset management setup. Initial configuration, data import, print formats, training, documentation, testing, and deployment. 2. Custom construction management features The requested custom features include: D01 — Project workspace and permissions Project-specific documents, materials, tasks, and workers. Project-level access restrictions and role-based permissions. D02 — Site attendance and mobile interface Mobile-friendly attendance screen. Bulk attendance entry for multiple workers. Work periods across multiple projects per day. Site manager check-in/check-out with GPS coordinates. Prevention of overlapping work periods and an audit trail for corrections. D03 — Automatic labor cost allocation Allocate labor costs to projects based on approved working hours and employee wage rules. Support project-level labor cost reporting. D04 — Material requests and purchasing Site material requests, approval workflows, stock availability checks, purchasing, receipts, and material issues to projects. D05 — BOQ and detailed project budgets Import bills of quantities from Excel. Item codes, units, quantities, unit rates, and totals. Budget versions, approvals, and change history. D06 — Project cost and forecast reports Actual costs, outstanding commitments, forecast final costs, and expected profit compared with the approved budget. D07 — Drawing progress tracking Upload PDF drawings or images. Mark regions on drawings and assign progress status, dates, colors, and notes. No full CAD/BIM functionality or automated AI analysis is required. D08 — Equipment, custody, and maintenance Equipment assignment, handover, returns, transfers, condition tracking, and repair records. D09 — Performance incentives Configurable incentive rules based on approved work, points, or company policies. Approval before payment and prevention of duplicate claims. D10 — Detailed quotations and print formats Detailed quotations with items, quantities, units, unit prices, totals, and company branding. D11 — Testing, deployment, and handover End-to-end testing, bug fixing, deployment, user training, and documentation. 3. Potential external integrations The specification also mentions: GPS/vehicle tracking. CCTV/NVR integration. WhatsApp Business messaging and notifications. Government e-invoicing. Direct bank integration. These integrations may depend on third-party APIs, device compatibility, country-specific requirements, and external service fees. Please estimate them separately from the core implementation. 4. Questions for the community I would appreciate estimates for the following: Total development effort: How many person-hours or person-days would you estimate for one experienced developer working full-time? Timeline: How many calendar weeks or months would be realistic? Implementation cost: What would be a reasonable freelance price for the core project, excluding hosting and third-party fees? Breakdown: Could you estimate the standard ERPNext configuration, custom development, testing/deployment, and external integrations separately? Implementation approach: Which requirements can be handled with standard ERPNext features, and which would require a custom Frappe app? Major risks: Which requirem",
+    "url": "https://discuss.frappe.io/t/request-for-estimate-custom-erpnext-implementation-for-a-construction-interior-finishing-company/165374",
+    "created_utc": 1792880552,
+    "score": 0,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.8,
+      "multiplier": 1.25,
+      "score": 1.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "User requests project estimates for a custom ERPNext implementation for a construction company.",
+    "pooled_on": "2026-10-26"
+  }
+]

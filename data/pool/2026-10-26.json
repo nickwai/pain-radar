@@ -1,0 +1,57 @@
+[
+  {
+    "id": "rss:garagejournal:https://www.garagejournal.com/forum/threads/floor-jack-identification.561703/",
+    "source": "rss",
+    "channel": "garagejournal",
+    "group": "automotive",
+    "title": "Floor Jack Identification",
+    "text": "Help me ID this floor jack. Overhaul kit for the Hein-Werner HW93652 was purchased, but only the main piston seals fit. Any clue which make/model this is? No identification on it.",
+    "url": "https://www.garagejournal.com/forum/threads/floor-jack-identification.561703/",
+    "created_utc": 1792969527,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 3.45,
+      "money_matched": [
+        "/mo"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Auto repair mechanic needs help identifying an unbranded floor jack to source correct seals.",
+    "pooled_on": "2026-10-26"
+  },
+  {
+    "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/i%E2%80%99m-just-hemorrhaging-money-failing-leaf-season.525031/",
+    "source": "rss",
+    "channel": "lawnsite-bizops",
+    "group": "trades",
+    "title": "I’m just hemorrhaging money-failing leaf season..",
+    "text": "This will be the start to my 3rd leaf removal season, I can’t loose money this year like the others…I need help from folks that know what to do… Key Info: I’ve got good equipment and decently set up enough customers for what seems to be a decent customer log/load I can deal with 80% of my customers I can dump curb side and or “in the back 40”. if I remove leaf bags when I’m done I have a few places I can deposit them, usually whichever dump set up I’m closest to, for free... I’m just hemorrhaging money-failing leaf season..",
+    "url": "https://www.lawnsite.com/threads/i%E2%80%99m-just-hemorrhaging-money-failing-leaf-season.525031/",
+    "created_utc": 1792893996,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Landscaping business owner is losing money during leaf removal season and needs operational help.",
+    "pooled_on": "2026-10-26"
+  }
+]

@@ -1,0 +1,61 @@
+[
+  {
+    "id": "discourse:community.n8n.io:324430",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] Digital Projects & AI Assistant | Remote freelance 50%+ | French or Italian",
+    "text": "Hiring project: practical digital improvements across Swiss business projects, working directly with founder Luca Bernardi. Remote freelance · Part-time, minimum 50% · Percentage negotiable We are looking for a resourceful freelancer to work directly with the founder across business projects in different sectors. You will help turn ideas into working pages, useful tools, clear content and completed projects. You should enjoy experimenting with AI, learning unfamiliar tools and improving your work through feedback. We already work with a digital marketing agency. Understanding the basics of digital marketing will help you connect its work with the customer journey: clear landing pages, useful content, simple enquiry forms and sensible ways to check what is working. What you will work on Build and improve landing pages, forms, simple dashboards and workflows using AI-assisted coding and other suitable tools. Prepare website copy, social posts, presentations and visual assets. Research providers, compare options, follow up on requests and present recommendations supported by sources. Test customer journeys and internal tools, reproduce issues and implement straightforward fixes with appropriate review. Help improve the path from an ad, search result or social post to a customer enquiry, and coordinate practical changes with our marketing agency. Track priorities, document progress and coordinate with the operations team. Develop reusable AI prompts and templates that reduce repetitive work. Projects might include improving an onboarding flow, updating a website, comparing providers or helping test an AI telephone assistant. Priorities will be agreed for the available workload. Who we are looking for Practical examples of things you have built, improved or delivered, through professional work, personal projects or study. Strong written and spoken French OR Italian, plus working English. You do not need both French and Italian. Practical experience using AI to build, research or create, with the judgement to check its output. A basic understanding of digital marketing: acquisition channels, landing pages, calls to action, conversion goals and simple measurement. Clear writing, attention to usable interfaces and visual presentation, and reliable follow-through. Someone comfortable asking questions and handling company information carefully. Basic HTML/CSS, JavaScript, APIs or automation knowledge is useful. You should be willing to understand and test what you produce and ask for specialist help when needed. What we offer An ongoing remote freelance collaboration, part-time from a minimum of 50%, with the percentage negotiable. Scope, corresponding availability and freelance fees agreed before starting. Premium AI subscriptions funded separately. Direct collaboration with the founder and responsibility for practical projects. Regular overlap with Swiss working hours, agreed together. Apply Use our short application form: Digital Projects & AI Assistant — Application No CV or cover letter required. Tell us about a project or experiment, your contribution, and what you checked or improved. Written answers may be in French or Italian. Shortlisted candidates will be invited to a paid practical exercise and a conversation. AI use is welcome throughout; we want to understand your decisions. Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-digital-projects-ai-assistant-remote-freelance-50-french-or-italian/324430",
+    "created_utc": 1792983030,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 6.6,
+      "money_matched": [
+        "freelancer",
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Hiring a remote freelance digital projects assistant.",
+    "pooled_on": "2026-10-27"
+  },
+  {
+    "id": "discourse:community.n8n.io:324371",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Looking for an AI WhatsApp Business Chatbot Developer — Long-Term Collaboration",
+    "text": "Hello everyone, I’m the CEO of Marca Aumentada, an artificial intelligence agency. We’re looking for experienced developers specializing in AI-powered WhatsApp Business chatbots to establish potential long-term collaborations. What we’re looking for: Experience developing chatbots for WhatsApp Business. AI integration and knowledge base implementation. Conversation automation, lead qualification, and human handoff. Ability to implement, test, and maintain chatbot solutions. To learn more about your experience, please share: Your background and examples of previous projects. The tools and technologies you work with. Your implementation and maintenance rates. Your availability for potential future collaborations. We’re currently building our network of collaborators for future projects. This is not a full-time employment offer, and we do not currently have a confirmed project available. If you’re interested, please reply to this thread or send me a private message. Thank you! Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/looking-for-an-ai-whatsapp-business-chatbot-developer-long-term-collaboration/324371",
+    "created_utc": 1792982464,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Looking for an AI WhatsApp Business Chatbot Developer"
+    },
+    "triage_reason": "Agency looking to hire AI WhatsApp chatbot developers.",
+    "pooled_on": "2026-10-27"
+  }
+]

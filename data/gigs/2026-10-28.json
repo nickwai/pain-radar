@@ -1,0 +1,58 @@
+[
+  {
+    "id": "discourse:forum.bubble.io:402241",
+    "source": "discourse",
+    "channel": "forum.bubble.io",
+    "group": "saas",
+    "title": "Bubble Developer available — agency overflow, white-label & part-time work (CET)",
+    "text": "Hi Bubblers I’m Vitalii, a Bubble.io developer behind KrylonTech, based in Europe (CET time zone). I’m looking for my first long-term collaboration — with an agency that needs extra hands or a founder who needs a reliable builder. What I built in Bubble: Relational data structures: Thing references, Option Sets, no duplicated data Privacy Rules and role-based access (admin / seller / customer setups) Workflows and backend workflows, custom events, custom states API Connector integrations, Stripe payments Responsive UI with the new responsive engine, Figma → Bubble Reusable elements and style systems: color/font tokens, consistent states Automation with n8n and AI integrations Projects: E-Pharmacy — medicine delivery marketplace: catalog, cart, orders, Stripe checkout, role-based dashboards Growly — soft-skills learning platform with automatic PDF certificate generation SoloFlow — operations/CRM platform for freelancers (in progress) ClientPortal — client-facing portal (in progress) Case studies with screenshots: https://krylontech-portfolio.vercel.app/ What I’m looking for: Agency overflow or white-label work (Figma pages, dashboards, integrations, bug fixes) Part-time or full-time remote role in a Bubble team Smaller, well-defined tasks to start with Honest note: I’m early in my commercial career, so I’m flexible on rates. I’m happy to start with a small paid test task so you can judge my work with minimal risk. Availability: 30 h/week, CET, English B2 (upper-intermediate) Contact: DM me here on the forum Email: vitaliipietukhov@gmail.com LinkedIn: linkedin.com/in/vitalii-pietukhov Telegram: @vitalii_bioome Thanks for reading, and feel free to reach out even for a small task! 1 post - 1 participant Read full topic",
+    "url": "https://forum.bubble.io/t/bubble-developer-available-agency-overflow-white-label-part-time-work-cet/402241",
+    "created_utc": 1793185446,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 3.75,
+      "money_matched": [
+        "freelancer"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Bubble developer looking for agency overflow and long-term clients.",
+    "pooled_on": "2026-10-28"
+  },
+  {
+    "id": "discourse:forum.bubble.io:402245",
+    "source": "discourse",
+    "channel": "forum.bubble.io",
+    "group": "saas",
+    "title": "Find Bubble-specific projects, agency partnerships, white-label work, and long-term clients",
+    "text": "Hi Bubblers! I’m Nirbhay, a Bubble.io Full-Stack Developer and AI Automation Specialist based in India (IST), with 5+ years of experience building web applications and SaaS products. I’m looking to connect with Bubble agencies, founders, and product teams that need an experienced developer for ongoing projects, additional development support, or specific technical challenges. What I work on in Bubble Application Development Full-stack Bubble.io development Database architecture and relational data structures Privacy Rules, user roles, and access control Backend workflows, custom events, and complex application logic Responsive UI/UX and reusable components API Integrations Bubble API Connector and external APIs Stripe, Razorpay, and PayPal SendGrid, Twilio, and WhatsApp integrations Supabase and third-party services AI integrations with OpenAI, Claude, and Gemini AI & Automation AI-powered SaaS features Workflow automation with n8n and Zapier Connecting Bubble applications with external services Automating repetitive business processes Integrating AI capabilities into existing products Existing App Improvements Debugging complex workflows Database and workflow optimization Performance improvements Adding new features to existing applications Troubleshooting API integrations and application logic Selected Projects Some of the products I’ve worked on include: Propeller AI Shortcut Reviews SafeCall HQ Parchaa Health TidyDen My work covers different application types, product requirements, and integration challenges. What I’m looking for Bubble agency overflow and white-label development Long-term collaborations with founders and SaaS teams MVP development and new feature implementation API integrations and AI-powered applications Bug fixes, performance improvements, and clearly defined development tasks Remote contract or employment opportunities I’m especially interested in collaborations where I can contribute beyond building UI—working on application logic, database architecture, integrations, and the overall product functionality. If you’re an agency looking for additional development support or a founder who needs help building or improving a Bubble application, feel free to DM me here. Happy to discuss your project and see how I can contribute. Thanks for reading, and looking forward to connecting with fellow Bubblers! 1 post - 1 participant Read full topic",
+    "url": "https://forum.bubble.io/t/find-bubble-specific-projects-agency-partnerships-white-label-work-and-long-term-clients/402245",
+    "created_utc": 1793189344,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "need an experienced developer"
+    },
+    "triage_reason": "Developer advertising availability for Bubble projects and partnerships.",
+    "pooled_on": "2026-10-28"
+  }
+]

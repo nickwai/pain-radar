@@ -1,0 +1,454 @@
+[
+  {
+    "id": "discourse:community.home-assistant.io:1030675",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "Problem: lost communication with all zigbee devices \"NwkRouteDiscoveryFailed\"",
+    "text": "I have a (up until now) stable network with a Conbee II coordinator and ~ 15 devices. It’s a mix of mains-powered and battery devices and has been working well. Zigbee2MQTT runs as a Docker container on a Pi3 that also runs a ZWave-JS container. Yesterday, I lost control of all devices on the network. The UI shows they are all there and available with good signals. I just don’t get sensor readings and I can’t control them. The debug log shows repeated “NwkRouteDiscoveryFailed” messages: [2026-10-28 09:03:37] debug: z2m:mqtt: Received MQTT message on 'zigbee2mqtt/Shack Light/set' with data '{\"state\":\"OFF\"}' [2026-10-28 09:03:37] debug: z2m: Publishing 'set' 'state' to 'Shack Light' [2026-10-28 09:03:37] debug: zh:controller:endpoint: ZCL command 0x5c0272fffe4844d0/1 genOnOff.off({}, {\"timeout\":10000,\"disableResponse\":false,\"disableRecovery\":false,\"disableDefaultResponse\":false,\"direction\":0,\"reservedBits\":0,\"writeUndiv\":false}) [2026-10-28 09:03:37] debug: zh:deconz: ZCL request sent with transactionSequenceNumber.: 89 [2026-10-28 09:03:37] debug: zh:deconz: command.response: undefined, zcl.disableDefaultResponse: false, z2m.disableResponse: false, request.timeout: 10000 [2026-10-28 09:03:37] debug: zh:deconz:frameparser: APS-DATA.confirm destAddr: 0x2f06 APS request id: 108 confirm status: NwkRouteDiscoveryFailed 0xd0 [2026-10-28 09:03:37] debug: zh:deconz:driver: Request APS-DATA.request: dest: 0x2f06 EP:1 seq: 123 requestId: 109 [2026-10-28 09:03:37] debug: zh:controller:endpoint: Error: ZCL command 0x5c0272fffe4844d0/1 genOnOff.off({}, {\"timeout\":10000,\"disableResponse\":false,\"disableRecovery\":false,\"disableDefaultResponse\":false,\"direction\":0,\"reservedBits\":0,\"writeUndiv\":false}) failed (failed to send ZCL request (88) Error: Failed APS-DATA.request with confirm status: NwkRouteDiscoveryFailed (0xd0)) at DeconzAdapter.sendZclFrameToEndpoint (/app/node_modules/.pnpm/zigbee-herdsman@10.10.0_supports-color@7.2.0/node_modules/zigbee-herdsman/src/adapter/deconz/adapter/deconzAdapter.ts:457:19) at async Request.send (/app/node_modules/.pnpm/zigbee-herdsman@10.10.0_supports-color@7.2.0/node_modules/zigbee-herdsman/src/controller/helpers/request.ts:86:25) at async Endpoint.sendRequest (/app/node_modules/.pnpm/zigbee-herdsman@10.10.0_supports-color@7.2.0/node_modules/zigbee-herdsman/src/controller/model/endpoint.ts:433:20) at async Endpoint.zclCommand (/app/node_modules/.pnpm/zigbee-herdsman@10.10.0_supports-color@7.2.0/node_modules/zigbee-herdsman/src/controller/model/endpoint.ts:1193:28) at async Endpoint.command (/app/node_modules/.pnpm/zigbee-herdsman@10.10.0_supports-color@7.2.0/node_modules/zigbee-herdsman/src/controller/model/endpoint.ts:956:23) at async Object.convertSet (/app/node_modules/.pnpm/zigbee-herdsman-converters@26.115.1_supports-color@7.2.0/node_modules/zigbee-herdsman-converters/src/converters/toZigbee.ts:38:13) at async convertSet (/app/node_modules/.pnpm/zigbee-herdsman-converters@26.115.1_supports-color@7.2.0/node_modules/zigbee-herdsman-converters/src/converters/toZigbee.ts:1357:29) at async Object.converter (/app/node_modules/.pnpm/zigbee-herdsman-converters@26.115.1_supports-color@7.2.0/node_modules/zigbee-herdsman-converters/src/lib/ikea.ts:1167:21) at async Publish.onMQTTMessage (/app/lib/extension/publish.ts:250:36) at async EventEmitter.wrappedCallback (/app/lib/eventBus.ts:253:17) [2026-10-28 09:03:37] error: z2m: Publish 'set' 'state' to 'Shack Light' failed: 'Error: ZCL command 0x5c0272fffe4844d0/1 genOnOff.off({}, {\"timeout\":10000,\"disableResponse\":false,\"disableRecovery\":false,\"disableDefaultResponse\":false,\"direction\":0,\"reservedBits\":0,\"writeUndiv\":false}) failed (failed to send ZCL request (88) Error: Failed APS-DATA.request with confirm status: NwkRouteDiscoveryFailed (0xd0))' [2026-10-28 09:03:37] debug: z2m: Error: ZCL command 0x5c0272fffe4844d0/1 genOnOff.off({}, {\"timeout\":10000,\"disableResponse\":false,\"disableRecovery\":false,\"disableDefaultResponse\":false,\"direction\":0,\"reservedBits\":0,\"w",
+    "url": "https://community.home-assistant.io/t/problem-lost-communication-with-all-zigbee-devices-nwkroutediscoveryfailed/1030675",
+    "created_utc": 1793181447,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 3,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.4,
+      "multiplier": 1.1,
+      "score": 10.34,
+      "money_matched": [
+        "/mo"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "User experiencing a sudden complete drop of Zigbee device communication.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "se:quant:86914",
+    "source": "stackexchange",
+    "channel": "quant.stackexchange",
+    "group": "quant",
+    "title": "Covered interest parity for USD/COP: which public rates to use for the peso and dollar legs?",
+    "text": "I want a public, reproducible reference price for a USD/COP forward at 1, 3 and 6 months to compare against bank quotes. Which published rates are the right inputs for each leg (peso and dollar), and what are the main reasons the market quote will differ from the CIP value?",
+    "url": "https://quant.stackexchange.com/questions/86914/covered-interest-parity-for-usd-cop-which-public-rates-to-use-for-the-peso-and",
+    "created_utc": 1793201841,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.4,
+      "multiplier": 1.15,
+      "score": 7.36,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Quant trader needing specific public rates to price USD/COP forwards.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.dev:39134",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Merchant growth missing from the new Dev Dashboard?",
+    "text": "Since our apps moved to the Dev Dashboard, the app Overview shows Earnings, Install events and Uninstall events, plus the current Installs count. The old Partner Dashboard also had Merchant growth, the cumulative number of active stores with the app installed over the selected range. Is that metric planned for the Dev Dashboard, possibly as part of the upcoming App history view? Our workaround for anyone else who needs it: query app events through the Partner API, treat installed/reactivated as +1 and uninstalled/deactivated as -1, and keep a daily running total. It works, but a native chart would be much easier. 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.dev/t/merchant-growth-missing-from-the-new-dev-dashboard/39134",
+    "created_utc": 1793180541,
+    "score": 4,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.2,
+      "multiplier": 1.2,
+      "score": 3.24,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Developer needing a native cumulative merchant growth metric in the new Dev Dashboard.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.make.com:118487",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "WhatsApp Business Cloud: Send a Message can’t reply to users with a WhatsApp username (BSUID), no recipient field or API Call module",
+    "text": "What is your goal? That the user receives the message and the bot can continue the conversation. What is the problem & what have you tried? I use the WhatsApp Business Cloud app with a number connected via Coexistence. More and more of my customers now write using a WhatsApp username. For them, the Watch Events module does not return wa_id; it only returns: contacts .user_id (BSUID, e.g. CO.1419215493729121) contacts .profile.username (e.g. LauraCajica) I need my automation to reply to these users, and I tested the Send a Message module (Receiver field): Receiver = username (LauraCajica or @LauraCajica ): Meta rejects it with error 131009, “phone number format is incorrect, use +1234567890”. Receiver = BSUID (CO.1419215493729121): the module returns a wamid, but the message is not delivered to the user. According to Meta’s documentation, BSUID recipients should be addressed with the recipient field instead of to. The Send a Message module does not expose it, and this app has no “Make an API Call” module, so I can’t send the request manually. My questions: Is there a way to reply to a BSUID with the current modules? Will the module support the recipient field soon? Could a “Make an API Call” module be added to WhatsApp Business Cloud? This blocks automations for any business that uses the official API, because phone numbers are hidden for many users. Thank you! Error messages or input/output bundles no error. 3 posts - 3 participants Read full topic",
+    "url": "https://community.make.com/t/whatsapp-business-cloud-send-a-message-can-t-reply-to-users-with-a-whatsapp-username-bsuid-no-recipient-field-or-api-call-module/118487",
+    "created_utc": 1793141980,
+    "score": 0,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.8,
+      "multiplier": 1.25,
+      "score": 2.88,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Make.com user stuck because WhatsApp Business Cloud API lacks a recipient identifier for BSUIDs.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:706413",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "New Collborator request form UX is annoying",
+    "text": "The https://dev.shopify.com/dashboard/129017439/stores/collaborations/new form needs an update as UX was designed 10 years ago most likely. If I want to choose granular permissions, I have to go through 10-20 checkboxes manually, expand each one, and select them. Why cant you make predefined roles available for partner stores? Even if its just preselecting permissions. When there is a mistake in collaborator code all selected checkboxes get whiped out and have to start over! Is this to preventing DDosing requests stores? I’m sure there is a more elegant solution to this then having valid users doing manual checking if they made a mistake or used an expired collaborator code. Why can’t we update an existing request with additional permissions? If I missed any checkbox manually, I need to remove the access, then go through the manual process again with the additional checkbox. Even if the backend doesnt support it, it could just handle the rerequest actions automatically without asking user to do it. This becomes really annoying when you have to do it more than once, and it would be easy to fix in an hour or less and make partner life less miserable. 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/new-collborator-request-form-ux-is-annoying/706413",
+    "created_utc": 1793273268,
+    "score": 5,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.9,
+      "multiplier": 1.2,
+      "score": 4.68,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Partner frustrated by tedious checkbox UI in Shopify collaborator request form.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:705832",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Request to get Staff ID's through admin or API",
+    "text": "Our point of sale app allows users to set up conditions. One request is to have a condition based on the staff member. To be able to set this condition up proactively, prior to the store going live - we would want to get a list of the pos staff_id’s. This doesn’t seem to existeither in the admin or api. The staff_id we can access through the api, is for the Shopify parent user ID. In POS, I believe that ID is the user that logged in to the device, not the staff member who has pinned in. The only way we see the pinned in staff_id is if that member completes a sale, or potentially, manually on device. We can then view it in our logs and in reporting. tl;dr what I’m searching for: A way to query the retail staff id’s (not user id’s) that have been set up Or, more staff properties available in the pos session api such as their permission level or tag. That would let us forgo needing this entirely since we could likely filter on that instead. cheers 6 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/request-to-get-staff-ids-through-admin-or-api/705832",
+    "created_utc": 1793232797,
+    "score": 3,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 2.3,
+      "multiplier": 1.2,
+      "score": 4.56,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "POS app developer needing staff IDs or role tags through the API to set up conditions.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:705676",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "If you sell on both TikTok Shop and Shopify, how do you actually track profit?",
+    "text": "TikTok orders sync into Shopify, but the fees don’t. The commission, affiliate, FBT, and shipping charges only live in TikTok’s settlement reports. So Shopify reports show TikTok as more profitable than it is. How are you handling this? Spreadsheets, an app, or just looking at payouts? And what number do you wish you could see that you can’t today? 5 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/if-you-sell-on-both-tiktok-shop-and-shopify-how-do-you-actually-track-profit/705676",
+    "created_utc": 1793174113,
+    "score": 6,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 2.2,
+      "multiplier": 1.2,
+      "score": 4.44,
+      "money_matched": [],
+      "pain_matched": [
+        "spreadsheet"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant struggling to automatically reconcile TikTok Shop fees and commissions in Shopify.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:706400",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Return Process in Shopify",
+    "text": "We’d like a native return label solution for Shopify merchants in Germany. Customers should be able to initiate returns in the store and pay for a return label directly. We’d like to use our existing DPD business customer contract and our agreed-upon shipping rates. In certain cases, manual approval should be possible before the label is generated. Currently, to implement our desired workflow, we need a third-party app with an appropriate pricing plan as well as an additional payment integration. This incurs additional costs and increases the setup effort. Please log this requirement as a feature request for the Shopify product team, specifically for the German and European markets. Is there already a native solution for this, or any publicly announced plans?” 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/return-process-in-shopify/706400",
+    "created_utc": 1793271899,
+    "score": 2,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.6,
+      "multiplier": 1.2,
+      "score": 4.32,
+      "money_matched": [
+        "pay for"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "German merchant needing a native return label solution mapped to custom DPD contracts.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:705403",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Feature request: write access (create/update) for the Purchase Orders API",
+    "text": "Hi, The Purchase Orders API is currently read-only. Our supplier orders are generated automatically, but we still have to re-enter every line by hand in Shopify admin. Could you add mutations to create, update, mark as ordered and receive purchase orders (line items, unit cost, expected date), plus webhooks for status changes? Inventory planning apps could then account for incoming stock automatically. Is this on the roadmap? Thanks! 5 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/feature-request-write-access-create-update-for-the-purchase-orders-api/705403",
+    "created_utc": 1793108671,
+    "score": 3,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.9,
+      "multiplier": 1.2,
+      "score": 4.08,
+      "money_matched": [],
+      "pain_matched": [
+        "by hand"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant needing write access and mutations for the Purchase Orders API to automate inventory.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:705743",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Flow - Feature Requests - Duplicate A Specific Condition and allow AI's to edit upon export",
+    "text": "For example we have a condition with a lot of zip/postal codes - we are creating a very similar condition and currently have to create a new condition and manually add each individual zip code. We were also unable to get Sidekick to edit the flow due to its size and upon export were warned that the signatures etc meant that it can’t be edited and then imported. A test import failed. Overall it’s a great aspect of Shopify but these features would be appreciated if they can be implemented. 4 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-flow-feature-requests-duplicate-a-specific-condition-and-allow-ais-to-edit-upon-export/705743",
+    "created_utc": 1793197290,
+    "score": 4,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.6,
+      "multiplier": 1.2,
+      "score": 3.72,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Shopify Flow user needing condition duplication features and AI edit compatibility for large flows.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:705841",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Investigating Shopify Technical Issues When Pages Are Indexed but Google and AI Visibility Declines",
+    "text": "I’m researching whether a technical inconsistency can affect how Google and AI search systems discover, interpret and display a Shopify website. My situation is that Google continues to crawl my website, index pages, products are synced and approved within Google Merchant Center and structured data is present. However, my visibility both local or organic have declined. Some AI-generated answers have failed to identify the business accurately or even suggesting it doesn’t exist. I understand that Google Search, local results, and AI search don’t necessarily work the same way, and I’m starting to wonder if shopify as e-commerce affects service based businesses as well. I’m simply trying to determine whether there could be an underlying technical issue that hasn’t been identified. I’m curious whether anyone else has experienced something similar or investigated any of the following: Can a Shopify theme or its customizations interfere with how search engines read or interpret a website, even when pages are indexed? Can structured data be valid but still contain conflicting or incomplete information that affects how a business or its products are understood? Have you encountered issues involving crawler access, robots.txt, JavaScript, or conflicting information within a Shopify website? How would you determine whether the issue is technical rather than simply a change in Google’s rankings or how AI search results are generated? Has anyone experienced something similar and actually identified the cause? If so, what was it? I’m not looking for general SEO advice or recommendations to rewrite content. I’m particularly interested in hearing from people who have encountered these types of issues, how they identified them, and whether correcting them made a measurable difference. 6 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/investigating-shopify-technical-issues-when-pages-are-indexed-but-google-and-ai-visibility-declines/705841",
+    "created_utc": 1793237005,
+    "score": 7,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.7,
+      "multiplier": 1.2,
+      "score": 3.24,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant investigating technical indexing inconsistencies affecting Google and AI search visibility.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:705511",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Google & YouTube app syncs only the General shipping profile",
+    "text": "The Google & YouTube app syncs only the General shipping profile, but all my products use custom profiles. I created label-based shipping policies in Merchant Center and deleted the 99 app-created “API shipping policies” (which applied to all products). Please confirm how to stop the app from pushing shipping policies while it keeps syncing products, so my manual policies aren’t overwritten. Merchant Center ID: 5719410023. 6 posts - 6 participants Read full topic",
+    "url": "https://community.shopify.com/t/google-youtube-app-syncs-only-the-general-shipping-profile/705511",
+    "created_utc": 1793146394,
+    "score": 6,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.6,
+      "multiplier": 1.2,
+      "score": 3.12,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant struggling with Google & YouTube app incorrectly syncing only general shipping profiles.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:706414",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "How can I identify the POS location/store for a GiftCardCashOutTransaction?",
+    "text": "From Shopify Admin GraphQL API we are able to retrieve GiftCardCashOutTransaction details such as amount and processed date. However, we were not able to find any information about the store/location, staff member, or POS source where the cash-out was performed. Is there any Shopify API, webhook, event, or audit log that can be used to determine the originating POS location for a gift card cash-out? 5 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/how-can-i-identify-the-pos-location-store-for-a-giftcardcashouttransaction/706414",
+    "created_utc": 1793273346,
+    "score": 3,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.9,
+      "multiplier": 1.2,
+      "score": 2.28,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Developer needing POS store location and staff details for GiftCardCashOutTransactions via GraphQL.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:706395",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Retourenabwicklung in Shopify",
+    "text": "Wir wünschen uns eine native Retourenetiketten-Lösung für Shopify-Händler in Deutschland. Kunden sollen Retouren im Shop anmelden und ein Rücksendeetikett direkt bezahlen können. Dabei möchten wir unseren bestehenden DPD-Geschäftskundenvertrag und unsere vereinbarten Versandpreise nutzen. Für bestimmte Fälle soll vor der Etiketterstellung eine manuelle Genehmigung möglich sein. Aktuell benötigen wir für unseren gewünschten Ablauf eine Drittanbieter-App mit entsprechendem Tarif sowie eine zusätzliche Zahlungsanbindung. Das verursacht zusätzliche Kosten und erhöht den Einrichtungsaufwand. Bitte erfasst diesen Bedarf als Funktionswunsch für das Shopify-Produktteam, insbesondere für den deutschen beziehungsweise europäischen Markt. Gibt es dafür bereits eine native Lösung oder eine öffentlich angekündigte Planung? 3 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/retourenabwicklung-in-shopify/706395",
+    "created_utc": 1793270968,
+    "score": 2,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.0,
+      "multiplier": 1.2,
+      "score": 1.2,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "German merchant requesting native return label handling integrated with custom DPD contracts.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:community.shopify.com:705401",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Neue Zollregeln in Verbindung mit Drobshipping",
+    "text": "Hallo in die Runde, ich habe meinen Shop erst im Juli 2026 begonnen, und wurde sogleich von den neuen Zöllen überrascht. Seit Juli müssen ja für Warensendungen aus Drittländern (nicht-EU) unter 150,- € Zölle gezahlt werden, bzw. ab November auch noch Bearbeitungsgebühren. Seit dem suche ich nach einer praktikablen Lösung, um diese Zölle und ggf. Einfuhrumsatzsteuern im Checkout zu berechnen, damit meine Kunden diese nicht bei der Zustellung noch zahlen müssen. Da ich meine Produkte via Print on demand herstellen lasse, handelt es sich wohl um sogenanntes Drobshipping!? Mein Hersteller produziert weltweit, und würde auch weltweit liefern. Inzwischen habe ich schon herausgefunden, das es sogenannte DDP Label/Etiketten gibt, aber mein Print on demand Lieferant bietet diese Möglichkeit nicht für Deutschland an. Außerdem erscheint es mir auch unlogisch, da die Bestellung ja erst nach dem Checkout an den Lieferanten geht, und erst dann erfolgt die Feststellung aus welchem Land wohin geliefert wird. Ich hoffe, ich habe das einigermaßen verständlich erklärt!? Vielleicht stehe ich bei diesem Thema auch zu sehr auf dem Schlauch… aber, ich kann mir nicht vorstellen, das es nicht irgendwie doch eine technische Lösung, oder eine App gibt, die diese Berechnung im Checkout durchführt. Außerdem kann ich es mir kaum vorstellen, das seit dem Massenhaft Pakete zugestellt werden, und die Zusteller Zoll und Einfuhrumsatzsteuer kassieren. Gibt es hier jemanden der ein ähnliches Problem hat oder hatte? Wie könnte man das lösen? Oder ist meine oben erwähnte logische Reihenfolge schon die Erklärung, und es gibt aktuell noch keine Lösung? Dann würde mich noch interessieren, sofern es eine Lösung gibt, wie und wo macht dann die Zollmeldung oder kann man auch den Zoll und die Bearbeitungsgebühr via IOSS melden? Ich freue mich auf Eure Antworten. Grüße Melanie 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/neue-zollregeln-in-verbindung-mit-drobshipping/705401",
+    "created_utc": 1793106376,
+    "score": 1,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.9,
+      "multiplier": 1.2,
+      "score": 1.08,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Dropshipper struggling to calculate and report new EU customs duties and handling fees at checkout.",
+    "pooled_on": "2026-10-29"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165461",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Party-wise report showing all accounts used in each voucher, as columns",
+    "text": "Description: In Tally, for a selected Party and date range, we get one view with one row per voucher and one column per account used in it (expense, GST, TDS, bank, etc.), with amounts and column totals. In ERPNext, the General Ledger filtered by Party shows only the party-side amount. The other accounts appear as comma-separated text in “Against Account” (e.g. “SUP038, TDS Payable - BFPL”), with no amounts, so we have to open each voucher to see the breakup. Question: Does ERPNext have a standard report or setting that shows, for a Party, every voucher (Purchase Invoice, Payment Entry, Journal Entry) with each account as a column and its amount? If not, what is the best workaround (Report Builder, Script Report, or another approach)? Attached: ERPNext GL export and Tally columnar view for Supplier (12-Jun-26 to 30-Sep-26). Posting Date Account Debit Credit Balance Voucher No Against Account Cost Center 01-04-2026 Freight Expense 15,200.00 0 15,200.00 ACC-JV-0001 Supplier-001 Delhi 01-04-2026 Freight Expense 1,174,851.27 0 1,352,051.27 ACC-JV-0002 Supplier-002, TDS Payable Bangalore 01-04-2026 Freight Expense 0 1,174,851.00 177,200.27 ACC-JV-0003 Provision Account, TDS Payable Main Tally view for the same kind of party (Supplier A, 12-Jun-26 to 30-Sep-26): Voucher Type Gross Total Freight Exp. Distribution Exp. Haryana CGST Haryana SGST WB CGST WB SGST TDS Payable Bank Purchase 5,27,730.06 4,54,939.03 40,944.52 40,944.52 9,098.01 Purchase 1,68,284.36 1,45,072.73 13,056.54 13,056.54 2,901.45 Purchase 46,192.31 39,820.95 3,583.89 3,583.89 796.42 Payment 5,93,112.77 5,93,112.77 Journal 1,740.00 1,500.00 135.00 135.00 30.00 Journal 37,849.24 32,629.00 2,936.62 2,936.62 653.00 1 post - 1 participant Read full topic",
+    "url": "https://discuss.frappe.io/t/party-wise-report-showing-all-accounts-used-in-each-voucher-as-columns/165461",
+    "created_utc": 1793276172,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 9.38,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "ERPNext user needing a Tally-style party-wise report showing account breakdown columns.",
+    "pooled_on": "2026-10-29"
+  }
+]

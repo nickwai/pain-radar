@@ -1,22 +1,22 @@
 name: Pain Radar 2-week review
 
-# Every second Thursday (made recurring 2026-10-08; first run Thu
-# 2026-10-08): digest of the last 14 days of reports - weekly ideas,
+# Every second Friday (every second Thursday 2026-10-08 -> 10-22; moved
+# to Fridays 2026-10-29, first Friday run 2026-10-30): digest of the last 14 days of reports - weekly ideas,
 # competitor verdicts, pooled counts, source yield from Gemini triage -
 # committed as reports/review-DATE.md + a short Telegram summary.
 #
-# Cron has no "every 2 weeks", so it fires every Thursday and the gate runs
+# Cron has no "every 2 weeks", so it fires every Friday and the gate runs
 # only when the newest reports/review-*.md is 13+ days old (13, not 14, so
-# a late Thursday run never slips a whole week). Several crons because
+# a late Friday run never slips a whole week). Several crons because
 # GitHub `schedule` fires late or gets dropped; the gate makes them
-# idempotent. Next runs: 2026-10-22, 2026-11-05, ...
+# idempotent. Next runs: 2026-10-30, 2026-11-13, 2026-11-27, ...
 # Manual "Run workflow" always runs (and restarts the 2-week cycle).
 on:
   schedule:
-    - cron: "0 8 * * 4"
-    - cron: "0 10 * * 4"
-    - cron: "0 13 * * 4"
-    - cron: "0 16 * * 4"
+    - cron: "0 8 * * 5"
+    - cron: "0 10 * * 5"
+    - cron: "0 13 * * 5"
+    - cron: "0 16 * * 5"
   workflow_dispatch: {}
 
 permissions:
@@ -38,6 +38,14 @@ jobs:
           last="$(ls reports/review-*.md 2>/dev/null | sed -E 's/.*review-([0-9-]+)\.md/\1/' | sort | tail -1)"
           if [ -z "$last" ]; then
             echo "no earlier review - running."
+            echo "should_run=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          # One-time (2026-10-29): the move to Fridays starts the cycle on
+          # Fri 2026-10-30, only 8 days after the last Thursday review.
+          # Inert once any review dated 10-30 or later exists.
+          first_friday="2026-10-30"
+          if [[ "$last" < "$first_friday" ]] && [[ ! "$(date -u +%F)" < "$first_friday" ]]; then
+            echo "last review $last - first Friday review, running."
             echo "should_run=true" >> "$GITHUB_OUTPUT"; exit 0
           fi
           age=$(( ( $(date -u +%s) - $(date -u -d "$last" +%s) ) / 86400 ))

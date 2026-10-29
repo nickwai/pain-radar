@@ -461,6 +461,15 @@ def cmd_review(args: argparse.Namespace) -> int:
 
     until = args.until or today()
     since = args.since or (dt.date.fromisoformat(until) - dt.timedelta(days=14)).isoformat()
+    # IMPROVEMENT 2026-10-29: never reach back past the previous review's
+    # date, so a shorter gap (the 10-22 -> 10-30 move to Fridays, or a
+    # manual run) doesn't count the same days in two reviews. Shares the
+    # boundary day, as the 14-day windows always did.
+    if not args.since:
+        earlier = sorted(p.stem[len("review-"):] for p in (ROOT / "reports").glob("review-*.md")
+                         if p.stem[len("review-"):] < until)
+        if earlier and earlier[-1] > since:
+            since = earlier[-1]
     full, short = build(ROOT / "reports", since, until)
     print(full)
     if args.dry_run:

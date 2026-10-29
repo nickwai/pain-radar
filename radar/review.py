@@ -1,5 +1,5 @@
 """Two-week review digest (built 2026-09-24, first run 2026-10-08; every
-second Thursday since - .github/workflows/review.yml).
+second Thursday to 2026-10-22, every second Friday from 2026-10-30 - .github/workflows/review.yml).
 
 Reads what the daily runs already committed - reports/DATE.md and
 reports/rejected/DATE.md - and summarises them so the review is about

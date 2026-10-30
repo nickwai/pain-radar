@@ -624,5 +624,31 @@ def triage_posts(posts: list[dict], config: dict, env: dict | None = None) -> li
         print(f"[triage] skipped ({type(exc).__name__})", flush=True)
         return []
     known = {p["id"] for p in posts}
-    return [r for r in rows if isinstance(r, dict) and r.get("id") in known
+    rows = [r for r in rows if isinstance(r, dict) and r.get("id") in known
             and r.get("verdict") in TRIAGE_VERDICTS]
+    return _demote_seller_gigs(rows, posts)
+
+
+# ADDED 2026-10-30: "Available now: one Make.com scenario rescue - fixed EUR
+# 200" (a freelancer SELLING) reached the daily Gigs section as paid_gig. In a
+# small batch triage calls it self_promo 2/2; in the big daily batch it slipped
+# (triage is looser in big noisy batches, see 10-15 finding). A title that
+# advertises the poster's own services can never be someone hiring, so Python
+# enforces it instead of trusting the batch.
+SELLER_TITLE_RE = re.compile(
+    r"\bavailable (?:now|for)\b|\bfor hire\b|\bhire me\b|\bmy services\b"
+    r"|\b(?:developer|dev|expert|freelancer|consultant|engineer|designer) available\b"
+    r"|\bopen (?:to|for) (?:work|projects|new clients)\b"
+    r"|\btaking (?:on )?(?:new )?(?:clients|projects)\b"
+    r"|\bfixed[ -](?:price|fee|scope)\b|\bfixed (?:eur|usd|gbp|[$£€])",
+    re.IGNORECASE)
+
+
+def _demote_seller_gigs(rows: list[dict], posts: list[dict]) -> list[dict]:
+    """paid_gig -> self_promo when the post's title advertises a service."""
+    titles = {p["id"]: p.get("title") or "" for p in posts}
+    for r in rows:
+        if r["verdict"] == "paid_gig" and SELLER_TITLE_RE.search(titles[r["id"]]):
+            r["verdict"] = "self_promo"
+            r["reason"] = f"[seller title] {r.get('reason', '')}"
+    return rows

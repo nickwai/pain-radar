@@ -103,6 +103,10 @@ rss:
   #   XenForo  ?order=post_date   phpBB  ?mode=topics   Invision  paged (page_url)
   # Measured span after -> before is noted on each feed. Re-measure with
   # the probe in README if a feed looks thin.
+  # CUT 2026-10-30 (user: drop fan/hobby forums), real/shortlisted over the
+  # 10-08, 10-22, 10-30 reviews: styleforum 1/7, watchuseek 0/6, hardwarezone 0/11,
+  # chinese-forums 0/2, purseblog 403 always. Fan talk, not business pain - see
+  # docs/source-study-2026-10-30.md. garagejournal kept (3/6 on 10-30).
   feeds:
     - url: https://www.trade2win.com/forums/-/index.rss?order=post_date   # full window, ~1 new thread/48h
       also_urls: [https://www.trade2win.com/forums/-/index.rss]   # + recent replies (~10h)
@@ -111,23 +115,6 @@ rss:
     - url: https://www.garagejournal.com/forum/forums/-/index.rss?order=post_date   # 52h (was 1.9h)
       name: garagejournal
       group: automotive
-    - url: https://forum.purseblog.com/forums/-/index.rss   # 403 on every variant 2026-09-26
-      name: purseblog          # buyers pay for authentication services
-      group: fashion
-    - url: https://www.styleforum.net/forums/-/index.rss   # 7.2h; ?order=post_date returns 1 spam item
-      name: styleforum
-      group: fashion
-    - url: https://www.watchuseek.com/forums/-/index.rss?order=post_date   # 9.7h (was 0.6h)
-      name: watchuseek         # flippers, dealers, real money
-      fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
-      group: resell
-    - url: https://forums.hardwarezone.com.sg/forums/-/index.rss?order=post_date   # 2.7h (was 0.1h) - huge forum
-      name: hardwarezone
-      group: asia
-    - url: https://www.chinese-forums.com/discover/all.xml
-      name: chinese-forums
-      fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
-      group: asia
     # Trade business sub-forums, added 2026-10-04 (docs/source-study-2026-10-04.md):
     # owners discussing invoicing, estimates, crews, software. Low volume
     # (~0.5 and ~0.15 posts/day) but triage found 14/15 and 7/15 real problems.

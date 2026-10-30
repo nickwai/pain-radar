@@ -46,17 +46,9 @@ discourse:
       group: automation
     - url: https://forum.openwrt.org           # networking
       group: automation
-    - url: https://forum.obsidian.md           # knowledge tools
-      group: automation
     - url: https://forum.ghost.org             # publishing / creators
       group: automation
-    - url: https://community.frame.work        # repairable hardware
-      group: automotive
-    - url: https://community.wanikani.com      # Japanese learning
-      group: asia
     # --- users here pay a monthly bill. strongest money signal we have. ---
-    - url: https://forum.bubble.io                # no-code, $29-529/mo plans
-      group: saas
     - url: https://community.make.com             # automation, paid tiers
       group: saas
     - url: https://community.retool.com           # internal tools, per-seat pricing
@@ -83,8 +75,6 @@ discourse:
     # is NOT the same as real problems; judge sources by the triage yield
     # table in reports/rejected/. These three are small samples (n=4-21/wk),
     # unproven - re-check the yield table after a week and cut what shows 0.
-    - url: https://community.fly.io                # paid hosting, per-usage bills
-      group: saas
     - url: https://community.coda.io               # docs/automation, paid tiers
       group: saas
     - url: https://community.glideapps.com         # no-code apps, paid tiers
@@ -110,9 +100,6 @@ rss:
   # Measured span after -> before is noted on each feed. Re-measure with
   # the probe in README if a feed looks thin.
   feeds:
-    - url: https://www.elitetrader.com/et/forums/-/index.rss?order=post_date   # 84h (was 13.7h)
-      name: elitetrader
-      group: trading
     - url: https://www.trade2win.com/forums/-/index.rss?order=post_date   # full window, ~1 new thread/48h
       also_urls: [https://www.trade2win.com/forums/-/index.rss]   # + recent replies (~10h)
       name: trade2win
@@ -130,12 +117,6 @@ rss:
       name: watchuseek         # flippers, dealers, real money
       fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
       group: resell
-    - url: https://www.eurobricks.com/forum/index.php?/discover/all.xml
-      page_url: "https://www.eurobricks.com/forum/index.php?/discover/all.xml/&page={page}"
-      max_pages: 4             # ~2.7h/page, all activity; 4 pages ~11h (was 2.7h)
-      name: eurobricks
-      fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
-      group: toys
     - url: https://forums.hardwarezone.com.sg/forums/-/index.rss?order=post_date   # 2.7h (was 0.1h) - huge forum
       name: hardwarezone
       group: asia
@@ -143,9 +124,6 @@ rss:
       name: chinese-forums
       fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
       group: asia
-    - url: https://forum.dealerrefresh.com/forums/-/index.rss?order=post_date
-      name: dealerrefresh      # car dealership ops (CRM, leads, photos), ~3/day - added 2026-09-26
-      group: automotive
     # Trade business sub-forums, added 2026-10-04 (docs/source-study-2026-10-04.md):
     # owners discussing invoicing, estimates, crews, software. Low volume
     # (~0.5 and ~0.15 posts/day) but triage found 14/15 and 7/15 real problems.
@@ -164,7 +142,7 @@ hackernews:
   phrase_match: true    # keep only hits containing the EXACT query phrase. Algolia's
                         # own matching is loose: ~1% of "we pay for" hits had the
                         # phrase. Quoted/advancedSyntax search returns ~0 (stop words).
-  ask_hn: true          # ADDED 2026-09-26: every Ask HN story in the window (~30/day),
+  ask_hn: false         # CUT 2026-10-30 (0/19 real). ADDED 2026-09-26: every Ask HN story in the window (~30/day),
                         # no phrase filter - they are questions by nature, and the best
                         # HN pain threads live there ("Who's still keeping a DOS machine
                         # up because the business depends on it?", 166 comments).
@@ -174,9 +152,11 @@ hackernews:
   # CUT 2026-10-08 (2-week review, triage yield): "too expensive" 0/20 and
   # "willing to pay" 0/11 real problems. Also cut: bogleheads (4/38, personal
   # investing advice, not business pain) and woocommerce (0/6) RSS feeds.
+  # CUT 2026-10-30 (review-2026-10-30.md, 0 real in >=5 shortlisted):
+  # "alternative to" 0/20, "per month" 0/37, ask_hn 0/19; Discourse obsidian 0/19,
+  # frame.work 0/20, wanikani 0/7, bubble.io 0/13, fly.io 0/5; RSS elitetrader 0/7,
+  # eurobricks 0/9 (only toys source), dealerrefresh 0/12 (automotive).
   queries:
-    - "alternative to"     # 23 hits/48h
-    - "per month"          # 11
     - "a month for"        # 6
     - "wish there was an"  # ~3 ("an alternative to carbonite")
     - "price hike"         # 3

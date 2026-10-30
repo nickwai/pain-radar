@@ -50,7 +50,6 @@ shortlist:
   # These skip the signal/score test (exclude, duplicate and min_chars still
   # apply) and are added on top of `total`, best score first.
   always_channels:
-    - dealerrefresh
     - forum.ninjatrader.com
     - community.tradovate.com
     - community.bunpro.jp

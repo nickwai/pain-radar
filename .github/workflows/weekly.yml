@@ -6,15 +6,16 @@ name: Weekly Pain Radar ideas
 # commits reports/week-DATE.md and sends Telegram.
 #
 # Same pattern as daily-report.yml: GitHub delivers `schedule` late or
-# drops it, so several Monday crons + an "already written?" gate. They sit
+# drops it, so several Friday crons (Mondays until 2026-10-30; user
+# asked for Fridays) + an "already written?" gate. They sit
 # after the daily crons. With a 7-day window (2026-10-11) weeks no longer
-# overlap, so Monday's pool file must be in: the 09/11 UTC crons wait (skip)
+# overlap, so Friday's pool file must be in: the 09/11 UTC crons wait (skip)
 # until today's daily report exists; the 14 UTC cron runs regardless.
 on:
   schedule:
-    - cron: "0 9 * * 1"
-    - cron: "0 11 * * 1"
-    - cron: "0 14 * * 1"
+    - cron: "0 9 * * 5"
+    - cron: "0 11 * * 5"
+    - cron: "0 14 * * 5"
   workflow_dispatch: {}   # manual run - always runs, overwrites today's week file
 
 permissions:

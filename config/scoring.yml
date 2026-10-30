@@ -152,7 +152,7 @@ synthesis:
 # POOL + WEEKLY (added 2026-10-08, from the 2-week review: 8 ideas in 15
 # days, 0 survived a manual competitor check). The daily run only triages
 # and saves real_problem posts to data/pool/DATE.json; `run.py weekly`
-# (Mondays, .github/workflows/weekly.yml) clusters the whole window at once
+# (Fridays since 2026-10-30, Mondays before; .github/workflows/weekly.yml) clusters the whole window at once
 # so a problem seen on several days becomes one strong cluster.
 # ============================================================
 pool:
@@ -160,9 +160,9 @@ pool:
   list_daily: false # ADDED 2026-10-14: list each pooled post in the daily
                     # Telegram? false = counts only; ideas (competitor-checked)
                     # arrive weekly. User: only show what is worth digging into.
-  days: 7           # window the weekly run clusters (Tue..Mon). Was 14 with
+  days: 7           # window the weekly run clusters (Sat..Fri). Was 14 with
                     # overlapping weeks; cut to 7 on 2026-10-11 (user: 14 too long).
-  weekday: 0        # 0 = Monday. Only used for "next weekly" in daily messages;
+  weekday: 4        # 4 = Friday (0 was Monday until 2026-10-30). Only used for "next weekly" in daily messages;
                     # the real schedule is the cron in weekly.yml.
   retriage: true    # ADDED 2026-10-15: weekly re-triages the whole pool in one
                     # batch before clustering; only posts still real_problem

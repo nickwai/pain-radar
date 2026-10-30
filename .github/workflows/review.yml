@@ -48,6 +48,14 @@ jobs:
             echo "last review $last - first Friday review, running."
             echo "should_run=true" >> "$GITHUB_OUTPUT"; exit 0
           fi
+          # ADDED 2026-10-30: the weekly ideas run moved to Fridays (09/11/14
+          # UTC); wait for today's week-DATE.md so the review includes it.
+          # The 16 UTC cron runs regardless.
+          today="$(date -u +%F)"
+          if [ ! -f "reports/week-$today.md" ] && [ "$(date -u +%H)" -lt 16 ]; then
+            echo "reports/week-$today.md not in yet - waiting for a later cron."
+            echo "should_run=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
           age=$(( ( $(date -u +%s) - $(date -u -d "$last" +%s) ) / 86400 ))
           if [ "$age" -ge 13 ]; then
             echo "last review $last ($age days ago) - running."

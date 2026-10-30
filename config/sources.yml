@@ -87,6 +87,10 @@ discourse:
       group: trading
     - url: https://community.bunpro.jp             # paid Japanese-learning SRS, ~1.5/day
       group: asia
+    # TRIAL 2026-10-30 (sports/pets probe): cyclists + coaches on a training app,
+    # plus devs on its API. Check yield at next 2-week review; cut if 0.
+    - url: https://forum.intervals.icu              # sports training analytics
+      group: sports
 
 # ---------------------------------------------------------------
 # RSS / ATOM FEEDS - niche forums, very few builders watching.
@@ -135,6 +139,12 @@ rss:
       name: contractortalk-biz # general contractors and trades business
       fetch: local     # blocked from GitHub Actions (403/409), fetched by the home PC - 2026-10-07
       group: trades
+    # TRIAL 2026-10-30: Interactive Brokers API mailing list (groups.io), traders
+    # automating IB (gateway restarts, data feeds). Few threads/week; replies are
+    # items too - clean_title strips "Re:" and the filter keeps one per title.
+    - url: https://groups.io/g/twsapi/rss
+      name: twsapi
+      group: trading
 
 # ---------------------------------------------------------------
 hackernews:

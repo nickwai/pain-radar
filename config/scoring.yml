@@ -56,6 +56,8 @@ shortlist:
     - lawnsite-bizops       # added 2026-10-04, trades trial
     - contractortalk-biz    # added 2026-10-04, trades trial
     - discuss.frappe.io     # added 2026-10-12, source study (shopify.com NOT here: 25/day)
+    - twsapi                # trial 2026-10-30, IB API traders
+    - forum.intervals.icu   # trial 2026-10-30, sports training app
   max_always: 10
   # Busy owner communities with their own cap, on top of max_always
   # (added 2026-10-12). Shopify merchants ~50 posts per 48h lookback.

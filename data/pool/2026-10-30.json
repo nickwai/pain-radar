@@ -1,0 +1,457 @@
+[
+  {
+    "id": "discourse:community.shopify.dev:39167",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Capturing payment methods in POS",
+    "text": "We’re trying to figure out why some payment methods are unable to be vaulted by Shopify Payments Merchant adds subscription products to the POS cart Customer uses the tap to pay to transact Shopify creates a placeholder payment method and the subscription (subscription is created with no issue other than not actually having a valid payment method) Shopify manually revokes the placeholder Nothing else happens, subscription doesn’t have a valid payment method attached and the customer profile in Shopify just has the revoked placeholder Merchant is completely unaware unless they look at the profile Why does this happen? The only logs we see is the “MANUALLY_REVOKED” revoked reason on the payment method. If it happens due to the payment method being incompatible with recurring charges, what is the merchant supposed to do? Every time they attempt to sign a customer up to a subscription, they cannot be sure it will work. Does anyone have any solutions? Is it specific to the store’s settings? 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.dev/t/capturing-payment-methods-in-pos/39167",
+    "created_utc": 1793252132,
+    "score": 2,
+    "comments": 0,
+    "signals": {
+      "combo": true,
+      "money": 4,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.2,
+      "multiplier": 1.2,
+      "score": 21.84,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "POS subscription payment vaulting failure creates customer signup failures.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.baserow.io:13137",
+    "source": "discourse",
+    "channel": "community.baserow.io",
+    "group": "saas",
+    "title": "Method to copy/move pages to other Applications",
+    "text": "Hi all, In the Application Builder: [Self-hosted, Baserow 2.4.1] I’m not finding any method in the documentation, nor did I find a post here, describing if there is a method for being able to move/duplicate a Page(s) from one application within a Workspace, to another application within the same Workspace. This is relevant because I built a series of pages in Application A intended for internal use. Later, I imported the template for a Login/Password Reset Application from the Baserow library to Application B, and added some user pages. Now leadership want the pages in App A to be able to be accessed by anyone who is authorized to use App B. 1: Is there a way to copy the desired pages from App A to App B within Baserow? 2: Because they are published to different domains (being different Apps), they require logging in again. Even though the credentials are the same to both Apps, this is cumbersome. If there is a workaround here, that could be acceptable. 3: I tried asking Kuma to copy from TestA to TestB on a Baserow.io instance; it successfully created the Page with the same name, copied field names properly, but made up text and failed to appropriately carry over Field values. Guidance/feedback are appreciated. Thanks 2 posts - 2 participants Read full topic",
+    "url": "https://community.baserow.io/t/method-to-copy-move-pages-to-other-applications/13137",
+    "created_utc": 1793293012,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.4,
+      "multiplier": 1.25,
+      "score": 9.88,
+      "money_matched": [
+        "/mo"
+      ],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Missing feature to duplicate or move pages across Baserow applications.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "se:quant:86914",
+    "source": "stackexchange",
+    "channel": "quant.stackexchange",
+    "group": "quant",
+    "title": "Covered interest parity for USD/COP: which public rates to use for the peso and dollar legs?",
+    "text": "I want a public, reproducible reference price for a USD/COP forward at 1, 3 and 6 months to compare against bank quotes. Which published rates are the right inputs for each leg (peso and dollar), and what are the main reasons the market quote will differ from the CIP value?",
+    "url": "https://quant.stackexchange.com/questions/86914/covered-interest-parity-for-usd-cop-which-public-rates-to-use-for-the-peso-and",
+    "created_utc": 1793201841,
+    "score": 1,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.5,
+      "multiplier": 1.15,
+      "score": 7.47,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Quant finance inquiry for public rate inputs to price currency forwards.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.home-assistant.io:1031086",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "WTH: Why is https so difficult to set up?",
+    "text": "I want to (somewhat) securely access Home Assistant while out of the house. I don’t want to pay a subscription to route traffic through someone else’s server. I am comfortable enough with port forwarding for remote access to Home Assistant (and can’t get my head around all the edge cases of VPNs), but logging in over the internet using http bothers me. On 3 separate occasions I’ve tried to increase my security by upgrading to https. All 3 times I failed. I consider myself a fairly advanced user. I’ve even made an integration that I use every day. But the plethora of necessary integrations/add-ons, external services, router configuration, and app configuration was overwhelming in the extreme. One time I succeeded in getting remote https to work, but could no-longer access Home Assistant over the local network, with or without loopback, on http or https. I still don’t know if I would lose local access to Home Assistant if the internet goes down when using https only. 6 posts - 3 participants Read full topic",
+    "url": "https://community.home-assistant.io/t/wth-why-is-https-so-difficult-to-set-up/1031086",
+    "created_utc": 1793331019,
+    "score": 4,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.4,
+      "multiplier": 1.1,
+      "score": 5.94,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Complex setup process and recurring hurdles for securing Home Assistant via HTTPS.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.home-assistant.io:1031107",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "WTH: Why do I have to create a weird automation just to turn on my expensive LG TV?",
+    "text": "Why do I have to create an automation like: for each and every TV of this kind? An automation where the trigger shows up as unknown, and the action seems literally magic Why can’t the integration itself ask me for the required MAC address when setting it up, as an optional field? Update: The current flow is this: Home Assistant Settings Devices & services Add integration LG LG webOS TV The screen that shows up next is this one: And, my proposal is to add an optional “MAC Address” field underneath the existing “Host” one. This way, Home Assistant itself (definitely NOT LG’s OS!) would be able to set up whatever it needs behind the scenes, so: The user does NOT have to manually create an abstruse automation by themselves. The user does NOT have to see an irrelevant automation in the list. The user is able to turn on their device immediately after finishing setting up the integration (provided they opted in to specifying a MAC address). This field could have a description label underneath it with a text along the lines of “This device requires specifying its MAC address in order to be able to be turned on remotely”. 10 posts - 5 participants Read full topic",
+    "url": "https://community.home-assistant.io/t/wth-why-do-i-have-to-create-a-weird-automation-just-to-turn-on-my-expensive-lg-tv/1031107",
+    "created_utc": 1793345435,
+    "score": 1,
+    "comments": 9,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 4.95,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Redundant automation configuration required just to specify MAC addresses for LG TVs.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "rss:garagejournal:https://www.garagejournal.com/forum/threads/2021-ram-body-parts.561799/",
+    "source": "rss",
+    "channel": "garagejournal",
+    "group": "automotive",
+    "title": "2021 Ram body parts??",
+    "text": "I have a 2021 Ram, 1500, Laramie, 5.7L, crew cab. One of the chrome trim pieces above the grill needs to be replaced and I can not find the part on any online Ram/MOPAR parts break downs. I can find all kinds of body parts, but no decent break downs for the grill and front end trim. The part I am looking for is in the middle, right above the grill where the hood meets. It appears to me to be one piece, just a few inches tall, and maybe 3 feet wide. I was thinking of ordering online, but at... Read more",
+    "url": "https://www.garagejournal.com/forum/threads/2021-ram-body-parts.561799/",
+    "created_utc": 1793308852,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.15,
+      "score": 3.45,
+      "money_matched": [
+        "/mo"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Unable to find specific replacement front end trim part diagrams online.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.shopify.com:706515",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Feature request: Product-specific customer tax exemptions for accurate wholesale and retail checkout",
+    "text": "Shopify currently applies customer-level tax exemptions across all otherwise taxable purchases, without allowing merchants to restrict those exemptions to specific products or collections. This creates a significant tax compliance problem for small businesses operating both wholesale and retail sales through one Shopify store. The problem I operate a micro-scale flower farm and retail business in British Columbia, Canada. We sell flowers wholesale to professional florists alongside retail designed floral arrangements, books, pottery and, since we are relying on what we produce at the farm, we also sell fruit and other boutique products with various taxation levels. Some of our wholesale customers qualify for a BC Provincial Sales Tax (PST) exemption when purchasing products for resale. However, those same customers occasionally purchase retail products for personal use, which are not eligible for that exemption. Currently, when a customer’s PST exemption is enabled in Shopify, it applies to all their otherwise PST-taxable purchases, regardless of whether the items are being purchased for resale or personal use. For example, a wholesale florist recently purchased a book from our retail boutique. Shopify correctly charged GST but removed PST because of the customer’s account-wide exemption even though the book was for personal use and needed to be taxed. The result is that Shopify’s existing tax settings cannot correctly accommodate a customer who makes both exempt and taxable purchases using the same account. The proposed solution Please introduce conditional, line-item customer tax exemptions , allowing merchants to specify which products or collections qualify for a particular customer’s tax exemption. When configuring a customer tax exemption, merchants should be able to choose whether it applies to: All otherwise eligible purchases, preserving the existing functionality. Specific products selected individually. Products selected through designated collections, as a convenient way to configure the underlying product-level rules. The actual tax calculation should occur at the individual line-item level, rather than relying solely on collection membership. For example, a BC PST resale exemption could apply to qualifying products purchased for resale from an approved wholesale collection, while purchases from our retail products would continue to be taxed normally. The exemption should apply only when both conditions are satisfied: The customer qualifies for the relevant tax exemption. The purchased product and its intended use qualify for that exemption under the applicable tax rules. Simply having access to a wholesale collection should not automatically make a customer or transaction tax-exempt. Ideally, Shopify would also allow merchants to use customer and product tags or metafields to configure these rules, making them easier to manage as businesses grow. Essential functionality The proposed system should: Correctly calculate taxes for mixed carts containing both exempt and taxable products. Support different tax treatments for the same customer account without requiring separate wholesale and retail accounts. Preserve existing product tax settings, collection tax overrides and other applicable tax exemptions. Allow customers to complete their own purchases through the normal online checkout. Calculate the correct tax amounts before payment, without requiring draft orders, manual adjustments or additional invoices. Record actual GST and PST amounts accurately in Shopify’s order records and tax reports. Be available on Shopify’s standard subscription plans, including Basic, rather than requiring Shopify Plus. The goal is not to create an alternative tax calculation system. It is to make Shopify’s existing customer exemption functionality more precise and compatible with businesses serving different types of customers and transactions. Why this matters to small businesses I contacted Shopify Support and was informed that th",
+    "url": "https://community.shopify.com/t/feature-request-product-specific-customer-tax-exemptions-for-accurate-wholesale-and-retail-checkout/706515",
+    "created_utc": 1793306756,
+    "score": 8,
+    "comments": 7,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 10.8,
+      "money_matched": [
+        "invoice",
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Lack of product-specific customer tax exemptions in Shopify creates wholesale compliance issues.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.shopify.com:706413",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "New Collborator request form UX is annoying",
+    "text": "The https://dev.shopify.com/dashboard/129017439/stores/collaborations/new form needs an update as UX was designed 10 years ago most likely. If I want to choose granular permissions, I have to go through 10-20 checkboxes manually, expand each one, and select them. Why cant you make predefined roles available for partner stores? Even if its just preselecting permissions. When there is a mistake in collaborator code all selected checkboxes get whiped out and have to start over! Is this to preventing DDosing requests stores? I’m sure there is a more elegant solution to this then having valid users doing manual checking if they made a mistake or used an expired collaborator code. Why can’t we update an existing request with additional permissions? If I missed any checkbox manually, I need to remove the access, then go through the manual process again with the additional checkbox. Even if the backend doesnt support it, it could just handle the rerequest actions automatically without asking user to do it. This becomes really annoying when you have to do it more than once, and it would be easy to fix in an hour or less and make partner life less miserable. 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/new-collborator-request-form-ux-is-annoying/706413",
+    "created_utc": 1793273268,
+    "score": 9,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 1.3,
+      "multiplier": 1.2,
+      "score": 5.16,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Tedious multi-checkbox UI and lack of predefined roles for collaborator requests.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.shopify.com:705832",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Request to get Staff ID's through admin or API",
+    "text": "Our point of sale app allows users to set up conditions. One request is to have a condition based on the staff member. To be able to set this condition up proactively, prior to the store going live - we would want to get a list of the pos staff_id’s. This doesn’t seem to existeither in the admin or api. The staff_id we can access through the api, is for the Shopify parent user ID. In POS, I believe that ID is the user that logged in to the device, not the staff member who has pinned in. The only way we see the pinned in staff_id is if that member completes a sale, or potentially, manually on device. We can then view it in our logs and in reporting. tl;dr what I’m searching for: A way to query the retail staff id’s (not user id’s) that have been set up Or, more staff properties available in the pos session api such as their permission level or tag. That would let us forgo needing this entirely since we could likely filter on that instead. cheers 6 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/request-to-get-staff-ids-through-admin-or-api/705832",
+    "created_utc": 1793232797,
+    "score": 3,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 2.3,
+      "multiplier": 1.2,
+      "score": 4.56,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Inability to retrieve POS staff IDs via admin API for conditional app logic.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.shopify.com:705743",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Flow - Feature Requests - Duplicate A Specific Condition and allow AI's to edit upon export",
+    "text": "For example we have a condition with a lot of zip/postal codes - we are creating a very similar condition and currently have to create a new condition and manually add each individual zip code. We were also unable to get Sidekick to edit the flow due to its size and upon export were warned that the signatures etc meant that it can’t be edited and then imported. A test import failed. Overall it’s a great aspect of Shopify but these features would be appreciated if they can be implemented. 4 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-flow-feature-requests-duplicate-a-specific-condition-and-allow-ais-to-edit-upon-export/705743",
+    "created_utc": 1793197290,
+    "score": 4,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.6,
+      "multiplier": 1.2,
+      "score": 3.72,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Shopify Flow lacks feature to duplicate specific conditions and edit large flows via AI.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.shopify.com:705841",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Investigating Shopify Technical Issues When Pages Are Indexed but Google and AI Visibility Declines",
+    "text": "I’m researching whether a technical inconsistency can affect how Google and AI search systems discover, interpret and display a Shopify website. My situation is that Google continues to crawl my website, index pages, products are synced and approved within Google Merchant Center and structured data is present. However, my visibility both local or organic have declined. Some AI-generated answers have failed to identify the business accurately or even suggesting it doesn’t exist. I understand that Google Search, local results, and AI search don’t necessarily work the same way, and I’m starting to wonder if shopify as e-commerce affects service based businesses as well. I’m simply trying to determine whether there could be an underlying technical issue that hasn’t been identified. I’m curious whether anyone else has experienced something similar or investigated any of the following: Can a Shopify theme or its customizations interfere with how search engines read or interpret a website, even when pages are indexed? Can structured data be valid but still contain conflicting or incomplete information that affects how a business or its products are understood? Have you encountered issues involving crawler access, robots.txt, JavaScript, or conflicting information within a Shopify website? How would you determine whether the issue is technical rather than simply a change in Google’s rankings or how AI search results are generated? Has anyone experienced something similar and actually identified the cause? If so, what was it? I’m not looking for general SEO advice or recommendations to rewrite content. I’m particularly interested in hearing from people who have encountered these types of issues, how they identified them, and whether correcting them made a measurable difference. 7 posts - 6 participants Read full topic",
+    "url": "https://community.shopify.com/t/investigating-shopify-technical-issues-when-pages-are-indexed-but-google-and-ai-visibility-declines/705841",
+    "created_utc": 1793237005,
+    "score": 9,
+    "comments": 6,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Technical SEO and indexing inconsistency causing visibility declines on Google and AI search.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.shopify.com:706414",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "How can I identify the POS location/store for a GiftCardCashOutTransaction?",
+    "text": "From Shopify Admin GraphQL API we are able to retrieve GiftCardCashOutTransaction details such as amount and processed date. However, we were not able to find any information about the store/location, staff member, or POS source where the cash-out was performed. Is there any Shopify API, webhook, event, or audit log that can be used to determine the originating POS location for a gift card cash-out? 5 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/how-can-i-identify-the-pos-location-store-for-a-giftcardcashouttransaction/706414",
+    "created_utc": 1793273346,
+    "score": 8,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.4,
+      "multiplier": 1.2,
+      "score": 2.88,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Unable to identify originating POS location or staff for gift card cash-out transactions via API.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.shopify.com:707059",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Meta Health & Wellness Restriction on Shopify Clothing Store — 3 Datasets Restricted, Reviews Rejected. Anyone Actually Solved This?",
+    "text": "Hey everyone, I’m managing Meta Ads for a Shopify maternity clothing brand, and Meta has incorrectly or unexpectedly classified our website under Health & Wellness. Purchase, InitiateCheckout, and AddPaymentInfo events are restricted, causing limited campaign delivery. Here’s what we’ve tried: New dataset in the same ad account — restricted. New Business Portfolio + ad account + dataset — restricted. Changed potentially sensitive website keywords — no improvement. Manual reviews rejected, Meta Support unable to resolve. Our daily profit dropped from ₹5,000+ to around ₹500. Interestingly, another maternity clothing business I know uses the same terminology and has no dataset restrictions. I’m considering rebuilding the website with a fresh domain, but before investing, I want to hear from anyone who has actually resolved this. Has anyone successfully removed this classification or identified what triggers it? I’m particularly interested in domain classification, Shopify event payloads, and legitimate technical fixes. Would appreciate advice from experienced Meta tracking specialists rather than generic suggestions to create another pixel or contact support. 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/meta-health-wellness-restriction-on-shopify-clothing-store-3-datasets-restricted-reviews-rejected-anyone-actually-solved-this/707059",
+    "created_utc": 1793351293,
+    "score": 5,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.3,
+      "multiplier": 1.2,
+      "score": 1.56,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Meta incorrectly classifying clothing stores under Health & Wellness and restricting ad events.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.shopify.com:706395",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Retourenabwicklung in Shopify",
+    "text": "Wir wünschen uns eine native Retourenetiketten-Lösung für Shopify-Händler in Deutschland. Kunden sollen Retouren im Shop anmelden und ein Rücksendeetikett direkt bezahlen können. Dabei möchten wir unseren bestehenden DPD-Geschäftskundenvertrag und unsere vereinbarten Versandpreise nutzen. Für bestimmte Fälle soll vor der Etiketterstellung eine manuelle Genehmigung möglich sein. Aktuell benötigen wir für unseren gewünschten Ablauf eine Drittanbieter-App mit entsprechendem Tarif sowie eine zusätzliche Zahlungsanbindung. Das verursacht zusätzliche Kosten und erhöht den Einrichtungsaufwand. Bitte erfasst diesen Bedarf als Funktionswunsch für das Shopify-Produktteam, insbesondere für den deutschen beziehungsweise europäischen Markt. Gibt es dafür bereits eine native Lösung oder eine öffentlich angekündigte Planung? 3 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/retourenabwicklung-in-shopify/706395",
+    "created_utc": 1793270968,
+    "score": 5,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.3,
+      "multiplier": 1.2,
+      "score": 1.56,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Lack of native return label solution supporting custom DPD business contracts in Germany.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.shopify.com:706408",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "API 2026-10: created_at:> now skips orders from the rest of that second — check your incremental sync before upgrading",
+    "text": "I upgraded an order sync integration to the 2026-10 API last week and found a breaking change in how created_at:> filtering works. If you run incremental syncs that checkpoint on a timestamp, this will affect you. What changed: from 2026-10, a > filter with no fractional seconds now starts at .999999 of that second. So created_at:>‘2026-09-15T12:00:02Z’ no longer returns an order created at 12:00:02.500. On 2026-07 and earlier the same filter would have returned it. Why it breaks incremental sync: order timestamps come back truncated to the second. If your job stores the last createdAt it saw and queries > that value on the next run, you used to get a small overlap of duplicates that you’d filter out by ID. After upgrading, you get a gap instead — anything created later in that same second, after your previous run, gets silently skipped. Shopify’s fix is straightforward: switch to >= and deduplicate on ID. But the gap is silent, so if you haven’t audited your sync since upgrading to 2026-10 you might not know it’s happening. The change only affects >, not >=, <, <=, date-only values, or values that already include fractional seconds. Apps still on 2026-07 or earlier are not affected. A couple of questions for anyone else who’s hit this: are you checkpointing on created_at or updated_at? And do you keep an overlap window as a safety buffer, or rely purely on the dedup? Curious whether bulk operation queries see the same behaviour — the docs don’t say explicitly. 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/api-2026-10-created-at-now-skips-orders-from-the-rest-of-that-second-check-your-incremental-sync-before-upgrading/706408",
+    "created_utc": 1793272982,
+    "score": 6,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.0,
+      "multiplier": 1.2,
+      "score": 1.2,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Breaking change in Shopify 2026-10 API timestamp filter behavior skips orders.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165461",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Party-wise report showing all accounts used in each voucher, as columns",
+    "text": "Description: In Tally, for a selected Party and date range, we get one view with one row per voucher and one column per account used in it (expense, GST, TDS, bank, etc.), with amounts and column totals. In ERPNext, the General Ledger filtered by Party shows only the party-side amount. The other accounts appear as comma-separated text in “Against Account” (e.g. “SUP038, TDS Payable - BFPL”), with no amounts, so we have to open each voucher to see the breakup. Question: Does ERPNext have a standard report or setting that shows, for a Party, every voucher (Purchase Invoice, Payment Entry, Journal Entry) with each account as a column and its amount? If not, what is the best workaround (Report Builder, Script Report, or another approach)? Attached: ERPNext GL export and Tally columnar view for Supplier (12-Jun-26 to 30-Sep-26). Posting Date Account Debit Credit Balance Voucher No Against Account Cost Center 01-04-2026 Freight Expense 15,200.00 0 15,200.00 ACC-JV-0001 Supplier-001 Delhi 01-04-2026 Freight Expense 1,174,851.27 0 1,352,051.27 ACC-JV-0002 Supplier-002, TDS Payable Bangalore 01-04-2026 Freight Expense 0 1,174,851.00 177,200.27 ACC-JV-0003 Provision Account, TDS Payable Main Tally view for the same kind of party (Supplier A, 12-Jun-26 to 30-Sep-26): Voucher Type Gross Total Freight Exp. Distribution Exp. Haryana CGST Haryana SGST WB CGST WB SGST TDS Payable Bank Purchase 5,27,730.06 4,54,939.03 40,944.52 40,944.52 9,098.01 Purchase 1,68,284.36 1,45,072.73 13,056.54 13,056.54 2,901.45 Purchase 46,192.31 39,820.95 3,583.89 3,583.89 796.42 Payment 5,93,112.77 5,93,112.77 Journal 1,740.00 1,500.00 135.00 135.00 30.00 Journal 37,849.24 32,629.00 2,936.62 2,936.62 653.00 2 posts - 2 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/party-wise-report-showing-all-accounts-used-in-each-voucher-as-columns/165461",
+    "created_utc": 1793276172,
+    "score": 1,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.5,
+      "multiplier": 1.25,
+      "score": 10.0,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "ERPNext lacks a party-wise report showing all accounts as columns like Tally.",
+    "pooled_on": "2026-10-30"
+  }
+]

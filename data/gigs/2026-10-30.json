@@ -1,0 +1,96 @@
+[
+  {
+    "id": "discourse:community.make.com:118561",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Available now: one Make.com scenario rescue — fixed EUR 200, tested in 3 hours",
+    "text": "I am available now for one fixed-scope Make.com rescue. Best fit one broken or unreliable scenario; API/webhook, mapping, routing, duplicate, retry or error-handling issue; enough access, a blueprint/export, or reproducible test data to diagnose it safely. What you receive diagnosis of the root cause; one bounded correction to the agreed incident; a reproducible test and regression check; short written handover notes explaining the change. Fixed price: EUR 200 including applicable VAT for the package. Timing: I can start immediately and deliver within 3 hours after written scope, payment, and receipt of all required access or exports. This package excludes a full rebuild, new feature development, paid third-party services, and incidents that cannot be reproduced with the provided material. If the issue is larger, I will say so before any work starts. French or English. Please send a private message with the failing step, expected result, actual result, and a sanitized blueprint or screenshots. After confirming that it fits the package, I can issue the invoice and secure Stripe payment link immediately. 1 post - 2 participants Read full topic",
+    "url": "https://community.make.com/t/available-now-one-make-com-scenario-rescue-fixed-eur-200-tested-in-3-hours/118561",
+    "created_utc": 1793259849,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 11.25,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "broken",
+        "unreliable"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Offering a fixed-price paid service to rescue and fix broken Make scenarios.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.n8n.io:325192",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Hiring: AI Workflow Engineer at 7shifts (Remote - Canada/US only)",
+    "text": "Looking for an AI Workflow Engineer to join 7shifts on a full-time, permanent basis or on a contract/project basis (open to discussion). Please reach out if you are interested and have the necessary skillset needed. jobs.ashbyhq.com AI Workflow Engineer 7shifts is an HR platform designed to help restaurant teams thrive. With an easy-to-use app and industry-specific solutions, 7shifts saves time, reduces errors, and helps keep costs in check for over 55,000 restaurants. Our mission is to simplify... As an AI Workflow Engineer at 7shifts, you’ll help teams across the business rethink how work gets done and build the automations that create meaningful capacity and output. Reporting to the CTO, you’ll partner with leaders to identify high-impact opportunities for automation, then design and build the workflows that bring them to life. You’ll be the person who turns “how can we automate this?” into solutions that actually ship, scale, and stick. This is a hands-on role with broad exposure across the business. You’ll work closely with teams to understand their processes, identify where time and effort are being spent, and build AI-powered workflows and automations that help us work more efficiently and focus on higher-value work. What you’ll do: Partner with teams: Work closely with leaders and teams to understand their workflows, translate business needs into automation opportunities, and help shape solutions that create meaningful capacity. Redesign processes: Challenge existing ways of working, eliminate unnecessary steps, and design simpler, more scalable processes before introducing automation. Build and ship: Turn ideas into practical AI-powered solutions, using LLMs, agents, and other tools to prototype, test, and launch automations that give teams back hours in their day. Connect systems: Integrate the tools and systems we already use through APIs and automation platforms to streamline how information and actions move across the business. Make it stick: Document solutions, establish clear processes and guardrails, and enable teams to confidently use and maintain what you build. Measure impact: Track outcomes like time saved, capacity created, and efficiency gains to understand what’s working and prioritize where to go next. What you bring: Builder mentality: You’re comfortable taking an ambiguous problem from idea to implementation and have a track record of shipping and maintaining what you build - not just prototyping AI fluency: You have hands-on experience with LLMs and AI tools like Claude, OpenAI, n8n or similar, and can speak to how you’ve used them to change the way you work or solve business problems. Responsible AI mindset: You understand the importance of building AI solutions responsibly, with appropriate attention to data privacy, security, access controls, and the handling of sensitive information. You know when data should, and shouldn’t, be used with AI tools and build with appropriate safeguards in place. Technical foundation: You have experience building and deploying AI-powered solutions and connecting systems through APIs. You’re comfortable with Python or a similar programming language, SQL and databases, and automation platforms such as n8n, Zapier, Make, or similar tools. You’re also familiar with modern development and deployment tools such as Git, Vercel, Railway, or cloud platforms like AWS, Azure, or GCP. Business-first mindset: You start with the business problem, not the technology. You can sit with a non-technical leader, understand how their team works, identify where automation can create value, and translate that into a practical solution. Process instinct: You question existing ways of working and look for chances to simplify, cut unnecessary steps, and build more scalable processes. Strong ownership: You’re comfortable working independently, navigating ambiguity, and driving projects from identifying an opportunity through implementation, iteration, and measuring the impact. Enablement mind",
+    "url": "https://community.n8n.io/t/hiring-ai-workflow-engineer-at-7shifts-remote-canada-us-only/325192",
+    "created_utc": 1793203281,
+    "score": 5,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.5,
+      "multiplier": 1.1,
+      "score": 2.2,
+      "money_matched": [],
+      "pain_matched": [
+        "automate this"
+      ],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Looking for an AI Workflow Engineer"
+    },
+    "triage_reason": "Company looking to hire an AI Workflow Engineer for remote contract work.",
+    "pooled_on": "2026-10-30"
+  },
+  {
+    "id": "discourse:community.make.com:118567",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Hiring: connect multiple Gmail, Yahoo, Hotmail, Discord and personal WhatsApp accounts to Claude through the Make MCP server",
+    "text": "Hi everyone, I’m looking to hire a Make expert to build a cloud setup that connects all my messaging accounts to Claude through the Make MCP server. I want Claude to be my one place to read, reply to, and organize every inbox and chat. The goal Right now my messages are spread across many accounts. I want to open Claude, ask “what came in today?” and get one answer that covers everything. Then I want Claude to reply, sort, and clean up for me. Everything should run in Make’s cloud so it works even when my computer is off. Accounts to connect Gmail: several accounts Yahoo Mail: two or three accounts Hotmail ( Outlook.com ): one account Discord: my personal DMs matter most. I don’t need server channels. WhatsApp (personal, not Business): I currently use TimelinesAI and want to replace it if there’s a good option. What Claude should be able to do in every account Read new and older messages Search across all accounts at once Write and send replies and new messages Organize: labels, folders, archive, mark as read, delete junk Summarize: a daily rundown of what needs my attention How I picture it working Each account gets connected to Make once. Make scenarios do the actual work (read, send, label, and so on). Those scenarios are exposed as tools through the Make MCP server. Claude connects to that MCP server and uses the tools when I ask. If that’s the wrong way to think about it, tell me. Please answer these in your reply Is this possible? Which parts work well and which don’t? Which Make app or module would you use for each account, and where would you need a workaround (for example IMAP for Yahoo)? Personal WhatsApp without TimelinesAI: what are my options, and how big is the risk of my number getting banned? Can Make read personal Discord DMs, or only bot and server messages? If not, what would you do instead? How would you keep this safe with full access? For example, an approval step before Claude sends anything. With this many accounts, roughly how many Make operations and which Make plan will I need each month? If there’s a better tool than Make for any part of this, say so. I’m open to it. What I need from you An example of something similar you’ve built A fixed price for the build A monthly price for upkeep if something breaks How long it will take you Handover I’m not a developer. Please explain each piece in plain, simple steps, and include a short written guide or screen recording that shows how it works and how to fix common problems. Budget and timeline Open to quotes. Tell me your price and how long you need. Reply here or send me a DM. Thanks! 50 posts - 36 participants Read full topic",
+    "url": "https://community.make.com/t/hiring-connect-multiple-gmail-yahoo-hotmail-discord-and-personal-whatsapp-accounts-to-claude-through-the-make-mcp-server/118567",
+    "created_utc": 1793260084,
+    "score": 0,
+    "comments": 49,
+    "signals": {
+      "combo": true,
+      "money": 2,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 3.0,
+      "multiplier": 1.25,
+      "score": 16.88,
+      "money_matched": [
+        "hire a",
+        "quote"
+      ],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "hire a Make expert"
+    },
+    "triage_reason": "User looking to hire an expert to connect messaging apps to Claude via Make MCP.",
+    "pooled_on": "2026-10-30"
+  }
+]

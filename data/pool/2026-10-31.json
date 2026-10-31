@@ -1,0 +1,261 @@
+[
+  {
+    "id": "discourse:community.n8n.io:325454",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "When a client replies \"Looks good, but can you change the logo?\", does your workflow count it as approved?",
+    "text": "If you use AI to read client replies, the clear yes and the clear no are easy. The reply that causes trouble is the mixed one: “Looks good, but can you change the logo?” A lot of classifiers call that approved. The task moves to done and the logo change gets lost. Two checks fix most of this, and you can add them to any workflow: Ask the model for the exact sentence it based its decision on, not only a label, and ask it to say whether the approval has any conditions. In a Code node, confirm that sentence really appears in the email. Accept an approval only when the quote is found and there are no conditions. Everything else goes to a person. A minimal version of the quote check (Code node, Run Once for Each Item). Change emailText and quote to your own field names: const clean = (t) => (t || '').toLowerCase().replace(/\\s+/g, ' ').trim(); const email = clean($json.emailText); const quote = clean($json.quote); return { json: { ...$json, quoteFound: quote.length > 0 && email.includes(quote) } }; My full version does this for ClickUp: it emails the client when a task reaches review, reads the reply, moves the task to approved or revisions, and turns requested changes into a checklist. You can find it in the n8n template library under my name. Would your workflow count “Looks good, but can you change the logo?” as approved, send it to a person, or have you never tested it? And what is the most confusing reply a client has sent you to a review request? Leave the names out and post it here. 3 posts - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/when-a-client-replies-looks-good-but-can-you-change-the-logo-does-your-workflow-count-it-as-approved/325454",
+    "created_utc": 1793360650,
+    "score": 1,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 4,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.9,
+      "multiplier": 1.1,
+      "score": 14.19,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Handling ambiguous client replies in workflow automation for approval checking.",
+    "pooled_on": "2026-10-31"
+  },
+  {
+    "id": "discourse:community.home-assistant.io:1031362",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "WTH Bring back trigger ID display in automation UI editor if it was manually set",
+    "text": "The recent change to simply “if triggered by” is very good for beginners. However, when there’s lots of triggers using different entities, the list picker and summary text are completely useless. Require lots of scrolling to check which trigger is which. Which entity changed? What was my intent for using that trigger? What we need is either go back to show all manually set trigger ID, and/or add the device/entity name to the summary and list picker. I prefer the former so that the intent from all existing automations will be shown and easier to edit. 4 posts - 3 participants Read full topic",
+    "url": "https://community.home-assistant.io/t/wth-bring-back-trigger-id-display-in-automation-ui-editor-if-it-was-manually-set/1031362",
+    "created_utc": 1793435374,
+    "score": 3,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 1.5,
+      "multiplier": 1.1,
+      "score": 4.95,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "UI workflow friction when editing automations with many triggers.",
+    "pooled_on": "2026-10-31"
+  },
+  {
+    "id": "discourse:community.shopify.com:706515",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Feature request: Product-specific customer tax exemptions for accurate wholesale and retail checkout",
+    "text": "Shopify currently applies customer-level tax exemptions across all otherwise taxable purchases, without allowing merchants to restrict those exemptions to specific products or collections. This creates a significant tax compliance problem for small businesses operating both wholesale and retail sales through one Shopify store. The problem I operate a micro-scale flower farm and retail business in British Columbia, Canada. We sell flowers wholesale to professional florists alongside retail designed floral arrangements, books, pottery and, since we are relying on what we produce at the farm, we also sell fruit and other boutique products with various taxation levels. Some of our wholesale customers qualify for a BC Provincial Sales Tax (PST) exemption when purchasing products for resale. However, those same customers occasionally purchase retail products for personal use, which are not eligible for that exemption. Currently, when a customer’s PST exemption is enabled in Shopify, it applies to all their otherwise PST-taxable purchases, regardless of whether the items are being purchased for resale or personal use. For example, a wholesale florist recently purchased a book from our retail boutique. Shopify correctly charged GST but removed PST because of the customer’s account-wide exemption even though the book was for personal use and needed to be taxed. The result is that Shopify’s existing tax settings cannot correctly accommodate a customer who makes both exempt and taxable purchases using the same account. The proposed solution Please introduce conditional, line-item customer tax exemptions , allowing merchants to specify which products or collections qualify for a particular customer’s tax exemption. When configuring a customer tax exemption, merchants should be able to choose whether it applies to: All otherwise eligible purchases, preserving the existing functionality. Specific products selected individually. Products selected through designated collections, as a convenient way to configure the underlying product-level rules. The actual tax calculation should occur at the individual line-item level, rather than relying solely on collection membership. For example, a BC PST resale exemption could apply to qualifying products purchased for resale from an approved wholesale collection, while purchases from our retail products would continue to be taxed normally. The exemption should apply only when both conditions are satisfied: The customer qualifies for the relevant tax exemption. The purchased product and its intended use qualify for that exemption under the applicable tax rules. Simply having access to a wholesale collection should not automatically make a customer or transaction tax-exempt. Ideally, Shopify would also allow merchants to use customer and product tags or metafields to configure these rules, making them easier to manage as businesses grow. Essential functionality The proposed system should: Correctly calculate taxes for mixed carts containing both exempt and taxable products. Support different tax treatments for the same customer account without requiring separate wholesale and retail accounts. Preserve existing product tax settings, collection tax overrides and other applicable tax exemptions. Allow customers to complete their own purchases through the normal online checkout. Calculate the correct tax amounts before payment, without requiring draft orders, manual adjustments or additional invoices. Record actual GST and PST amounts accurately in Shopify’s order records and tax reports. Be available on Shopify’s standard subscription plans, including Basic, rather than requiring Shopify Plus. The goal is not to create an alternative tax calculation system. It is to make Shopify’s existing customer exemption functionality more precise and compatible with businesses serving different types of customers and transactions. Why this matters to small businesses I contacted Shopify Support and was informed that th",
+    "url": "https://community.shopify.com/t/feature-request-product-specific-customer-tax-exemptions-for-accurate-wholesale-and-retail-checkout/706515",
+    "created_utc": 1793306756,
+    "score": 8,
+    "comments": 7,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 10.8,
+      "money_matched": [
+        "invoice",
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Shopify lacks product-specific customer tax exemptions for wholesale and retail.",
+    "pooled_on": "2026-10-31"
+  },
+  {
+    "id": "discourse:community.shopify.com:707284",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Feature Request: Respect cart-level pickup selection at checkout",
+    "text": "Summary When a customer selects collection/pickup in the cart, checkout should carry that choice through and preselect Pick up — not default back to Ship . Current behaviour Customers acknowledge collection in the cart (including ticking a confirmation checkbox), but checkout resets to Ship by default. This causes avoidable ordering mistakes and follow-up work for the merchant. Expected behaviour A cart-level pickup selection should be respected at checkout, with Pick up preselected automatically. Why this matters There is no native setting on any Shopify plan that supports this. Third-party apps exist but add cost and have compatibility limitations (e.g. with subscription apps on Basic). This is a gap in the native checkout experience for merchants with mixed pickup-and-delivery catalogs. 6 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/feature-request-respect-cart-level-pickup-selection-at-checkout/707284",
+    "created_utc": 1793418332,
+    "score": 4,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.4,
+      "multiplier": 1.2,
+      "score": 6.48,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Checkout resets cart-level pickup selection to shipping, causing merchant errors.",
+    "pooled_on": "2026-10-31"
+  },
+  {
+    "id": "discourse:community.shopify.com:707078",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "How to Prevent Duplicate CRM Records When Multiple Shopify Webhooks Trigger Simultaneously?",
+    "text": "We have integrated our Shopify store with an Microsoft Dynamics CRM using custom PHP code. We use Shopify webhooks for order and customer creation and updates. When a new order is placed, multiple webhooks (order create, customer create/update, etc.) trigger almost simultaneously. Since all requests execute at the same time, our CRM sometimes creates duplicate customer and order records. Our CRM does not have built-in duplicate detection. My questions: What is the best way to prevent simultaneous webhook requests from creating duplicate records? How can we ensure each order or customer is processed only once? Looking for recommendations from developers who have handled similar Shopify-to-CRM integrations. 6 posts - 6 participants Read full topic",
+    "url": "https://community.shopify.com/t/how-to-prevent-duplicate-crm-records-when-multiple-shopify-webhooks-trigger-simultaneously/707078",
+    "created_utc": 1793359228,
+    "score": 2,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.2,
+      "multiplier": 1.2,
+      "score": 2.64,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Simultaneous Shopify webhooks cause duplicate customer and order records in CRM.",
+    "pooled_on": "2026-10-31"
+  },
+  {
+    "id": "discourse:community.shopify.com:707357",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Inbox AI agent: add an option to turn off automatic checkout links",
+    "text": "Hi Shopify team, On my store, every customer has to pick a delivery date and time slot on the cart page before checkout. We need that information to schedule and fulfil each order, so it’s a required step. Right now, the Shopify Inbox AI agent sends customers a checkout link straight away when they show interest in a product. That link skips our cart page completely. The result: Orders come in with no delivery date or time We have to contact the customer afterwards to ask for it, which is slow and looks unprofessional Some customers get confused when we ask for details they thought they’d already given The agent itself is very helpful, so we’d like to keep using it. We just need more control over how it hands customers off to buy. Suggested solutions (any of these would work): A setting to turn off automatic checkout link generation in the Inbox agent An option to link to the cart or product page instead of checkout, so customers go through the store’s normal flow Respecting required cart attributes, so the agent doesn’t create a checkout link when the store needs cart-level input first This would help any merchant whose orders need pre-checkout input: delivery scheduling, gift messages, personalisation, pickup slots, and so on. Thanks for considering it! 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-inbox-ai-agent-add-an-option-to-turn-off-automatic-checkout-links/707357",
+    "created_utc": 1793446949,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.4,
+      "multiplier": 1.2,
+      "score": 0.48,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Shopify Inbox AI agent sends checkout links that bypass required pre-checkout delivery date selection.",
+    "pooled_on": "2026-10-31"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "What are you running for quote follow-ups and missed calls?",
+    "text": "hey folks, curious what the room is running these days. im using tradestash for job tracking right now and no complaints there, keeps my crm, quotes, invoices and schedule in one spot which is a big step up from the sticky-note-on-the-dash setup i had before. where im still losing money is two spots it doesnt really cover: follow ups and dealing with missed calls when im on a job. miss two or three a day at times easy and i figure half of those just go call the next guy on the list. what... What are you running for quote follow-ups and missed calls?",
+    "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+    "created_utc": 1793361602,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 4,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 12.0,
+      "money_matched": [
+        "invoice",
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Trades business losing money due to lack of automated quote follow-ups and missed call handling.",
+    "pooled_on": "2026-10-31"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165461",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Party-wise report showing all accounts used in each voucher, as columns",
+    "text": "Description: In Tally, for a selected Party and date range, we get one view with one row per voucher and one column per account used in it (expense, GST, TDS, bank, etc.), with amounts and column totals. In ERPNext, the General Ledger filtered by Party shows only the party-side amount. The other accounts appear as comma-separated text in “Against Account” (e.g. “SUP038, TDS Payable - BFPL”), with no amounts, so we have to open each voucher to see the breakup. Question: Does ERPNext have a standard report or setting that shows, for a Party, every voucher (Purchase Invoice, Payment Entry, Journal Entry) with each account as a column and its amount? If not, what is the best workaround (Report Builder, Script Report, or another approach)? Attached: ERPNext GL export and Tally columnar view for Supplier (12-Jun-26 to 30-Sep-26). Posting Date Account Debit Credit Balance Voucher No Against Account Cost Center 01-04-2026 Freight Expense 15,200.00 0 15,200.00 ACC-JV-0001 Supplier-001 Delhi 01-04-2026 Freight Expense 1,174,851.27 0 1,352,051.27 ACC-JV-0002 Supplier-002, TDS Payable Bangalore 01-04-2026 Freight Expense 0 1,174,851.00 177,200.27 ACC-JV-0003 Provision Account, TDS Payable Main Tally view for the same kind of party (Supplier A, 12-Jun-26 to 30-Sep-26): Voucher Type Gross Total Freight Exp. Distribution Exp. Haryana CGST Haryana SGST WB CGST WB SGST TDS Payable Bank Purchase 5,27,730.06 4,54,939.03 40,944.52 40,944.52 9,098.01 Purchase 1,68,284.36 1,45,072.73 13,056.54 13,056.54 2,901.45 Purchase 46,192.31 39,820.95 3,583.89 3,583.89 796.42 Payment 5,93,112.77 5,93,112.77 Journal 1,740.00 1,500.00 135.00 135.00 30.00 Journal 37,849.24 32,629.00 2,936.62 2,936.62 653.00 2 posts - 2 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/party-wise-report-showing-all-accounts-used-in-each-voucher-as-columns/165461",
+    "created_utc": 1793276172,
+    "score": 1,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.5,
+      "multiplier": 1.25,
+      "score": 10.0,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "ERPNext reporting gap requiring manual voucher opening compared to Tally.",
+    "pooled_on": "2026-10-31"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/heard-about-a-contractor-who-lost-a-lot-of-money-over-an-expired-license-how-do-you-prevent-this.463647/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "Heard about a contractor who lost a lot of money over an expired license. How do you prevent this?",
+    "text": "Heard a story recently that I can't get out of my head. A contractor sent his crew to a job site. GC checked credentials. One guy's license had lapsed. Whole crew got sent home. Lost a lot of money in one day. Got me thinking about my own situation. How does everyone here actually track license and cert renewals for their crew? Especially when you have multiple guys with different certs expiring at different times? Spreadsheet? Calendar reminders? Something else?",
+    "url": "https://www.contractortalk.com/threads/heard-about-a-contractor-who-lost-a-lot-of-money-over-an-expired-license-how-do-you-prevent-this.463647/",
+    "created_utc": 1793361524,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 1.5,
+      "money_matched": [],
+      "pain_matched": [
+        "spreadsheet"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Contractors need a reliable way to track crew license and certification renewals.",
+    "pooled_on": "2026-10-31"
+  }
+]

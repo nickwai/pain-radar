@@ -1,0 +1,412 @@
+[
+  {
+    "id": "discourse:forum.ghost.org:64111",
+    "source": "discourse",
+    "channel": "forum.ghost.org",
+    "group": "automation",
+    "title": "Keeping track of unsubscribed readers",
+    "text": "Ghost is a fantastic platform, but I’m running into a big problem… how are all of you keeping track of unsubscribes? Yes, I can filter by subscribed/unusubscribed, but they are not displayed in any order I can figure out. That would mean I have to click on every single profile to see when they unsubscribed. More specifically, I just saw a huge dip from one issue to another. Like 30 missing subscribers. I’ve never had such a large unsubscribe event, so this is a bit weird and I’m trying to figure out what happened. I tried exporting the list to see if the csv marked time of unsubscribe, but no luck. So far, I see the only option to compare daily export csv lists, but that’s incredibly tedious. Is there a way to filter member lists to better keep track of when people unsubscribed 2 posts - 2 participants Read full topic",
+    "url": "https://forum.ghost.org/t/keeping-track-of-unsubscribed-readers/64111",
+    "created_utc": 1793476262,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 4,
+      "cash": 0,
+      "pain": 4,
+      "engagement": 0.4,
+      "multiplier": 1.1,
+      "score": 23.54,
+      "money_matched": [
+        "subscribed"
+      ],
+      "pain_matched": [
+        "keep track of",
+        "keeping track of",
+        "tedious"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Tracking specific unsubscribe timelines is tedious and currently requires manual profile checks.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.home-assistant.io:1031560",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "WTH: High time for multi‑VLAN support",
+    "text": "What Home Assistant Developers Should Do For multi‑VLAN to become a first‑class experience, the platform must move beyond its flat‑network assumptions. Home Assistant was fundamentally designed for a flat network . Today, multi‑VLAN support is possible but fragile, relying on manual workarounds and community‑contributed fixes rather than native features. The community has identified several critical areas where the platform falls short — these point directly to what developers should prioritize. Provide a GUI for Network & VLAN Management The most immediate gap is the lack of a user‑friendly interface for network configuration. Users currently must resort to command‑line tools to create VLAN interfaces — a major barrier for most. Developers should build a network configuration UI that allows users to: Create and manage VLAN interfaces directly from the Home Assistant frontend. Assign static IPs and manage gateways for each interface without touching the CLI. Visually map which interfaces are connected to which network segments. Restore Granular Interface Binding for Services The recent deprecation of the http.server_host option is a significant step backward for multi‑VLAN security. It removed the ability to restrict the web interface to a specific trusted interface, forcing it to bind to all interfaces (including the untrusted IoT VLAN) by default. Developers must: Reinstate or provide a supported alternative to bind core services (like the HTTP server) to specific interfaces or IP addresses. This is a fundamental security control, not an optional feature. Allow users to designate a default interface for outbound internet requests, preventing Home Assistant from attempting to route traffic through an interface that is blocked from the internet (a common IoT VLAN setup). Make Discovery Protocols Interface‑Aware Discovery is the backbone of a smart home platform, but Home Assistant’s discovery mechanisms are largely unaware of multiple interfaces. Fix mDNS Advertisement Collisions: Home Assistant currently “collides” with itself when it attempts to advertise its services across multiple VLANs simultaneously, creating a loop of spinning mDNS advertisements. Developers need to implement logic to advertise only on the interface(s) a user designates, or handle multiple advertisements gracefully. Extend DHCP Discovery: The built‑in DHCP discovery currently only listens on the first network interface it finds. This must be updated to use the Network integration’s configuration to listen on all relevant interfaces, so devices on secondary VLANs can be discovered via DHCP. Utilize the Network Helper API for All Discovery: While a helper API for network interface preferences exists in the developer documentation, its adoption is inconsistent. Developers should mandate that all integrations using broadcast/multicast discovery (SSDP, mDNS, etc.) use this helper API to respect the user’s interface choices, rather than defaulting to a single interface or all interfaces indiscriminately. Give Integrations Interface Selection Capabilities Integrations that communicate with devices often need to know which network to use. Currently, they have no standard way to ask the user or the system. Developers should: Expose the user’s interface preferences to integrations through a stable API. This would allow a user to say, for example, “Use the IoT VLAN interface for all Unifi, TP‑Link and ESPHome communication.” Allow integrations to explicitly request an interface for their sockets, ensuring they bind to the correct network segment for discovery and communication. 6 posts - 2 participants Read full topic",
+    "url": "https://community.home-assistant.io/t/wth-high-time-for-multi-vlan-support/1031560",
+    "created_utc": 1793518797,
+    "score": 4,
+    "comments": 5,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 2.4,
+      "multiplier": 1.1,
+      "score": 10.89,
+      "money_matched": [
+        "alternative to"
+      ],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Platform lacks native, robust multi-VLAN support, relying on fragile workarounds.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.n8n.io:325715",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "How many contacts in your CRM left their company months ago?",
+    "text": "Every outreach campaign brings back auto-replies, and some of them say more than “out of office”. “I have left the company, please contact Jane instead” is a CRM update and a new lead in one email. Most of them get archived. A simple way to catch them: Search Gmail on a schedule for auto-replies and permanent bounces. Have the model sort each one into left the company, out of office, or other, and quote the line that shows it. Handle the two cases differently. Left the company: ask a person before changing the CRM. Out of office with a return date: create a follow-up task for that date instead of writing the contact off. Point 3 is the one most people miss. An out-of-office reply tells you when to follow up. It does not mean the lead is dead. My full version does this for HubSpot, with approvals in Slack. You can find it in the n8n template library under my name. What happens to auto-replies in your inbox today: archived, read and updated by hand, or handled by a tool? Have you ever found a new contact in one that turned into real business? 1 post - 1 participant Read full topic",
+    "url": "https://community.n8n.io/t/how-many-contacts-in-your-crm-left-their-company-months-ago/325715",
+    "created_utc": 1793502790,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 8.25,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [
+        "by hand"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Manually checking and updating CRM records from auto-replies is tedious.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.baserow.io:13151",
+    "source": "discourse",
+    "channel": "community.baserow.io",
+    "group": "saas",
+    "title": "Group Form questions by using Headers or Pages",
+    "text": "In the basic Form builder, there are no options to group/divide the questions into different sections. This is an extremely basic, 101 feature in EVERY form builder I’ve ever used–the ability to divide groups of Form questions with headers and/or divide the questions into pages. From my understanding, it’s possible to further customize forms to include headers using the application builder, but that is a paid feature. Getting basic headers into a form is basic enough of a feature to not be locked behind a paid subscription, IMO. This lack in basic feature makes it less tempting to pay a subscription in the future. 1 post - 1 participant Read full topic",
+    "url": "https://community.baserow.io/t/group-form-questions-by-using-headers-or-pages/13151",
+    "created_utc": 1793450002,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 7.5,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Form builder lacks basic section headers and pagination features.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.home-assistant.io:1031484",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "WTH: Why can't we see what's bloating the Recorder database?",
+    "text": "I came across an archived WTH post raising a similar issue that apparently didn’t go anywhere, but I think this is important enough to bring up again. Home Assistant offers very little visibility into what’s being stored in the Recorder database, what’s consuming the most space, and how much data is being written at any given time. While developing and testing my own ESPHome devices, I’ve occasionally managed to cripple HA by unintentionally flooding the database with excessive updates. It’s also easy to forget to reduce sensor update frequencies after testing, or have malfunctioning devices, noisy sensors, or integrations generating unnecessary records. I’d love to see a built-in diagnostic tool showing: Database usage: What’s consuming the most space, broken down by entities, devices, or integrations. Write activity: Which entities are generating the most records, including real-time write rates. Historical trends: Database growth and activity over time to help identify problems. I know SQL tools can accomplish much of this, and I’ve used them in the past. However, I’m no SQL expert, and it would be great to have some basic visibility into what’s bloating the database without having to manually query it. We can monitor CPU, memory, disk, and network usage. Why not Recorder activity too? WTH 6 posts - 4 participants Read full topic",
+    "url": "https://community.home-assistant.io/t/wth-why-cant-we-see-whats-bloating-the-recorder-database/1031484",
+    "created_utc": 1793471708,
+    "score": 6,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 2.6,
+      "multiplier": 1.1,
+      "score": 6.16,
+      "money_matched": [],
+      "pain_matched": [
+        "broken",
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "No built-in visibility to monitor what is bloating the Recorder database.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.home-assistant.io:1031574",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "WTH Don't integrations ship with default Blueprints?",
+    "text": "When you add a new auto-discovered integration in Home Assistant, it populates your system with entities and then leaves you to figure out how to put them to use. Home Assistant should provide out-of-the-box, standard behaviours for their users. Currently, they are stuck choosing between two frustrating options. They can dump YAML snippets in the documentation as “example automations” for users to copy-paste, or they can attempt to build the automation logic directly into the integration itself. The second option runs straight into Home Assistant’s code-quality requirements for core integrations - that they must contain example automations in the integration page. Integrations should just be able to ship with default Blueprints in their component folders. If a user’s installation satisfies the prerequisite inputs for an integration’s blueprint, it should automatically surface in the UI, similar to the built-in motion_light.yaml . This would instantly give users a menu of official, working automations specifically designed for the hardware they just installed. The foundational infrastructure to import blueprints from integration folders into the local config already exists within components/automations/ . Implementing this primarily requires the filtering logic to expose them cleanly to the user, alongside a basic guideline to prevent developers from cluttering the UI with duplicate or hyper-niche blueprints. We shouldn’t force users to go hunting through the Blueprint Exchange for basic use cases that the integration author has already solved. Let developers ship blueprints directly with their integrations. I brought this up previously in home-assistant/architecture discussion #1246 6 posts - 6 participants Read full topic",
+    "url": "https://community.home-assistant.io/t/wth-dont-integrations-ship-with-default-blueprints/1031574",
+    "created_utc": 1793525159,
+    "score": 4,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 2.4,
+      "multiplier": 1.1,
+      "score": 4.29,
+      "money_matched": [],
+      "pain_matched": [
+        "frustrating"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "New integrations populate entities without out-of-the-box automated behavior blueprints.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.retool.com:67703",
+    "source": "discourse",
+    "channel": "community.retool.com",
+    "group": "saas",
+    "title": "Managed Retool Database: securely initialize a custom PostgreSQL role password (Neon HTTP 400)",
+    "text": "We use cloud-hosted Retool Database and are preparing a restricted connection for a replacement sync in staging. An existing administrator connection works with TLS certificate and hostname verification. We created a custom runtime role and a separate owner role. Both remain NOLOGIN. We want to initialize the runtime role's password while preserving its grants and ownership relationships, then enable LOGIN only after a separate approved validation step. The application should use a dedicated restricted connection rather than the administrator connection. Using PostgreSQL 18.6 psql, the following command fails (role name below is illustrative): \\password example_sync_runtime The control plane returns HTTP 400: Neon only supports being given plaintext passwords We have not placed a real password in saved Retool SQL or enabled the role's LOGIN attribute. We do not have established access to the underlying Neon management account. What is the supported credential-initialization route for an existing custom SQL-created role in managed Retool Database? Is there a Retool credential UI or managed control-plane operation that can set this role's password while leaving it NOLOGIN and preserving its existing privileges? If plaintext password submission through SQL is required, what supported approach keeps it out of saved query text/history? What protection or redaction applies to Retool query, audit and error logs, and to underlying database/control-plane/proxy logs? Can an encrypted Retool secret configuration variable be used for this specific role-password operation without exposing its value in those logs? If so, what documented execution method is supported? If custom login-role provisioning is unsupported, what supported alternative provides a dedicated least-privilege database identity for a Retool workflow? We have already reviewed the documentation on external database access and forum posts about copying masked connection strings, missing Connection tabs, and saving a resource before testing a connection. Those concern accessing existing credentials or connection configuration. Our question is specifically about initializing a custom role's credential securely. We are looking for a supported provisioning method and its logging behavior, rather than a workaround that stores a plaintext password in saved SQL. 3 posts - 2 participants Read full topic",
+    "url": "https://community.retool.com/t/managed-retool-database-securely-initialize-a-custom-postgresql-role-password-neon-http-400/67703",
+    "created_utc": 1793380881,
+    "score": 0,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.8,
+      "multiplier": 1.25,
+      "score": 2.88,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Needs a secure, supported method to initialize custom PostgreSQL role passwords.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.shopify.com:707463",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Charged $75 for automated tax filing I couldn't find how to cancel (on a $19.94 tax bill)",
+    "text": "I’m a very small business owner and some days my orders are $19 or less, so I have no business coming in to cover this. Shopify Tax automated filing filed my October 2026 Florida return automatically and I’m being charged a flat $75 fee on a $19.94 tax bill. There was no walkthrough and no clear information on how to turn it off. The Automated filing page just says ‘No changes can be made at this time,’ and Shopify sent no warning before filing. I thought I had until Jan 1 to cancel. I could not find a way to figure out how to cancel it myself. Support chat was hard to reach: I’ve tried 4 times and no one answered until today, after waiting about 53 minutes on a holiday. The wait takes forever. The advisor refused to waive the fee, though she did confirm Florida automated filing is removed. I’m asking Shopify to waive this $75 fee and make the cancel option clear for small merchants. Has anyone gotten a waiver? 3 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/charged-75-for-automated-tax-filing-i-couldnt-find-how-to-cancel-on-a-19-94-tax-bill/707463",
+    "created_utc": 1793487439,
+    "score": 1,
+    "comments": 2,
+    "signals": {
+      "combo": true,
+      "money": 0,
+      "cash": 2,
+      "pain": 1,
+      "engagement": 0.9,
+      "multiplier": 1.2,
+      "score": 6.48,
+      "money_matched": [],
+      "pain_matched": [
+        "takes forever"
+      ],
+      "cash_matched": [
+        "$75",
+        "$19.94",
+        "$19",
+        "$75"
+      ],
+      "always": true
+    },
+    "triage_reason": "Small merchant hit with unexpected automated filing fee with no cancellation option.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.shopify.com:707284",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Feature Request: Respect cart-level pickup selection at checkout",
+    "text": "Summary When a customer selects collection/pickup in the cart, checkout should carry that choice through and preselect Pick up — not default back to Ship . Current behaviour Customers acknowledge collection in the cart (including ticking a confirmation checkbox), but checkout resets to Ship by default. This causes avoidable ordering mistakes and follow-up work for the merchant. Expected behaviour A cart-level pickup selection should be respected at checkout, with Pick up preselected automatically. Why this matters There is no native setting on any Shopify plan that supports this. Third-party apps exist but add cost and have compatibility limitations (e.g. with subscription apps on Basic). This is a gap in the native checkout experience for merchants with mixed pickup-and-delivery catalogs. 6 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/feature-request-respect-cart-level-pickup-selection-at-checkout/707284",
+    "created_utc": 1793418332,
+    "score": 4,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.4,
+      "multiplier": 1.2,
+      "score": 6.48,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Checkout defaults to shipping instead of respecting cart-level pickup selection.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.shopify.com:707465",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Update: $75 automated tax filing fee on a $19.94 tax bill - no way to cancel, support refused to help",
+    "text": "I’m a very small business owner and some of my orders are $19 or less, so I have no business coming in to cover this. Shopify Tax automated filing filed my October 2026 Florida return automatically and I’m being charged a flat $75 fee on a $19.94 tax bill. There was no walkthrough and no clear information on how to turn it off. The Automated filing page just says ‘No changes can be made at this time,’ and Shopify sent no warning before filing. I thought I had until Jan 1 to cancel. I tried to contact support and the wait takes forever, and I could not find a way to figure out how to cancel it myself. I have tried the support chat 4 times and no one ever answered. This time I sat for 53 minutes to get a live person, who then refused to help me. She confirmed Florida automated filing is removed, but would not waive the $75 fee, saying it’s final once a return is filed. I’m asking Shopify to waive this $75 fee and make the cancel option clear for small merchants. Has anyone gotten a waiver? 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.com/t/update-75-automated-tax-filing-fee-on-a-19-94-tax-bill-no-way-to-cancel-support-refused-to-help/707465",
+    "created_utc": 1793487924,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": true,
+      "money": 0,
+      "cash": 2,
+      "pain": 1,
+      "engagement": 0.0,
+      "multiplier": 1.2,
+      "score": 5.4,
+      "money_matched": [],
+      "pain_matched": [
+        "takes forever"
+      ],
+      "cash_matched": [
+        "$75",
+        "$19.94",
+        "$19",
+        "$75"
+      ],
+      "always": true
+    },
+    "triage_reason": "Small merchant facing unexpected tax filing fee with no way to opt out.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.shopify.com:707357",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Inbox AI agent: add an option to turn off automatic checkout links",
+    "text": "Hi Shopify team, On my store, every customer has to pick a delivery date and time slot on the cart page before checkout. We need that information to schedule and fulfil each order, so it’s a required step. Right now, the Shopify Inbox AI agent sends customers a checkout link straight away when they show interest in a product. That link skips our cart page completely. The result: Orders come in with no delivery date or time We have to contact the customer afterwards to ask for it, which is slow and looks unprofessional Some customers get confused when we ask for details they thought they’d already given The agent itself is very helpful, so we’d like to keep using it. We just need more control over how it hands customers off to buy. Suggested solutions (any of these would work): A setting to turn off automatic checkout link generation in the Inbox agent An option to link to the cart or product page instead of checkout, so customers go through the store’s normal flow Respecting required cart attributes, so the agent doesn’t create a checkout link when the store needs cart-level input first This would help any merchant whose orders need pre-checkout input: delivery scheduling, gift messages, personalisation, pickup slots, and so on. Thanks for considering it! 4 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-inbox-ai-agent-add-an-option-to-turn-off-automatic-checkout-links/707357",
+    "created_utc": 1793446949,
+    "score": 4,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.6,
+      "multiplier": 1.2,
+      "score": 1.92,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "AI agent checkout links bypass cart page required delivery scheduling step.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.shopify.com:708086",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Store Product Pages Lose Their Layout Consistency When Product Descriptions Have Different Lengths",
+    "text": "I am experiencing a persistent store design problem with my Shopify store, particularly on product pages that use the same theme template but contain product descriptions of different lengths. I have designed the product pages to maintain a consistent appearance, with the product image, title, price, description, variant selector, and add-to-cart button arranged in a specific layout. The design looks balanced when I preview products with relatively short descriptions, but when I open products containing longer descriptions, the overall alignment starts to change. Some sections become noticeably taller, the position of the purchase button shifts, and the spacing between important elements no longer looks consistent. This makes the storefront feel less organized when customers move between different products, even though all the products are supposed to follow the same design structure. I want to maintain a professional and consistent appearance across the entire catalog without having to create a separate product template for every item. The issue becomes particularly noticeable when product descriptions contain several paragraphs of information. A product with a short description displays the image and purchasing information in a balanced arrangement, but another product with a much longer description creates a large difference in the height of the content area. As a result, the add-to-cart button appears much lower on some product pages than on others, and the relationship between the image and product information becomes visually uneven. I have tried adjusting the spacing and sizing of the relevant sections through the Shopify theme editor, but changes that improve one product page do not always produce the same result on another. I would prefer the product layout to handle different amounts of text naturally while keeping the most important purchasing elements positioned consistently. I am not sure whether this should be controlled through the theme’s existing layout settings or whether the product template needs a more specific structure. I have also reviewed the available customization options for the product information section, including its width, spacing, alignment, and the arrangement of individual blocks. The problem is that these settings appear to work well for the products I originally used when designing the store, but they become less predictable when the same template is applied to the full catalog. I do not want to shorten every product description simply to make the design look uniform, because customers need enough information to understand the products before purchasing. At the same time, allowing the description area to expand without considering the surrounding elements makes the product pages look inconsistent. I am trying to find a suitable balance between preserving the complete product information and maintaining a clean layout that does not make the purchasing section difficult to locate. I have not identified a single setting that solves this behavior across all product pages. Another aspect I am concerned about is how the same product template behaves when customers view the store on different screen sizes. On a desktop monitor, the image and product information appear side by side, but on narrower screens the sections naturally become stacked. When a product has a longer description, the purchasing controls can end up much farther down the page, requiring customers to scroll through a substantial amount of text before reaching the add-to-cart button. I understand that longer content will naturally increase page length, but I would like to know whether Shopify themes provide a recommended way to organize product information so that essential purchasing elements remain easy to find without removing useful descriptions. I am particularly interested in how experienced Shopify developers handle product templates that need to accommodate both short and detailed descriptions while preserving a consisten",
+    "url": "https://community.shopify.com/t/shopify-store-product-pages-lose-their-layout-consistency-when-product-descriptions-have-different-lengths/708086",
+    "created_utc": 1793532986,
+    "score": 2,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.4,
+      "multiplier": 1.2,
+      "score": 1.68,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Product pages lose layout consistency when description lengths vary.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.shopify.com:707408",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Suggestion for shopify IT team",
+    "text": "Subject: Feature request: Product view counts in the Shopify admin Hi Shopify team, I’d like to suggest adding product view counts directly to individual product pages in the Shopify admin, similar to the listing view counts available on eBay. As a merchant, I want to see how much attention a product receives, not just how many sales it makes. This would help me distinguish between products that need more exposure and products that attract visitors but aren’t converting into purchases. Ideally, this would show: Product page views and unique visitors for a selected period, such as the last 7, 30 or 90 days. Views from all routes to the product, including browsing collections, internal searches and direct visits. Add-to-cart activity and purchases alongside those views. Bot traffic excluded wherever possible. Having a views column available in the main product list would also make it easier to compare listings and identify which ones need attention. The key is simplicity: a clear view count where I already manage each product, without needing a separate app or having to build a report. Please consider this for future development. It would be a useful everyday tool for independent merchants making decisions about stock, product listings and marketing. Kind regards, Martin Thread & Trimmings 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/suggestion-for-shopify-it-team/707408",
+    "created_utc": 1793460100,
+    "score": 3,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.7,
+      "multiplier": 1.2,
+      "score": 0.84,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Shopify admin lacks product view counts to help merchants gauge interest.",
+    "pooled_on": "2026-11-01"
+  },
+  {
+    "id": "discourse:community.shopify.com:708079",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Can an embedded app offer a limited off-admin page via merchant-generated expiring links? (App Store 2.2.2)",
+    "text": "We are building a public embedded app (product drafts and sync). Merchants on plans with no staff accounts want a non-technical helper to enter product drafts without a Shopify login. Proposal: a merchant creates a revocable, expiring link inside the embedded admin app; that link opens a limited page outside admin where the helper can only create drafts and mark them ready. Syncing to Shopify, settings and everything else stay in the embedded app. Does this conflict with App Store requirement 2.2.2 (off-platform features integrated in Shopify Admin) or with Built for Shopify 3.1.2/3.1.3? Is there a recommended pattern? 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.com/t/can-an-embedded-app-offer-a-limited-off-admin-page-via-merchant-generated-expiring-links-app-store-2-2-2/708079",
+    "created_utc": 1793530129,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.2,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchants without staff accounts need a secure, off-admin method for helpers to add drafts.",
+    "pooled_on": "2026-11-01"
+  }
+]

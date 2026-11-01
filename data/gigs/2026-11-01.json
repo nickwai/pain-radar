@@ -1,0 +1,33 @@
+[
+  {
+    "id": "discourse:community.n8n.io:325678",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Hiring in San Diego (n8n & hubspot)",
+    "text": "We’re looking for a hands-on Revenue Operations Specialist (with n8n experience) to join our team at Workiz in San Diego! Manage HubSpot CRM & n8n Automations Hybrid Schedule & Dog-Friendly Office Salary: $85,000 – $110,000 + stock options & robust benefits. Check out the full details and apply here ! Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-in-san-diego-n8n-hubspot/325678",
+    "created_utc": 1793494240,
+    "score": 1,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 0.1,
+      "multiplier": 1.1,
+      "score": 0.11,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "$85,000",
+        "$110,000"
+      ],
+      "hiring": true,
+      "hiring_matched": "looking for a hands-on Revenue Operations Specialist"
+    },
+    "triage_reason": "Company looking to hire a Revenue Operations Specialist with n8n experience.",
+    "pooled_on": "2026-11-01"
+  }
+]

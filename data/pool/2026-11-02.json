@@ -1,0 +1,152 @@
+[
+  {
+    "id": "discourse:forum.ghost.org:64111",
+    "source": "discourse",
+    "channel": "forum.ghost.org",
+    "group": "automation",
+    "title": "Keeping track of unsubscribed readers",
+    "text": "Ghost is a fantastic platform, but I’m running into a big problem… how are all of you keeping track of unsubscribes? Yes, I can filter by subscribed/unusubscribed, but they are not displayed in any order I can figure out. That would mean I have to click on every single profile to see when they unsubscribed. More specifically, I just saw a huge dip from one issue to another. Like 30 missing subscribers. I’ve never had such a large unsubscribe event, so this is a bit weird and I’m trying to figure out what happened. I tried exporting the list to see if the csv marked time of unsubscribe, but no luck. So far, I see the only option to compare daily export csv lists, but that’s incredibly tedious. Is there a way to filter member lists to better keep track of when people unsubscribed 3 posts - 3 participants Read full topic",
+    "url": "https://forum.ghost.org/t/keeping-track-of-unsubscribed-readers/64111",
+    "created_utc": 1793476262,
+    "score": 0,
+    "comments": 2,
+    "signals": {
+      "combo": true,
+      "money": 4,
+      "cash": 0,
+      "pain": 4,
+      "engagement": 0.8,
+      "multiplier": 1.1,
+      "score": 23.98,
+      "money_matched": [
+        "subscribed"
+      ],
+      "pain_matched": [
+        "keep track of",
+        "keeping track of",
+        "tedious"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Ghost users lack a clean, ordered view of unsubscribes.",
+    "pooled_on": "2026-11-02"
+  },
+  {
+    "id": "se:mechanics:102490",
+    "source": "stackexchange",
+    "channel": "mechanics.stackexchange",
+    "group": "mechanics",
+    "title": "Does my alternator need to be replaced",
+    "text": "2015 Pathfinder (290,000 KM) My PF has been sitting for a while. I tried to start it but the battery was toast. I installed a new battery and it wouldn't start. It said there was an I-Key error. I did some searching and Google told me to check the main 250A fuse. The main 250A fuse is blown. Google told me to check for a short from the red terminal to ground. With the red test cable on the main red cable and the black test cable on the ground cable it beeps. Google told me that it's most likely the alternator is blown and now shorted to ground. With the multimeter still attached and beeping when I pull the cable off the alternator it stops beeping. Is this a sufficient test to tell if my alternator is toast? I would rather here it from here than fully trust Google telling me to buy a $250 part and go through all that trouble replacing it. Edit I'm using a fluke multimeter on the continuity test (I don't have it with me so I don't know the model). The continuity test beeps if the 2 contacts have a direct path. Basically if I'm on the continuity and I touch the 2 test probes together it will beep continuously until I separate the probes. So with the information in my original post when I probe the main red battery wire and probe the main black ground wire I get continuous tone (meaning the path is connected). Then when I remove the red cable from the alternator the path is broken and the tone stops. So that means there is zero resistance from the red cable, through the alternator and back out to the black cable.",
+    "url": "https://mechanics.stackexchange.com/questions/102490/does-my-alternator-need-to-be-replaced",
+    "created_utc": 1793620994,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 0,
+      "cash": 1,
+      "pain": 1,
+      "engagement": 0.4,
+      "multiplier": 1.15,
+      "score": 5.63,
+      "money_matched": [],
+      "pain_matched": [
+        "broken"
+      ],
+      "cash_matched": [
+        "$250"
+      ]
+    },
+    "triage_reason": "Car has a blown main fuse and an alternator short.",
+    "pooled_on": "2026-11-02"
+  },
+  {
+    "id": "discourse:community.shopify.dev:39289",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "<s-table> causes >0.1 layout shift (CLS) on server-rendered pages",
+    "text": "Since moving our embedded app from Polaris React’s DataTable to the <s-table> web component (polaris-2.js), our CLS in Shopify’s Web Vitals has risen. Some pages with a table now score 0.13–0.42 on a cold load, above the 0.1 Built for Shopify threshold. What happens: we server-render the table markup. Once polaris-2.js defines <s-table> , the table lays itself out in several passes: the filters and header appear, the pagination bar moves from the top of the table to the bottom, and the column widths are recalculated. If the browser paints between passes, every later pass counts as a layout shift. Whether that happens varies from load to load, so some loads score 0 and others score well over 0.1. Long product titles of uneven length and two-line cells make it worse, because the column-width passes are bigger. React isn’t involved: all of the shifts happen before our app hydrates, and the repro below has no React at all. Repro (polaris-2.js only, no app or framework): s-table layout shift repro Open it in Chrome with DevTools open and do a few hard reloads. Each shift is logged to the console as layout-shift <value> total CLS <total> , or just check the “Performance” tab. In Chrome 56.0.8078.79 we see totals of 0.03 - 0.3 per load, with the 75% above 0.1. The page is just a layout-shift observer, the polaris-2.js script tag, and a 25-row table: <script src=\"https://cdn.shopify.com/shopifycloud/polaris-2.js\"></script> <s-section padding=\"none\"> <s-table paginate hasNextPage> <s-stack slot=\"filters\" gap=\"small-300\">…search field and filter buttons…</s-stack> <s-table-header-row> <s-table-header listSlot=\"primary\">Product</s-table-header> <s-table-header listSlot=\"secondary\">Status</s-table-header> <s-table-header format=\"numeric\">In stock</s-table-header> … </s-table-header-row> <s-table-body> <s-table-row clickDelegate=\"product-0-link\"> <s-table-cell> <s-grid gridTemplateColumns=\"auto 1fr\" gap=\"small-200\" alignItems=\"center\"> <s-thumbnail size=\"small-200\" alt=\"\"></s-thumbnail> <s-stack gap=\"none\"> <s-link id=\"product-0-link\" href=\"#\">Vintage Levi's 501 denim trucker jacket, medium wash, size M</s-link> <s-text color=\"subdued\">Size M / Indigo</s-text> </s-stack> </s-grid> </s-table-cell> <s-table-cell><s-badge tone=\"success\">Active</s-badge></s-table-cell> … </s-table-row> …24 more rows… </s-table-body> </s-table> </s-section> Expected: <s-table> doesn’t move content it has already painted, for example by not showing its rows until its table layout is in place. Our workaround for now: we render a wrapper div with visibility: hidden from the server. A small inline script shows it once a ResizeObserver reports no size change for 100 ms. That brings our cold-load CLS to 0, but we’d rather not keep it, since it delays showing the table and relies on guessing when the layout has settled. 3 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.dev/t/s-table-causes-0-1-layout-shift-cls-on-server-rendered-pages/39289",
+    "created_utc": 1793496104,
+    "score": 3,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.1,
+      "multiplier": 1.2,
+      "score": 3.12,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Web component causes layout shift issues on Shopify apps.",
+    "pooled_on": "2026-11-02"
+  },
+  {
+    "id": "discourse:community.baserow.io:13154",
+    "source": "discourse",
+    "channel": "community.baserow.io",
+    "group": "saas",
+    "title": "Remember grouping choice",
+    "text": "I collapse all groups, then I go to another page and come back to the same view in which I collapsed all groups, but they are now all expanded and I need to manually collapse them again. Would be nice to have this remember the grouping choice. 2 posts - 2 participants Read full topic",
+    "url": "https://community.baserow.io/t/remember-grouping-choice/13154",
+    "created_utc": 1793612032,
+    "score": 1,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.5,
+      "multiplier": 1.25,
+      "score": 2.5,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Baserow fails to remember grouping choices across views.",
+    "pooled_on": "2026-11-02"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165563",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Opening Invoice Creation Tool monster rears its ugly head again!",
+    "text": "As you know the Opening Invoice Creation Tool accepts csv uploads to prepare the list for Purchase and Sales invoices. However, since it is csv, the number formats that have , in them are not processed correctly and it is a nightmare for anyone to find workaround methods like uploading the csv and pasting the balance column copied from Excel as per the relevant currency. This monster will not simply die away on itself so we need someone to take action for recoginizing Excel input to the child table. 3 posts - 2 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/opening-invoice-creation-tool-monster-rears-its-ugly-head-again/165563",
+    "created_utc": 1793625400,
+    "score": 2,
+    "comments": 2,
+    "signals": {
+      "combo": true,
+      "money": 3,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 1.0,
+      "multiplier": 1.25,
+      "score": 20.0,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "nightmare",
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Opening Invoice Creation Tool fails to process comma formats.",
+    "pooled_on": "2026-11-02"
+  }
+]

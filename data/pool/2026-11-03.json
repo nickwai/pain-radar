@@ -1,0 +1,173 @@
+[
+  {
+    "id": "se:mechanics:102490",
+    "source": "stackexchange",
+    "channel": "mechanics.stackexchange",
+    "group": "mechanics",
+    "title": "Does my alternator need to be replaced",
+    "text": "2015 Pathfinder (290,000 KM) My PF has been sitting for a while. I tried to start it but the battery was toast. I installed a new battery and it wouldn't start. It said there was an I-Key error. I did some searching and Google told me to check the main 250A fuse. The main 250A fuse is blown. Google told me to check for a short from the red terminal to ground. With the red test cable on the main red cable and the black test cable on the ground cable it beeps. Google told me that it's most likely the alternator is blown and now shorted to ground. With the multimeter still attached and beeping when I pull the cable off the alternator it stops beeping. Is this a sufficient test to tell if my alternator is toast? I would rather here it from here than fully trust Google telling me to buy a $250 part and go through all that trouble replacing it. Edit I'm using a fluke multimeter on the continuity test (I don't have it with me so I don't know the model). The continuity test beeps if the 2 contacts have a direct path. Basically if I'm on the continuity and I touch the 2 test probes together it will beep continuously until I separate the probes. So with the information in my original post when I probe the main red battery wire and probe the main black ground wire I get continuous tone (meaning the path is connected). Then when I remove the red cable from the alternator the path is broken and the tone stops. So that means there is zero resistance from the red cable, through the alternator and back out to the black cable.",
+    "url": "https://mechanics.stackexchange.com/questions/102490/does-my-alternator-need-to-be-replaced",
+    "created_utc": 1793620994,
+    "score": 0,
+    "comments": 1,
+    "signals": {
+      "combo": true,
+      "money": 0,
+      "cash": 1,
+      "pain": 1,
+      "engagement": 0.4,
+      "multiplier": 1.15,
+      "score": 5.63,
+      "money_matched": [],
+      "pain_matched": [
+        "broken"
+      ],
+      "cash_matched": [
+        "$250"
+      ]
+    },
+    "triage_reason": "Car owner has a short circuit issue with alternator and fuse.",
+    "pooled_on": "2026-11-03"
+  },
+  {
+    "id": "discourse:community.baserow.io:13154",
+    "source": "discourse",
+    "channel": "community.baserow.io",
+    "group": "saas",
+    "title": "Remember grouping choice",
+    "text": "I collapse all groups, then I go to another page and come back to the same view in which I collapsed all groups, but they are now all expanded and I need to manually collapse them again. Would be nice to have this remember the grouping choice. 2 posts - 2 participants Read full topic",
+    "url": "https://community.baserow.io/t/remember-grouping-choice/13154",
+    "created_utc": 1793612032,
+    "score": 1,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.5,
+      "multiplier": 1.25,
+      "score": 2.5,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "User requests a feature to remember grouping choices in Baserow views.",
+    "pooled_on": "2026-11-03"
+  },
+  {
+    "id": "discourse:community.shopify.com:708685",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Checkout price decimals can not be removed",
+    "text": "our currency do not have decimals in our country, therefore, showing decimals in checkout caused serious problem. We never see decimals on price in our daily life. 2 zeros after the decimal point makes customer think the price has been times 100, keep asking us if the price is miscalculation. Now, only car can be removed price decimals, however, the checkout still has decimals. It really makes customer confuse (the price showing in cart and checkout is inconsistent). We have been used shopify for several years, now we are consider not using it anymore since this issue cause too many abandon cart. 6 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/checkout-price-decimals-can-not-be-removed/708685",
+    "created_utc": 1793622025,
+    "score": 3,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.3,
+      "multiplier": 1.2,
+      "score": 2.76,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant experiencing checkout cart decimal issues causing customer confusion.",
+    "pooled_on": "2026-11-03"
+  },
+  {
+    "id": "discourse:community.shopify.com:708133",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Privacy Protection for Home-Based Merchants Using Shopify Payments",
+    "text": "Feature Request: Protect Residential Addresses of Home-Based Shopify Merchants I’m a small business owner operating an online store from my home. I recently discovered that my personal residential address was displayed on a customer’s credit card transaction. After speaking with Shopify Support, I learned that Shopify Payments uses the verified physical business address for information that may be shared with customers’ financial institutions. Depending on the bank, that address can appear on customer statements. For home-based businesses, this creates a significant privacy and personal safety concern. Shopify requires a physical operating address for payment verification and does not permit PO boxes or commercial mailboxes as substitutes. While merchants can use a separate public-facing mailing address, that doesn’t prevent their residential address from potentially appearing on credit card statements. I’m requesting that Shopify implement an option to protect the residential addresses of verified home-based merchants. Shopify could continue maintaining accurate physical addresses for compliance and identity verification while allowing merchants to substitute a designated business mailing address or suppress street-level address information shared with customers’ banks. There should be a way to comply with payment processing requirements without unnecessarily exposing our families’ home addresses. Home-based businesses are a significant part of e-commerce. Our personal privacy and safety deserve consideration. If you’re a home-based Shopify merchant who shares this concern, please comment or support this request so Shopify’s development team understands how many businesses this affects. 4 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/privacy-protection-for-home-based-merchants-using-shopify-payments/708133",
+    "created_utc": 1793548407,
+    "score": 5,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.7,
+      "multiplier": 1.2,
+      "score": 2.04,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant requesting privacy protection feature for residential addresses on payments.",
+    "pooled_on": "2026-11-03"
+  },
+  {
+    "id": "discourse:community.shopify.com:709133",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Connection error for some customers",
+    "text": "Some customers, narrowed some down to Verizon/frontier, but im sure there or others, are not able to connect to my shopping shopify website. www.thepokerstore.com anyone have an ideas on how it can be fixed? obviously many people are not taking the time to email me of this issue, especially if you came to my website from an ad, so i can be loosing lots of money yes i know it works just fine when you turn the wi-fi off and use cell data, but not every customer knows that, i had shopify support look into it over last few months, different recommendations each time, just today they suggested removing aaaa record and changing to ip4 cname, i did that, so lets see if that helps any suggestions? 3 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/connection-error-for-some-customers/709133",
+    "created_utc": 1793711353,
+    "score": 0,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.8,
+      "multiplier": 1.2,
+      "score": 0.96,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant experiencing customer connection errors affecting sales.",
+    "pooled_on": "2026-11-03"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165563",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Opening Invoice Creation Tool monster rears its ugly head again!",
+    "text": "As you know the Opening Invoice Creation Tool accepts csv uploads to prepare the list for Purchase and Sales invoices. However, since it is csv, the number formats that have , in them are not processed correctly and it is a nightmare for anyone to find workaround methods like uploading the csv and pasting the balance column copied from Excel as per the relevant currency. This monster will not simply die away on itself so we need someone to take action for recoginizing Excel input to the child table. 3 posts - 2 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/opening-invoice-creation-tool-monster-rears-its-ugly-head-again/165563",
+    "created_utc": 1793625400,
+    "score": 2,
+    "comments": 2,
+    "signals": {
+      "combo": true,
+      "money": 3,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 1.0,
+      "multiplier": 1.25,
+      "score": 20.0,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "nightmare",
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "ERPNext user struggling with CSV opening invoice import number formats.",
+    "pooled_on": "2026-11-03"
+  }
+]

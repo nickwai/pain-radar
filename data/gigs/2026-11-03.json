@@ -1,0 +1,64 @@
+[
+  {
+    "id": "discourse:community.make.com:118999",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Looking for Make.com contractors for ongoing project work",
+    "text": "Looking for Make.com contractors for ongoing project work. Fixed-fee per build, $300–$900 depending on complexity. 2–4 builds per month once we’re at volume. Must handle error cases, fallbacks, and retries in every workflow — not just the happy path. Portfolio required. Send a 2-minute Loom walking through one past build. Show me the scenario in the editor, how you handled a failure, and how you named your modules. Remote, async OK. DM if interested. 27 posts - 16 participants Read full topic",
+    "url": "https://community.make.com/t/looking-for-make-com-contractors-for-ongoing-project-work/118999",
+    "created_utc": 1793615427,
+    "score": 1,
+    "comments": 26,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.25,
+      "score": 13.75,
+      "money_matched": [
+        "per month"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$300",
+        "$900"
+      ]
+    },
+    "triage_reason": "Looking to hire Make.com contractors for project work.",
+    "pooled_on": "2026-11-03"
+  },
+  {
+    "id": "discourse:community.n8n.io:325902",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Looking for n8n contractors for ongoing project work",
+    "text": "Looking for n8n contractors for ongoing project work. Fixed-fee per build, $300–$900 depending on complexity. 2–4 builds per month once we’re at volume. Must handle error cases, fallbacks, and retries in every workflow — not just the happy path. Portfolio required. Send a 2-minute Loom walking through one past build. Show me the scenario in the editor, how you handled a failure, and how you named your modules. Remote, async OK. DM if interested. Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 3 participants Read full topic",
+    "url": "https://community.n8n.io/t/looking-for-n8n-contractors-for-ongoing-project-work/325902",
+    "created_utc": 1793610360,
+    "score": 9,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 0.9,
+      "multiplier": 1.1,
+      "score": 9.79,
+      "money_matched": [
+        "per month"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$300",
+        "$900"
+      ]
+    },
+    "triage_reason": "Looking to hire n8n contractors for ongoing project work.",
+    "pooled_on": "2026-11-03"
+  }
+]

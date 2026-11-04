@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1793727697,
+  "fetched_at": 1793800305,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -30,18 +30,6 @@
       "comments": 0
     },
     {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/how-do-you-monitor-snow-storms.525079/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "How do you monitor snow storms?",
-      "text": "We're prepping for this years snow season and need some way to best track storms and expected snowfall for our sites. How does everyone do this? We have about 20 trucks/plows across a large metro and previous years our ex manager would do it all checking weather. Many times he'd be wildly wrong. Is this just the norm, check weather.com and see whats expected in the area or is there a better way to track storms? Also is there anything people use afterwards for an after action report... How do you monitor snow storms?",
-      "url": "https://www.lawnsite.com/threads/how-do-you-monitor-snow-storms.525079/",
-      "created_utc": 1793586050,
-      "score": 0,
-      "comments": 0
-    },
-    {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/i%E2%80%99m-just-hemorrhaging-money-failing-leaf-season.525031/",
       "source": "rss",
       "channel": "lawnsite-bizops",
@@ -49,7 +37,7 @@
       "title": "I’m just hemorrhaging money-failing leaf season..",
       "text": "This will be the start to my 3rd leaf removal season, I can’t loose money this year like the others…I need help from folks that know what to do… Key Info: I’ve got good equipment and decently set up enough customers for what seems to be a decent customer log/load I can deal with 80% of my customers I can dump curb side and or “in the back 40”. if I remove leaf bags when I’m done I have a few places I can deposit them, usually whichever dump set up I’m closest to, for free... I’m just hemorrhaging money-failing leaf season..",
       "url": "https://www.lawnsite.com/threads/i%E2%80%99m-just-hemorrhaging-money-failing-leaf-season.525031/",
-      "created_utc": 1793669411,
+      "created_utc": 1793744714,
       "score": 0,
       "comments": 0
     },

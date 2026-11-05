@@ -608,20 +608,19 @@ def triage_posts(posts: list[dict], config: dict, env: dict | None = None) -> li
     model = env.get("GEMINI_MODEL", syn.get("model", "gemini-3.5-flash-lite"))
     industries = "\n".join(f"- {i}" for i in config.get("user_industries", []))
     prompt = TRIAGE_PROMPT.format(industries=industries, posts=_format_posts(posts))
-    payload = {"contents": [{"parts": [{"text": prompt}]}],
-               "generationConfig": {"responseMimeType": "application/json",
-                                    "responseSchema": TRIAGE_SCHEMA,
-                                    # steadier verdicts run to run (two
-                                    # untuned runs disagreed 6 vs 1 real)
-                                    "temperature": 0}}
-    url = GEMINI_URL_TMPL.format(model=model) + f"?key={key}"
     try:
-        data = _http_post_json(url, payload, {"Content-Type": "application/json"},
-                               timeout=60)
-        rows = json.loads(data["candidates"][0]["content"]["parts"][0]["text"])
+        # FIX 2026-11-05: triage made a single POST, so one 503 ("high demand",
+        # all day on 11-05) failed the whole run within 2s. call_gemini backs
+        # off on 503/429/timeouts. temperature 0 = steadier verdicts run to
+        # run (two untuned runs disagreed 6 vs 1 real).
+        rows = call_gemini(prompt, model, key, None, temperature=0,
+                           schema=TRIAGE_SCHEMA)
     except Exception as exc:  # noqa: BLE001 - diagnostics must never break the report
-        # Print only the exception TYPE: the URL (and its key) can appear in str(exc).
-        print(f"[triage] skipped ({type(exc).__name__})", flush=True)
+        # Only the exception type + HTTP status: the URL (and its key) can
+        # appear in str(exc).
+        code = getattr(exc, "code", None)
+        detail = f"{type(exc).__name__} {code}" if code else type(exc).__name__
+        print(f"[triage] skipped ({detail})", flush=True)
         return []
     known = {p["id"] for p in posts}
     rows = [r for r in rows if isinstance(r, dict) and r.get("id") in known

@@ -274,12 +274,21 @@ def _report_pool_day(args, posts, config, triage, date, seen) -> int:
             for g in old_gigs)
     print("\n" + "=" * 60)
     print(report_md)
-    _send_telegram(format_daily_pool(date, pooled, pool_size, nxt, gigs, posts_by_id,
-                                     bool(triage), pool_cfg.get("list_daily", True)), args)
+    # FIX 2026-11-05: the retry crons re-run a failed day, and each failure
+    # sent the same alert (4 identical messages on 11-05). Alert on the first
+    # failure only; the report written then is what marks it as already sent.
+    report_path = ROOT / "reports" / f"{date}.md"
+    repeat_failure = (not triage and report_path.exists()
+                      and "Triage failed today" in report_path.read_text(encoding="utf-8"))
+    if repeat_failure:
+        print("[telegram] skipped - triage failure already alerted today")
+    else:
+        _send_telegram(format_daily_pool(date, pooled, pool_size, nxt, gigs, posts_by_id,
+                                         bool(triage), pool_cfg.get("list_daily", True)), args)
     if args.dry_run:
         print("(--dry-run: not writing to reports/ or data/pool/)")
         return 0
-    (ROOT / "reports" / f"{date}.md").write_text(report_md, encoding="utf-8")
+    report_path.write_text(report_md, encoding="utf-8")
     rej_path = ROOT / "reports" / "rejected" / f"{date}.md"
     rej_path.parent.mkdir(parents=True, exist_ok=True)
     rej_path.write_text(rejected_md, encoding="utf-8")

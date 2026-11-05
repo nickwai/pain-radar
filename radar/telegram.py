@@ -118,7 +118,8 @@ def format_daily_pool(date: str, pooled: list[dict], pool_size: int,
     """ADDED 2026-10-08: daily heartbeat in pool mode (+ gigs); pooled post
     titles + links since 2026-10-11."""
     if not triage_ok:
-        head = "⚠️ triage failed — nothing pooled today."
+        head = ("⚠️ triage failed — nothing pooled yet. Later runs retry; "
+                "next message only if one succeeds.")
     else:
         # CHANGED 2026-10-12: "N pooled (pool: M)" read as "M found, only N
         # shown" - say plainly which number is today and which is the week.

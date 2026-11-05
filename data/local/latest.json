@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1793880284,
+  "fetched_at": 1793900498,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -14,6 +14,18 @@
       "text": "YOUR NEXT SERVICE STOP COULD MAKE A DIFFERENCE FOR A MILITARY FAMILY! GreenCare for Troops Needs Lawn Care Volunteers! For more than 20 years, Project EverGreen's GreenCare for Troops and SnowCare for Troops programs have connected military families across the country with professional lawn care, landscape, and snow removal companies willing to donate their services while a loved one is deployed. VOLUNTEERING IS EASY, AND YOU CHOOSE YOUR COMMITMENT! You decide which services to... GreenCare for Troops/SnowCare for Troops",
       "url": "https://www.lawnsite.com/threads/greencare-for-troops-snowcare-for-troops.525131/",
       "created_utc": 1793823186,
+      "score": 0,
+      "comments": 0
+    },
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "Would you trust AI to book your estimates?",
+      "text": "I've been testing AI phone answering for my brother's landscaping company. Getting it to answer questions is one thing, but letting it put appointments on the calendar is another. There are jobs we don't take, and the last thing I want is an estimate booked for something we don't even do. Would you let AI book estimates, or would you rather have it take the information and call the customer back?",
+      "url": "https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
+      "created_utc": 1793897299,
       "score": 0,
       "comments": 0
     },
@@ -37,7 +49,7 @@
       "title": "What are you running for quote follow-ups and missed calls?",
       "text": "hey folks, curious what the room is running these days. im using tradestash for job tracking right now and no complaints there, keeps my crm, quotes, invoices and schedule in one spot which is a big step up from the sticky-note-on-the-dash setup i had before. where im still losing money is two spots it doesnt really cover: follow ups and dealing with missed calls when im on a job. miss two or three a day at times easy and i figure half of those just go call the next guy on the list. what... What are you running for quote follow-ups and missed calls?",
       "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
-      "created_utc": 1793816867,
+      "created_utc": 1793889041,
       "score": 0,
       "comments": 0
     },

@@ -1,0 +1,33 @@
+[
+  {
+    "id": "discourse:community.n8n.io:326857",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Looking to Hire an n8n Expert to Build a Lead Management Automation Workflow",
+    "text": "I’m looking for an experienced n8n automation expert to help design and build a reliable lead management workflow. This is a paid opportunity for someone who can understand the requirements, recommend the right approach, and deliver a working solution. The workflow should cover three main areas: 1. Lead Collection and Qualification I need to collect leads from forms and other sources, validate their information, identify duplicates, and use AI to categorize them based on their needs and suitability. Incomplete submissions should be flagged for review rather than processed blindly. 2. Data Synchronization and Follow Ups Qualified leads should be stored in a central database or CRM, with relevant team notifications and automated follow ups. The workflow must keep records consistent and avoid duplicate messages or unnecessary follow ups. 3. Error Handling and Reliability The workflow should handle API failures, rate limits, and incomplete executions properly. It should retry recoverable errors, prevent duplicate actions when an execution resumes, and make failed leads easy to identify and review. I’m looking for someone who can build this properly, explain the technical decisions, and ensure the workflow is maintainable after delivery. If you’re an experienced n8n developer interested in taking on this paid project, please comment with your relevant experience, how you would approach the build, and an estimate of the information you’d need to provide a quote. 12 posts - 6 participants Read full topic",
+    "url": "https://community.n8n.io/t/looking-to-hire-an-n8n-expert-to-build-a-lead-management-automation-workflow/326857",
+    "created_utc": 1793843339,
+    "score": 3,
+    "comments": 11,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 9.9,
+      "money_matched": [
+        "hire a",
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Hire an n8n Expert"
+    },
+    "triage_reason": "Looking to hire an n8n expert for a paid workflow build.",
+    "pooled_on": "2026-11-06"
+  }
+]

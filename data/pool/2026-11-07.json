@@ -1,0 +1,173 @@
+[
+  {
+    "id": "discourse:community.shopify.com:711339",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "How do you control what your staff and agencies can change in your store?",
+    "text": "If you work with employees, freelancers, external agencies, or AI tools, how do you control what each of them can actually change in your Shopify store? Shopify permissions control access to whole sections, but they lack granular control over specific actions. For example: How do you allow an agency to update product descriptions without accidentally touching prices ? How do you require your approval before certain changes automatically go live? Would you benefit from a single control surface where your team/AI can propose updates, but only you can authorize them to apply? Or are Shopify’s existing permissions sufficient for your operations? I’d be interested to hear how other merchants currently handle this workflow gap. 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.com/t/how-do-you-control-what-your-staff-and-agencies-can-change-in-your-store/711339",
+    "created_utc": 1794001112,
+    "score": 2,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.2,
+      "multiplier": 1.2,
+      "score": 3.84,
+      "money_matched": [
+        "freelancer"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant needs granular permission controls for staff and agencies.",
+    "pooled_on": "2026-11-07"
+  },
+  {
+    "id": "discourse:community.shopify.com:711205",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Prevent POS staff to delete order's product from other locations",
+    "text": "We wan’t to be able to limit our POS staff members to delete order’s product that are not fulfilled by their location. At the moment, all the POS staffs from all the locations can delete order’s products from other locations, which can causes errors… 7 posts - 6 participants Read full topic",
+    "url": "https://community.shopify.com/t/prevent-pos-staff-to-delete-orders-product-from-other-locations/711205",
+    "created_utc": 1793962995,
+    "score": 4,
+    "comments": 6,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.8,
+      "multiplier": 1.2,
+      "score": 3.36,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "POS staff can delete items from other locations causing errors.",
+    "pooled_on": "2026-11-07"
+  },
+  {
+    "id": "discourse:community.shopify.com:710695",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "[Feature request] Count orders as sales only when they're paid, in Analytics and for external tools",
+    "text": "Hi everyone, If you accept deferred payment methods (Multibanco, bank transfer, cash on delivery, B2B payment terms), Shopify creates the order at checkout with “Payment pending” status and treats it as a sale straight away. The biggest impact is outside Shopify: external software, especially ad campaign management tools, reads every order as revenue, and purchase conversions are sent to the ad platforms before payment is confirmed. When an order is never paid, nothing corrects it. ROAS and MER are overstated, and campaigns optimise towards orders that never turn into money. Inside Shopify Analytics it’s the same: unpaid orders count as sales on the order date, and when they’re cancelled the reversal often lands in a different month. The existing workarounds don’t fix it: Each external tool would need its own logic to exclude unpaid orders, and most don’t offer it. Filtering by order_payment_status keeps the sale on the order date, so past months change when an order is paid later. The Payments report is cash-based but only shows gross amounts (with VAT and shipping), not net sales. What I’ve asked Shopify Support for: A store setting to count pending-payment orders as sales only when payment is received, across Analytics and in the purchase events sent to marketing channels and pixels (or an automatic retraction when an unpaid order is cancelled). An option in sales reports and ShopifyQL to report sales on the payment date instead of the order date. I’ve already submitted this through Shopify Support. If you have the same problem, please reply or like this post so Shopify can see how many merchants need it. Related thread: Net Sales Dashboard - Not Including Payment Due Later Sales Thanks! Jorge 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/feature-request-count-orders-as-sales-only-when-theyre-paid-in-analytics-and-for-external-tools/710695",
+    "created_utc": 1793890981,
+    "score": 3,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.1,
+      "multiplier": 1.2,
+      "score": 3.12,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Deferred payments counted as sales prematurely, messing up external tools.",
+    "pooled_on": "2026-11-07"
+  },
+  {
+    "id": "discourse:community.shopify.com:711341",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify store owners: How do you track and verify changes made by your team or external partners?",
+    "text": "If multiple people or apps manage your Shopify store, how do you know exactly what changed, who authorized it, and whether the final result matches what was intended? For example, an agency updates 200 products, an automation changes pricing, or a supplier modifies product information. Do you manually check the results? Rely on activity logs? Trust the person or tool that performed the update? Would a single dashboard showing proposed, approved, applied, and verified changes be useful to you? Or is this already adequately covered by the tools you’re using? I’d especially appreciate examples of situations where an unexpected change caused extra work or a business problem. 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.com/t/shopify-store-owners-how-do-you-track-and-verify-changes-made-by-your-team-or-external-partners/711341",
+    "created_utc": 1794001698,
+    "score": 2,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.2,
+      "multiplier": 1.2,
+      "score": 2.04,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant needs a way to track and verify changes made by team/partners.",
+    "pooled_on": "2026-11-07"
+  },
+  {
+    "id": "discourse:community.shopify.com:710698",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "BTW nummer werkt niet goed",
+    "text": "Problemen met btw-nummers en btw-verlegging in Shopify Checkout Hallo allemaal, Wij zijn een Nederlands bedrijf met webshops voor Nederland, België en Duitsland. Sinds onze overstap van Lightspeed naar Shopify lopen we tegen problemen aan met de verwerking en validatie van btw-nummers bij zakelijke klanten, met name in Duitsland en België. Op dit moment ervaren we twee belangrijke problemen: 1. Klanten vullen hun btw-nummer niet in Het veld voor het btw-nummer verschijnt in de checkout pas nadat klanten hun adresgegevens hebben ingevuld. Hierdoor wordt het veld regelmatig over het hoofd gezien. Daarnaast vermoeden we dat Duitse klanten, doordat onze webshop volledig op de Duitse markt is gericht, ervan uitgaan dat ze bij een Duits bedrijf bestellen en daarom geen btw-nummer hoeven in te vullen voor btw-verlegging. Dit zorgt ervoor dat zakelijke klanten regelmatig bestellingen plaatsen zonder btw-nummer, waardoor de btw niet automatisch wordt verlegd. 2. De validatie van btw-nummers werkt niet consistent Wanneer klanten hun btw-nummer wél invullen, verloopt de validatie via VIES niet altijd betrouwbaar. Het lijkt erop dat geldige btw-nummers niet altijd correct worden herkend of verwerkt, waardoor de btw-verlegging niet consequent wordt toegepast. Voorheen werkten we met Lightspeed. Hoewel Shopify op vrijwel alle andere vlakken een enorme verbetering is, ervaren we de verwerking van Europese btw-nummers en btw-verlegging als een flinke achteruitgang. Onze vragen aan de community: Is het mogelijk om het btw-nummerveld direct zichtbaar te maken in de checkout, bijvoorbeeld bij de bedrijfsnaam, zonder dat klanten eerst hun adres moeten invullen? Kunnen we het btw-nummerveld verplicht maken voor zakelijke klanten uit Duitsland en België? Zijn er oplossingen om de VIES-validatie en automatische btw-verlegging betrouwbaarder te laten werken? Heeft iemand ervaring met Shopify-apps of andere oplossingen die dit probleem structureel verhelpen? We zitten momenteel midden in ons hoogseizoen en merken dat deze problemen invloed hebben op onze conversie en voor extra administratief werk zorgen. We zijn daarom erg benieuwd of andere Shopify-gebruikers dit herkennen en welke oplossingen jullie hiervoor hebben gevonden. Alvast bedankt voor het meedenken! 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/btw-nummer-werkt-niet-goed/710698",
+    "created_utc": 1793891616,
+    "score": 3,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.7,
+      "multiplier": 1.2,
+      "score": 0.84,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "VAT number validation issues in Shopify checkout for European merchants.",
+    "pooled_on": "2026-11-07"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "What are you running for quote follow-ups and missed calls?",
+    "text": "hey folks, curious what the room is running these days. im using tradestash for job tracking right now and no complaints there, keeps my crm, quotes, invoices and schedule in one spot which is a big step up from the sticky-note-on-the-dash setup i had before. where im still losing money is two spots it doesnt really cover: follow ups and dealing with missed calls when im on a job. miss two or three a day at times easy and i figure half of those just go call the next guy on the list. what... What are you running for quote follow-ups and missed calls?",
+    "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+    "created_utc": 1794024242,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 4,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 12.0,
+      "money_matched": [
+        "invoice",
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Contractor losing money on quote follow-ups and missed calls.",
+    "pooled_on": "2026-11-07"
+  }
+]

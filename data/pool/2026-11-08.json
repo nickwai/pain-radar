@@ -1,0 +1,175 @@
+[
+  {
+    "id": "discourse:community.n8n.io:327105",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Do you let n8n workflows pay invoices without someone clicking approve?",
+    "text": "Quick question for people who build payment stuff in n8n. I see a lot of invoice workflows here that read the invoice, match it, and then wait for someone to approve the payment in Slack or Telegram. Has anyone gone further and let the workflow actually send the money on its own? Even just for small amounts or known suppliers? If you did: where do you draw the line (amount, new supplier, something else)? did anything go wrong? has a client, their accountant or their bank ever asked who approved a payment? what did you show them? And if you decided not to, I’d like to hear why too. I’ll share a summary of the answers here. 14 posts - 9 participants Read full topic",
+    "url": "https://community.n8n.io/t/do-you-let-n8n-workflows-pay-invoices-without-someone-clicking-approve/327105",
+    "created_utc": 1793978635,
+    "score": 4,
+    "comments": 13,
+    "signals": {
+      "combo": false,
+      "money": 3,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 13.2,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Business workflow gap around automated invoice payments and approvals.",
+    "pooled_on": "2026-11-08"
+  },
+  {
+    "id": "discourse:community.make.com:119440",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Do you let Make scenarios pay invoices without someone clicking approve?",
+    "text": "What is your goal? Not a bug, more a how-do-you-do-it question. I want to understand how people handle scenarios that pay supplier invoices or send bank transfers (Wise, Revolut, Stripe payouts, bank API): does it pay on its own, or does someone approve each payment? What is the problem & what have you tried? If some payments go out on their own, where do you draw the line (amount, known supplier, new bank details)? Has anything gone wrong, like a double payment or a changed IBAN? Has a client or accountant ever asked who approved a payment? Also keen to hear from people who decided not to automate payments at all and why. Asked the same in the n8n forum and got really good answers, so trying here too. 7 posts - 2 participants Read full topic",
+    "url": "https://community.make.com/t/do-you-let-make-scenarios-pay-invoices-without-someone-clicking-approve/119440",
+    "created_utc": 1793985329,
+    "score": 0,
+    "comments": 6,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.4,
+      "multiplier": 1.25,
+      "score": 10.5,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Workflow gap around automating invoice payments versus manual approvals.",
+    "pooled_on": "2026-11-08"
+  },
+  {
+    "id": "discourse:community.shopify.com:711339",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "How do you control what your staff and agencies can change in your store?",
+    "text": "If you work with employees, freelancers, external agencies, or AI tools, how do you control what each of them can actually change in your Shopify store? Shopify permissions control access to whole sections, but they lack granular control over specific actions. For example: How do you allow an agency to update product descriptions without accidentally touching prices ? How do you require your approval before certain changes automatically go live? Would you benefit from a single control surface where your team/AI can propose updates, but only you can authorize them to apply? Or are Shopify’s existing permissions sufficient for your operations? I’d be interested to hear how other merchants currently handle this workflow gap. 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.com/t/how-do-you-control-what-your-staff-and-agencies-can-change-in-your-store/711339",
+    "created_utc": 1794001112,
+    "score": 2,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.2,
+      "multiplier": 1.2,
+      "score": 3.84,
+      "money_matched": [
+        "freelancer"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Store operational gap for granular staff and agency permissions.",
+    "pooled_on": "2026-11-08"
+  },
+  {
+    "id": "discourse:community.shopify.com:711341",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify store owners: How do you track and verify changes made by your team or external partners?",
+    "text": "If multiple people or apps manage your Shopify store, how do you know exactly what changed, who authorized it, and whether the final result matches what was intended? For example, an agency updates 200 products, an automation changes pricing, or a supplier modifies product information. Do you manually check the results? Rely on activity logs? Trust the person or tool that performed the update? Would a single dashboard showing proposed, approved, applied, and verified changes be useful to you? Or is this already adequately covered by the tools you’re using? I’d especially appreciate examples of situations where an unexpected change caused extra work or a business problem. 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.com/t/shopify-store-owners-how-do-you-track-and-verify-changes-made-by-your-team-or-external-partners/711341",
+    "created_utc": 1794001698,
+    "score": 2,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.2,
+      "multiplier": 1.2,
+      "score": 2.04,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant operations gap for tracking changes made by staff or apps.",
+    "pooled_on": "2026-11-08"
+  },
+  {
+    "id": "discourse:community.shopify.com:711789",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Customers say \"it didn't fit\". How do you track which products come back for size?",
+    "text": "Something I keep seeing with apparel stores: returns come in through email or WhatsApp, the refund gets done, and the reason never gets written down. So a product can come back for size again and again, and nobody notices until someone sits down with a spreadsheet. Things I’ve seen stores try: Shopify’s own return reasons (size too small / size too large) Tagging the order “returned-size” when refunding A monthly look at the top returned products What do you do today? And once you know a product keeps coming back, what do you actually change on the page? 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.com/t/customers-say-it-didnt-fit-how-do-you-track-which-products-come-back-for-size/711789",
+    "created_utc": 1794129277,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.0,
+      "multiplier": 1.2,
+      "score": 1.8,
+      "money_matched": [],
+      "pain_matched": [
+        "spreadsheet"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Apparel store workflow gap for tracking and categorizing size returns.",
+    "pooled_on": "2026-11-08"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "What are you running for quote follow-ups and missed calls?",
+    "text": "hey folks, curious what the room is running these days. im using tradestash for job tracking right now and no complaints there, keeps my crm, quotes, invoices and schedule in one spot which is a big step up from the sticky-note-on-the-dash setup i had before. where im still losing money is two spots it doesnt really cover: follow ups and dealing with missed calls when im on a job. miss two or three a day at times easy and i figure half of those just go call the next guy on the list. what... What are you running for quote follow-ups and missed calls?",
+    "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+    "created_utc": 1794024242,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 4,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 12.0,
+      "money_matched": [
+        "invoice",
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Trades business needs software for quote follow-ups and missed calls.",
+    "pooled_on": "2026-11-08"
+  }
+]

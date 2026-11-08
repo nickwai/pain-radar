@@ -1,0 +1,39 @@
+[
+  {
+    "id": "discourse:community.n8n.io:327196",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] Full-Time Close CRM & n8n Automation Engineer | Remote | $2,000–$3,000 USD/Month",
+    "text": "Hey everyone! We’re looking for an experienced Automation Engineer to join our team full-time at Ecom Consulting , a growing high-ticket consulting company. We’re not looking for a freelancer or someone to complete a one-time project. We’re looking for a long-term team member who can take ownership of our CRM, automation infrastructure, and server-side tracking systems. Position Details Compensation: $2,000–$3,000 USD/month (depending on experience) Employment: Full-time, 40 hours/week Location: Remote (LATAM preferred, open to global applicants) Schedule: Monday–Friday, with overlap during US Eastern business hours What You’ll Be Responsible For 1. Close CRM Management & Automation Build, maintain, and optimize advanced workflows within Close CRM. Develop integrations using the Close API and webhooks. Automate lead routing, pipeline management, follow-ups, and sales processes. Troubleshoot CRM issues and improve data accuracy. Connect Close with our existing sales and marketing tools. 2. n8n Workflow Development Design and deploy complex n8n automations. Build custom API integrations and webhook-based workflows. Implement error handling, logging, and automated retries. Maintain and optimize existing automations. Develop AI-powered workflows where applicable. 3. Server-Side Tracking & Attribution Implement and maintain Meta Conversions API (CAPI). Configure server-side tracking through Google Tag Manager. Manage event deduplication and conversion tracking. Connect CRM conversion events with advertising platforms. Troubleshoot tracking discrepancies and attribution issues. 4. Sales & Marketing Infrastructure Integrate lead generation systems with Close CRM. Automate appointment booking, reminders, and follow-ups. Build reporting workflows for sales and marketing performance. Improve overall operational efficiency through automation. Required Qualifications We’re specifically looking for someone with: Proven experience working with Close CRM (required). Advanced experience building production workflows in n8n . Strong understanding of REST APIs, webhooks, and JSON. Experience with JavaScript for custom integrations. Hands-on experience with Meta CAPI and server-side tracking. Experience integrating CRMs with marketing and sales platforms. Strong troubleshooting and problem-solving skills. Ability to work independently and take ownership of projects. Please do not apply if you have never worked with Close CRM. This is a core requirement for the position. What We’re Looking For We want someone who can do more than simply connect applications. You should be comfortable designing automation systems from scratch, identifying inefficiencies, troubleshooting technical issues, and proactively improving our infrastructure. Ideally, you’ve previously worked with high-ticket sales organizations, marketing agencies, or businesses running paid advertising. How to Apply Please complete the application below: Application: We're hiring a AI Automation Engineer 🤖 In your application, please highlight: Your previous experience with Close CRM. Examples of complex n8n workflows you’ve built. Your experience with Meta CAPI and server-side tracking. Your current location and expected monthly compensation. We’re looking to hire as soon as we find the right person. Looking forward to connecting with some talented engineers here! Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-full-time-close-crm-n8n-automation-engineer-remote-2-000-3-000-usd-month/327196",
+    "created_utc": 1793984212,
+    "score": 1,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 4,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 0.1,
+      "multiplier": 1.1,
+      "score": 18.81,
+      "money_matched": [
+        "/mo",
+        "freelancer",
+        "hire a"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$2,000",
+        "$3,000",
+        "$2,000",
+        "$3,000"
+      ],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Company looking to hire a full-time CRM and n8n engineer.",
+    "pooled_on": "2026-11-08"
+  }
+]

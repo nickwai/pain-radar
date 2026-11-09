@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1794163186,
+  "fetched_at": 1794233150,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -30,26 +30,14 @@
       "comments": 0
     },
     {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/looking-for-advice-restarting-my-business.525111/",
       "source": "rss",
       "channel": "lawnsite-bizops",
       "group": "trades",
-      "title": "Would you trust AI to book your estimates?",
-      "text": "I've been testing AI phone answering for my brother's landscaping company. Getting it to answer questions is one thing, but letting it put appointments on the calendar is another. There are jobs we don't take, and the last thing I want is an estimate booked for something we don't even do. Would you let AI book estimates, or would you rather have it take the information and call the customer back?",
-      "url": "https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
-      "created_utc": 1794014335,
-      "score": 0,
-      "comments": 0
-    },
-    {
-      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
-      "source": "rss",
-      "channel": "contractortalk-biz",
-      "group": "trades",
-      "title": "What are you running for quote follow-ups and missed calls?",
-      "text": "hey folks, curious what the room is running these days. im using tradestash for job tracking right now and no complaints there, keeps my crm, quotes, invoices and schedule in one spot which is a big step up from the sticky-note-on-the-dash setup i had before. where im still losing money is two spots it doesnt really cover: follow ups and dealing with missed calls when im on a job. miss two or three a day at times easy and i figure half of those just go call the next guy on the list. what... What are you running for quote follow-ups and missed calls?",
-      "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
-      "created_utc": 1794024242,
+      "title": "Looking for Advice Restarting my Business",
+      "text": "People will only respect you as much as you tell them to. Looking for advice. I ran a lawn company for a year, $50/acre. Always rounded up the acre. Some got angry because I was done in 20 minutes and got paid. I was profitable, had about 20 regular lawns. (I'm a marketing daredevil). I took a year off. Got bit by a bat, tried to pick up a part time job for the $5500 OOPM i hit. I was miserable. Standing around gossiping losers, waiting for the clock, negotiating lunch times. It's winter. I... Looking for Advice Restarting my Business",
+      "url": "https://www.lawnsite.com/threads/looking-for-advice-restarting-my-business.525111/",
+      "created_utc": 1794193166,
       "score": 0,
       "comments": 0
     },
@@ -61,7 +49,7 @@
       "title": "What do you do when an estimate goes unanswered?",
       "text": "Genuine question — I've been talking to a lot of shops lately. You send the quote, hear nothing back. Do you follow up? How many times, and how — call, text, email? Or just move on to the next job? Trying to understand what actually works vs. what everyone means to do but doesn't. What's your process?",
       "url": "https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
-      "created_utc": 1794018622,
+      "created_utc": 1794201387,
       "score": 0,
       "comments": 0
     },
@@ -73,7 +61,7 @@
       "title": "How do you handle price changes on a job once you're into it?",
       "text": "Curious how other guys handle this. I'll quote a job based on what I can see, then get into a wall or under a floor and find rot, bad wiring, whatever — something there was no way to know about walking through it. Now I've got to have the \"this is going to cost more\" conversation, and even when I'm straight with people about why, some of them hear it as \"the guy padded the price after he had me locked in.\" Had one a while back where the homeowner got a few other quotes after mine changed... How do you handle price changes on a job once you're into it?",
       "url": "https://www.contractortalk.com/threads/how-do-you-handle-price-changes-on-a-job-once-youre-into-it.464317/",
-      "created_utc": 1794088522,
+      "created_utc": 1794201317,
       "score": 0,
       "comments": 0
     }

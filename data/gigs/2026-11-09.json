@@ -1,0 +1,30 @@
+[
+  {
+    "id": "discourse:community.n8n.io:327583",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] Agency Operations & AI Systems Builder | Remote, part-time",
+    "text": "We’re hiring at Beyond Creator, Canada’s first AI-powered marketing agency, founded in Toronto. We produce 200+ pieces of content each month for restaurants and hospitality brands. We’re looking for someone who enjoys understanding how a creative team works, keeping projects moving, and building practical tools that people actually use. The work Help keep priorities, deadlines and handoffs clear in Notion and Slack. Build useful AI workflows with n8n, APIs and webhooks. Write, debug and publish small applications. Test the workflows, handle failures and document how they work. Bring good visual judgment and an understanding of marketing or creative production. This is an ongoing remote, part-time role, starting at about 15 hours per week, with room to grow as the collaboration develops. Applications are welcome from Canada, Türkiye and elsewhere. Clear English and some overlap with Toronto working hours matter. Turkish is a plus. Show us something you built A useful personal AI project counts. Please share the problem, what you personally built, a demo and a code sample or published app. We’d also like one example of a project you helped coordinate. A CV is optional. Apply through our form: Notion Notion | Where teams and agents work together Made in Notion, the connected workspace where AI agents and teams organize docs, projects and knowledge together. If you have already completed this form for the role, there is no need to submit it again. Company: https://beyondcreator.ca Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-agency-operations-ai-systems-builder-remote-part-time/327583",
+    "created_utc": 1794170604,
+    "score": 2,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.2,
+      "multiplier": 1.1,
+      "score": 0.22,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Company looking to hire a remote agency operations builder.",
+    "pooled_on": "2026-11-09"
+  }
+]

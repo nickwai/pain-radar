@@ -1,10 +1,22 @@
 {
-  "fetched_at": 1794246158,
+  "fetched_at": 1794313539,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
   ],
   "posts": [
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/whats-the-most-annoying-thing-that-keeps-coming-up-week-after-week-in-running-your-business.525153/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "What's the most annoying thing that keeps coming up week after week in running your business?",
+      "text": "I worked as a lawn care tech for a few years and I'm trying to understand the real headaches on the owner side (not selling anything). Could be hiring, scheduling, getting new customers, chasing payments, software that doesn't fit, anything. What was the last time it happened, and what did you do about it?",
+      "url": "https://www.lawnsite.com/threads/whats-the-most-annoying-thing-that-keeps-coming-up-week-after-week-in-running-your-business.525153/",
+      "created_utc": 1794312350,
+      "score": 0,
+      "comments": 0
+    },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
       "source": "rss",
@@ -13,19 +25,7 @@
       "title": "Investing – Retirement Plans and Building Wealth",
       "text": "Investing – Retirement Plans and Building Wealth Curious what everyone is doing when it comes to investing and building wealth outside of their lawn and landscape businesses. For those with employees, do you offer a retirement plan or matching contributions as a benefit? For the solo operators, are you investing in a SEP IRA, Solo 401(k), traditional IRA, or something else? And beyond retirement accounts, are you investing in stocks, real estate, or other opportunities? Or maybe... Investing – Retirement Plans and Building Wealth",
       "url": "https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
-      "created_utc": 1794235579,
-      "score": 0,
-      "comments": 0
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/tips.525139/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Tips?",
-      "text": "Curious how other owners handle tips. About half of my irrigation clients have been tipping for service calls, and I’m wondering how common that is for others. I use Yardbook, which has a built-in tip option for customers when they pay. I’m not actively asking for tips, but the option is there. For context, this is just for my irrigation business, not the lawn maintenance side. How do you handle tipping as an owner? Do you leave the option available, or prefer not to encourage it?",
-      "url": "https://www.lawnsite.com/threads/tips.525139/",
-      "created_utc": 1794100994,
+      "created_utc": 1794269690,
       "score": 0,
       "comments": 0
     },
@@ -38,6 +38,42 @@
       "text": "People will only respect you as much as you tell them to. Looking for advice. I ran a lawn company for a year, $50/acre. Always rounded up the acre. Some got angry because I was done in 20 minutes and got paid. I was profitable, had about 20 regular lawns. (I'm a marketing daredevil). I took a year off. Got bit by a bat, tried to pick up a part time job for the $5500 OOPM i hit. I was miserable. Standing around gossiping losers, waiting for the clock, negotiating lunch times. It's winter. I... Looking for Advice Restarting my Business",
       "url": "https://www.lawnsite.com/threads/looking-for-advice-restarting-my-business.525111/",
       "created_utc": 1794193166,
+      "score": 0,
+      "comments": 0
+    },
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/who-handles-your-calls-when-youre-out-working.524999/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "Who handles your calls when you're out working?",
+      "text": "For you guys running smaller crews, what do you do with calls while you're out on jobs? Let them go to voicemail and call back later, or have somebody answering?",
+      "url": "https://www.lawnsite.com/threads/who-handles-your-calls-when-youre-out-working.524999/",
+      "created_utc": 1794258044,
+      "score": 0,
+      "comments": 0
+    },
+    {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "How I keep T&M change orders from turning into argument invoices",
+      "text": "How I keep T&M change orders from turning into argument invoices Every GC I know has lost money on a \"quick\" T&M change that somehow became a fight three weeks later. Not because the work was wrong - because nobody could show what was approved, when, and at what rate. Here is the simple log I keep on every job that has any T&M. Works in any spreadsheet. One row per day of T&M work, not one row per invoice. 1. Get the rate sheet signed before the first hour. Labor rates by trade, burdened... How I keep T&M change orders from turning into argument invoices",
+      "url": "https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",
+      "created_utc": 1794268833,
+      "score": 0,
+      "comments": 0
+    },
+    {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "What are you running for quote follow-ups and missed calls?",
+      "text": "hey folks, curious what the room is running these days. im using tradestash for job tracking right now and no complaints there, keeps my crm, quotes, invoices and schedule in one spot which is a big step up from the sticky-note-on-the-dash setup i had before. where im still losing money is two spots it doesnt really cover: follow ups and dealing with missed calls when im on a job. miss two or three a day at times easy and i figure half of those just go call the next guy on the list. what... What are you running for quote follow-ups and missed calls?",
+      "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+      "created_utc": 1794268247,
       "score": 0,
       "comments": 0
     },

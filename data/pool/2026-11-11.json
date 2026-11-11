@@ -1,0 +1,312 @@
+[
+  {
+    "id": "discourse:community.retool.com:67794",
+    "source": "discourse",
+    "channel": "community.retool.com",
+    "group": "saas",
+    "title": "Connecting Retool to a Base44 app's data",
+    "text": "My goal: an internal admin panel in Retool on top of the data of an app we built on Base44. Issue: Base44 doesn't seem to give a database connection string, only its SDK/API, so I can't find a resource type that points at it. Steps I've taken to troubleshoot: looked through Base44's settings and docs for a database URL; tried a REST API resource, but auth and pagination get messy fast. Additional info: Retool Cloud. We're also considering moving the app off Base44 entirely. 4 posts - 4 participants Read full topic",
+    "url": "https://community.retool.com/t/connecting-retool-to-a-base44-apps-data/67794",
+    "created_utc": 1794345697,
+    "score": 0,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.2,
+      "multiplier": 1.25,
+      "score": 3.38,
+      "money_matched": [],
+      "pain_matched": [
+        "can't find a"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Need internal admin panel on top of Base44 app data.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.shopify.dev:39564",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "POS UI extension: record a payment from a third-party cash recycler? Local network access from iPad?",
+    "text": "Hi all, We are building an integration between Shopify POS (iPad) and an automatic cash recycler (Glory / Cashlogy), so that the cart total is sent to the machine and the customer pays cash directly into it. From the POS UI extensions docs (2025-07 and 2026-01) we understand that an extension can read the cart and add custom sales or discounts, but we could not find (a) a target at the payment step, or (b) any API to record a payment/tender or complete the sale. Questions: Is there a supported way to record a cash or custom payment on the current cart from an extension, or to complete the sale programmatically? Is anything planned? Can an extension on iPad call a device on the local network (private IP)? What are the constraints (HTTPS, network_access approval, CORS, iOS)? Can such an app be distributed to a single merchant without public App Store review? The only workaround we see today is a manual custom payment type, with double entry of the amount. Any pointers or experience with similar hardware integrations would be very welcome. Thanks! 3 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.dev/t/pos-ui-extension-record-a-payment-from-a-third-party-cash-recycler-local-network-access-from-ipad/39564",
+    "created_utc": 1794272470,
+    "score": 4,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.2,
+      "multiplier": 1.2,
+      "score": 3.24,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Need to integrate Shopify POS with third-party cash recycler hardware.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.shopify.com:713096",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Request: POS UI extensions feature preview (receipt targets) + POS intercept preview — Philippine BIR compliance app",
+    "text": "We’re CYWare Incorporated (Partner org 129418661 https://www.cywareinc.com ), building Brewed BIR, a public app that makes Shopify POS compliant with Philippine tax law (BIR, RR 7-2024 invoice rules). Client id: ad3edcf679429d5a3fe4d557f5045e01. Dev store: brewed-bir-test.myshopify.com . We have a working extension (tile, modal, pos.app.ready.data background, post-purchase block). Two things block us: pos.receipt-header/footer.block.render: we need to print the BIR invoice number, machine ID (MIN) and VAT-exempt breakdown on Shopify’s receipt. Today app dev rejects these targets. shopify.intercept(‘cartvalidations’ / ‘paymentvalidations’): BIR requires that sales can’t bypass the accredited invoice. We need to block checkout when a senior-citizen/PWD discount has no ID details, when the device isn’t a registered BIR machine, or when the device is offline. Without these, Shopify POS can’t be used compliantly in the Philippines. Could you add our org and app to both previews? Also: does Shopify plan to assign fiscalDeviceIdentifier for PH, as it does for Sweden? 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/request-pos-ui-extensions-feature-preview-receipt-targets-pos-intercept-preview-philippine-bir-compliance-app/713096",
+    "created_utc": 1794293351,
+    "score": 6,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 3,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.0,
+      "multiplier": 1.2,
+      "score": 12.0,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "App developer requesting feature previews for Philippine BIR tax compliance.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.shopify.com:713540",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "HELP! I deleted my customer list without a backup",
+    "text": "I could really use your advice and expertise. I accidentally deleted around 1.2k email contacts from my Shopify account. Here’s what happened: I was working with a duplicated copy of my main email list for A/B testing, thinking that any changes I made to the duplicate wouldn’t affect the original list. Unfortunately, I ended up accidentally deleting half of my contacts from the main list, and I deleted them in bulk. And yes, my bad. I didn’t export the list or keep a backup ( I was under the impression that the duplicate is already enough as a backup copy). I’ve already tried a few possible workarounds: Extracting email addresses from the most recent email campaigns and newsletters I sent. (Shopify doesn’t have this option, according to them) Contacting Shopify Support and requesting that the issue be escalated. Exporting my order history, but unfortunately, not all the deleted contacts are there, because not all of them ordered. According to the Shopify support agent I spoke with, there’s no way for them to retrieve the deleted contacts. Has anyone experienced something similar? Are there any other workarounds I can still try to recover the missing email addresses? I’m willing to exhaust every possible option because I really, really need those 1.2k contacts back. Any advice would be greatly appreciated. Thank you in advance! 4 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/help-i-deleted-my-customer-list-without-a-backup/713540",
+    "created_utc": 1794310275,
+    "score": 10,
+    "comments": 3,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 2.2,
+      "multiplier": 1.2,
+      "score": 6.24,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant accidentally deleted customer list without backup.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.shopify.com:713781",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Only a small sliver of submenu drawer is visible on mobile",
+    "text": "Only a small sliver of submenu drawer is visible on mobile. How can I fix this? 9 posts - 9 participants Read full topic",
+    "url": "https://community.shopify.com/t/only-a-small-sliver-of-submenu-drawer-is-visible-on-mobile/713781",
+    "created_utc": 1794379716,
+    "score": 6,
+    "comments": 8,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Mobile theme display bug showing only a sliver of submenu.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.shopify.com:713658",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Buttons 'on' Images No Longer Work",
+    "text": "Good morning! This may be hard to explain. In my sections, I would use buttons as links but hide the Link Label so the image was clickable. That seems to still be an option but when I click on the images they don’t open the link. Is this a glitch or something Shopify has changed? Thanks! 11 posts - 10 participants Read full topic",
+    "url": "https://community.shopify.com/t/buttons-on-images-no-longer-work/713658",
+    "created_utc": 1794328137,
+    "score": 13,
+    "comments": 10,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Theme buttons over images stopped opening links.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.shopify.com:713020",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "HTML Max Charachters in Blogs",
+    "text": "We have migrated to Shopify and are super happy after going live last week. The one area where I have a challenge, however, is that we have a few dozen pages that I need to dump some frankenstein HTML into to keep the styling as it was in our previous site. However, I found that for many of the pages, I couldn’t save the draft and publish it to the site. It turned out it wasn’t able to handle all that HTML. It seemed like the buffer wasn’t big enough to write it all in at save. However, what I found was that if I did it in chunks at a time (put in a quarter of it, save it, put in another quarter of it, save it, put in another quarter of it, save it), it worked. But this slows the process down considerably. I’m wondering if there is any way around this or if people know what the max character count is for saving. Any advice much appreciated. Note: I was using Bloggle to enter the HTML, but even if I did it right through the Shopify blog, the same issue was there. 8 posts - 8 participants Read full topic",
+    "url": "https://community.shopify.com/t/html-max-charachters-in-blogs/713020",
+    "created_utc": 1794263457,
+    "score": 10,
+    "comments": 7,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Shopify blog buffer size limitation preventing large HTML entry.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.shopify.com:713813",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify's /products.json returns alt: null for images that do have alt text",
+    "text": "I was building an alt text audit and hit something worth flagging, because it quietly breaks any audit built on the public product feed. Setup: one product, one image, alt text filled in via admin. Two ways to read the same image: /products/{handle} renders: an img tag with alt=“White wireless earbuds product photo” /products.json returns: “images”: [{ “id”: 123, “alt”: null }] Same image. The rendered page has the description. The JSON says null. Why this matters /products.json is the obvious data source for any bulk audit — one request, structured output, no scraping. But if you build the coverage number on it, you will report that image as missing alt text. The merchant opens their product page, sees alt text right there, and concludes the tool is broken. One false positive and every other number on the page becomes suspect. What I think is happening The feed reports alt from the product media object. Themes often render alt from somewhere else — theme settings, a metafield, or a Liquid fallback that composes a string from the title. So the stored value and the rendered value can disagree, and the feed only knows the stored one. What I’d suggest if you are auditing Use /products.json for counts. How many products, how many images. It is accurate for that. Read alt from the rendered product page if you need the real coverage number. Or read the media object through the Admin API, which is authoritative for what is stored rather than what is displayed. Has anyone else run into this? I am curious whether it is specific to certain themes or a general behaviour of the feed. If you have a store where the two agree, that would be useful to know too. 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopifys-products-json-returns-alt-null-for-images-that-do-have-alt-text/713813",
+    "created_utc": 1794387044,
+    "score": 3,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.1,
+      "multiplier": 1.2,
+      "score": 3.12,
+      "money_matched": [],
+      "pain_matched": [
+        "broken"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Bug in Shopify public product feed returning null for alt text.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.shopify.com:712940",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Problemas con botón de pago de REALISIT COD",
+    "text": "Con una plantilla personalizada que me compartieron el botón se ve doble o no sale. La situación, según lo que me explica el asesor de Shopify, está en la sección personalizada de la página de destino (plantilla_landing) de mi tema actual. El código de esa sección no incluye la información de la variante de producto que el botón de añadir al carrito necesita para funcionar, y por eso se ve el error “Parameter Missing or Invalid”. No sé cómo solucionarlo. El tema esta en la que el botón de pago de Releasit y el botón nativo de añadir al carrito están vinculados entre sí, y que necesito ayuda para separarlos. 2 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/problemas-con-boton-de-pago-de-realisit-cod/712940",
+    "created_utc": 1794241812,
+    "score": 4,
+    "comments": 1,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.8,
+      "multiplier": 1.2,
+      "score": 0.96,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Custom landing page theme breaking payment and add-to-cart buttons.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165707",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Major Accounting Inconsistencies",
+    "text": "We seek help understanding the root cause of unexpected General Ledger (GL) and Payment Ledger Entry (PLE) behaviour. We have reconciled and corrected most identified cases in one company, but have not proven why they arose or whether the common factor is standard ERPNext, custom code, deployment history, or a combination. Column 1 Column 2 Column 3 Column 4 Environment ERPNext v16 / Frappe v16, MariaDB, Docker on OVH; multiple companies/sites; several custom apps. Custom apps do not post any transaction. They are majorly reporting tools Main symptoms Repeated GL postings for one submitted invoice; active GL/PLE against Draft vouchers; cancelled vouchers retaining active ledger effects; contradictory document status. Company A scope 293 classified exceptions: 268 duplicate-GL cases plus 25 other cases (reconciled Production audit). Correction evidence 268 duplicates corrected through native Repost Accounting Ledger; 19 additional cases corrected; two cancelled-invoice PLE cases corrected. Last reported state 289/293 corrected in Production; three further methods passed UAT and were authorised for Production, but their Production result is not in the available evidence; one status-conflict invoice remains blocked. 1 What users experienced Invoices were shown as Submitted or Draft, but the ledgers did not always reflect that state. Some submitted invoices had two to four sets of accounting entries even though the PLE or customer outstanding reflected only one invoice. Other Draft transactions had posted GL entries. Some cancelled documents retained open PLE or active GL rows. As a result, GL, receivables/payables and source documents could disagree. 7 posts - 4 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/major-accounting-inconsistencies/165707",
+    "created_utc": 1794353686,
+    "score": 0,
+    "comments": 6,
+    "signals": {
+      "combo": false,
+      "money": 4,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.4,
+      "multiplier": 1.25,
+      "score": 18.0,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Accounting inconsistencies between General Ledger and Payment Ledger entries.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "What are you running for quote follow-ups and missed calls?",
+    "text": "hey folks, curious what the room is running these days. im using tradestash for job tracking right now and no complaints there, keeps my crm, quotes, invoices and schedule in one spot which is a big step up from the sticky-note-on-the-dash setup i had before. where im still losing money is two spots it doesnt really cover: follow ups and dealing with missed calls when im on a job. miss two or three a day at times easy and i figure half of those just go call the next guy on the list. what... What are you running for quote follow-ups and missed calls?",
+    "url": "https://www.contractortalk.com/threads/what-are-you-running-for-quote-follow-ups-and-missed-calls.465353/",
+    "created_utc": 1794313696,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 4,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 12.0,
+      "money_matched": [
+        "invoice",
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Contractor losing money on quote follow-ups and missed calls.",
+    "pooled_on": "2026-11-11"
+  }
+]

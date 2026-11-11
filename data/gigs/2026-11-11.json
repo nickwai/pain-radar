@@ -1,0 +1,87 @@
+[
+  {
+    "id": "discourse:community.n8n.io:328000",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] Freelancer for Custom AI-Powered Marketing Attribution & Lead Automation Pipeline Project",
+    "text": "I work for the biggest business coaching company in Indonesia. I need a freelancer who speaks Bahasa Indonesia fluently & live in the same time zone with Jakarta, Indonesia (GMT+7), to build one time project of an end-to-end marketing attribution & lead engine that includes: Direct API ingestion for Meta, TikTok, LinkedIn, and YouTube into BigQuery/Supabase via n8n. AI-powered schema standardization and lead scoring (Hot/Warm/Cold). Phone/email deduplication lookup & round-robin lead rotator. Multi-touch customer journey database logging touchpoints over time. Outbound WhatsApp integration via Mekari Qontak or WAHA HTTP API endpoints. Looker Studio dashboard displaying aggregated CPM, CTR, CPL, CPLPV, CPP, and ROAS. Project Brief: Multi-Channel Marketing Attribution & Automated Lead Engine 1. Objective Build an automated data pipeline, lead deduplication engine, lead scoring, multi-touch journey tracker, and WhatsApp notification workflow using self-hosted n8n, an AI Agent node, a relational database (Google BigQuery or Supabase), and Looker Studio. 2. Key Scope & Deliverables Ad Data Ingestion Pipeline (Bypassing Supermetrics): Configure scheduled n8n workflows pulling spend, impressions, clicks, CPM, and CTR directly via platform REST APIs (Meta Insights, TikTok Marketing, LinkedIn Ads, YouTube Data API). AI Schema Standardization & Lead Scoring: Implement an LLM API node (OpenAI/Claude) in n8n to unify ad metrics into a single database schema and parse UTM parameters. Configure lead scoring rules to grade lead quality (Hot/Warm/Cold) based on platform origin, ad set metadata, and form values. Phone & Email Deduplication + Smart Rotator: On incoming lead submission (formulir.id / web form): Query database by phone_number and email . IF lead exists: Route to existing assigned sales rep. IF new lead: Assign to sales reps via weighted round-robin based on lead score. Multi-Touch Journey Logging: Design an event-based database schema tracking interactions over time (e.g., Nov 2026 IG ad → Jan 2027 WA outreach → Feb 2027 LinkedIn purchase) to calculate true CPL, CPLPV, CPP, and ROAS. WhatsApp Messaging Integration: Build outbound HTTP API triggers connecting n8n to Mekari Qontak API or self-hosted WAHA (WhatsApp HTTP API) for immediate auto-replies and automated broadcast sequences. Visualization Dashboard: Connect BigQuery/Supabase to Google Looker Studio displaying unified top-of-funnel and bottom-of-funnel performance. 3. Required Technical Stack Orchestration: Self-hosted n8n (Docker container on VPS) AI Node: OpenAI GPT-4o / Anthropic API Database: Google BigQuery or Supabase Dashboard: Google Looker Studio WhatsApp API: Mekari Qontak Open API / WAHA (WhatsApp HTTP API) Could you share your estimated hours, scope, and availability for this project? Kindly contact me through email at oktarina.nurhayati@gratyo.id . Thank you Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-freelancer-for-custom-ai-powered-marketing-attribution-lead-automation-pipeline-project/328000",
+    "created_utc": 1794372120,
+    "score": 3,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.3,
+      "multiplier": 1.1,
+      "score": 6.93,
+      "money_matched": [
+        "freelancer"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Looking to hire a freelancer for marketing attribution pipeline.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.coda.io:62030",
+    "source": "discourse",
+    "channel": "community.coda.io",
+    "group": "saas",
+    "title": "Looking for AI Systems & Superhuman Docs contractor",
+    "text": "Stand-in systems support for The Future Society The Future Society (TFS) is looking for a contractor to cover our internal systems from 11 to 28 December 2026, with the potential to stay on as ongoing backup. About us TFS is a US 501(c)(3) nonprofit working on AI governance. Our staff are mostly in Europe and North America. Bell Arden builds and maintains our internal systems, and we’re looking for somebody to cover our systems during periods of Bell’s leave. We are looking for someone available in December for cover, with the potential to extend the arrangement in the longer term. The work There are two parts: a short period of cover in December, then a potential extension as a light ongoing engagement. Cover from 11 to 28 December. You keep our systems running while Bell is away. That means watching the automated alerts, working out what has gone wrong, and keeping small problems from becoming big ones. How much you fix yourself will depend on your experience and what we agree beforehand. Bell can be reached by message during this period for anything that needs a decision. You would be needed for a few hours of onboarding in early December. Ongoing backup. If the initial period goes well, we would consider this person to provide ongoing backup support. What you would cover: Our AI knowledge system on Google Cloud. This is a custom MCP server that gives staff access to TFS’s data through Claude. It runs on Cloud Run and Cloud SQL (PostgreSQL), with nightly data syncs and a set of automated monitoring checks. Our Coda (Superhuman Docs) workspace.This is where most of TFS’s operations run: tables, formulas, automations. How the work gets done .The systems are built and maintained with Claude Code. The codebase & the TFS MCP server carry detailed operating instructions and documentation for it. In practice you would direct Claude Code through the work and check what it proposes. You would not be writing code yourself. What we’re looking for Essential Substantial Claude Code experience on a real production system - You can direct it through unfamiliar work, read what it proposes, and push back or stop it when it is wrong. A working understanding of relational databases - You can reason about tables, joins and schema changes; ideally, you’ve worked with PostgreSQL. Good judgement about when not to act - In a system you didn’t build, a careful diagnosis and a well-timed message often beat a confident fix. Discretion - The role involves access to sensitive organisational and staff data, so you will need to sign and adhere to a confidentiality agreement. Strongly preferred Experience building or running an MCP server , or a similar integration between AI models and real data. Coda experience , specifically complex formulas, table configurations, and automations. Extensive experience with Notion or Airtable is a good substitute. Nice to have Python. Google Cloud, especially reading logs and working with Cloud Run. Operations experience in a small nonprofit. Time and terms December cover - 11–28 December 2026, about 1–2 hours a day on weekdays (roughly 15–20 hours in total). Onboarding - A few paid hours with Bell in early December, before the cover starts | Ongoing - [if extended] A monthly check-in of about 2 hours, plus cover for future absences. Location - Remote. A time zone between UTC+0 and UTC+12 is a plus, but working asynchronously is fine. Contract - Paid contract with an individual or a firm. How to apply Email Bell Arden at bell.arden@thefuturesociety.org by 24 November 2026 . Please include: your relevant experience, especially with Claude Code and AI systems, databases and Coda (or Notion or Airtable) your availability from 11 to 28 December your rate, hourly or daily We will contact applicants to arrange a short call. 3 posts - 2 participants Read full topic",
+    "url": "https://community.coda.io/t/looking-for-ai-systems-superhuman-docs-contractor/62030",
+    "created_utc": 1794319570,
+    "score": 2,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.0,
+      "multiplier": 1.25,
+      "score": 1.25,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for a contractor"
+    },
+    "triage_reason": "Nonprofit looking to hire a systems support contractor.",
+    "pooled_on": "2026-11-11"
+  },
+  {
+    "id": "discourse:community.shopify.com:713556",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Google ads conversion tracking issue",
+    "text": "Good afternoon, I need someone to help establish correct conversion tracking for my new shopify website, as the google ads team could not help with lead forms tracking. I have theh forms app, and also use theme contact forms. 14 posts - 9 participants Read full topic",
+    "url": "https://community.shopify.com/t/google-ads-conversion-tracking-issue/713556",
+    "created_utc": 1794314037,
+    "score": 14,
+    "comments": 13,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Looking for someone to help establish correct conversion tracking.",
+    "pooled_on": "2026-11-11"
+  }
+]

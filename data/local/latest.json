@@ -1,10 +1,22 @@
 {
-  "fetched_at": 1794376098,
+  "fetched_at": 1794418898,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
   ],
   "posts": [
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/how-id-set-a-minimum-price-before-matching-the-guy-down-the-street.525159/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "How I'd set a minimum price before matching the guy down the street",
+      "text": "Don't start from \"what the guy down the street charges.\" Start from what the stop actually costs, then set a floor, then check the market. Build a fully loaded cost for each job: on-site labor (wage plus payroll burden), windshield time, mileage, materials, and a slice of weekly overhead (insurance, phone, software, unpaid admin, equipment). The minimum price at your target margin is: Minimum price = Fully loaded cost ÷ (1 − target margin) EXAMPLE only — not a recommended price and not a... How I'd set a minimum price before matching the guy down the street",
+      "url": "https://www.lawnsite.com/threads/how-id-set-a-minimum-price-before-matching-the-guy-down-the-street.525159/",
+      "created_utc": 1794418461,
+      "score": 0,
+      "comments": 0
+    },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
       "source": "rss",
@@ -13,7 +25,7 @@
       "title": "Do you use AI in your business?",
       "text": "Do you use AI in your business? How are you using it? Are finding it useful? How are you incorporating AI into your day-to-day business operations? I use it to help with marketing copy and had it take a look at my P&L. I’m sure there are other things it can do. @ezra_5296",
       "url": "https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
-      "created_utc": 1794350801,
+      "created_utc": 1794410038,
       "score": 0,
       "comments": 0
     },
@@ -25,7 +37,7 @@
       "title": "What's the most annoying thing that keeps coming up week after week in running your business?",
       "text": "I worked as a lawn care tech for a few years and I'm trying to understand the real headaches on the owner side (not selling anything). Could be hiring, scheduling, getting new customers, chasing payments, software that doesn't fit, anything. What was the last time it happened, and what did you do about it?",
       "url": "https://www.lawnsite.com/threads/whats-the-most-annoying-thing-that-keeps-coming-up-week-after-week-in-running-your-business.525153/",
-      "created_utc": 1794370977,
+      "created_utc": 1794412096,
       "score": 0,
       "comments": 0
     },
@@ -37,7 +49,7 @@
       "title": "Investing – Retirement Plans and Building Wealth",
       "text": "Investing – Retirement Plans and Building Wealth Curious what everyone is doing when it comes to investing and building wealth outside of their lawn and landscape businesses. For those with employees, do you offer a retirement plan or matching contributions as a benefit? For the solo operators, are you investing in a SEP IRA, Solo 401(k), traditional IRA, or something else? And beyond retirement accounts, are you investing in stocks, real estate, or other opportunities? Or maybe... Investing – Retirement Plans and Building Wealth",
       "url": "https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
-      "created_utc": 1794369568,
+      "created_utc": 1794413352,
       "score": 0,
       "comments": 0
     },
@@ -97,7 +109,7 @@
       "title": "What do you do when an estimate goes unanswered?",
       "text": "Genuine question — I've been talking to a lot of shops lately. You send the quote, hear nothing back. Do you follow up? How many times, and how — call, text, email? Or just move on to the next job? Trying to understand what actually works vs. what everyone means to do but doesn't. What's your process?",
       "url": "https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
-      "created_utc": 1794316221,
+      "created_utc": 1794383906,
       "score": 0,
       "comments": 0
     },

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "discourse:discuss.frappe.io:165725",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Looking for Experienced ERPNext / Frappe Consultant for [Full Implementation / Customization / Audit",
+    "text": "I am looking for a friendly and knowledgeable ERPNext consultant to help me set up ERPNext 5 posts - 5 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/looking-for-experienced-erpnext-frappe-consultant-for-full-implementation-customization-audit/165725",
+    "created_utc": 1794455670,
+    "score": 0,
+    "comments": 4,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.6,
+      "multiplier": 1.25,
+      "score": 2.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Looking for Experienced ERPNext / Frappe Consultant"
+    },
+    "triage_reason": "Looking to hire an experienced ERPNext consultant for implementation work.",
+    "pooled_on": "2026-11-12"
+  }
+]

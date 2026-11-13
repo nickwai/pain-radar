@@ -1,0 +1,58 @@
+[
+  {
+    "id": "discourse:community.n8n.io:328131",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] Founding n8n Builders for US Small-Business Client Work | Freelance, Remote",
+    "text": "Role: Founding n8n builder (independent freelance work, not employment) Company: AutoMatch ( https://useautomatch.com ), a new marketplace that matches small businesses with AI and automation builders. I’m Aidan, the founder. The work: Building and maintaining automations for US small businesses, such as missed-call handling, lead follow-up and appointment booking. Businesses describe the problem in plain English, and our match agent ranks builders on specialty, tools, budget and timeline. You can charge one-time, monthly, or both. Payments run through the platform, with funds held until the work is approved. Requirements: Hands-on n8n experience, examples of client work, and comfort explaining automations to non-technical owners. Location: Remote. Clients are in US time zones. Good to know: We just launched and are recruiting our first builders, so project volume isn’t guaranteed. We take care of all the lead generation and client outreach for you, reaching out to business owners every day. Founding builder spots are still open, with free membership during launch. How to apply: AutoMatch or email aidan@useautomatch.com with a link to your work. Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-founding-n8n-builders-for-us-small-business-client-work-freelance-remote/328131",
+    "created_utc": 1794408443,
+    "score": 2,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.2,
+      "multiplier": 1.1,
+      "score": 0.22,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Marketplace founder posting a freelance hiring opportunity for builders.",
+    "pooled_on": "2026-11-13"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165725",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Looking for Experienced ERPNext / Frappe Consultant for [Full Implementation / Customization / Audit",
+    "text": "I am looking for a friendly and knowledgeable ERPNext consultant to help me set up ERPNext 6 posts - 6 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/looking-for-experienced-erpnext-frappe-consultant-for-full-implementation-customization-audit/165725",
+    "created_utc": 1794455670,
+    "score": 0,
+    "comments": 5,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.0,
+      "multiplier": 1.25,
+      "score": 2.5,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Looking for Experienced ERPNext / Frappe Consultant"
+    },
+    "triage_reason": "User looking to hire an ERPNext consultant for setup and implementation.",
+    "pooled_on": "2026-11-13"
+  }
+]

@@ -1,0 +1,59 @@
+[
+  {
+    "id": "discourse:community.make.com:119766",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "What Is the Safest Way to Share Confidential Business Information With AI Tools?",
+    "text": "What is your goal? I want to protect sensitive customer information before sending it to AI tools. What is the problem & what have you tried? I have tried manually removing personal details, but it takes time and can lead to mistakes. I am looking for an easier way to anonymize data automatically before using AI. 3 posts - 3 participants Read full topic",
+    "url": "https://community.make.com/t/what-is-the-safest-way-to-share-confidential-business-information-with-ai-tools/119766",
+    "created_utc": 1794558641,
+    "score": 2,
+    "comments": 2,
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.0,
+      "multiplier": 1.25,
+      "score": 3.12,
+      "money_matched": [],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Business user needs a way to automatically anonymize sensitive data before AI use.",
+    "pooled_on": "2026-11-14"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "What do you do when an estimate goes unanswered?",
+    "text": "Genuine question — I've been talking to a lot of shops lately. You send the quote, hear nothing back. Do you follow up? How many times, and how — call, text, email? Or just move on to the next job? Trying to understand what actually works vs. what everyone means to do but doesn't. What's your process?",
+    "url": "https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+    "created_utc": 1794616892,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 3.0,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Contractor dealing with a recurring workflow gap of unanswered estimates.",
+    "pooled_on": "2026-11-14"
+  }
+]

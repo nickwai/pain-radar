@@ -1,58 +1,10 @@
 {
-  "fetched_at": 1794591695,
+  "fetched_at": 1794656613,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
   ],
   "posts": [
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/how-id-set-a-minimum-price-before-matching-the-guy-down-the-street.525159/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "How I'd set a minimum price before matching the guy down the street",
-      "text": "Don't start from \"what the guy down the street charges.\" Start from what the stop actually costs, then set a floor, then check the market. Build a fully loaded cost for each job: on-site labor (wage plus payroll burden), windshield time, mileage, materials, and a slice of weekly overhead (insurance, phone, software, unpaid admin, equipment). The minimum price at your target margin is: Minimum price = Fully loaded cost ÷ (1 − target margin) EXAMPLE only — not a recommended price and not a... How I'd set a minimum price before matching the guy down the street",
-      "url": "https://www.lawnsite.com/threads/how-id-set-a-minimum-price-before-matching-the-guy-down-the-street.525159/",
-      "created_utc": 1794455666,
-      "score": 0,
-      "comments": 0
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Do you use AI in your business?",
-      "text": "Do you use AI in your business? How are you using it? Are finding it useful? How are you incorporating AI into your day-to-day business operations? I use it to help with marketing copy and had it take a look at my P&L. I’m sure there are other things it can do. @ezra_5296",
-      "url": "https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
-      "created_utc": 1794479619,
-      "score": 0,
-      "comments": 0
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/whats-the-most-annoying-thing-that-keeps-coming-up-week-after-week-in-running-your-business.525153/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "What's the most annoying thing that keeps coming up week after week in running your business?",
-      "text": "I worked as a lawn care tech for a few years and I'm trying to understand the real headaches on the owner side (not selling anything). Could be hiring, scheduling, getting new customers, chasing payments, software that doesn't fit, anything. What was the last time it happened, and what did you do about it?",
-      "url": "https://www.lawnsite.com/threads/whats-the-most-annoying-thing-that-keeps-coming-up-week-after-week-in-running-your-business.525153/",
-      "created_utc": 1794446785,
-      "score": 0,
-      "comments": 0
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Investing – Retirement Plans and Building Wealth",
-      "text": "Investing – Retirement Plans and Building Wealth Curious what everyone is doing when it comes to investing and building wealth outside of their lawn and landscape businesses. For those with employees, do you offer a retirement plan or matching contributions as a benefit? For the solo operators, are you investing in a SEP IRA, Solo 401(k), traditional IRA, or something else? And beyond retirement accounts, are you investing in stocks, real estate, or other opportunities? Or maybe... Investing – Retirement Plans and Building Wealth",
-      "url": "https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
-      "created_utc": 1794434109,
-      "score": 0,
-      "comments": 0
-    },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/looking-for-advice-restarting-my-business.525111/",
       "source": "rss",
@@ -62,6 +14,42 @@
       "text": "People will only respect you as much as you tell them to. Looking for advice. I ran a lawn company for a year, $50/acre. Always rounded up the acre. Some got angry because I was done in 20 minutes and got paid. I was profitable, had about 20 regular lawns. (I'm a marketing daredevil). I took a year off. Got bit by a bat, tried to pick up a part time job for the $5500 OOPM i hit. I was miserable. Standing around gossiping losers, waiting for the clock, negotiating lunch times. It's winter. I... Looking for Advice Restarting my Business",
       "url": "https://www.lawnsite.com/threads/looking-for-advice-restarting-my-business.525111/",
       "created_utc": 1794492274,
+      "score": 0,
+      "comments": 0
+    },
+    {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "AI homemade estimating tools and process",
+      "text": "Anyone here built their own etimating tools and process for selling and estimating renovation work? Ive been playing with and using a few tools ive built for sales and estimating processes within my firm. Looking for others having done something similar and or another resource. -Jeremy Florida Leisure Pool & Spa www.FloridaPoolSpa.com",
+      "url": "https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
+      "created_utc": 1794604936,
+      "score": 0,
+      "comments": 0
+    },
+    {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "How I keep T&M change orders from turning into argument invoices",
+      "text": "How I keep T&M change orders from turning into argument invoices Every GC I know has lost money on a \"quick\" T&M change that somehow became a fight three weeks later. Not because the work was wrong - because nobody could show what was approved, when, and at what rate. Here is the simple log I keep on every job that has any T&M. Works in any spreadsheet. One row per day of T&M work, not one row per invoice. 1. Get the rate sheet signed before the first hour. Labor rates by trade, burdened... How I keep T&M change orders from turning into argument invoices",
+      "url": "https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",
+      "created_utc": 1794603318,
+      "score": 0,
+      "comments": 0
+    },
+    {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "What do you do when an estimate goes unanswered?",
+      "text": "Genuine question — I've been talking to a lot of shops lately. You send the quote, hear nothing back. Do you follow up? How many times, and how — call, text, email? Or just move on to the next job? Trying to understand what actually works vs. what everyone means to do but doesn't. What's your process?",
+      "url": "https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+      "created_utc": 1794616892,
       "score": 0,
       "comments": 0
     },

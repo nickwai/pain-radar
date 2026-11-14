@@ -76,6 +76,9 @@ def record(**kw: Any) -> dict:
         "created_utc": int(kw.get("created_utc") or 0),
         "score": int(kw.get("score") or 0),
         "comments": int(kw.get("comments") or 0),
+        # ADDED 2026-11-14: who started the topic (Discourse + RSS only, ""
+        # elsewhere) - triage flags one author surveying in several topics.
+        "author": (kw.get("author") or "").strip(),
     }
 
 
@@ -111,6 +114,16 @@ def _link_of(node: ET.Element) -> str:
     return ""
 
 
+def _feed_author(node: ET.Element) -> str:
+    """Poster's display name. RSS 2.0 <author> is "email (Name)": keep only
+    the name, never the address (pool files are committed to the repo)."""
+    raw = strip_html(_first_text(node, ["creator", "author", "name"]))
+    match = re.search(r"\(([^)]+)\)\s*$", raw)
+    if match:
+        return match.group(1).strip()
+    return "" if "@" in raw else raw
+
+
 def parse_feed(xml_bytes: bytes, name: str, group: str) -> list[dict]:
     root = ET.fromstring(xml_bytes)
     out: list[dict] = []
@@ -135,6 +148,7 @@ def parse_feed(xml_bytes: bytes, name: str, group: str) -> list[dict]:
             text=body,
             url=link,
             created_utc=created,
+            author=_feed_author(node),
         ))
     return out
 
@@ -222,6 +236,14 @@ def discourse_bodies(base: str, pages: int = 1) -> dict[str, str]:
     return bodies
 
 
+def _topic_author(topic: dict, users: dict[int, str]) -> str:
+    """Username of the topic's original poster ("" if not listed)."""
+    posters = topic.get("posters") or []
+    op = next((x for x in posters if "Original Poster" in (x.get("description") or "")),
+              posters[0] if posters else None)
+    return users.get(op.get("user_id"), "") if op else ""
+
+
 def fetch_discourse(cfg: dict, cutoff: int) -> list[dict]:
     out: list[dict] = []
     for forum in cfg.get("forums", []):
@@ -230,6 +252,7 @@ def fetch_discourse(cfg: dict, cutoff: int) -> list[dict]:
         # Page until the oldest topic is past the lookback (added 2026-09-26:
         # n8n's 30 newest topics span ~18h, so page 1 alone missed posts).
         topics: list[dict] = []
+        users: dict[int, str] = {}
         pages = 0
         for page in range(cfg.get("max_pages", 1)):
             try:
@@ -239,7 +262,10 @@ def fetch_discourse(cfg: dict, cutoff: int) -> list[dict]:
                 if resp.status_code != 200:
                     log(f"  {short:<30} HTTP {resp.status_code} (page {page + 1})")
                     break
-                data = resp.json().get("topic_list", {})
+                payload = resp.json()
+                data = payload.get("topic_list", {})
+                users.update({u["id"]: u.get("username") or ""
+                              for u in payload.get("users", [])})
             except Exception as exc:  # noqa: BLE001
                 log(f"  {short:<30} {type(exc).__name__} (page {page + 1})")
                 break
@@ -276,6 +302,7 @@ def fetch_discourse(cfg: dict, cutoff: int) -> list[dict]:
                 created_utc=created,
                 score=topic.get("like_count"),
                 comments=max((topic.get("posts_count") or 1) - 1, 0),
+                author=_topic_author(topic, users),
             ))
             kept += 1
         flag = f"bodies={len(bodies)}" if bodies else "bodies=0 (rss blocked)"

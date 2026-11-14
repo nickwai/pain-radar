@@ -162,7 +162,19 @@ PROMO_RE = re.compile(
     r"|\bdisclosure\b|\b(?:i|we) build\b"
     r"|\b(?:shops|stores|dealers|dealerships|merchants|agencies|customers) "
     r"(?:i|we) (?:speak|talk|work) (?:to|with)\b"
-    r"|\bcommunity node\b|\bthere(?:'s| is) a better way\b",
+    r"|\bcommunity node\b|\bthere(?:'s| is) a better way\b"
+    # Widened 2026-11-14: builders surveying Shopify merchants with no
+    # problem of their own - "would a single dashboard ... be useful to
+    # you?", "I'm trying to understand what other merchants do", "(asking as
+    # a tool builder)". 4 such posts were pooled as real_problem 11-07..11-13.
+    r"|\bwould (?:a|an|this|that|something)\b[^.?!\n]{0,80}\b(?:be )?(?:useful|helpful|valuable)\b"
+    r"|\bwould you (?:benefit|use|pay|want)\b|\bwould (?:it|that|this) help\b"
+    r"|\btrying to understand (?:what|how)\b"
+    r"|\b(?:hear|learn|know|understand) (?:how|what) other "
+    r"(?:merchants|stores|shops|store owners|owners|sellers|teams|businesses)\b"
+    r"|\bas a (?:tool |app |saas )?(?:builder|developer|founder)\b"
+    r"|\bis this already (?:adequately |well |fully )?(?:covered|solved)\b"
+    r"|\bwhat(?:'s| is) missing from\b",
     re.IGNORECASE)
 
 # Platform/code domains that show up in ordinary posts, not product pitches.
@@ -584,7 +596,12 @@ verdict, reason (max 12 words). Verdicts:
   * customer discovery: a would-be builder surveying others about a problem
     before building ("I'm a developer researching this", "no product to
     promote", "how often does this happen to you?", "what's your biggest
-    challenge with X?") - they are not stuck with it themselves
+    challenge with X?", "would a dashboard for X be useful to you?", "I'm
+    trying to understand what other merchants do", "is this already covered
+    by the tools you use?", "asking as a tool builder") - they are not stuck
+    with it themselves. A survey that names NO incident of the poster's own
+    (no store, no event, no loss - only hypotheticals and questions to
+    others) is customer discovery, even with no product mentioned
   Lines "[promo signals: ...]" show phrases found in the full post; they are
   hints, not proof - "I built a workflow" in a help request is not promo.
   A business owner describing their OWN unsolved problem is real_problem
@@ -625,7 +642,7 @@ def triage_posts(posts: list[dict], config: dict, env: dict | None = None) -> li
     known = {p["id"] for p in posts}
     rows = [r for r in rows if isinstance(r, dict) and r.get("id") in known
             and r.get("verdict") in TRIAGE_VERDICTS]
-    return _demote_seller_gigs(rows, posts)
+    return _demote_serial_askers(_demote_seller_gigs(rows, posts), posts)
 
 
 # ADDED 2026-10-30: "Available now: one Make.com scenario rescue - fixed EUR
@@ -650,4 +667,36 @@ def _demote_seller_gigs(rows: list[dict], posts: list[dict]) -> list[dict]:
         if r["verdict"] == "paid_gig" and SELLER_TITLE_RE.search(titles[r["id"]]):
             r["verdict"] = "self_promo"
             r["reason"] = f"[seller title] {r.get('reason', '')}"
+    return rows
+
+
+# ADDED 2026-11-14: one account ("CommerceGov") opened two Shopify topics 10
+# minutes apart, both asking merchants "would a dashboard for X be useful?" -
+# both pooled as real_problem and looked like repeat demand. Someone stuck
+# with a problem posts it once; several real_problem topics from one author
+# on one forum inside a day is a survey. Python enforces it (triage is loose
+# in big batches); every demotion shows in the rejected log as "[same author]".
+SERIAL_WINDOW_S = 24 * 3600
+
+
+def _demote_serial_askers(rows: list[dict], posts: list[dict]) -> list[dict]:
+    """real_problem -> self_promo when the same author started 2+ real_problem
+    topics on the same channel within SERIAL_WINDOW_S. Posts with no author
+    (HN, Stack Exchange, pool files older than 2026-11-14) are left alone."""
+    by_id = {p["id"]: p for p in posts}
+    groups: dict[tuple[str, str], list[dict]] = {}
+    for r in rows:
+        p = by_id[r["id"]]
+        author = (p.get("author") or "").strip().lower()
+        if r["verdict"] == "real_problem" and author:
+            groups.setdefault((p.get("channel", ""), author), []).append(r)
+    for (_, author), group in groups.items():
+        times = sorted(by_id[r["id"]].get("created_utc") or 0 for r in group)
+        close = any(b - a <= SERIAL_WINDOW_S for a, b in zip(times, times[1:]))
+        if not close:
+            continue
+        for r in group:
+            r["verdict"] = "self_promo"
+            r["reason"] = (f"[same author] {author} opened {len(group)} topics "
+                           f"within a day - {r.get('reason', '')}")
     return rows

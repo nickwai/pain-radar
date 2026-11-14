@@ -356,6 +356,22 @@ post stayed `real_problem`, 6/6 help questions unchanged, 5/6 real problems
 unchanged - the 6th was an ad ("Free 4-minute security check") that old
 triage had wrongly called real.
 
+**2026-11-14 — builder surveys.** The 11-13 week pooled 4 Shopify posts from
+app builders surveying merchants (no problem of their own): one account
+opened two "would a dashboard for X be useful to you?" topics 10 minutes
+apart, and the Stocky reorder post's author named his own app in the
+replies. Two fixes: (1) `PROMO_RE` + the `self_promo` prompt now cover
+survey phrasing ("would a ... be useful", "trying to understand what other
+merchants do", "asking as a tool builder", "is this already covered");
+(2) posts carry `author` (Discourse + RSS, display name only, never an
+email) and `_demote_serial_askers` turns `real_problem` into `self_promo`
+when one author starts 2+ such topics on one forum within 24h — reason
+prefixed `[same author]` in the rejected log. A/B on that week's 35 pooled
+posts, 2 runs each: old 14/15 real, new 11/11; cut = the 3 audit-log
+surveys + a contractortalk vendor survey ("I've been talking to a lot of
+shops lately"). Watch for wrong `[same author]` cuts: a real merchant
+posting two separate problems in one day would be dropped.
+
 **2026-10-08 — 2-week review: 0 of 8 ideas worth building.** Daily
 clustering produced 8 ideas in 15 days (8 empty days) and none survived a
 manual competitor check. Re-triaging the old `real_problem` posts with full

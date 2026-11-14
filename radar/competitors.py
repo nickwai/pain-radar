@@ -92,8 +92,12 @@ different category, so also return:
   product category a person would browse, one per downstream system. E.g.
   wrong ad conversions -> "conversion tracking"; books do not match ->
   "accounting sync"; a number missing from reports -> "custom reports";
-  stock counted wrong -> "inventory forecasting". Never repeat the problem's
-  own words here.
+  stock counted wrong -> "inventory forecasting". Use the plainest, most
+  common name of the category, the words on an app-store shelf label:
+  "conversion tracking", not "attribution modeling" or "delayed attribution";
+  "accounting sync", not "revenue recognition" or "ledger automation";
+  "product options", not "line properties". Never repeat the problem's own
+  words here.
 
 Return JSON: one object per problem with its number, queries, fix and
 category_queries.
@@ -328,7 +332,7 @@ def check(ideas: list[dict], config: dict, env=None, verbose: bool = True,
         q_rows = call_gemini(
             QUERY_PROMPT.format(n=n_q, m=n_c, ideas="\n".join(
                 _idea_line(i, d) for i, d in enumerate(ideas, 1))),
-            model, key, None, schema=QUERY_SCHEMA)
+            model, key, None, temperature=0, schema=QUERY_SCHEMA)
         queries = {r["idea"]: [q for q in r["queries"] if q.strip()][:n_q]
                    for r in q_rows if isinstance(r, dict)}
         cat_queries = {r["idea"]: [q for q in r.get("category_queries") or []
@@ -358,7 +362,7 @@ def check(ideas: list[dict], config: dict, env=None, verbose: bool = True,
             print(f"  competitor check: {len(results)} search results for {len(ideas)} ideas")
 
         rows = call_gemini(JUDGE_PROMPT.format(ideas="\n\n".join(blocks)),
-                           model, key, None, schema=JUDGE_SCHEMA)
+                           model, key, None, temperature=0, schema=JUDGE_SCHEMA)
     except Exception as exc:  # noqa: BLE001 - never lose the ideas over this
         print(f"  [competitors] check skipped ({type(exc).__name__})", flush=True)
         for idea in ideas:
@@ -383,10 +387,17 @@ def check(ideas: list[dict], config: dict, env=None, verbose: bool = True,
                 # as main_use): must be a real [category] search result of
                 # some size, and counts as "part" at most - the card cannot
                 # prove the setting exists.
-                if not (hit and hit.get("category")
-                        and _size(hit["extra"]) >= cc.get("category_min_size", 50)):
+                # FIX same day (CI run 43644545873, 5/7): the model also
+                # tags problem-query hits and products from memory as
+                # category apps; dropping those lost the real competitors of
+                # two known-crowded ideas. Those are judged as before
+                # (dedicated_tool, the model's own covers).
+                if not (hit and hit.get("category")):
+                    c = {**c, "kind": "dedicated_tool"}
+                elif _size(hit["extra"]) < cc.get("category_min_size", 50):
                     continue
-                c = {**c, "covers": "part"}
+                else:
+                    c = {**c, "covers": "part"}
             comps.append({"name": c.get("name", "?"), "note": c.get("note", ""),
                           "covers": c["covers"],
                           "kind": c.get("kind", "dedicated_tool"),

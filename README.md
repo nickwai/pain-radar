@@ -372,6 +372,25 @@ surveys + a contractortalk vendor survey ("I've been talking to a lot of
 shops lately"). Watch for wrong `[same author]` cuts: a real merchant
 posting two separate problems in one day would be dropped.
 
+**2026-11-14 — competitor check: category searches.** The 11-13 report's
+only idea (Shopify counts deferred-payment orders as sales, inflating ad
+conversions and the books) passed as "partial": every query named the
+problem and found apps that *take* partial payments. The fix lives in
+other categories — WeltPixel Conversion Tracking has a "send the purchase
+when the order is paid" setting, A2X books unpaid B2B orders. The query
+call now also returns the fix in one line and 2 `category_queries` (the
+kind of product where the fix would be a setting: "conversion tracking",
+"accounting sync"); those are searched too and marked `[category]` for the
+judge. New competitor kind `category_app`: Python only accepts it for a
+real `[category]` result with 50+ reviews/installs/stars and caps it at
+"covers part" (a card cannot prove the setting exists), so 2 of them — or
+1 plus another partial — make the idea crowded. Config:
+`category_queries_per_idea`, `count_category_apps`, `category_min_size`.
+The idea is now a 7th `check-competitors` test case: crowded in 4 of 4
+local runs. Cost: ~75 s per idea instead of ~45 s. Risk: cuts more, since
+most fixes have some established category app nearby — set
+`count_category_apps: false` to list them without counting.
+
 **2026-10-08 — 2-week review: 0 of 8 ideas worth building.** Daily
 clustering produced 8 ideas in 15 days (8 empty days) and none survived a
 manual competitor check. Re-triaging the old `real_problem` posts with full

@@ -433,6 +433,15 @@ COMPETITOR_TEST_IDEAS = [
                  "as unlabeled adjustments, making bookkeeping reconciliation hard",
                  "who_has_it": "Shopify merchant with a Shopify Capital loan who does bookkeeping",
                  "existing_solutions": "none given"}),
+    # ADDED 2026-11-14: the 11-13 report's only idea, passed as "partial".
+    # Manual check: WeltPixel Conversion Tracking ("send when the order is
+    # paid"), A2X, Mipler - all found by CATEGORY searches, not problem words.
+    ("crowded", {"problem_one_line": "Shopify orders created with deferred/partial payments "
+                 "are treated as fully paid immediate sales in analytics, messing up "
+                 "external ad conversions and accounting",
+                 "who_has_it": "Shopify merchant accepting B2B or deferred payments",
+                 "existing_solutions": "Shopify Analytics, native payment settings, "
+                                       "third-party reporting apps"}),
     (None, {"problem_one_line": "Lawn care business owners re-type crew timesheets "
                      "from paper into payroll every week",
                      "who_has_it": "owner of a 3-8 crew lawn care business",

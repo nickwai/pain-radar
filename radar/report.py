@@ -45,6 +45,8 @@ def render_competitors(cc: dict | None) -> list[str]:
             c.get("covers", ""), "")
         if c.get("kind") == "big_suite":
             covers += " (big suite - not counted)"
+        if c.get("kind") == "category_app":
+            covers += " (category app - could add this as a setting)"
         lines.append(f"- {name}{covers}: {c.get('note', '')}")
     if cc.get("queries"):
         lines.append(f"*Searched HN, GitHub, Shopify App Store, WordPress plugins for: {'; '.join(cc['queries'])}*")

@@ -24,6 +24,19 @@ blind. App Store search is server-rendered behind a Turbo frame: asking for
 the `search_page` frame returns the app cards (name, rating, reviews,
 tagline). WordPress has a free JSON plugin API.
 
+ADDED 2026-11-14: category queries. The 11-13 idea (Shopify counts
+deferred-payment orders as sales, inflating ad conversions and the books)
+passed as "partial": all three queries named the PROBLEM ("partial payment
+analytics", "deferred payment reporting") and found apps that TAKE partial
+payments. The fix lives in another category - conversion-tracking apps
+(WeltPixel has a "send the purchase when the order is paid" setting) and
+accounting sync (A2X). Now the query call also names the kinds of product
+where the fix would sit as a feature ("conversion tracking", "accounting
+sync") and those are searched too. A card's tagline never lists settings,
+so the judge rates an established app from such a search as kind
+category_app: it already has the customer and the data, and the fix is one
+setting for it.
+
 Same anti-hallucination rule as synthesize.py: Gemini cites result ids,
 never URLs; the URL is looked up here. Best-effort: any failure keeps the
 ideas and marks the check as not run.
@@ -47,14 +60,17 @@ SHOPIFY_APPS_URL = "https://apps.shopify.com/search"
 WP_PLUGINS_URL = "https://api.wordpress.org/plugins/info/1.2/"
 VERDICTS = ["crowded", "partial", "open"]
 COVERS = ["main_use", "part", "unrelated"]
-KINDS = ["platform_feature", "dedicated_tool", "big_suite"]
+KINDS = ["platform_feature", "dedicated_tool", "category_app", "big_suite"]
 
 QUERY_SCHEMA = {
     "type": "ARRAY",
     "items": {"type": "OBJECT",
               "properties": {"idea": {"type": "INTEGER"},
-                             "queries": {"type": "ARRAY", "items": {"type": "STRING"}}},
-              "required": ["idea", "queries"]},
+                             "queries": {"type": "ARRAY", "items": {"type": "STRING"}},
+                             "fix": {"type": "STRING"},
+                             "category_queries": {"type": "ARRAY",
+                                                  "items": {"type": "STRING"}}},
+              "required": ["idea", "queries", "fix", "category_queries"]},
 }
 
 QUERY_PROMPT = """For each problem below, write {n} short search queries (2-3 words
@@ -64,7 +80,23 @@ solves it. Query 1: platform name + the core noun (e.g. "n8n monitoring",
 "tradovate lockout"). Then one more platform query, and one generic query for
 the job itself. If the problem is on Shopify or WooCommerce, write the last
 query the way a merchant types into the app store - no platform name, just
-the job (e.g. "b2b retail price", "missing personalization"). Return JSON: one object per problem with its number and queries.
+the job (e.g. "b2b retail price", "missing personalization").
+
+Those queries name the PROBLEM. The fix often lives inside a product from a
+different category, so also return:
+- fix: one line - what a tool would actually DO to solve it, and in which
+  downstream systems (e.g. "send the purchase event to ad platforms only
+  once the order is paid; book the sale in accounting on the payment date").
+- category_queries: {m} queries (1-2 words, no platform name) naming the KIND
+  of existing product where that fix would be one feature or setting - the
+  product category a person would browse, one per downstream system. E.g.
+  wrong ad conversions -> "conversion tracking"; books do not match ->
+  "accounting sync"; a number missing from reports -> "custom reports";
+  stock counted wrong -> "inventory forecasting". Never repeat the problem's
+  own words here.
+
+Return JSON: one object per problem with its number, queries, fix and
+category_queries.
 
 PROBLEMS:
 {ideas}
@@ -93,7 +125,9 @@ skeptic: a solo builder wastes weeks on an idea that already has a good answer.
 For each idea you get the problem, who has it, what the clustering step
 already believed exists, and real search results (HN "Show HN" posts and
 GitHub repositories, Shopify App Store apps, WordPress plugins) with ids like
-r3. An app or plugin with many reviews / installs is a strong competitor. Most results are unrelated noise -
+r3. "the fix" says what a tool would have to do. Results marked [category]
+came from searching the KIND of product where that fix would live, not the
+problem's own words. An app or plugin with many reviews / installs is a strong competitor. Most results are unrelated noise -
 ignore those.
 
 Per idea return:
@@ -115,6 +149,15 @@ Per idea return:
     for a Tradovate trader). A big suite they already run counts here.
   * dedicated_tool: a product, plugin, script or service built for this
     specific job (any price, open source included).
+  * category_app: an app/plugin from a "category search" result (marked
+    [category]) - an established product (roughly 50+ reviews or installs)
+    of the KIND where this fix belongs, which already has this person's data
+    flowing through it (a conversion-tracking app for wrong ad conversions,
+    an accounting-sync app for books that do not match, a custom-report app
+    for a missing report). Its card will not mention this exact fix. Rate it
+    main_use if you KNOW it has the setting; otherwise part - it could ship
+    the fix as one setting and it already owns the customer. List at most 3,
+    the largest; skip tiny ones and ones of the wrong kind.
   * big_suite: a broad all-in-one business suite (field-service, CRM, ERP,
     practice management - e.g. Jobber, ServiceTitan, Salesforce, HubSpot)
     where this is one feature among many and the person would have to adopt
@@ -177,7 +220,7 @@ def search_shopify_apps(query: str, n: int) -> list[dict]:
         reviews = re.search(r"([\d,]+) total reviews", text)
         # tagline: after "<price note>" up to the popover markup
         # tagline: after the review count and price note, before popover markup
-        after = text.split("total reviews", 1)[-1].split(" popover", 1)[0]
+        after = text.split("total reviews", 1)[-1].split(" popover", 1)[0].split(" <div", 1)[0]
         tag = re.sub(r"^\s*•?\s*(?:Free plan available|Free trial available|Free to install"
                      r"|Free|From \S+|\S+/month)?\s*", "", after)
         if not name:
@@ -203,12 +246,14 @@ def search_wp_plugins(query: str, n: int) -> list[dict]:
             for p in _get_json(url).get("plugins", [])[:n]]
 
 
-def gather(queries: list[str], n: int, env) -> list[dict]:
-    """Search results for one idea, deduped by URL. A failed search is skipped."""
+def gather(queries: list[str], n: int, env, category: list[str] | None = None) -> list[dict]:
+    """Search results for one idea, deduped by URL. A failed search is skipped.
+    Results first found by a `category` query carry category=True."""
     token = env.get("GITHUB_TOKEN")
     pause = 2.5 if token else 6.5  # GitHub search: 30/min with token, 10 without
     out: dict[str, dict] = {}
-    for q in queries:
+    category = [q for q in (category or []) if q not in queries]
+    for q in queries + category:
         for src, fn in (("HN", search_hn),
                         ("GitHub", lambda q2, n2: search_github(q2, n2, token)),
                         ("Shopify apps", search_shopify_apps),
@@ -221,7 +266,7 @@ def gather(queries: list[str], n: int, env) -> list[dict]:
                     time.sleep(pause)
                     hits = fn(" ".join(q.split()[:2]), n)
                 for r in hits:
-                    out.setdefault(r["url"], r)
+                    out.setdefault(r["url"], {**r, "category": q in category})
             except (urllib.error.URLError, TimeoutError, KeyError, ValueError) as exc:
                 print(f"  [competitors] {src} search failed for {q!r} ({type(exc).__name__})",
                       flush=True)
@@ -229,7 +274,8 @@ def gather(queries: list[str], n: int, env) -> list[dict]:
     return list(out.values())
 
 
-def verdict_from(comps: list[dict], count_big_suites: bool = False) -> str:
+def verdict_from(comps: list[dict], count_big_suites: bool = False,
+                 count_category_apps: bool = True) -> str:
     """FIX 2026-10-08: the model's own crowded/partial/open flipped between
     runs on identical input (CI said partial for both known-crowded test
     ideas, local said crowded) - "partial" with a reworded problem as the
@@ -240,12 +286,25 @@ def verdict_from(comps: list[dict], count_big_suites: bool = False) -> str:
     # (the lawn-care timesheet test idea was cut for Jobber/ServiceTitan).
     # Switching suites is the real cost; a focused tool can still sell.
     # Still listed in the report. competitor_check.count_big_suites: true = old rule.
-    comps = [c for c in comps if count_big_suites or c.get("kind") != "big_suite"]
+    # 2026-11-14: category apps count (as rated, usually part: 2+ = crowded);
+    # competitor_check.count_category_apps: false = listed but ignored.
+    comps = [c for c in comps if (count_big_suites or c.get("kind") != "big_suite")
+             and (count_category_apps or c.get("kind") != "category_app")]
     main = sum(c["covers"] == "main_use" for c in comps)
     part = sum(c["covers"] == "part" for c in comps)
     if main or part >= 2:
         return "crowded"
     return "partial" if part else "open"
+
+
+def _size(extra: str) -> int:
+    """Largest count in a result's extra text ("4.7 stars, 171 reviews" ->
+    171; "1000+ installs, 12 ratings" -> 1000; "36 stars" on GitHub -> 36)."""
+    # App Store "4.7 stars" is a rating, not a count: drop decimals' tails.
+    extra = re.sub(r"\d\.\d stars", "", extra)
+    nums = [int(n.replace(",", "")) for n in
+            re.findall(r"([\d,]+)\+? (?:reviews|installs|ratings|points|stars)\b", extra)]
+    return max(nums, default=0)
 
 
 def _idea_line(i: int, idea: dict) -> str:
@@ -264,28 +323,37 @@ def check(ideas: list[dict], config: dict, env=None, verbose: bool = True,
         return ideas
     model = env.get("GEMINI_MODEL", config["synthesis"].get("model", "gemini-3.5-flash-lite"))
     n_q, n_r = cc.get("queries_per_idea", 3), cc.get("results_per_query", 5)
+    n_c = cc.get("category_queries_per_idea", 2)
     try:
         q_rows = call_gemini(
-            QUERY_PROMPT.format(n=n_q, ideas="\n".join(
+            QUERY_PROMPT.format(n=n_q, m=n_c, ideas="\n".join(
                 _idea_line(i, d) for i, d in enumerate(ideas, 1))),
             model, key, None, schema=QUERY_SCHEMA)
         queries = {r["idea"]: [q for q in r["queries"] if q.strip()][:n_q]
                    for r in q_rows if isinstance(r, dict)}
+        cat_queries = {r["idea"]: [q for q in r.get("category_queries") or []
+                                   if q.strip()][:n_c]
+                       for r in q_rows if isinstance(r, dict)}
+        fixes = {r["idea"]: r.get("fix") or "" for r in q_rows if isinstance(r, dict)}
 
         results: dict[str, dict] = {}  # rid -> result
         blocks = []
         for i, idea in enumerate(ideas, 1):
-            found = gather(queries.get(i, []), n_r, env)
+            found = gather(queries.get(i, []), n_r, env, cat_queries.get(i, []))
             lines = [_idea_line(i, idea),
-                     f"    searched: {'; '.join(queries.get(i, [])) or '(no queries)'}"]
+                     f"    the fix: {fixes.get(i) or '(not given)'}",
+                     f"    searched: {'; '.join(queries.get(i, [])) or '(no queries)'}",
+                     f"    category searches: {'; '.join(cat_queries.get(i, [])) or '(none)'}"]
             for r in found:
                 rid = f"r{len(results) + 1}"
                 results[rid] = r
-                lines.append(f"    {rid} ({r['where']}, {r['extra']}) {r['title']}")
+                mark = " [category]" if r.get("category") else ""
+                lines.append(f"    {rid}{mark} ({r['where']}, {r['extra']}) {r['title']}")
             if not found:
                 lines.append("    (no search results)")
             blocks.append("\n".join(lines))
-            idea["_queries"] = queries.get(i, [])
+            idea["_queries"] = queries.get(i, []) + [
+                f"{q} (category)" for q in cat_queries.get(i, [])]
         if verbose:
             print(f"  competitor check: {len(results)} search results for {len(ideas)} ideas")
 
@@ -309,11 +377,22 @@ def check(ideas: list[dict], config: dict, env=None, verbose: bool = True,
             if c.get("covers") not in ("main_use", "part"):
                 continue
             hit = results.get((c.get("result_id") or "").strip())
+            if c.get("kind") == "category_app":
+                # Enforced here, not trusted to the model (first test run: it
+                # rated Sentry and 3-star GitHub repos as category apps, some
+                # as main_use): must be a real [category] search result of
+                # some size, and counts as "part" at most - the card cannot
+                # prove the setting exists.
+                if not (hit and hit.get("category")
+                        and _size(hit["extra"]) >= cc.get("category_min_size", 50)):
+                    continue
+                c = {**c, "covers": "part"}
             comps.append({"name": c.get("name", "?"), "note": c.get("note", ""),
                           "covers": c["covers"],
                           "kind": c.get("kind", "dedicated_tool"),
                           "url": hit["url"] if hit else "", "verified": bool(hit)})
-        verdict = verdict_from(comps, cc.get("count_big_suites", False)) if r else "not run"
+        verdict = verdict_from(comps, cc.get("count_big_suites", False),
+                               cc.get("count_category_apps", True)) if r else "not run"
         idea["competitor_check"] = {
             "verdict": verdict,
             "competitors": comps, "gap": (r or {}).get("gap", ""),

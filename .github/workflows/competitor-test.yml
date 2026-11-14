@@ -1,7 +1,7 @@
 name: Competitor check test
 
-# ADDED 2026-10-08: manual only. Runs radar/competitors.py on 3 fixed fake
-# ideas (run.py COMPETITOR_TEST_IDEAS: 2 known crowded + 1 control) with the
+# ADDED 2026-10-08: manual only. Runs radar/competitors.py on the fixed test
+# ideas (run.py COMPETITOR_TEST_IDEAS: known crowded + 1 control) with the
 # real CI secrets and IP. Prints results to the log and run summary; writes
 # no report, sends no Telegram, commits nothing. Fails if a verdict is off.
 on:

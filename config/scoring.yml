@@ -178,6 +178,15 @@ competitor_check:
   enabled: true
   queries_per_idea: 3
   results_per_query: 5
+  category_queries_per_idea: 2   # ADDED 2026-11-14: extra searches for the
+                                 # KIND of product where the fix would live
+                                 # ("conversion tracking", "accounting sync").
+                                 # 0 = off.
+  count_category_apps: true      # established apps found that way count
+                                 # (usually "part"; 2+ = crowded). false =
+                                 # listed in the report but ignored.
+  category_min_size: 50          # a category app needs this many reviews /
+                                 # installs / stars to be listed at all.
   cut_verdicts: [crowded]   # add `partial` to be stricter
   # Verdict rule (radar/competitors.py verdict_from): any competitor covering
   # the main use, or 2+ covering part = crowded; 1 part = partial; else open.

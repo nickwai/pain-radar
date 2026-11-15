@@ -1,0 +1,120 @@
+[
+  {
+    "id": "discourse:community.shopify.com:715507",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Menswear stores: how do you show Short, Regular and Long on your product pages?",
+    "text": "I run a menswear shop in the UK, and the size question we get most on jackets and trousers isn’t about chest or waist. It’s length. A 40 Short and a 40 Long have the same chest and very different sleeves and body length, and if a shopper picks the wrong one it comes back however good the chest fit was. We’ve tried a few ways of showing it online, none perfect: Length as a separate option next to the chest size, which is clear but doubles the number of choices. Combined sizes such as 40S, 40R and 40L in one list, which matches the label but confuses anyone who doesn’t buy tailoring often. A height guide next to the size picker (for example Short under 5’8\", Regular 5’8\" to 6’2\", Long over 6’2\"), which helps most but only if people read it. How do you handle it? I’d especially like to hear whether any of these cut your returns, and what you do on mobile, where there’s less room for a guide next to the sizes. 7 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/menswear-stores-how-do-you-show-short-regular-and-long-on-your-product-pages/715507",
+    "created_utc": 1794584789,
+    "score": 2,
+    "comments": 6,
+    "author": "ChrisSykes",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.6,
+      "multiplier": 1.2,
+      "score": 3.12,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "A merchant seeks operational workflow solutions for jacket lengths.",
+    "pooled_on": "2026-11-15"
+  },
+  {
+    "id": "discourse:community.shopify.com:715817",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "How do you keep a store's theme customizations tidy after updates?",
+    "text": "I keep making small theme tweaks and I’m worried I’ll lose track of them when the theme updates. Do you keep notes on your changes, use a child theme approach, or test everything in a duplicate theme first? I’d love to hear what keeps your customizations safe and tidy. 4 posts - 4 participants Read full topic",
+    "url": "https://community.shopify.com/t/how-do-you-keep-a-stores-theme-customizations-tidy-after-updates/715817",
+    "created_utc": 1794678832,
+    "score": 2,
+    "comments": 3,
+    "author": "zulfneck",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.4,
+      "multiplier": 1.2,
+      "score": 1.68,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchants discuss a recurring workflow chore to manage updates.",
+    "pooled_on": "2026-11-15"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165780",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Field-level access control",
+    "text": "Better way to do field-level access control in Frappe? Goal We need field access permissions : for a given Role (or user), show/hide or allow/deny specific fields on a DocType — without changing document-level rights (read/write/submit on the whole doc). Example: Role A may read Employee, but must not see national_id / salary fields. Role B may see those fields. What Frappe gives today Frappe’s built-in tool for this is permlevel : Stock UI / Role Permission Manager typically works with levels 0 – 9 . Level 0 = normal fields (anyone with doc read can see them). Levels 1 – 9 = restricted; a Role needs a DocPerm/Custom DocPerm row at that level to see those fields. In practice people group many fields on the same level (e.g. all “sensitive” fields → level 1 ). That works for coarse groups, but not for fine per-field, per-role control: if two fields share level 1 , you cannot give Role A field X and deny field Y without also affecting every other field on level 1 . permlevel is also stored on the field definition (one number per field), not as “(role, field)” ACL rows. So the level is global for that field. What we did (workaround) We built Permlevel Permission in a custom app: Keep 0 = public . Every restricted field gets its own unique permlevel number (not shared with any other field; we allocate beyond 0–9 , in blocks per DocType). For each Role that should see that field, we add a Custom DocPerm row at that unique number. Role field matrix → compile into those rows. So: one field ↔ one level ↔ grant/deny per Role by presence of the row. Question for the community: Is there a better way to get true field-level ACL in Frappe (hooks, another DocType, client + server pattern, upcoming core feature, etc.) without overloading permlevel like this? Problems we still hit (especially child tables) Even with unique levels, we are still limited by how core applies permlevel : 1. Same child table used twice on one parent Parent has two Table fields pointing at the same child DocType (e.g. items and extra_items ). Child fields ( rate , qty , …) have one permlevel on the child. Access is checked for the parent DocType , not per Table field instance. Result: if a Role can see rate , they see it in both grids. We cannot show it in one instance and hide it in the other. 2. Same child table used by two parent DocTypes e.g. one taxes child on Sales Invoice and Delivery Note. Uniqueness of the number is on the child DocType (one slot for rate everywhere). We put grants on each parent , so Role access can differ per parent — that helps. But the field still has one shared level on the child. Anything that assumes “this level = this field only in this parent” collides; new parents that embed the child need grants recompiled; renaming/moving the level affects all parents. So: unique- permlevel -per-field gets us closer to field ACL on normal parent fields, but child tables break the model when the same child is reused (twice on one form, or across many parents). What we’re asking For field access control , is unique permlevel per field a reasonable approach, or is there a better pattern people use in production? For shared / double-embedded child tables , has anyone solved per-grid or per-parent field visibility with server-side enforcement? Any appetite / existing work in core for real field ACL that is not based on 0–9 shared levels? 3 posts - 2 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/field-level-access-control/165780",
+    "created_utc": 1794592366,
+    "score": 0,
+    "comments": 2,
+    "author": "MahmoudYaser",
+    "signals": {
+      "combo": true,
+      "money": 2,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 0.8,
+      "multiplier": 1.25,
+      "score": 14.12,
+      "money_matched": [
+        "/mo",
+        "invoice"
+      ],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Requests advanced field access control permissions in an ERP.",
+    "pooled_on": "2026-11-15"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "What do you do when an estimate goes unanswered?",
+    "text": "Genuine question — I've been talking to a lot of shops lately. You send the quote, hear nothing back. Do you follow up? How many times, and how — call, text, email? Or just move on to the next job? Trying to understand what actually works vs. what everyone means to do but doesn't. What's your process?",
+    "url": "https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
+    "created_utc": 1794659389,
+    "score": 0,
+    "comments": 0,
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 3.0,
+      "money_matched": [
+        "quote"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Contractors discuss solving the recurring workflow chore of chasing estimates.",
+    "pooled_on": "2026-11-15"
+  }
+]

@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1794751593,
+  "fetched_at": 1794765436,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -17,6 +17,19 @@
       "score": 0,
       "comments": 0,
       "author": "JFGLN"
+    },
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/whats-the-most-annoying-thing-that-keeps-coming-up-week-after-week-in-running-your-business.525153/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "What's the most annoying thing that keeps coming up week after week in running your business?",
+      "text": "I worked as a lawn care tech for a few years and I'm trying to understand the real headaches on the owner side (not selling anything). Could be hiring, scheduling, getting new customers, chasing payments, software that doesn't fit, anything. What was the last time it happened, and what did you do about it?",
+      "url": "https://www.lawnsite.com/threads/whats-the-most-annoying-thing-that-keeps-coming-up-week-after-week-in-running-your-business.525153/",
+      "created_utc": 1794755784,
+      "score": 0,
+      "comments": 0,
+      "author": "jaayseee"
     },
     {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",

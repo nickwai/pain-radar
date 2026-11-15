@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1794678155,
+  "fetched_at": 1794751593,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -15,7 +15,8 @@
       "url": "https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
       "created_utc": 1794675298,
       "score": 0,
-      "comments": 0
+      "comments": 0,
+      "author": "JFGLN"
     },
     {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
@@ -27,7 +28,8 @@
       "url": "https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
       "created_utc": 1794674425,
       "score": 0,
-      "comments": 0
+      "comments": 0,
+      "author": "hinejs"
     },
     {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",
@@ -39,7 +41,8 @@
       "url": "https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",
       "created_utc": 1794603318,
       "score": 0,
-      "comments": 0
+      "comments": 0,
+      "author": "cmgnspire"
     },
     {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
@@ -49,9 +52,10 @@
       "title": "What do you do when an estimate goes unanswered?",
       "text": "Genuine question — I've been talking to a lot of shops lately. You send the quote, hear nothing back. Do you follow up? How many times, and how — call, text, email? Or just move on to the next job? Trying to understand what actually works vs. what everyone means to do but doesn't. What's your process?",
       "url": "https://www.contractortalk.com/threads/what-do-you-do-when-an-estimate-goes-unanswered.464997/",
-      "created_utc": 1794659389,
+      "created_utc": 1794731078,
       "score": 0,
-      "comments": 0
+      "comments": 0,
+      "author": "TradeStack"
     }
   ]
 }

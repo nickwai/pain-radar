@@ -1,0 +1,63 @@
+[
+  {
+    "id": "discourse:discuss.frappe.io:165803",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Asset not reflecting in Fixed Assets in Trial Balance",
+    "text": "New asset purchased in fy 2025-26 is not reflecting under the Fixed Assets–>Plant and Machineries in the Trial Balance report or the General Ledger report. The asset has been created, Purchase Receipt, Purchase Invoice have been posted. Yet the Asset amount is not reflecting in the correct Asset Category. 4 posts - 2 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/asset-not-reflecting-in-fixed-assets-in-trial-balance/165803",
+    "created_utc": 1794815883,
+    "score": 0,
+    "comments": 3,
+    "author": "rushdex",
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.2,
+      "multiplier": 1.25,
+      "score": 5.25,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "User faces an asset tracking discrepancy in trial balance reports.",
+    "pooled_on": "2026-11-16"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165800",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Auto-deploy Server & Client Scripts from local UI to test server via Git (no copy-paste)",
+    "text": "Hello community, I create Server Scripts and Client Scripts from the ERPNext UI on my local bench. Right now, to move them to our test server (and later production), we copy and paste the code by hand into the other site’s UI. This is slow, has no history, and sometimes test and production end up different. What I want Keep writing Server Scripts and Client Scripts in the local UI Run one command (or nothing) to push them to a Git branch called test Test server updates automatically, with no copy-paste Later: same flow to production, with an approval step My current setup Frappe / ERPNext version: Frappe v16.53.0 / ERPNext v16.53.0 (version-16 branch) Local: bench on my laptop Test server: self-hosted bench Git: GitHub What I have tried Created a small custom app my_scripts and installed it on local and test Added to hooks.py: fixtures = [“Server Script”, “Client Script”] On local: bench --site mysite.local export-fixtures --app my_scripts then git commit and git push to the test branch GitHub Actions connects to the test server over SSH and runs: bench backup → git pull → bench migrate → bench clear-cache My questions Is fixtures + bench migrate the recommended way to move UI-made Server and Client Scripts between sites? Should I filter fixtures by module (“Module (for export)”) instead of exporting all scripts? If someone edits a script directly on the test server UI, it gets overwritten on the next migrate. How do other teams prevent this? When I delete a script on local, it is not deleted on test. What is the best way to handle deletes? Is there a better or simpler way to do this without a custom app? Any guidance or examples from your own workflow would be very helpful. Thank you! 1 post - 1 participant Read full topic",
+    "url": "https://discuss.frappe.io/t/auto-deploy-server-client-scripts-from-local-ui-to-test-server-via-git-no-copy-paste/165800",
+    "created_utc": 1794811669,
+    "score": 0,
+    "comments": 0,
+    "author": "Meet-Tank4",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 3.75,
+      "money_matched": [],
+      "pain_matched": [
+        "by hand",
+        "copy and paste"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Developer struggles with manual copy-pasting scripts across environments.",
+    "pooled_on": "2026-11-16"
+  }
+]

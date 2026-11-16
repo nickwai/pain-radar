@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1794765436,
+  "fetched_at": 1794826471,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -32,6 +32,19 @@
       "author": "jaayseee"
     },
     {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/how-are-you-covering-after-hours-no-heat-calls-this-winter.465631/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "How are you covering after-hours no-heat calls this winter?",
+      "text": "Quick question for shop owners heading into heating season. How are you covering the phone after hours when the no-heat calls start coming in? Some shops use a traditional answering service, some leave it on voicemail, and some just forward the office line to the owner's cell and barely sleep. What's actually working for you right now? Rotating on-call among the techs, a service that takes messages, or just living with the ones that go to voicemail? If you've used an answering service... How are you covering after-hours no-heat calls this winter?",
+      "url": "https://www.contractortalk.com/threads/how-are-you-covering-after-hours-no-heat-calls-this-winter.465631/",
+      "created_utc": 1794800396,
+      "score": 0,
+      "comments": 0,
+      "author": "BarryHolt"
+    },
+    {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
       "source": "rss",
       "channel": "contractortalk-biz",
@@ -39,7 +52,7 @@
       "title": "AI homemade estimating tools and process",
       "text": "Anyone here built their own etimating tools and process for selling and estimating renovation work? Ive been playing with and using a few tools ive built for sales and estimating processes within my firm. Looking for others having done something similar and or another resource. -Jeremy Florida Leisure Pool & Spa www.FloridaPoolSpa.com",
       "url": "https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
-      "created_utc": 1794674425,
+      "created_utc": 1794800374,
       "score": 0,
       "comments": 0,
       "author": "hinejs"
@@ -52,7 +65,7 @@
       "title": "How I keep T&M change orders from turning into argument invoices",
       "text": "How I keep T&M change orders from turning into argument invoices Every GC I know has lost money on a \"quick\" T&M change that somehow became a fight three weeks later. Not because the work was wrong - because nobody could show what was approved, when, and at what rate. Here is the simple log I keep on every job that has any T&M. Works in any spreadsheet. One row per day of T&M work, not one row per invoice. 1. Get the rate sheet signed before the first hour. Labor rates by trade, burdened... How I keep T&M change orders from turning into argument invoices",
       "url": "https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",
-      "created_utc": 1794603318,
+      "created_utc": 1794800354,
       "score": 0,
       "comments": 0,
       "author": "cmgnspire"

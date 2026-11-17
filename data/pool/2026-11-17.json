@@ -1,0 +1,233 @@
+[
+  {
+    "id": "discourse:community.n8n.io:329067",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Agents: let an \"approval workflow\" decide on tool calls (alternative to requireApproval)",
+    "text": "The idea is: The new n8n Agent-builder feature is really cool! And today, an n8n Agent tool can set requireApproval: true . The run then stops, and the person in the chat clicks Approve or Deny. It’s a neat first approach to HITL, but it lacks the customizability that anything resembling an enterprise customer would need. Namely: Specific people who can approve (right now, it’s everyone who can see the button ) Custom rules on what can be HITL-approved and what can’t Integration with other governance systems, e.g. the ability to connect it to the inference hooks endpoint used by Claude (which might be interesting for you folks at n8n too) A single mechanism could easily cover all of these cases: an (optional) approval workflow , in the place where one can currently set “Require approval” (and, for MCP tools, “Ask selected”). Before the tool call is executed, n8n calls this workflow with the tool call parameters. The workflow returns a decision in a standardized format. The Agent then runs the tool, or tells the model that the call was declined and why. Configuration sketch (tool ref in the Agent JSON config): { \"type\": \"workflow\", \"workflowId\": \"abc123\", \"name\": \"book_meeting_room\", \"approvalWorkflow\": { \"workflowId\": \"def456\", \"inputs\": { \"channelId\": { \"mode\": \"fixed\", \"value\": \"C0123456\" }, \"approverEmail\": { \"mode\": \"fixed\", \"value\": \"lead@example.com\" } } } } Implementation thoughts: It reuses what exists: workflow tools, the workflow_wait pause and resume, and the approval wrapper around tools. Little new runtime code is needed. approvalWorkflow replaces requireApproval: true for that tool. The two are mutually exclusive. requireApproval stays the default. inputs take fixed values or expressions only. The model cannot set them. This lets one approval workflow serve many tools and agents with different approvers or policies. For long-running approvals, the Agent run could pause with the existing workflow_wait card, the same way a workflow tool with a Wait node pauses today. Contract: Input (Execute Workflow Trigger): toolName , args , agent, run and user context, plus the configured inputs . Output: { \"approved\": boolean, \"reason\"?: string } would be enough. An error, timeout, cancellation or invalid output obviously counts as a rejection. My use case: We want to use the new n8n Agents feature to build our agent fleet. More and more departments and users are starting to work with it, but they hit a wall with anything that’s even remotely sensitive because of the limited HITL capabilities. Basically as above: more specific and restrictive HITL capabilities, where “is able to see the Slack message” isn’t enough to ensure governance Our current approaches can effectively only use prompt-based “please use this HITL tool before using any other tools” instructions, which is prone to prompt hacking and obviously not enterprise-ready. I think it would be beneficial to add this because: The main selling point is that it’s relatively simple and reuses existing mechanics, while still covering all the custom HITL needs anyone could ever have (that I can think of): Four-eyes principle Manager approval LLM auto-approval Forwarding to the same governance endpoint that the Claude inference hooks use … anything I can package into an n8n workflow For us as an enterprise customer, this would turn the Agents feature from a neat prototype into an instantly usable value-add. Any resources to support this? The text below is from Claude, after I let it take a shot at planning an implementation: These are the parts I would build on: packages/@n8n/agents/src/sdk/tool.ts : wrapToolForApproval and needsApprovalFn . A generalized gate (decide now, or pause and decide later) fits here. packages/cli/src/modules/agents/tools/workflow-tool-factory.ts : workflow execution, the workflow_wait card, and extractResult . packages/cli/src/modules/agents/agent-workflow-tool-resume.service.ts : continues the run when the workflow finishes. packages/@n8n/api-types",
+    "url": "https://community.n8n.io/t/agents-let-an-approval-workflow-decide-on-tool-calls-alternative-to-requireapproval/329067",
+    "created_utc": 1794837905,
+    "score": 1,
+    "comments": 0,
+    "author": "MrTrustworthy",
+    "signals": {
+      "combo": false,
+      "money": 3,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.1,
+      "multiplier": 1.1,
+      "score": 10.01,
+      "money_matched": [
+        "/mo",
+        "alternative to"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "A workflow builder needs enterprise-grade conditional approval rules.",
+    "pooled_on": "2026-11-17"
+  },
+  {
+    "id": "discourse:community.coda.io:62145",
+    "source": "discourse",
+    "channel": "community.coda.io",
+    "group": "saas",
+    "title": "Superhuman Docs feature request: show a many-to-many relation as a matrix",
+    "text": "Please add a way to show a many-to-many relationship as a matrix: one table’s rows down the side, the other table’s rows across the top, and each cell showing whether the two are linked. My case is a zoning use table. Uses run down the side, zones run across the top, and each cell says whether the use is allowed in the zone. My Use table has a relation column to my Zone table, with multiple selections allowed. Grouping a view by that column gives one group for each combination of zones, not one for each zone. The Help article Grouping by a multi-select column describes this problem and offers a workaround. The workaround is a list for each item, not a grid. The only* route to a grid that I have found is a third table (a join table in database terms) with one row for every use-zone pair. Once that join table is built in Coda, it can be grouped left and top. I got Claude to build a button with nested ForEach loops, a check for existing rows, and AddRow. It works. This table can then replace the initial table. In other words, the best way for me to build a matrix is to build a second table that amounts to a join table. I don’t know how relations are stored on your side, so I may be missing some engineering reason you can’t add a matrix view to your table views. Since the button’s formula can build such a table, though, the information is already there: each relation cell holds references to the linked rows, and an ordinary formula can list every pair. There must be a way to lay those pairs out as a grid. Ideally, I’d like two things: First, an option to group by each item in a multi-select or relation column, so that a row appears under every item it is linked to. Used across the top of a view, that option would produce the matrix. I see that it was requested on May 1, 2018, in Grouping and Select Lists , and again on May 13, 2026, for groups across the top, in Grouping - Added Option of Non-Aggregation . Second, please make a way for each cell in the matrix to hold an individual value or a value from a picker. In my case, I have permitted, conditionally permitted, permitted as an accessory use, and so on. If there is a constraint that rules this out, please spill the tea. *Edit: I was able to get it built as an AI View, so it’s certainly possible. It created a new column, “__Conditional zones,” to make it work. It holds IDs. Even though it’s possible by asking the AI to do it, I think it would be great to offer it as a standard table view. Even then, the hidden ID column seems a little kludgy. 2 posts - 1 participant Read full topic",
+    "url": "https://community.coda.io/t/superhuman-docs-feature-request-show-a-many-to-many-relation-as-a-matrix/62145",
+    "created_utc": 1794862380,
+    "score": 1,
+    "comments": 1,
+    "author": "Bruce_F_Donnelly",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 2,
+      "engagement": 0.5,
+      "multiplier": 1.25,
+      "score": 4.38,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "User needs a standard matrix view for many-to-many relationships.",
+    "pooled_on": "2026-11-17"
+  },
+  {
+    "id": "discourse:community.shopify.dev:39841",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Submission Limited: Potential issue when developing more than one app",
+    "text": "Hey all, First off, I think the new submission limits are a great idea (providing people don’t just buy installs to get around them!). Anything that potentially makes the App Store better for merchants works for me. However, I think I’ve come across a potential issue. I currently have two apps in development, neither of which has been submitted yet. I’m wanting to submit one of them shortly, but I’ve noticed something a bit strange. One of the apps is flagged as “Submission Limited”, while the other can be submitted without any issues. Now, I could just be doing something silly here, but I’ve confirmed that all my existing published apps have at least 10 paid installs. The only apps that don’t are these two unsubmitted ones, which naturally have no installs yet. Surely I should be able to choose which app I want to submit? An app that’s still in development and hasn’t even been submitted shouldn’t prevent me from submitting a different one? Could someone from Shopify look into this and confirm whether it’s the intended behaviour or potentially a bug? I could always just delete the other unsubmitted app, submit my new one, and then recreate the old one, but that seems like a pretty unnecessary workaround! Cheers! 5 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.dev/t/submission-limited-potential-issue-when-developing-more-than-one-app/39841",
+    "created_utc": 1794911571,
+    "score": 3,
+    "comments": 4,
+    "author": "Ollie_autoBlogger",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.9,
+      "multiplier": 1.2,
+      "score": 4.08,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Developer facing workflow blocks from app submission limits.",
+    "pooled_on": "2026-11-17"
+  },
+  {
+    "id": "discourse:community.shopify.dev:39835",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Feature request: Manage the IP allowlist in shopify.app.toml / Shopify CLI",
+    "text": "Hi all, We manage 60+ apps. Their config lives in version-controlled shopify.app.toml files, and we deploy with shopify app deploy from CI. The new IP allowlist is the one security setting we can’t manage that way, because it can only be set in the Dev Dashboard UI. So we have to set up the allowlist by hand in every app, and do it again in all 60+ whenever our egress IPs change. That’s error-prone, and a security setting kept outside our repo can’t be reviewed or audited. What we’d like: A TOML section that shopify app deploy applies, for example something like this: [access.ip_allowlist] enforce = true ip_ranges = [\"203.0.113.10/32\"] asns = [16509] countries = [\"SE\"] The allowlist test in the CLI , so CI can check traffic before enforcement is turned on. Others have asked for this too ( David_Arbias and TannerShark ). Is it on the roadmap? More generally, I think every Dev Dashboard setting should also be configurable in code, especially new security features. Thanks! 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.dev/t/feature-request-manage-the-ip-allowlist-in-shopify-app-toml-shopify-cli/39835",
+    "created_utc": 1794871590,
+    "score": 2,
+    "comments": 2,
+    "author": "pergardebrink",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.0,
+      "multiplier": 1.2,
+      "score": 3.0,
+      "money_matched": [],
+      "pain_matched": [
+        "by hand"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Developer cannot manage security IP allowlists via version control config.",
+    "pooled_on": "2026-11-17"
+  },
+  {
+    "id": "discourse:community.shopify.com:717266",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "How do you forecast thermal-label usage when batch fulfillment grows?",
+    "text": "I’m comparing practical ways to forecast physical thermal-label consumption for a growing fulfillment operation. Order count alone seems unreliable because split shipments, return labels, reprints, pallet labels, and internal routing labels can all change the actual quantity consumed. The planning method I’m currently testing uses: planned usage + target closing stock − usable on hand − confirmed inbound The positive result is then divided by the confirmed labels-per-carton quantity and rounded up. I keep this calculation separate from the reorder point: • The monthly worksheet estimates how many labels the operation may need. • The reorder point determines when purchasing should begin. For teams running batch fulfillment, which data source has been most reliable for measuring actual consumption—shipping-platform exports, printer counters, carton openings, or cycle counts? Also, how do you record reprints without turning temporary waste into a permanent purchasing assumption? Disclosure: I work with a thermal-label supplier. I’m interested in the operating method and will not post product links unless they are directly relevant and permitted. 3 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/how-do-you-forecast-thermal-label-usage-when-batch-fulfillment-grows/717266",
+    "created_utc": 1794882538,
+    "score": 8,
+    "comments": 2,
+    "author": "volokitx",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.6,
+      "multiplier": 1.2,
+      "score": 3.72,
+      "money_matched": [],
+      "pain_matched": [
+        "unreliable"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant needs a reliable method to forecast thermal-label usage.",
+    "pooled_on": "2026-11-17"
+  },
+  {
+    "id": "discourse:community.shopify.com:717270",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Stallion Express Support",
+    "text": "Hi! Looking to request to see if Stallion Express could be added as a supported carrier for shipping. Chit Chats which is similar is already added, but I ship with Stallion Express, so currently have to choose “Other” and directly add a full tracking link which feels very unprofessional to buyers. Thanks for your consideration! - Jason 5 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/stallion-express-support/717270",
+    "created_utc": 1794883972,
+    "score": 9,
+    "comments": 4,
+    "author": "KingDoge213",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.5,
+      "multiplier": 1.2,
+      "score": 3.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant needs a specific carrier natively supported instead of manual links.",
+    "pooled_on": "2026-11-17"
+  },
+  {
+    "id": "discourse:community.shopify.com:716672",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "React to timeline comments",
+    "text": "Hello! I have a small request. We would like to be able to react to comments in the order timeline (for example, with a ) and receive notifications when this happens. Currently, it is possible to write comments and use emojis, but having the option to click a icon would be faster and would keep the timeline looking cleaner. Thank you! 3 posts - 3 participants Read full topic",
+    "url": "https://community.shopify.com/t/react-to-timeline-comments/716672",
+    "created_utc": 1794815023,
+    "score": 5,
+    "comments": 2,
+    "author": "LPerez",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 1.3,
+      "multiplier": 1.2,
+      "score": 1.56,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "User wants the ability to react to timeline comments with emojis.",
+    "pooled_on": "2026-11-17"
+  },
+  {
+    "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/how-are-you-covering-after-hours-no-heat-calls-this-winter.465631/",
+    "source": "rss",
+    "channel": "contractortalk-biz",
+    "group": "trades",
+    "title": "How are you covering after-hours no-heat calls this winter?",
+    "text": "Quick question for shop owners heading into heating season. How are you covering the phone after hours when the no-heat calls start coming in? Some shops use a traditional answering service, some leave it on voicemail, and some just forward the office line to the owner's cell and barely sleep. What's actually working for you right now? Rotating on-call among the techs, a service that takes messages, or just living with the ones that go to voicemail? If you've used an answering service... How are you covering after-hours no-heat calls this winter?",
+    "url": "https://www.contractortalk.com/threads/how-are-you-covering-after-hours-no-heat-calls-this-winter.465631/",
+    "created_utc": 1794800396,
+    "score": 0,
+    "comments": 0,
+    "author": "BarryHolt",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.0,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Contractors struggle with handling after-hours emergency heating calls efficiently.",
+    "pooled_on": "2026-11-17"
+  }
+]

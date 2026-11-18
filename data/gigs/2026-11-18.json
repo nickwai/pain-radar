@@ -1,0 +1,93 @@
+[
+  {
+    "id": "discourse:community.n8n.io:329316",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[Hiring] Commission-based BD / AI implementation consultants + unpaid portfolio AI engineers (water utilities, pre-revenue, remote)",
+    "text": "Hi everyone, I’m Shantel Jones, solo founder of Meridian AI LLC in Tempe, Arizona (remote, US time zones). We’re pre-revenue, with no customers yet. We build workflow software for small water utilities and irrigation districts: who owns the follow-up after an alert, and what proves it’s done. I’m looking for two kinds of help, and I want to be upfront about how each is paid. Commission-based business development and AI implementation consulting. This is for people who can find and close clients, and/or investigate a company’s workflows and advise on how AI (including automation tools like n8n) would actually get used there. Any commission would be a share of cash Meridian actually collects, with the percentage and terms agreed in writing before any work starts. Because we don’t have revenue yet, I can’t promise income, deals, or a timeline. If that uncertainty isn’t a fit, please skip this one. Unpaid, flexible, portfolio-building AI engineering work. All of this uses fictional or public data (for example public water-system records), not customer data. We’d agree attribution and licensing up front, and we’d scope one clear deliverable with a stopping point. The work is yours to show. To apply, use this interest form: docs.google.com Meridian Project Interest - November 2026 About Meridian Meridian AI LLC is developing a software prototype alongside founder-led advisory and implementation services. Location For this intake, you must be able to perform the project work from the United States. Enter the city, state,... Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-commission-based-bd-ai-implementation-consultants-unpaid-portfolio-ai-engineers-water-utilities-pre-revenue-remote/329316",
+    "created_utc": 1794971730,
+    "score": 0,
+    "comments": 0,
+    "author": "shantel_meridian",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[Hiring]"
+    },
+    "triage_reason": "Founder looking to hire commission-based business development consultants.",
+    "pooled_on": "2026-11-18"
+  },
+  {
+    "id": "discourse:community.n8n.io:329131",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] Freelancer for Airtable Workflow | Remote",
+    "text": "Background: I’m opening a Gumroad store soon and i want to export sales data from Gumroad to Airtable for a little bit of flexibility when following up with customers. Role : Looking for freelancers to help with sending data from Gumroad to my Airtable table. Data I’m looking to collect include email addresses, transaction date, transaction amount, product id, etc. Previously worked with a freelancer before who setup a workflow that scammed me into thinking the automation worked, it in fact did not work. Either way, I’m starting from scratch again and would love to work with a freelancer who can get this done quickly. I don’t imagine this workflow being difficult. But if it is, I’d love to hear an easier version of this workflow that gives me the same result (so if anyone knows a better way to run this workflow, feel free to let me know via the Airtable form in the “Tell me about yourself” section). Location : Remote Budget : $1,000 (open to hearing what this should cost) You can apply with this Airtable form below. Airtable Airtable | Everyone's app platform Airtable is a low-code platform for building collaborative apps. Customize your workflow, collaborate, and achieve ambitious outcomes. Get started for free. Link to gumroads doc (go to the sales section): Gumroad Gumroad Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 4 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-freelancer-for-airtable-workflow-remote/329131",
+    "created_utc": 1794881676,
+    "score": 1,
+    "comments": 0,
+    "author": "kkrova",
+    "signals": {
+      "combo": false,
+      "money": 4,
+      "cash": 1,
+      "pain": 0,
+      "engagement": 0.1,
+      "multiplier": 1.1,
+      "score": 16.06,
+      "money_matched": [
+        "freelancer"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$1,000"
+      ],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Looking to hire a freelancer to set up a Gumroad to Airtable workflow.",
+    "pooled_on": "2026-11-18"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165817",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Looking for a Job Opportunity – Frappe / ERPNext Developer",
+    "text": "Looking for a Job Opportunity – Frappe / ERPNext Developer Hello Everyone, I am a Frappe / ERPNext Developer with 1 year of hands-on professional experience in ERPNext customization and development. During my experience, I have worked on: Custom DocType Creation and Customization Custom Fields and Customize Form Print Format Development using HTML, CSS and Jinja Query Reports and Script Reports Python and JavaScript Scripting Client Scripts and Server Scripts ERPNext Form Customization and Business Logic Custom Reports and Workflow Customization Backend Development in Frappe Framework I am currently looking for a Frappe / ERPNext Developer opportunity , preferably remote. Experience: 1 Year Preferred Location: Remote / Surat Availability: Immediate Joining Skills: Python, JavaScript, Frappe Framework, ERPNext, HTML, CSS, Jinja I am eager to learn new technologies, improve my development skills and contribute to real-world ERPNext projects. If there are any suitable openings or freelance opportunities, please feel free to contact me. Thank you! 1 post - 1 participant Read full topic",
+    "url": "https://discuss.frappe.io/t/looking-for-a-job-opportunity-frappe-erpnext-developer/165817",
+    "created_utc": 1794905739,
+    "score": 1,
+    "comments": 0,
+    "author": "Vimla-vaishnav",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.1,
+      "multiplier": 1.25,
+      "score": 0.12,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for a Frappe / ERPNext Developer"
+    },
+    "triage_reason": "Developer looking for a job or freelance opportunities in ERPNext.",
+    "pooled_on": "2026-11-18"
+  }
+]

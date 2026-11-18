@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1794937234,
+  "fetched_at": 1794997343,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -26,7 +26,20 @@
       "title": "Investing – Retirement Plans and Building Wealth",
       "text": "Investing – Retirement Plans and Building Wealth Curious what everyone is doing when it comes to investing and building wealth outside of their lawn and landscape businesses. For those with employees, do you offer a retirement plan or matching contributions as a benefit? For the solo operators, are you investing in a SEP IRA, Solo 401(k), traditional IRA, or something else? And beyond retirement accounts, are you investing in stocks, real estate, or other opportunities? Or maybe... Investing – Retirement Plans and Building Wealth",
       "url": "https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
-      "created_utc": 1794928413,
+      "created_utc": 1794961036,
+      "score": 0,
+      "comments": 0,
+      "author": "JFGLN"
+    },
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/tips.525139/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "Tips?",
+      "text": "Curious how other owners handle tips. About half of my irrigation clients have been tipping for service calls, and I’m wondering how common that is for others. I use Yardbook, which has a built-in tip option for customers when they pay. I’m not actively asking for tips, but the option is there. For context, this is just for my irrigation business, not the lawn maintenance side. How do you handle tipping as an owner? Do you leave the option available, or prefer not to encourage it?",
+      "url": "https://www.lawnsite.com/threads/tips.525139/",
+      "created_utc": 1794983414,
       "score": 0,
       "comments": 0,
       "author": "JFGLN"
@@ -91,36 +104,10 @@
       "title": "Solo guys, how much of your day is drive time?",
       "text": "Curious how other solo and small crews handle this. When I talk to guys running one or two trucks, the thing that comes up most isn't mowing time, it's the driving in between. A route that looks fine on paper ends up with one stop across town that eats half an hour. How do you build your routes? Do you group by zip or neighborhood, use an app, or just know your area well enough to wing it? And roughly what percent of your day would you say is windshield time? Also, if you've ever turned... Solo guys, how much of your day is drive time?",
       "url": "https://www.lawnsite.com/threads/solo-guys-how-much-of-your-day-is-drive-time.524905/",
-      "created_utc": 1794916580,
+      "created_utc": 1794970124,
       "score": 0,
       "comments": 0,
       "author": "ReedAnderson"
-    },
-    {
-      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/how-are-you-covering-after-hours-no-heat-calls-this-winter.465631/",
-      "source": "rss",
-      "channel": "contractortalk-biz",
-      "group": "trades",
-      "title": "How are you covering after-hours no-heat calls this winter?",
-      "text": "Quick question for shop owners heading into heating season. How are you covering the phone after hours when the no-heat calls start coming in? Some shops use a traditional answering service, some leave it on voicemail, and some just forward the office line to the owner's cell and barely sleep. What's actually working for you right now? Rotating on-call among the techs, a service that takes messages, or just living with the ones that go to voicemail? If you've used an answering service... How are you covering after-hours no-heat calls this winter?",
-      "url": "https://www.contractortalk.com/threads/how-are-you-covering-after-hours-no-heat-calls-this-winter.465631/",
-      "created_utc": 1794800396,
-      "score": 0,
-      "comments": 0,
-      "author": "BarryHolt"
-    },
-    {
-      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
-      "source": "rss",
-      "channel": "contractortalk-biz",
-      "group": "trades",
-      "title": "AI homemade estimating tools and process",
-      "text": "Anyone here built their own etimating tools and process for selling and estimating renovation work? Ive been playing with and using a few tools ive built for sales and estimating processes within my firm. Looking for others having done something similar and or another resource. -Jeremy Florida Leisure Pool & Spa www.FloridaPoolSpa.com",
-      "url": "https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
-      "created_utc": 1794800374,
-      "score": 0,
-      "comments": 0,
-      "author": "hinejs"
     },
     {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",

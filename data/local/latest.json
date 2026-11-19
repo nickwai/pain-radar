@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1795023694,
+  "fetched_at": 1795086844,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -39,7 +39,7 @@
       "title": "Tips?",
       "text": "Curious how other owners handle tips. About half of my irrigation clients have been tipping for service calls, and I’m wondering how common that is for others. I use Yardbook, which has a built-in tip option for customers when they pay. I’m not actively asking for tips, but the option is there. For context, this is just for my irrigation business, not the lawn maintenance side. How do you handle tipping as an owner? Do you leave the option available, or prefer not to encourage it?",
       "url": "https://www.lawnsite.com/threads/tips.525139/",
-      "created_utc": 1795020420,
+      "created_utc": 1795062650,
       "score": 0,
       "comments": 0,
       "author": "JFGLN"
@@ -65,36 +65,10 @@
       "title": "Do you guys ask for Google reviews?",
       "text": "When you finish a job, do you ask the customer for a Google review, or just let them come in on their own? Curious how most of you handle it.",
       "url": "https://www.lawnsite.com/threads/do-you-guys-ask-for-google-reviews.525017/",
-      "created_utc": 1795020124,
+      "created_utc": 1795071817,
       "score": 0,
       "comments": 0,
       "author": "ken_3584"
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/anyone-have-a-business-use-endorsement-on-their-personal-policy.524963/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Anyone have a business use endorsement on their personal policy?",
-      "text": "Was talking to another insurance agent and he seems to think the business use endorsement policy will be denied if i get into an accident. The truck tows a landscape trailer with mowers on it. The landscape trailer is fully insured and on its own commercial policy. Im just solo. The full commercial auto is like $3k/ year and the personal auto with the business endorsement is like $1300/year. Opinions?",
-      "url": "https://www.lawnsite.com/threads/anyone-have-a-business-use-endorsement-on-their-personal-policy.524963/",
-      "created_utc": 1794876866,
-      "score": 0,
-      "comments": 0,
-      "author": "Ready to Mow"
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/here-is-some-info-for-all-the-software-guys.524921/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Here is some info for all the software guys",
-      "text": "This is what we need: make it easy to use and $39 a month. Landscape Company CRM — Feature Wishlist I've been thinking about what a CRM really needs to have for a landscape company. Here's my full list so far. 1. Customer & Property Management Customer contact information Multiple properties per customer Property address and GPS/map location Residential, commercial, HOA, or other property type Property notes and special... Here is some info for all the software guys",
-      "url": "https://www.lawnsite.com/threads/here-is-some-info-for-all-the-software-guys.524921/",
-      "created_utc": 1794868629,
-      "score": 0,
-      "comments": 0,
-      "author": "JFGLN"
     },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/solo-guys-how-much-of-your-day-is-drive-time.524905/",
@@ -110,17 +84,17 @@
       "author": "ReedAnderson"
     },
     {
-      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/qualifying-agent-available-florida.465689/",
       "source": "rss",
       "channel": "contractortalk-biz",
       "group": "trades",
-      "title": "How I keep T&M change orders from turning into argument invoices",
-      "text": "How I keep T&M change orders from turning into argument invoices Every GC I know has lost money on a \"quick\" T&M change that somehow became a fight three weeks later. Not because the work was wrong - because nobody could show what was approved, when, and at what rate. Here is the simple log I keep on every job that has any T&M. Works in any spreadsheet. One row per day of T&M work, not one row per invoice. 1. Get the rate sheet signed before the first hour. Labor rates by trade, burdened... How I keep T&M change orders from turning into argument invoices",
-      "url": "https://www.contractortalk.com/threads/how-i-keep-t-m-change-orders-from-turning-into-argument-invoices.465557/",
-      "created_utc": 1794884198,
+      "title": "Qualifying Agent Available - Florida",
+      "text": "Are you an established HVAC company in need of a replacement qualifier? Are you considering starting an HVAC business in Florida? I am a Certified Class B Air Conditioning Contractor available to serve as a qualifying agent for your company. Please reply to this post so I can contact you to discuss the details. Thank you",
+      "url": "https://www.contractortalk.com/threads/qualifying-agent-available-florida.465689/",
+      "created_utc": 1795065767,
       "score": 0,
       "comments": 0,
-      "author": "cmgnspire"
+      "author": "thehvacqualifier"
     }
   ]
 }

@@ -1,23 +1,10 @@
 {
-  "fetched_at": 1795086844,
+  "fetched_at": 1795110094,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
   ],
   "posts": [
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Do you use AI in your business?",
-      "text": "Do you use AI in your business? How are you using it? Are finding it useful? How are you incorporating AI into your day-to-day business operations? I use it to help with marketing copy and had it take a look at my P&L. I’m sure there are other things it can do. @ezra_5296",
-      "url": "https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
-      "created_utc": 1794920823,
-      "score": 0,
-      "comments": 0,
-      "author": "JFGLN"
-    },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
       "source": "rss",
@@ -45,19 +32,6 @@
       "author": "JFGLN"
     },
     {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Would you trust AI to book your estimates?",
-      "text": "I've been testing AI phone answering for my brother's landscaping company. Getting it to answer questions is one thing, but letting it put appointments on the calendar is another. There are jobs we don't take, and the last thing I want is an estimate booked for something we don't even do. Would you let AI book estimates, or would you rather have it take the information and call the customer back?",
-      "url": "https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
-      "created_utc": 1794928261,
-      "score": 0,
-      "comments": 0,
-      "author": "ken_3584"
-    },
-    {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-guys-ask-for-google-reviews.525017/",
       "source": "rss",
       "channel": "lawnsite-bizops",
@@ -82,19 +56,6 @@
       "score": 0,
       "comments": 0,
       "author": "ReedAnderson"
-    },
-    {
-      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/qualifying-agent-available-florida.465689/",
-      "source": "rss",
-      "channel": "contractortalk-biz",
-      "group": "trades",
-      "title": "Qualifying Agent Available - Florida",
-      "text": "Are you an established HVAC company in need of a replacement qualifier? Are you considering starting an HVAC business in Florida? I am a Certified Class B Air Conditioning Contractor available to serve as a qualifying agent for your company. Please reply to this post so I can contact you to discuss the details. Thank you",
-      "url": "https://www.contractortalk.com/threads/qualifying-agent-available-florida.465689/",
-      "created_utc": 1795065767,
-      "score": 0,
-      "comments": 0,
-      "author": "thehvacqualifier"
     }
   ]
 }

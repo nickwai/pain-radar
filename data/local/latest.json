@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1795110094,
+  "fetched_at": 1795153295,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -32,6 +32,19 @@
       "author": "JFGLN"
     },
     {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "Would you trust AI to book your estimates?",
+      "text": "I've been testing AI phone answering for my brother's landscaping company. Getting it to answer questions is one thing, but letting it put appointments on the calendar is another. There are jobs we don't take, and the last thing I want is an estimate booked for something we don't even do. Would you let AI book estimates, or would you rather have it take the information and call the customer back?",
+      "url": "https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
+      "created_utc": 1795110259,
+      "score": 0,
+      "comments": 0,
+      "author": "ken_3584"
+    },
+    {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-guys-ask-for-google-reviews.525017/",
       "source": "rss",
       "channel": "lawnsite-bizops",
@@ -43,19 +56,6 @@
       "score": 0,
       "comments": 0,
       "author": "ken_3584"
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/solo-guys-how-much-of-your-day-is-drive-time.524905/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Solo guys, how much of your day is drive time?",
-      "text": "Curious how other solo and small crews handle this. When I talk to guys running one or two trucks, the thing that comes up most isn't mowing time, it's the driving in between. A route that looks fine on paper ends up with one stop across town that eats half an hour. How do you build your routes? Do you group by zip or neighborhood, use an app, or just know your area well enough to wing it? And roughly what percent of your day would you say is windshield time? Also, if you've ever turned... Solo guys, how much of your day is drive time?",
-      "url": "https://www.lawnsite.com/threads/solo-guys-how-much-of-your-day-is-drive-time.524905/",
-      "created_utc": 1794970124,
-      "score": 0,
-      "comments": 0,
-      "author": "ReedAnderson"
     }
   ]
 }

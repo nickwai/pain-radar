@@ -1,0 +1,96 @@
+[
+  {
+    "id": "discourse:community.n8n.io:329465",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] Founding GTM Engineer @ Solari (Remote, US)",
+    "text": "Hi n8n community Solari builds cloud browsers, desktops and isolated code sandboxes for AI agents, and is hiring its first GTM Engineer. I’m María José from Niuro, Solari’s recruiting partner for this search (candidates pay no fees). The role You’ll own the full sales cycle with technical buyers (CTOs, platform leads, founding engineers) and build the outbound, enrichment, referral and attribution systems behind it. Automation is core to the job: n8n, Clay, Apollo, Instantly or custom solutions. Looking for 2-5 years in growth, GTM or business development at a B2B developer tools company Experience selling to technical buyers US work authorization Details Full-time, remote in the US (San Francisco or New York preferred, PT/ET) USD 80,000-150,000/year Apply: Apply — GTM Engineer (US Based) | Niuro Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 4 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-founding-gtm-engineer-solari-remote-us/329465",
+    "created_utc": 1795024584,
+    "score": 0,
+    "comments": 0,
+    "author": "mariajose_niuro",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Recruiter posting a paid remote GTM engineer job opening.",
+    "pooled_on": "2026-11-20"
+  },
+  {
+    "id": "discourse:community.make.com:120066",
+    "source": "discourse",
+    "channel": "community.make.com",
+    "group": "saas",
+    "title": "Airtable Automation Developer Needed",
+    "text": "Background : I’m opening a Gumroad store soon and i want to export sales data from Gumroad to Airtable for a little bit of flexibility when following up with customers. Role : Looking for freelancers to help with sending data from Gumroad to my Airtable table. The data I’m looking to collect include email addresses, transaction date, transaction amount, product id, etc. I previously worked with a freelancer before who setup a workflow that scammed me into thinking the automation worked, it in fact did not work. Either way, I’m starting from scratch again and would love to work with a freelancer who can get this done quickly. I don’t imagine this workflow being difficult, but if it is, I’d love to hear an easier version of this workflow that gives me the same result (so if anyone knows a better way to run this workflow, feel free to let me know via the Airtable form in the “Tell me about yourself” section). Location : Remote Budget : $1,000 (open to hearing what this should cost) You can apply with this Airtable form below: Airtable Airtable | Everyone's app platform Airtable is a low-code platform for building collaborative apps. Customize your workflow, collaborate, and achieve ambitious outcomes. Get started for free. Link to gumroads doc (go to the sales section): Gumroad Gumroad 19 posts - 21 participants Read full topic",
+    "url": "https://community.make.com/t/airtable-automation-developer-needed/120066",
+    "created_utc": 1795061516,
+    "score": 4,
+    "comments": 18,
+    "author": "Alex_Gayton56",
+    "signals": {
+      "combo": false,
+      "money": 3,
+      "cash": 1,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.25,
+      "score": 18.12,
+      "money_matched": [
+        "freelancer"
+      ],
+      "pain_matched": [],
+      "cash_matched": [
+        "$1,000"
+      ],
+      "hiring": true,
+      "hiring_matched": "Developer Needed"
+    },
+    "triage_reason": "Merchant looking to hire a freelancer for Airtable integration.",
+    "pooled_on": "2026-11-20"
+  },
+  {
+    "id": "lobsters:pnfs5p",
+    "source": "lobsters",
+    "channel": "lobste.rs",
+    "group": "tech",
+    "title": "Hiring a Systems Programmer for Boxem",
+    "text": "Handmade Cities has a job referral program, where engineers and employers reach out about open roles. (It's a free community service, so I'm not getting paid .) I'm cross-posting an unusually good opportunity from Boxem , who are writing fast shipping software and are very keen to hire a veteran C programmer: \"You will program in C and compile to linux and WASM. Linux nonblocking socket servers and WASM UI apps with modern graphics drivers. Custom versioned databases written to fit exactly the task. Write from scratch to reduce volume of code and complexity.\" Few more notes: Boxem's remote for now, but will open a Miami office Q2 2027, after which they'll pay for your relocation. You may apply online already. Application includes salary bands and rest of the info you need I know the CEO so I've invited them to Lobsters. Ask any questions for the next number of days and they'll respond here!",
+    "url": "https://lobste.rs/s/pnfs5p/hiring_systems_programmer_for_boxem",
+    "created_utc": 1795106734,
+    "score": 17,
+    "comments": 11,
+    "author": "",
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 0.75,
+      "score": 6.75,
+      "money_matched": [
+        "hire a",
+        "pay for"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "hire a veteran C programmer"
+    },
+    "triage_reason": "Job referral posting for a C systems programmer.",
+    "pooled_on": "2026-11-20"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "discourse:community.shopify.com:718951",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Multiple Branded Checkouts for Headless Storefronts on One Shopify Store",
+    "text": "I’m running two separate headless storefronts (Next.js) connected to a single Shopify Advanced store via the Storefront API. Each storefront represents a different brand, but both share the same Shopify backend for products, inventory, orders, and payments. Our goal is to provide each brand with its own branded or semi-branded checkout experience, ideally with a separate checkout domain, logo, and branding, while keeping everything under one Shopify store. I’m looking for advice on what’s technically possible: Can Shopify support different checkout domains or branding configurations based on which headless storefront initiated checkout? Could domain aliases, cart attributes, Shopify Markets, or Checkout UI Extensions help achieve this? Has anyone successfully implemented a similar multi-brand setup without creating separate Shopify stores? We’re open to partial branding solutions as well, as long as customers don’t feel they’re being redirected to another brand’s checkout. I’d appreciate any insights, workarounds, or real-world implementation experience. Thanks! 9 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/multiple-branded-checkouts-for-headless-storefronts-on-one-shopify-store/718951",
+    "created_utc": 1795085981,
+    "score": 21,
+    "comments": 8,
+    "author": "Chana3",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 5.4,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant needs multi-brand checkout support for headless Shopify stores.",
+    "pooled_on": "2026-11-20"
+  },
+  {
+    "id": "discourse:community.shopify.com:718929",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify issue 0 atc website not working right",
+    "text": "Hi everyone, I’m experiencing a serious issue with my Shopify store, and I’ve been trying to solve it for approximately three weeks. I’m running Meta (Facebook/Instagram) ads targeting mainly UK customers and sending visitors directly to three product landing pages. The main problem: My store receives traffic, but almost nobody interacts with the website. For example, yesterday I received approximately 200 visitors with 0 add-to-carts . What I’m experiencing Visitors arrive from Meta ads but leave after only a few seconds. Microsoft Clarity recordings often show visitors staying at the top of the landing page without scrolling or clicking. Some recordings appear frozen, with white/grey screens or images that don’t load correctly. Occasionally, the page seems difficult to scroll or interact with. Some visitors appear to experience layout shifting. Product images and galleries sometimes seem slow to load. Shopify, Meta and Microsoft Clarity report inconsistent traffic and behavioral data. Almost no add-to-cart activity is recorded from real customers, despite continuous paid traffic. What I’ve already tried Over the past two weeks, I’ve: Optimized product images, videos and loading priorities. Tested different Shopify theme versions, including cleaner versions with apps disabled. Investigated third-party scripts, leftover app code and duplicated JavaScript. Checked potential conflicts involving Klaviyo, Microsoft Clarity, Triple Whale and Shopify Forms. Investigated tracking, cookies and Shopify’s Customer Privacy settings. Tested the landing pages using Google PageSpeed Insights and mobile performance tests. Investigated issues with the sticky add-to-cart button, image gallery and scrolling behavior. Compared recordings from UK visitors with my own test sessions. Investigated whether Meta’s in-app browser behaves differently from normal browsers. I’ve contacted the Shopify, Meta, Microsoft Clarity, and Klaviyo support teams, but the issue remains unresolved. I’m still in contact with Shopify Support to resolve this issue. Despite these changes, the problem persists. Important details My store uses a customized Shopify theme with three separate product landing pages. Most paid traffic comes from Meta ads targeting the UK. The website has undergone many code modifications and theme optimizations. I previously moved the store to a different Shopify account while retaining the same domain, theme and Meta pixel. Some analytics sessions are my own tests, so I’m mainly concerned about real UK customer behavior. My biggest concern is that visitors may be experiencing a technical issue that prevents them from browsing or interacting normally. What I’m trying to figure out Could this problem be caused by: A JavaScript error or conflicting scripts preventing interactions? Shopify app code that remains in the theme after uninstalling apps? A problem specifically affecting Meta’s in-app browser? Images, overlays or sticky elements blocking touch interactions? Shopify consent settings interfering with analytics and making visitors appear inactive? A theme performance issue that doesn’t show up consistently in PageSpeed Insights? My main question: Has anyone experienced a Shopify store receiving hundreds of Meta ad visitors but almost zero add-to-carts, while session recordings show visitors appearing frozen or leaving without scrolling? I want to determine whether customers genuinely aren’t interested or whether something is preventing them from using the website properly. Any suggestions for debugging this would be greatly appreciated. Thanks in advance! 11 posts - 8 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-issue-0-atc-website-not-working-right/718929",
+    "created_utc": 1795082345,
+    "score": 35,
+    "comments": 10,
+    "author": "Mg076",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Merchant experiencing sudden traffic drop and zero add-to-carts on ads.",
+    "pooled_on": "2026-11-20"
+  },
+  {
+    "id": "discourse:community.shopify.com:719041",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Loophole for abuse on shopify collabs",
+    "text": "I noticed a Collabs order where someone used a creator code, bought 6 items, and returned 5. The customer’s discount adjusted on the refund, but the creator’s payout is still based on the full original order. Right now, I cannot open a dispute once a payment is scheduled - and even when I can, disputes cover the whole commission, not just the returned portion. That leaves us with a lose-lose choice: pay commission on returned items, or wipe out the creator’s entire commission on a partial return. It also leaves room for abuse. Someone could place a $1,000 order and return $975 worth of items. With a 10% commission, the creator still gets $100 on just $25 in sales, and the store loses $75. Shopify - I am urging you to adjust Collabs commissions automatically when refunds happen instead of making merchants file full disputes on partial returns. 5 posts - 5 participants Read full topic",
+    "url": "https://community.shopify.com/t/loophole-for-abuse-on-shopify-collabs/719041",
+    "created_utc": 1795105882,
+    "score": 7,
+    "comments": 4,
+    "author": "Mary_Spinelli",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 2.3,
+      "multiplier": 1.2,
+      "score": 2.76,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "$1,000",
+        "$975",
+        "$100",
+        "$25"
+      ],
+      "always": true
+    },
+    "triage_reason": "Merchant hit by commission calculation loophole on Shopify Collabs refunds.",
+    "pooled_on": "2026-11-20"
+  }
+]

@@ -1,10 +1,49 @@
 {
-  "fetched_at": 1795239754,
+  "fetched_at": 1795282834,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
   ],
   "posts": [
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/how-id-set-a-minimum-price-before-matching-the-guy-down-the-street.525159/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "How I'd set a minimum price before matching the guy down the street",
+      "text": "Don't start from \"what the guy down the street charges.\" Start from what the stop actually costs, then set a floor, then check the market. Build a fully loaded cost for each job: on-site labor (wage plus payroll burden), windshield time, mileage, materials, and a slice of weekly overhead (insurance, phone, software, unpaid admin, equipment). The minimum price at your target margin is: Minimum price = Fully loaded cost ÷ (1 − target margin) EXAMPLE only — not a recommended price and not a... How I'd set a minimum price before matching the guy down the street",
+      "url": "https://www.lawnsite.com/threads/how-id-set-a-minimum-price-before-matching-the-guy-down-the-street.525159/",
+      "created_utc": 1795258859,
+      "score": 0,
+      "comments": 0,
+      "author": "GreendayPestReport"
+    },
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "Do you use AI in your business?",
+      "text": "Do you use AI in your business? How are you using it? Are finding it useful? How are you incorporating AI into your day-to-day business operations? I use it to help with marketing copy and had it take a look at my P&L. I’m sure there are other things it can do. @ezra_5296",
+      "url": "https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
+      "created_utc": 1795269620,
+      "score": 0,
+      "comments": 0,
+      "author": "JFGLN"
+    },
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/sick-pay-for-small-biz.525099/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "Sick Pay for Small Biz",
+      "text": "In my state, only companies with 10 or more employees are required to pay sick leave. I have one full time and one part time employee. I have never offered sick pay in the 15 years I have been an employer. I do give a good chunk of paid vacation throughout the year to my full time guy. In the last 3 and a half years he has called out maybe 3 or 4 days. He really never misses work but maybe one day a year and busts ass the entire day week after week. I'd like to offer some kind of sick... Sick Pay for Small Biz",
+      "url": "https://www.lawnsite.com/threads/sick-pay-for-small-biz.525099/",
+      "created_utc": 1795259088,
+      "score": 0,
+      "comments": 0,
+      "author": "Hayduke"
+    },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
       "source": "rss",
@@ -14,19 +53,6 @@
       "text": "I've been testing AI phone answering for my brother's landscaping company. Getting it to answer questions is one thing, but letting it put appointments on the calendar is another. There are jobs we don't take, and the last thing I want is an estimate booked for something we don't even do. Would you let AI book estimates, or would you rather have it take the information and call the customer back?",
       "url": "https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
       "created_utc": 1795110259,
-      "score": 0,
-      "comments": 0,
-      "author": "ken_3584"
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-guys-ask-for-google-reviews.525017/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Do you guys ask for Google reviews?",
-      "text": "When you finish a job, do you ask the customer for a Google review, or just let them come in on their own? Curious how most of you handle it.",
-      "url": "https://www.lawnsite.com/threads/do-you-guys-ask-for-google-reviews.525017/",
-      "created_utc": 1795071817,
       "score": 0,
       "comments": 0,
       "author": "ken_3584"
@@ -43,6 +69,32 @@
       "score": 0,
       "comments": 0,
       "author": "khaleety001"
+    },
+    {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "AI homemade estimating tools and process",
+      "text": "Anyone here built their own etimating tools and process for selling and estimating renovation work? Ive been playing with and using a few tools ive built for sales and estimating processes within my firm. Looking for others having done something similar and or another resource. -Jeremy Florida Leisure Pool & Spa www.FloridaPoolSpa.com",
+      "url": "https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
+      "created_utc": 1795265024,
+      "score": 0,
+      "comments": 0,
+      "author": "hinejs"
+    },
+    {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/wa-state-change-of-dba-name-advice.465037/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "WA State change of DBA name advice",
+      "text": "Hey all, Haven't been active on the forums past few years but curious if anyone can recommend resources/point of contact (or chime in on this thread) regarding changing a tradename or DBA name in the state of WA--licensed General Contractor in Western WA focused mostly on residential and multi-family rental buildings. License and bond are up for renewal in a few weeks. Per the WA DOR website [0] I can add and cancel tradenames/DBAs online but this isn't the problem. I recall reading... WA State change of DBA name advice",
+      "url": "https://www.contractortalk.com/threads/wa-state-change-of-dba-name-advice.465037/",
+      "created_utc": 1795241994,
+      "score": 0,
+      "comments": 0,
+      "author": "martillo_grande"
     }
   ]
 }

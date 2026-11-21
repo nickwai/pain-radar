@@ -1,23 +1,10 @@
 {
-  "fetched_at": 1795196494,
+  "fetched_at": 1795239754,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
   ],
   "posts": [
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/tips.525139/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Tips?",
-      "text": "Curious how other owners handle tips. About half of my irrigation clients have been tipping for service calls, and I’m wondering how common that is for others. I use Yardbook, which has a built-in tip option for customers when they pay. I’m not actively asking for tips, but the option is there. For context, this is just for my irrigation business, not the lawn maintenance side. How do you handle tipping as an owner? Do you leave the option available, or prefer not to encourage it?",
-      "url": "https://www.lawnsite.com/threads/tips.525139/",
-      "created_utc": 1795062650,
-      "score": 0,
-      "comments": 0,
-      "author": "JFGLN"
-    },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
       "source": "rss",
@@ -52,7 +39,7 @@
       "title": "Do you guys charge for inspections before giving an estimate?",
       "text": "Hey guys, Curious how everyone handles inspections before giving a quote. For smaller jobs, a quick walkthrough is usually enough. But when a homeowner complains about cold rooms, moisture, or possible insulation problems, it can take a lot more time to figure out what's actually going on. I've been looking at using a thermal camera for these inspections. It can help narrow down problem areas, but it still takes time to check everything and explain the findings to the customer. The... Do you guys charge for inspections before giving an estimate?",
       "url": "https://www.contractortalk.com/threads/do-you-guys-charge-for-inspections-before-giving-an-estimate.465711/",
-      "created_utc": 1795192495,
+      "created_utc": 1795197286,
       "score": 0,
       "comments": 0,
       "author": "khaleety001"

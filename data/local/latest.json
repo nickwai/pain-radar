@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1795326035,
+  "fetched_at": 1795369294,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -32,6 +32,19 @@
       "author": "JFGLN"
     },
     {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/tips.525139/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "Tips?",
+      "text": "Curious how other owners handle tips. About half of my irrigation clients have been tipping for service calls, and I’m wondering how common that is for others. I use Yardbook, which has a built-in tip option for customers when they pay. I’m not actively asking for tips, but the option is there. For context, this is just for my irrigation business, not the lawn maintenance side. How do you handle tipping as an owner? Do you leave the option available, or prefer not to encourage it?",
+      "url": "https://www.lawnsite.com/threads/tips.525139/",
+      "created_utc": 1795348185,
+      "score": 0,
+      "comments": 0,
+      "author": "JFGLN"
+    },
+    {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/sick-pay-for-small-biz.525099/",
       "source": "rss",
       "channel": "lawnsite-bizops",
@@ -43,6 +56,19 @@
       "score": 0,
       "comments": 0,
       "author": "Hayduke"
+    },
+    {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/gc-qualifying-florida.465749/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "GC Qualifying Florida",
+      "text": "GC over 20 years looking to Qualify a firm. Interested parties please reply",
+      "url": "https://www.contractortalk.com/threads/gc-qualifying-florida.465749/",
+      "created_utc": 1795366676,
+      "score": 0,
+      "comments": 0,
+      "author": "rh54nd4w6f"
     },
     {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/do-you-guys-charge-for-inspections-before-giving-an-estimate.465711/",

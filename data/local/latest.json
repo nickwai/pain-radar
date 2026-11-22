@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1795282834,
+  "fetched_at": 1795326035,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -45,19 +45,6 @@
       "author": "Hayduke"
     },
     {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Would you trust AI to book your estimates?",
-      "text": "I've been testing AI phone answering for my brother's landscaping company. Getting it to answer questions is one thing, but letting it put appointments on the calendar is another. There are jobs we don't take, and the last thing I want is an estimate booked for something we don't even do. Would you let AI book estimates, or would you rather have it take the information and call the customer back?",
-      "url": "https://www.lawnsite.com/threads/would-you-trust-ai-to-book-your-estimates.525081/",
-      "created_utc": 1795110259,
-      "score": 0,
-      "comments": 0,
-      "author": "ken_3584"
-    },
-    {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/do-you-guys-charge-for-inspections-before-giving-an-estimate.465711/",
       "source": "rss",
       "channel": "contractortalk-biz",
@@ -91,7 +78,7 @@
       "title": "WA State change of DBA name advice",
       "text": "Hey all, Haven't been active on the forums past few years but curious if anyone can recommend resources/point of contact (or chime in on this thread) regarding changing a tradename or DBA name in the state of WA--licensed General Contractor in Western WA focused mostly on residential and multi-family rental buildings. License and bond are up for renewal in a few weeks. Per the WA DOR website [0] I can add and cancel tradenames/DBAs online but this isn't the problem. I recall reading... WA State change of DBA name advice",
       "url": "https://www.contractortalk.com/threads/wa-state-change-of-dba-name-advice.465037/",
-      "created_utc": 1795241994,
+      "created_utc": 1795286295,
       "score": 0,
       "comments": 0,
       "author": "martillo_grande"

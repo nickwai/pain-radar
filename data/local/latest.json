@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1795412494,
+  "fetched_at": 1795455694,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -17,19 +17,6 @@
       "score": 0,
       "comments": 0,
       "author": "Ocutter73"
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/how-id-set-a-minimum-price-before-matching-the-guy-down-the-street.525159/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "How I'd set a minimum price before matching the guy down the street",
-      "text": "Don't start from \"what the guy down the street charges.\" Start from what the stop actually costs, then set a floor, then check the market. Build a fully loaded cost for each job: on-site labor (wage plus payroll burden), windshield time, mileage, materials, and a slice of weekly overhead (insurance, phone, software, unpaid admin, equipment). The minimum price at your target margin is: Minimum price = Fully loaded cost ÷ (1 − target margin) EXAMPLE only — not a recommended price and not a... How I'd set a minimum price before matching the guy down the street",
-      "url": "https://www.lawnsite.com/threads/how-id-set-a-minimum-price-before-matching-the-guy-down-the-street.525159/",
-      "created_utc": 1795258859,
-      "score": 0,
-      "comments": 0,
-      "author": "GreendayPestReport"
     },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
@@ -52,7 +39,7 @@
       "title": "Investing – Retirement Plans and Building Wealth",
       "text": "Investing – Retirement Plans and Building Wealth Curious what everyone is doing when it comes to investing and building wealth outside of their lawn and landscape businesses. For those with employees, do you offer a retirement plan or matching contributions as a benefit? For the solo operators, are you investing in a SEP IRA, Solo 401(k), traditional IRA, or something else? And beyond retirement accounts, are you investing in stocks, real estate, or other opportunities? Or maybe... Investing – Retirement Plans and Building Wealth",
       "url": "https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
-      "created_utc": 1795398818,
+      "created_utc": 1795440958,
       "score": 0,
       "comments": 0,
       "author": "JFGLN"
@@ -69,19 +56,6 @@
       "score": 0,
       "comments": 0,
       "author": "JFGLN"
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/sick-pay-for-small-biz.525099/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Sick Pay for Small Biz",
-      "text": "In my state, only companies with 10 or more employees are required to pay sick leave. I have one full time and one part time employee. I have never offered sick pay in the 15 years I have been an employer. I do give a good chunk of paid vacation throughout the year to my full time guy. In the last 3 and a half years he has called out maybe 3 or 4 days. He really never misses work but maybe one day a year and busts ass the entire day week after week. I'd like to offer some kind of sick... Sick Pay for Small Biz",
-      "url": "https://www.lawnsite.com/threads/sick-pay-for-small-biz.525099/",
-      "created_utc": 1795259088,
-      "score": 0,
-      "comments": 0,
-      "author": "Hayduke"
     },
     {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",

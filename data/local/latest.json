@@ -1,10 +1,23 @@
 {
-  "fetched_at": 1795369294,
+  "fetched_at": 1795412494,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
   ],
   "posts": [
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/for-those-that-use-jobber-what-are-your-likes-and-dislikes.525221/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "For those that use Jobber, what are your likes and dislikes",
+      "text": "After going back and forth with hand written filled out sheets for lawn cutting crews our bookkeeper said to look into Jobber to streamline the process, lessen mistakes trying to decipher illegible handwriting and get invoice review times under control. We spoke to a rep on friday and of course everything LOOKED fine but wanted to get opinions from those that use it, tried to use it, love it, hate it, or list what your experience was while implementing it. How was the onboarding process and... For those that use Jobber, what are your likes and dislikes",
+      "url": "https://www.lawnsite.com/threads/for-those-that-use-jobber-what-are-your-likes-and-dislikes.525221/",
+      "created_utc": 1795398516,
+      "score": 0,
+      "comments": 0,
+      "author": "Ocutter73"
+    },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/how-id-set-a-minimum-price-before-matching-the-guy-down-the-street.525159/",
       "source": "rss",
@@ -26,7 +39,20 @@
       "title": "Do you use AI in your business?",
       "text": "Do you use AI in your business? How are you using it? Are finding it useful? How are you incorporating AI into your day-to-day business operations? I use it to help with marketing copy and had it take a look at my P&L. I’m sure there are other things it can do. @ezra_5296",
       "url": "https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
-      "created_utc": 1795269620,
+      "created_utc": 1795379591,
+      "score": 0,
+      "comments": 0,
+      "author": "JFGLN"
+    },
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "Investing – Retirement Plans and Building Wealth",
+      "text": "Investing – Retirement Plans and Building Wealth Curious what everyone is doing when it comes to investing and building wealth outside of their lawn and landscape businesses. For those with employees, do you offer a retirement plan or matching contributions as a benefit? For the solo operators, are you investing in a SEP IRA, Solo 401(k), traditional IRA, or something else? And beyond retirement accounts, are you investing in stocks, real estate, or other opportunities? Or maybe... Investing – Retirement Plans and Building Wealth",
+      "url": "https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
+      "created_utc": 1795398818,
       "score": 0,
       "comments": 0,
       "author": "JFGLN"
@@ -58,32 +84,6 @@
       "author": "Hayduke"
     },
     {
-      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/gc-qualifying-florida.465749/",
-      "source": "rss",
-      "channel": "contractortalk-biz",
-      "group": "trades",
-      "title": "GC Qualifying Florida",
-      "text": "GC over 20 years looking to Qualify a firm. Interested parties please reply",
-      "url": "https://www.contractortalk.com/threads/gc-qualifying-florida.465749/",
-      "created_utc": 1795366676,
-      "score": 0,
-      "comments": 0,
-      "author": "rh54nd4w6f"
-    },
-    {
-      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/do-you-guys-charge-for-inspections-before-giving-an-estimate.465711/",
-      "source": "rss",
-      "channel": "contractortalk-biz",
-      "group": "trades",
-      "title": "Do you guys charge for inspections before giving an estimate?",
-      "text": "Hey guys, Curious how everyone handles inspections before giving a quote. For smaller jobs, a quick walkthrough is usually enough. But when a homeowner complains about cold rooms, moisture, or possible insulation problems, it can take a lot more time to figure out what's actually going on. I've been looking at using a thermal camera for these inspections. It can help narrow down problem areas, but it still takes time to check everything and explain the findings to the customer. The... Do you guys charge for inspections before giving an estimate?",
-      "url": "https://www.contractortalk.com/threads/do-you-guys-charge-for-inspections-before-giving-an-estimate.465711/",
-      "created_utc": 1795197286,
-      "score": 0,
-      "comments": 0,
-      "author": "khaleety001"
-    },
-    {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
       "source": "rss",
       "channel": "contractortalk-biz",
@@ -91,7 +91,7 @@
       "title": "AI homemade estimating tools and process",
       "text": "Anyone here built their own etimating tools and process for selling and estimating renovation work? Ive been playing with and using a few tools ive built for sales and estimating processes within my firm. Looking for others having done something similar and or another resource. -Jeremy Florida Leisure Pool & Spa www.FloridaPoolSpa.com",
       "url": "https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
-      "created_utc": 1795265024,
+      "created_utc": 1795401023,
       "score": 0,
       "comments": 0,
       "author": "hinejs"

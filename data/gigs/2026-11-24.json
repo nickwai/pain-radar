@@ -1,0 +1,35 @@
+[
+  {
+    "id": "discourse:community.n8n.io:330154",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "[HIRING] AI Automation Engineer (n8n + AI agents) for small-business client projects | Remote, $20-55/hr",
+    "text": "Role: AI Automation Engineer (n8n + AI agents) for small-business client projects Company/project: Steek Lab (contact: Francois Hurstel) Location: Remote, any time zone with some overlap for a weekly call Rate / duration: $20 to $55/hr, 3 to 6 months, ongoing Project is for small businesses like vet clinics, dental offices and accounting firms automate their daily work with AI, by connecting the tools they already use (scheduling, phones, texting, CRM, QuickBooks) through n8n, AI agents and API integrations. Your n8n and AI automation work looks like a strong fit. We’re looking for engineers for ongoing client projects, starting with a small paid trial task. Are you open to a quick 20-minute call this week? Please also share your current hourly rate and availability. How to apply: send me a direct message (DM/PM) here on the forum. Replies are closed - contact the author using email, application form or direct message. Read more here . 1 post - 2 participants Read full topic",
+    "url": "https://community.n8n.io/t/hiring-ai-automation-engineer-n8n-ai-agents-for-small-business-client-projects-remote-20-55-hr/330154",
+    "created_utc": 1795417279,
+    "score": 15,
+    "comments": 0,
+    "author": "Francois1",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 2,
+      "pain": 0,
+      "engagement": 1.5,
+      "multiplier": 1.1,
+      "score": 1.65,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [
+        "$20",
+        "$20",
+        "$55"
+      ],
+      "hiring": true,
+      "hiring_matched": "[HIRING]"
+    },
+    "triage_reason": "Job posting looking to hire an AI Automation Engineer.",
+    "pooled_on": "2026-11-24"
+  }
+]

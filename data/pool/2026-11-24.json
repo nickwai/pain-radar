@@ -1,0 +1,60 @@
+[
+  {
+    "id": "discourse:community.shopify.com:720435",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Bulk editor for HS codes",
+    "text": "How can I bulk enter the country-specific HS codes across selected products and variants without having to enter the codes product/size by product/size which is so time consuming? 11 posts - 7 participants Read full topic",
+    "url": "https://community.shopify.com/t/bulk-editor-for-hs-codes/720435",
+    "created_utc": 1795311939,
+    "score": 15,
+    "comments": 10,
+    "author": "skooch",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.2,
+      "score": 3.6,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Bulk editing HS codes across products is tedious and time-consuming.",
+    "pooled_on": "2026-11-24"
+  },
+  {
+    "id": "discourse:community.shopify.com:721455",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify promise and occasional hand delivery",
+    "text": "I have a few customers who are local to me. Sometimes it makes more sense to arrange hand delivery, especially when I know them personally or want to establish a relationship. (One of them is the clerk at my FedEx store, lol.) Right now I just give them free shipping and drop it off. That kills my Shopify promise rating as there is no tracking information because I don’t buy a shipping label. I don’t want to offer pick-up or local delivery to everyone, but I’d like an honest evaluation of my Shopify promise where these don’t hurt me. I wish there was a way in ADMIN to mark something as local delivery completed so it removes it from the Shopify promise formula. 4 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/shopify-promise-and-occasional-hand-delivery/721455",
+    "created_utc": 1795463224,
+    "score": 0,
+    "comments": 3,
+    "author": "brassanchordesigns",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.2,
+      "multiplier": 1.2,
+      "score": 3.24,
+      "money_matched": [],
+      "pain_matched": [
+        "wish there was"
+      ],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Manual hand deliveries ruin automated Shopify promise shipping metrics.",
+    "pooled_on": "2026-11-24"
+  }
+]

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "discourse:discuss.frappe.io:165988",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Looking for an experienced ERPNext Functional Consultant to join our team in Bengaluru.",
+    "text": "ERPNext Functional Consultant Experience: 4–8 Years Salary: ₹5–9 LPA (Negotiable based on experience) Location: Banashankari, Bengaluru Job Type: Full-Time Industry: ERP Software / Jewellery Retail & Manufacturing Job Description : We are looking for an experienced ERPNext Functional Consultant to manage ERP implementation, configuration, client requirements and functional support. Candidates with experience in Jewellery Retail, Jewellery Manufacturing, Gold or Diamond industries will be highly preferred. Roles & Responsibilities Understand client business requirements and existing business processes. Handle ERPNext implementation and functional configuration. Work on Sales, Purchase, Inventory, Stock and Manufacturing modules. Manage inventory and stock-related activities. Gather business requirements and suggest suitable ERP solutions. Coordinate with technical teams for customizations and enhancements. Handle data migration, system testing and UAT. Provide ERP training to clients and end users. Manage client communication and post-implementation support. Troubleshoot functional issues and ensure smooth implementation. Required Skills 4–8 years of experience in ERP Functional Consulting or ERP Implementation. Hands-on ERPNext experience is preferred. Knowledge of Inventory, Sales, Purchase and Manufacturing modules. Experience in client handling and requirement gathering. Good communication, analytical and problem-solving skills. Knowledge of jewellery retail or manufacturing processes will be an added advantage. Preferred Industry Experience Jewellery Retail Jewellery Manufacturing Gold & Diamond Industry Retail / Manufacturing ERP How to Apply Interested candidates can share their updated CV through: WhatsApp: Ramya HR [8147128889] Email: hrm@kumudu.in 1 post - 1 participant Read full topic",
+    "url": "https://discuss.frappe.io/t/looking-for-an-experienced-erpnext-functional-consultant-to-join-our-team-in-bengaluru/165988",
+    "created_utc": 1795618127,
+    "score": 0,
+    "comments": 0,
+    "author": "Ramya1",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Looking for an experienced ERPNext Functional Consultant"
+    },
+    "triage_reason": "Job posting for an ERPNext Functional Consultant.",
+    "pooled_on": "2026-11-25"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165935",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "[Hiring] Frappe HR Developer: ZKTeco ADMS Integration + 3-Branch Hotel Payroll & ESS App",
+    "text": "Title: Frappe HR Expert Needed: ZKTeco ADMS Integration + 3-Branch Hotel Payroll & ESS App Project Description: We operate 3 hotels in Makkah, Saudi Arabia (44 employees total, 24/7 operations with 3 shifts: 08:00–16:00, 16:00–00:00, and overnight 00:00–08:00 with a 15-minute handover). We are migrating to Frappe HR and need an experienced Frappe/ERPNext developer to deliver: VPS Setup & Multi-Branch Structure: Deploy Frappe HR on our cloud VPS with 3 separate branches/cost centers for attendance and payroll. Direct ZKTeco ADMS Integration: Build or configure an ADMS push listener ( /iclock/cdata + ATTLOG ) for 3 ZKTeco biometric devices directly into Employee Checkin (no local BioTime PC required). 24/7 & Night Shift Auto Attendance: Configure Shift Type and Auto Attendance accurately for the overnight shift ( 00:00–08:00 ) and grace periods. KSA Payroll & Arabic RTL Formats: Configure salary structures (advances, deductions, overtime, leave carry-over) and clean Arabic RTL salary slips / attendance reports. Employee Self-Service (ESS) App: Configure the built-in Frappe HR PWA (Arabic RTL + Geofencing) OR build a custom Flutter app via Frappe REST API (Employee Code + PIN login, Device Binding, Anti-Fake GPS). To apply, please answer: Have you previously integrated ZKTeco devices via ADMS push (not just local pyzk pull) with Frappe HR? Please share screenshots or a brief architecture. How do you configure Shift Type in Frappe HR so an overnight shift ( 00:00–08:00 ) with a 23:45 punch-in doesn’t fail Auto Attendance? 12 posts - 12 participants Read full topic",
+    "url": "https://discuss.frappe.io/t/hiring-frappe-hr-developer-zkteco-adms-integration-3-branch-hotel-payroll-ess-app/165935",
+    "created_utc": 1795487442,
+    "score": 0,
+    "comments": 11,
+    "author": "IZZET",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 3.0,
+      "multiplier": 1.25,
+      "score": 3.75,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "[Hiring]"
+    },
+    "triage_reason": "Job posting for a Frappe HR developer.",
+    "pooled_on": "2026-11-25"
+  }
+]

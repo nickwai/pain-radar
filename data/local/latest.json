@@ -1,10 +1,23 @@
 {
-  "fetched_at": 1795542034,
+  "fetched_at": 1795607052,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
   ],
   "posts": [
+    {
+      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/gloves.525231/",
+      "source": "rss",
+      "channel": "lawnsite-bizops",
+      "group": "trades",
+      "title": "Gloves",
+      "text": "You cold weather guys. Any recommendations for some great gloves you can work in that will really keep your hands warm but still allow freedom to run a mower and blower with? I want to buy some for the guys as it's really starting to get cold and we still have a month's left of cleanups to do.",
+      "url": "https://www.lawnsite.com/threads/gloves.525231/",
+      "created_utc": 1795605997,
+      "score": 0,
+      "comments": 0,
+      "author": "FLC2000"
+    },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/leaf-vacuum-vs-hourly-billing-how-do-you-price-fall-cleanups.525227/",
       "source": "rss",
@@ -13,7 +26,7 @@
       "title": "Leaf vacuum vs hourly billing: how do you price fall cleanups?",
       "text": "If you bill cleanups hourly, a leaf vac makes you faster but you earn less per job. How do you handle it? Flat rate or hourly plus a vac fee? If flat, what do you base it on (lot size, trees, leaf volume)? Cleanups per day with a 2-person crew: vac vs bagging?",
       "url": "https://www.lawnsite.com/threads/leaf-vacuum-vs-hourly-billing-how-do-you-price-fall-cleanups.525227/",
-      "created_utc": 1795529440,
+      "created_utc": 1795552323,
       "score": 0,
       "comments": 0,
       "author": "chsnun"
@@ -26,23 +39,10 @@
       "title": "For those that use Jobber, what are your likes and dislikes",
       "text": "After going back and forth with hand written filled out sheets for lawn cutting crews our bookkeeper said to look into Jobber to streamline the process, lessen mistakes trying to decipher illegible handwriting and get invoice review times under control. We spoke to a rep on friday and of course everything LOOKED fine but wanted to get opinions from those that use it, tried to use it, love it, hate it, or list what your experience was while implementing it. How was the onboarding process and... For those that use Jobber, what are your likes and dislikes",
       "url": "https://www.lawnsite.com/threads/for-those-that-use-jobber-what-are-your-likes-and-dislikes.525221/",
-      "created_utc": 1795483086,
+      "created_utc": 1795606537,
       "score": 0,
       "comments": 0,
       "author": "Ocutter73"
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Do you use AI in your business?",
-      "text": "Do you use AI in your business? How are you using it? Are finding it useful? How are you incorporating AI into your day-to-day business operations? I use it to help with marketing copy and had it take a look at my P&L. I’m sure there are other things it can do. @ezra_5296",
-      "url": "https://www.lawnsite.com/threads/do-you-use-ai-in-your-business.525157/",
-      "created_utc": 1795379591,
-      "score": 0,
-      "comments": 0,
-      "author": "JFGLN"
     },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/investing-%E2%80%93-retirement-plans-and-building-wealth.525141/",
@@ -65,7 +65,7 @@
       "title": "AI homemade estimating tools and process",
       "text": "Anyone here built their own etimating tools and process for selling and estimating renovation work? Ive been playing with and using a few tools ive built for sales and estimating processes within my firm. Looking for others having done something similar and or another resource. -Jeremy Florida Leisure Pool & Spa www.FloridaPoolSpa.com",
       "url": "https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
-      "created_utc": 1795513847,
+      "created_utc": 1795574459,
       "score": 0,
       "comments": 0,
       "author": "hinejs"

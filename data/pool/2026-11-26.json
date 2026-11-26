@@ -1,0 +1,123 @@
+[
+  {
+    "id": "discourse:community.n8n.io:330717",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "Matching Freight Invoices With Delivery Records in n8n: Where Custom Logistics Software Development Fits",
+    "text": "Freight invoices do not always match the delivery records held by logistics teams. A carrier may bill for a different shipment quantity, apply an unexpected surcharge, or submit duplicate charges. Manually comparing invoices with proof of delivery, shipment records, and agreed freight rates can slow down accounts payable. n8n can automate much of this matching process by connecting document inputs, databases, validation rules, and exception notifications. This workflow is useful for structured reconciliation, but complex freight operations may eventually need a dedicated logistics application. What the Workflow Needs to Match Before building the automation, identify the records that will be compared. A typical reconciliation process uses: Freight invoice number. Carrier name and carrier reference. Shipment or consignment ID. Delivery date. Origin and destination. Billed weight or quantity. Agreed freight rate. Additional charges and surcharges. Delivery status and proof of delivery reference. The objective is to compare the carrier’s invoice with the shipment and delivery information held by the business. A Practical n8n Workflow Architecture Example flow: document intake → extraction → shipment lookup → validation → reconciliation result Webhook / Schedule Trigger | v Invoice Input | v Extract From File | v Code: Normalise Invoice Fields | v Postgres: Fetch Shipment Records | v Code: Match Invoice With Delivery | v IF Node / \\ Matched Exception | | v v Postgres Slack / Email Update Review Alert | v Reconciliation Summary Step 1: Receive Freight Invoices Invoices can enter the workflow through a Webhook, an email integration, or a scheduled process that checks an approved source. For a simple API-based example, use a Webhook node: { \"invoice_number\": \"INV-8042\", \"carrier\": \"Northline Freight\", \"shipment_id\": \"SHP-2026-104\", \"invoice_amount\": 1850, \"currency\": \"USD\", \"delivery_reference\": \"POD-104\" } The workflow should validate that required fields are present before continuing. If invoices arrive as PDF attachments, the extraction stage must convert the document into structured fields before matching begins. Step 2: Extract Invoice Data Use the Extract From File node when the incoming document is a supported file format. For PDF invoices, use an appropriate extraction method or connected document-processing service if the file requires OCR. The extracted data should be mapped into a consistent structure. For example: { \"invoice_number\": \"INV-8042\", \"shipment_id\": \"SHP-2026-104\", \"carrier\": \"Northline Freight\", \"billed_amount\": 1850, \"currency\": \"USD\", \"base_freight\": 1600, \"fuel_surcharge\": 150, \"other_charges\": 100 } Do not assume every carrier uses the same invoice layout. Build separate extraction and mapping rules where required. Step 3: Normalise the Invoice Fields Use a Code node to standardise values before querying the database. For example, carrier names may appear with different capitalisation or abbreviations. Shipment references may contain spaces or inconsistent formatting. const items = $input.all(); return items.map(item => { const data = item.json; return { json: { invoice_number: String(data.invoice_number || \"\").trim(), shipment_id: String(data.shipment_id || \"\").trim().toUpperCase(), carrier: String(data.carrier || \"\").trim().toLowerCase(), billed_amount: Number(data.billed_amount || 0), currency: String(data.currency || \"\").trim().toUpperCase() } }; }); Configure the Code node to run once for all items when processing multiple invoices together. Add validation for missing or invalid values before sending records to the matching stage. Step 4: Retrieve Delivery Records From Postgres Use the Postgres node to retrieve the shipment and delivery records associated with the invoice. A simplified SQL query could look like this: SELECT shipment_id, carrier_name, delivery_status, delivered_at, agreed_freight, currency, pod_reference FROM shipments WHERE shipment_id = $1; Use parameterised query values rather than i",
+    "url": "https://community.n8n.io/t/matching-freight-invoices-with-delivery-records-in-n8n-where-custom-logistics-software-development-fits/330717",
+    "created_utc": 1795580838,
+    "score": 0,
+    "comments": 1,
+    "author": "alexcarter159",
+    "signals": {
+      "combo": true,
+      "money": 4,
+      "cash": 1,
+      "pain": 1,
+      "engagement": 0.4,
+      "multiplier": 1.1,
+      "score": 21.34,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [
+        "manually"
+      ],
+      "cash_matched": [
+        "$1"
+      ]
+    },
+    "triage_reason": "Matching freight invoices with delivery records manually slows down AP.",
+    "pooled_on": "2026-11-26"
+  },
+  {
+    "id": "discourse:community.shopify.dev:40092",
+    "source": "discourse",
+    "channel": "community.shopify.dev",
+    "group": "ecommerce",
+    "title": "Missing the ability to detect self-inflicted updates",
+    "text": "Especially when syncing information between an external system and Shopify, I have no idea in webhooks who triggered the update. I have no reliable way of ignoring an update because I know it was me who triggered it. If I can give the mutation (either bulk or separate) a unique identifier, and this identifier would be given in the webhook as well, I could just ignore the webhook with an early return rather than having to do a bunch of calculations and possibly creating infinite update loops between the systems. Bonus points if we can do one of the following: in the mutation specify to ignore create/update webhooks for our own webhook subscriptions specify in the webhook subscription whether or not it should accept webhooks from our own app If I can outright block webhooks triggered by my own app, that would save the Shopify servers some processing as well. 1 post - 1 participant Read full topic",
+    "url": "https://community.shopify.dev/t/missing-the-ability-to-detect-self-inflicted-updates/40092",
+    "created_utc": 1795597671,
+    "score": 2,
+    "comments": 0,
+    "author": "Lynn-srs",
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.2,
+      "multiplier": 1.2,
+      "score": 7.44,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Merchants lack a way to identify self-inflicted webhook updates in Shopify.",
+    "pooled_on": "2026-11-26"
+  },
+  {
+    "id": "discourse:community.retool.com:68016",
+    "source": "discourse",
+    "channel": "community.retool.com",
+    "group": "saas",
+    "title": "Export Note component data from Classic app",
+    "text": "Hi, We’ve moved a classic app, with internal notes, over to a React-based app and would like to bring our notes history with us. The top, solved thread from a user with the same issue indicates that posting a new topic is the best way to get an export of that data, so we can then handle it on our own. So here I am. (Or if there’s a workaround I missed, that would be great to know as well.) Any assistance would be appreciated. Thanks! 4 posts - 3 participants Read full topic",
+    "url": "https://community.retool.com/t/export-note-component-data-from-classic-app/68016",
+    "created_utc": 1795548542,
+    "score": 0,
+    "comments": 3,
+    "author": "tucker",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 1.2,
+      "multiplier": 1.25,
+      "score": 3.38,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Retool users lack a native way to export internal notes when migrating apps.",
+    "pooled_on": "2026-11-26"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165993",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "pt-BR glossary for Frappe and ERPNext translations",
+    "text": "Hi everyone, I’m working on the Brazilian Portuguese (pt-BR) translations on Crowdin and would like to agree on a few terms before changing existing strings. The last glossary discussion I found is from 2015 ( Pt-BR: Rules to follow when translate ERPNext to Pt-BR ), from before the move to Crowdin. Today the pt_BR files in the develop branch use different translations for the same term. Counts below are from frappe/locale/pt_BR.po and erpnext/locale/pt_BR.po: English Current pt-BR (count) Proposal Submit Submeter (16), Enviar (5) Submeter Amend Corrigir, Emendar Corrigir Email e-mail (170), E-mail (27), E-Mail (14) E-mail in labels, e-mail inside sentences Workspace Espaço de trabalho (18), Área de trabalho (7) Espaço de trabalho Warehouse Armazém (172), Depósito (22) Armazém Delivery Note Guia de Remessa Nota de Entrega Purchase Receipt Recibo de Compra Recebimento de Compra Payment Entry Pagamentos Lançamento de Pagamento Journal Entry Lançamento Contábil (22), Lançamento no Livro Diário, Entrada de Diário Lançamento Contábil Stock Entry Lançamento no Estoque Movimentação de Estoque Item Item (640), Artigo (3) Item Lead Lead Lead Employee Colaborador Colaborador Sales Invoice Fatura de Venda Fatura de Venda “Guia de Remessa” and “Recibo de Compra” come from European Portuguese usage. In Brazil “recibo” usually means a payment receipt. I also found two strings with the wrong translation attached. Both show users an unrelated message: Date {0} must be in format: {1} Not allowed for {0}: {1} Both are currently translated as “{0}: O tipo de campo {1} para {2} não pode ser indexado”. I’ll suggest corrections for these on Crowdin. Questions: Any objections or better options for the terms above? Brazilian users of ERPNext, especially accountants, would be helpful here. Can the agreed terms be added to the Crowdin project glossary for pt-BR? Who manages it? Who currently has proofreader rights for pt-BR? I’d like to request them so reviewed strings can be approved. There is also a recent post about a full pt_BR.po file ( Missing pt-br translations ). It would be good to apply the same glossary there before it goes into Crowdin. Thanks. 1 post - 1 participant Read full topic",
+    "url": "https://discuss.frappe.io/t/pt-br-glossary-for-frappe-and-erpnext-translations/165993",
+    "created_utc": 1795621038,
+    "score": 0,
+    "comments": 0,
+    "author": "paulo.castilho",
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 3.75,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Translators lack agreement and consistency on pt-BR terms across Frappe and ERPNext.",
+    "pooled_on": "2026-11-26"
+  }
+]

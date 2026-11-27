@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1795714895,
+  "fetched_at": 1795772837,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
@@ -26,7 +26,7 @@
       "title": "Leaf vacuum vs hourly billing: how do you price fall cleanups?",
       "text": "If you bill cleanups hourly, a leaf vac makes you faster but you earn less per job. How do you handle it? Flat rate or hourly plus a vac fee? If flat, what do you base it on (lot size, trees, leaf volume)? Cleanups per day with a 2-person crew: vac vs bagging?",
       "url": "https://www.lawnsite.com/threads/leaf-vacuum-vs-hourly-billing-how-do-you-price-fall-cleanups.525227/",
-      "created_utc": 1795696391,
+      "created_utc": 1795756798,
       "score": 0,
       "comments": 0,
       "author": "chsnun"
@@ -65,10 +65,23 @@
       "title": "Who handles your calls when you're out working?",
       "text": "For you guys running smaller crews, what do you do with calls while you're out on jobs? Let them go to voicemail and call back later, or have somebody answering?",
       "url": "https://www.lawnsite.com/threads/who-handles-your-calls-when-youre-out-working.524999/",
-      "created_utc": 1795713839,
+      "created_utc": 1795757483,
       "score": 0,
       "comments": 0,
       "author": "ken_3584"
+    },
+    {
+      "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/do-you-guys-charge-for-inspections-before-giving-an-estimate.465711/",
+      "source": "rss",
+      "channel": "contractortalk-biz",
+      "group": "trades",
+      "title": "Do you guys charge for inspections before giving an estimate?",
+      "text": "Hey guys, Curious how everyone handles inspections before giving a quote. For smaller jobs, a quick walkthrough is usually enough. But when a homeowner complains about cold rooms, moisture, or possible insulation problems, it can take a lot more time to figure out what's actually going on. I've been looking at using a thermal camera for these inspections. It can help narrow down problem areas, but it still takes time to check everything and explain the findings to the customer. The... Do you guys charge for inspections before giving an estimate?",
+      "url": "https://www.contractortalk.com/threads/do-you-guys-charge-for-inspections-before-giving-an-estimate.465711/",
+      "created_utc": 1795733385,
+      "score": 0,
+      "comments": 0,
+      "author": "khaleety001"
     },
     {
       "id": "rss:contractortalk-biz:https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
@@ -78,7 +91,7 @@
       "title": "AI homemade estimating tools and process",
       "text": "Anyone here built their own etimating tools and process for selling and estimating renovation work? Ive been playing with and using a few tools ive built for sales and estimating processes within my firm. Looking for others having done something similar and or another resource. -Jeremy Florida Leisure Pool & Spa www.FloridaPoolSpa.com",
       "url": "https://www.contractortalk.com/threads/ai-homemade-estimating-tools-and-process.465615/",
-      "created_utc": 1795659128,
+      "created_utc": 1795717109,
       "score": 0,
       "comments": 0,
       "author": "hinejs"

@@ -1,0 +1,88 @@
+[
+  {
+    "id": "discourse:community.n8n.io:331079",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "How can a central egress proxy tell which node or connection an outbound request came from, without modifying the app nodes?",
+    "text": "We run n8n 1.94.1 (self-hosted) and send all outbound traffic through a central forward proxy using HTTP_PROXY / HTTPS_PROXY . The proxy applies the authentication for each external system, so for every outbound call it must know which connection the call belongs to. Two Outlook nodes for different mailboxes call the same host, so the URL doesn’t say which one made the call. What we need is an opaque connection identifier (for example conn-123 ), set at design time per node, that reaches the proxy on every request that node makes, as a header or proxy auth value. We want this without forking or extending the app nodes, because that is hard to maintain across upgrades. I captured the traffic at the proxy. n8n sends the request to the proxy as a plain absolute-URI request (no CONNECT ), so the proxy sees the method, full URL, headers and body. On every call I tested, the request carried no node type, workflow ID or execution ID. Use case tested (built-in nodes) What the proxy received What is missing Outlook app node, list messages GET https://graph.microsoft.com/v1.0/me/messages with the standard headers No node type or connection identifier. The node has no setting to add one (its “Custom Headers” are email headers in the request body) Two Outlook app nodes, different mailboxes, same operation Same host and path Nothing says which node or connection made each call. The only difference is the provider’s own token, which we don’t want to depend on HTTP Request core node with a custom header The header arrived Works, but only the HTTP Request and Code core nodes have such a setting HTTP Request node with the Proxy option ( user:pass ) Arrived as Proxy-Authorization , different per node Only a few built-in node types have this field (HTTP Request, Google Ads, Gong and a few others), and not app nodes like Outlook or Slack Code node calling two services Custom headers arrived on each call Nothing identifies the node, and every call has to set the header in code, looks like wrapping is not avoidable in this case as well because enduser who design workflow may not know the additional fields to be set. From the docs, node authors can pass headers , qs and proxy to the HTTP helpers in code. I found no equivalent setting for the person building the workflow on app nodes. Describe the problem/error/question Is there a supported way to attach per-node metadata, such as a connection identifier, to the outbound requests that built-in and community nodes make? Is there a request hook or interceptor for outbound calls? Is the usual answer to wrap or extend each node? How would you handle a Code node that calls several services in one execution? What is the error message (if any)? Please share your workflow (Select the nodes on your canvas and use the keyboard shortcuts CMD+C/CTRL+C and CMD+V/CTRL+V to copy and paste the workflow.) Share the output returned by the last node Information on your n8n setup n8n version: Database (default: SQLite): n8n EXECUTIONS_PROCESS setting (default: own, main): Running n8n via (Docker, npm, n8n cloud, desktop app): Operating system: 7 posts - 4 participants Read full topic",
+    "url": "https://community.n8n.io/t/how-can-a-central-egress-proxy-tell-which-node-or-connection-an-outbound-request-came-from-without-modifying-the-app-nodes/331079",
+    "created_utc": 1795669765,
+    "score": 1,
+    "comments": 6,
+    "author": "bhaskar1",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 2.5,
+      "multiplier": 1.1,
+      "score": 4.4,
+      "money_matched": [],
+      "pain_matched": [
+        "copy and paste"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Self-hosted integration routing tracking issue needing a solution.",
+    "pooled_on": "2026-11-27"
+  },
+  {
+    "id": "discourse:community.home-assistant.io:1036728",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "WTH can't I see how much each device costs to run in the Energy Dashboard?",
+    "text": "The Energy Dashboard is great for showing me which devices consume the most electricity, but what I really want to know is which devices cost me the most money. With time-of-use tariffs, solar panels and battery storage, energy consumption alone can be quite misleading. A device consuming 5 kWh overnight could cost considerably less to run than one consuming 2 kWh during peak hours. Home Assistant already knows: How much energy each device consumes. How much grid electricity costs. How much energy is supplied by solar and battery storage. How much energy is used to charge the battery. Couldn’t this existing historical data be used to estimate the running cost of each device, without requiring any additional sensors or configuration? For example, hourly electricity costs could be allocated proportionally to devices based on their consumption during that hour, with battery discharge valued using the weighted average cost of charging it. I’d love to see a simple toggle between kWh and monetary cost on the existing individual device usage charts, respecting the selected date range. This would make it much easier to understand where my money is actually going and whether my energy-saving automations are working. Similar requests were made in 2022 and 2024, but this functionality is still missing: WTH!? - Why can't we see electricity cost for individual entities in Energy dashboard? WTH Why doesn't energy dashboard track the cost of individual devices? 3 posts - 3 participants Read full topic",
+    "url": "https://community.home-assistant.io/t/wth-cant-i-see-how-much-each-device-costs-to-run-in-the-energy-dashboard/1036728",
+    "created_utc": 1795715045,
+    "score": 1,
+    "comments": 2,
+    "author": "chris24walsh",
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.9,
+      "multiplier": 1.1,
+      "score": 4.29,
+      "money_matched": [
+        "cost me"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Missing device cost tracking feature in the energy dashboard.",
+    "pooled_on": "2026-11-27"
+  },
+  {
+    "id": "discourse:discuss.frappe.io:165997",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Translating the ui/ Vue components",
+    "text": "Hi everyone, About two weeks ago I opened a feature request on the Frappe repository about translating the shared Vue components in ui/ , and it hasn’t been triaged yet: github.com/frappe/frappe Make user-facing strings in the ui/ Vue components translatable opened 08:11PM - 10 Nov 26 UTC flaviacastro feature-request **Is your feature request related to a problem? Please describe.** The Vue compo … nents in `ui/` hard-code their user-facing text in English. On a site set to another language, this text stays in English while the rest of the desk is translated: - Button labels, placeholders and empty states (e.g. \"Load more\", \"No activity yet\", \"Attach file\") - Tooltips and `aria-label`s, which screen readers announce - Toasts and error messages (e.g. \"Failed to upload the attachment.\") - Counts built by concatenation (e.g. `${count} file${count === 1 ? \"\" : \"s\"}`), which can't be translated at all - Standard field labels, filter options and prop defaults that are built when the module is imported, so they stay in English even when wrapped in `__()`, because the host loads translations later - Doctype field labels and Select options shown in the filter, sort, column and quick filter pickers For teams building on Frappe in non-English markets, this is a real pain. Every new component from `ui/` arrives in English, so we can't ship it to our users as is: we either patch the strings ourselves, which breaks on every update, or we leave screens half translated, with English buttons and placeholders in the middle of an otherwise localized interface. The underlying strings are usually already translated in desk. They just never get the chance to show, because they don't go through `__()`. **Describe the solution you'd like** - Wrap every user-facing string in `ui/src/` with `__()`, using the existing `ui/src/utils/translate` helper. - Replace concatenated strings with placeholder strings (`__(\"{0} files\", [count])`), so translators get the whole sentence and can reorder it. - Use separate singular and plural strings (`__(\"1 file\")` / `__(\"{0} files\", [count])`). - Build translated lists and prop defaults when they're used, not at import. - Show meta field labels and Select options through `__()`, keeping the original value as the option value, as desk does. - Keep the existing English wording, so English users see no change. **Describe alternatives you've considered** - Passing translated labels through props from the host app. This works for labels the host controls, but not for defaults, toasts and `aria-label`s that live inside the components. **Additional context** Affected components: ActivityTimeline, ColumnSettings, Composer, Fields, FileUpload, Filter, GroupBy, Grid, InviteUser, Link, ListView, Notifications, Onboarding, Phone, QuickFilter, SignupBanner, SortBy, TableMultiSelect, TrialBanner and experimental/List. There are certainly other places in the codebase with untranslated strings. This issue starts with the `ui/` library because its components are shared across apps, so each fix there reaches every app that uses them. If this approach works for the maintainers, I'm happy to follow up with the remaining places in separate issues and PRs. **Extracting strings from `.ts` files** While testing, I found that `__()` calls in `.ts` files never reach `main.pot`. `babel_extractors.csv` maps `.js` and `.vue` files, but not `.ts`, so none of the strings in the `ui/src` TypeScript helpers (`getSortOptions.ts`, `getFilterableFields.ts`, `groupBy.ts`, `valueControl.ts` and others) are extracted, even when they're wrapped in `__()`. The proposed change adds the same mapping ERPNext already uses: ``` **.tsx,frappe.gettext.extractors.html_template.extract **.ts,frappe.gettext.extractors.html_template.extract ``` It uses the regex-based `html_template` extractor, the one `.vue` files already go through, so TypeScript syntax doesn't get in the way. **Implementation** The changes are ready in a PR on my fork: https://github.com/flaviacastr",
+    "url": "https://discuss.frappe.io/t/translating-the-ui-vue-components/165997",
+    "created_utc": 1795637759,
+    "score": 6,
+    "comments": 4,
+    "author": "flaviacastro",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.2,
+      "multiplier": 1.25,
+      "score": 2.75,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "UI components hard-coding user-facing strings needing extraction support.",
+    "pooled_on": "2026-11-27"
+  }
+]

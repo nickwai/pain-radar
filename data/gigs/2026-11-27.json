@@ -1,0 +1,62 @@
+[
+  {
+    "id": "discourse:community.home-assistant.io:1036842",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "How the heck do I set up Amazon Alexa in Music Assistant",
+    "text": "I’m really, really struggling with this on my Home Assistant Green device I recently purchased. Any experta out there able to help? Or remote in? I will pay for your time. Thanks, Le01jack 13 posts - 3 participants Read full topic",
+    "url": "https://community.home-assistant.io/t/how-the-heck-do-i-set-up-amazon-alexa-in-music-assistant/1036842",
+    "created_utc": 1795776859,
+    "score": 2,
+    "comments": 12,
+    "author": "leighervin11",
+    "signals": {
+      "combo": true,
+      "money": 1,
+      "cash": 0,
+      "pain": 1,
+      "engagement": 3.0,
+      "multiplier": 1.1,
+      "score": 11.55,
+      "money_matched": [
+        "pay for"
+      ],
+      "pain_matched": [
+        "struggling with"
+      ],
+      "cash_matched": []
+    },
+    "triage_reason": "Poster is offering to pay someone to remote in and help.",
+    "pooled_on": "2026-11-27"
+  },
+  {
+    "id": "discourse:community.home-assistant.io:1036891",
+    "source": "discourse",
+    "channel": "community.home-assistant.io",
+    "group": "automation",
+    "title": "Paid consultation",
+    "text": "Looking for a Home Assistant consultant – London (paid) I’m doing a full house renovation in London and want a Home Assistant consultant to help design and then integrate my smart home. The trades are handled separately by my contractor; I need someone to tie it all together. The setup: Lighting: Shelly relays behind switches in two living areas and the dining area (installed by my electrician) Heating: Drayton Wiser – 3 underfloor heating zones on the ground floor, smart TRVs on radiators across the first and second floors Security: Texecom alarm system Network: separate installer doing cabling, Wi-Fi access points and a comms cupboard AV: handled by a specialist What I need: Design review before first fix: check the electrical, network and heating specs (neutrals, back box depth, Ethernet runs, hub locations, etc.) and confirm what the Texecom installer needs to fit for Home Assistant integration Final setup once all trades have finished: Home Assistant hub, integrations and a simple dashboard Help with key automations, such as: Lighting scenes for the two living areas and the dining area Arming the alarm turns off the lights and sets the heating to eco Other sensible automations you’d recommend Handover with everything in my name and full admin access Please share: Examples of similar Home Assistant installs (ideally with Texecom, Wiser and Shelly) Day rate or fixed price for the design review, setup and automations What ongoing support costs Thanks! 1 post - 1 participant Read full topic",
+    "url": "https://community.home-assistant.io/t/paid-consultation/1036891",
+    "created_utc": 1795790361,
+    "score": 0,
+    "comments": 0,
+    "author": "Patelaadhar",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "Looking for a Home Assistant consultant"
+    },
+    "triage_reason": "Homeowner looking to hire a paid smart home consultant.",
+    "pooled_on": "2026-11-27"
+  }
+]

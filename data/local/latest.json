@@ -1,23 +1,10 @@
 {
-  "fetched_at": 1795772837,
+  "fetched_at": 1795801234,
   "feeds": [
     "lawnsite-bizops",
     "contractortalk-biz"
   ],
   "posts": [
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/gloves.525231/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Gloves",
-      "text": "You cold weather guys. Any recommendations for some great gloves you can work in that will really keep your hands warm but still allow freedom to run a mower and blower with? I want to buy some for the guys as it's really starting to get cold and we still have a month's left of cleanups to do.",
-      "url": "https://www.lawnsite.com/threads/gloves.525231/",
-      "created_utc": 1795608174,
-      "score": 0,
-      "comments": 0,
-      "author": "FLC2000"
-    },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/leaf-vacuum-vs-hourly-billing-how-do-you-price-fall-cleanups.525227/",
       "source": "rss",
@@ -43,19 +30,6 @@
       "score": 0,
       "comments": 0,
       "author": "Ocutter73"
-    },
-    {
-      "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/do-you-guys-ask-for-google-reviews.525017/",
-      "source": "rss",
-      "channel": "lawnsite-bizops",
-      "group": "trades",
-      "title": "Do you guys ask for Google reviews?",
-      "text": "When you finish a job, do you ask the customer for a Google review, or just let them come in on their own? Curious how most of you handle it.",
-      "url": "https://www.lawnsite.com/threads/do-you-guys-ask-for-google-reviews.525017/",
-      "created_utc": 1795619935,
-      "score": 0,
-      "comments": 0,
-      "author": "ken_3584"
     },
     {
       "id": "rss:lawnsite-bizops:https://www.lawnsite.com/threads/who-handles-your-calls-when-youre-out-working.524999/",

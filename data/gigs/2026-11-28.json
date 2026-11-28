@@ -1,0 +1,32 @@
+[
+  {
+    "id": "discourse:discuss.frappe.io:166062",
+    "source": "discourse",
+    "channel": "discuss.frappe.io",
+    "group": "saas",
+    "title": "Remote ERPNext & Frappe Developer (3 Yrs Exp) | Custom Apps, v12–v16, ZATCA, Peppol, POS & APIs",
+    "text": "Hello everyone, Looking for a reliable Remote ERPNext & Frappe Developer to clear your project backlog, build custom apps from scratch, or handle complex third-party integrations? I am a Full-Stack ERPNext & Frappe Consultant with 3 years of hands-on production experience . I partner with businesses, startups, and ERP agencies worldwide on an hourly, fixed-project, or dedicated monthly retainer basis. Core Expertise & Services Custom Frappe App & Module Development (ERPNext v12 – v16): Clean, upgrade-safe customizations using custom DocTypes, hooks, Server & Client Scripts, background workers, automated workflows, permission controllers, Jinja/QWeb print formats, and custom Script Reports. Functional & Technical Mastery Across Core Modules: End-to-end implementation and customization in Accounting, Point of Sale (POS Awesome), Sales, Purchase, Inventory/Stock, HR & Payroll, Manufacturing, and Lending . Government e-Invoicing & Tax Compliance Integrations: Proven production deployments for UAE Peppol e-Invoicing (InvoiceQ) , Saudi Arabia ZATCA (Fatoora Phase 1 & 2) , and Pakistan FBR Digital Invoicing . REST APIs, Webhooks & WhatsApp Automation: Two-way REST API integrations with e-commerce platforms, payment gateways, external ERPs, and automated WhatsApp alerts/document delivery. Database Optimization & Server Management:MariaDB & PostgreSQL query tuning, custom SQL indexing for high-volume sites, legacy data migrations, and Frappe Bench / Ubuntu Linux server deployment, backups, and version upgrades (v12–v16). Hybrid ERP & Frontend Capabilities: Hands-on experience with Vue.js for custom POS/portal interfaces, plus Odoo (v14–v19) for teams running multi-ERP setups or migrating from Odoo to ERPNext. Proven Production Track Record Successfully delivered custom ERPNext and POS solutions across Retail, Multi-Branch Distribution, Manufacturing, Healthcare/Hospital Management, Pharmaceuticals, and Petroleum industries—handling high-transaction POS environments and complex multi-warehouse operations. Why Work With Me? Clean, Maintainable Code: Strict adherence to Frappe best practices so your future version upgrades never break. Direct & Transparent Communication: Overlap with UK, EU, and GCC (UAE/KSA) time zones , daily progress updates, and Git-based workflows. Fast Turnaround: Ready to jump into existing codebases, debug urgent production issues, or architect new modules immediately. Let’s Discuss Your Project Send me a direct message here on the forum, or reach out directly via WhatsApp, Email, or LinkedIn: Email: mumairfqabbasi812@gmail.com WhatsApp / Phone: +92 307 9921460 LinkedIn: https://www.linkedin.com/in/umair-farooq-9706b4304 GitHub: umair2004 (Muhammad Umair Farooq Abbasi) · GitHub Happy to hop on a quick discovery call or share code samples and live project demos. Looking forward to building together! Best regards, Umair Farooq 1 post - 1 participant Read full topic",
+    "url": "https://discuss.frappe.io/t/remote-erpnext-frappe-developer-3-yrs-exp-custom-apps-v12-v16-zatca-peppol-pos-apis/166062",
+    "created_utc": 1795872986,
+    "score": 0,
+    "comments": 0,
+    "author": "umair2004",
+    "signals": {
+      "combo": false,
+      "money": 1,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.25,
+      "score": 3.75,
+      "money_matched": [
+        "invoice"
+      ],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Developer offering remote ERPNext and Frappe custom development services.",
+    "pooled_on": "2026-11-28"
+  }
+]

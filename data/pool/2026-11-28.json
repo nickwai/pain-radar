@@ -1,0 +1,160 @@
+[
+  {
+    "id": "discourse:forum.ghost.org:64345",
+    "source": "discourse",
+    "channel": "forum.ghost.org",
+    "group": "automation",
+    "title": "Native Dynamic Pricing Page with Monthly/Yearly Toggle",
+    "text": "It would be great to have a native way to create a dedicated pricing page in Ghost, with a simple toggle that lets visitors switch between monthly and yearly membership plans. When switching between billing options, the displayed prices and corresponding signup/checkout links would update automatically. This would make it much easier for publishers to present their membership tiers, communicate the savings associated with annual subscriptions, and offer a seamless sign-up experience without relying on custom code or third-party solutions. Ideally, this should integrate directly with Ghost’s existing membership and subscription features, while allowing publishers to customise the layout and appearance of their pricing page. 1 post - 1 participant Read full topic",
+    "url": "https://forum.ghost.org/t/native-dynamic-pricing-page-with-monthly-yearly-toggle/64345",
+    "created_utc": 1795879349,
+    "score": 0,
+    "comments": 0,
+    "author": "ROY",
+    "signals": {
+      "combo": false,
+      "money": 2,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 6.6,
+      "money_matched": [
+        "subscription"
+      ],
+      "pain_matched": [],
+      "cash_matched": []
+    },
+    "triage_reason": "Publishers need a native toggle for monthly and yearly pricing.",
+    "pooled_on": "2026-11-28"
+  },
+  {
+    "id": "discourse:community.n8n.io:331324",
+    "source": "discourse",
+    "channel": "community.n8n.io",
+    "group": "automation",
+    "title": "The \"send\" step has no brakes. I tested adding some",
+    "text": "Every automation builder has this story. A workflow retries after a timeout, and the same client gets the same email twice. Or three times. They never forget it, and neither do you. The problem is that the send step has no brakes. It runs, or it doesn’t. So I tested adding a brake. A rule that says each person gets at most 1 message a day, across all my workflows. Before any send, the workflow asks “may I?” and gets back allow or deny. Here’s what happened: First message to person 1 → allowed Second message to person 1, same day → refused, with “try again in 24 hours” Message to person 2 → allowed (different person, no effect) The workflow retries person 1’s first step after a timeout → doesn’t count as a second message That last one matters most. A retry isn’t a second email. Then the part I like more: shadow mode. You turn the rule on, and for two weeks it blocks nothing. Every send goes through. But it keeps a list: “I would have refused this one, because this person already got a message in the last 24 hours.” After two weeks you read the list and ask, “Would those have been mistakes?” If yes, flip it to auto. If the rule was too strict, change the number first and nothing was ever blocked by accident. Honest limits: I tested this on a test server with made-up people, not live client workflows. It stops repeats. It doesn’t check that the message was the right one. Two questions for you: Has a workflow ever contacted someone twice, or sent something it shouldn’t have? What happened? What would the rule be for you? Once a day per person? Once a week? Only between 9 and 5? And if you run client workflows and want to try this in shadow mode for free, tell me what you’d want it to block. I’m looking for a few builders to test it on one real workflow. 1 post - 1 participant Read full topic",
+    "url": "https://community.n8n.io/t/the-send-step-has-no-brakes-i-tested-adding-some/331324",
+    "created_utc": 1795768123,
+    "score": 0,
+    "comments": 0,
+    "author": "Devansh_Kontey1",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 0.0,
+      "multiplier": 1.1,
+      "score": 0.0,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "hiring": true,
+      "hiring_matched": "looking for a few builders"
+    },
+    "triage_reason": "Automation builders need rate limiting across workflows to prevent duplicate emails.",
+    "pooled_on": "2026-11-28"
+  },
+  {
+    "id": "discourse:community.shopify.com:724391",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "How do you stop subscription renewals automatically when a customer refunds or cancels an order?",
+    "text": "Title: How do you stop subscription renewals automatically when a customer refunds or cancels an order? Quick question for Shopify stores running subscriptions (Recharge, Appstle, Seal, or Shopify Subscriptions): When a customer requests a return, full refund, or order cancellation in Shopify, their recurring subscription contract does not automatically pause or cancel. If support forgets to cancel it manually in the subscription app, the customer gets billed again next month and often files a chargeback. How are you handling this right now? Manual SOPs, Shopify Flow workarounds, or something else? I am considering building a lightweight Shopify app ($19-$39/mo) that listens to Shopify refunds/cancellations and automatically pauses or cancels the matching subscription in Recharge/Appstle/Seal (or sends an instant Slack/email alert with a 1-click link). Would this actually solve a real headache for your store, or do you already have a clean way to handle it? And which subscription app are you using? 3 posts - 2 participants Read full topic",
+    "url": "https://community.shopify.com/t/how-do-you-stop-subscription-renewals-automatically-when-a-customer-refunds-or-cancels-an-order/724391",
+    "created_utc": 1795865360,
+    "score": 2,
+    "comments": 2,
+    "author": "nordic_ecom_ops",
+    "signals": {
+      "combo": true,
+      "money": 4,
+      "cash": 2,
+      "pain": 2,
+      "engagement": 1.0,
+      "multiplier": 1.2,
+      "score": 28.8,
+      "money_matched": [
+        "/mo",
+        "subscription"
+      ],
+      "pain_matched": [
+        "manually",
+        "workaround"
+      ],
+      "cash_matched": [
+        "$19",
+        "$39"
+      ],
+      "always": true
+    },
+    "triage_reason": "Subscription contracts do not automatically stop when a refund occurs.",
+    "pooled_on": "2026-11-28"
+  },
+  {
+    "id": "discourse:community.shopify.com:723614",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Shopify Markets: Consistent EU VAT-inclusive pricing and B2B VAT deduction – API decimal precision limitation",
+    "text": "Hello Shopify Community, We would like to raise an issue affecting merchants selling across the European Union to both B2C and B2B customers. After extensive testing, discussions with Shopify Support and the implementation of a complex workaround, we have managed to achieve an almost satisfactory configuration. However, a technical limitation still prevents us from fully achieving our pricing objectives. 1. Our business requirements We operate Cargoran.com , an Italian e-commerce store on the Shopify Grow plan, using Shopify Tax and the EU OSS scheme. Our requirements are relatively straightforward: Maintain consistent VAT-inclusive retail prices across EU countries, regardless of local VAT rates. Apply the correct VAT rate based on the customer’s destination country. Automatically deduct VAT for eligible intra-EU B2B transactions when a valid VAT number is provided. Allow specific commercial prices for selected products and markets. Preserve Shopify’s native VAT validation functionality, which is already integrated with our ERP through Shopify APIs. For example, a product priced at €185 should remain €185 for B2C customers in Italy, Spain and Croatia, while eligible intra-EU B2B customers should pay the corresponding VAT-exclusive amount. 2. Limitations of Shopify’s native pricing options Unfortunately, neither of the standard configurations fully meets these requirements. Dynamic Tax Display Shopify maintains the original net product price and applies the destination country’s VAT rate. This results in different VAT-inclusive retail prices across EU markets. Fixed prices in Markets catalogs Fixed prices allow merchants to maintain consistent VAT-inclusive prices across markets. However, in our tests, when an eligible EU business enters a valid VAT number, Shopify removes the tax liability without deducting the VAT amount from the fixed product price. The following example illustrates the problem: Customer Expected price Actual price with fixed pricing Italy B2C – VAT 22% €185.00 €185.00 Spain B2C – VAT 21% €185.00 €185.00 Croatia B2C – VAT 25% €185.00 €185.00 Spain eligible B2B €152.89 €185.00 Croatia eligible B2B €148.00 €185.00 Therefore, fixed prices solve the B2C pricing issue but do not meet our B2B VAT deduction requirements. 3. The workaround we implemented To overcome these limitations without relying on third-party VAT applications, we reorganized our entire Shopify Markets configuration. This involved: Creating 14 geographical Markets and 18 dedicated catalogs. Grouping countries according to their VAT rates. Calculating specific percentage adjustments to compensate for VAT differences. Creating additional catalogs for product families requiring different commercial pricing. Using Shopify GraphQL Admin API to configure decimal percentage adjustments. Maintaining Dynamic Tax Display and native VAT number validation. The percentage adjustment required to compensate for VAT differences is calculated as follows: Adjustment (%) = [(1 + origin VAT rate) / (1 + destination VAT rate) − 1] × 100 For an Italian store, this results in: Destination VAT Required adjustment 17% +4.273504% 18% +3.389831% 19% +2.521008% 20% +1.666667% 21% +0.826446% 23% −0.813008% 24% −1.612903% 25% −2.400000% 27% −3.937008% This workaround has been successfully tested for both B2C and B2B customers, allowing us to preserve Shopify’s native VAT validation and our existing ERP integration. 4. The remaining issue: API decimal precision Despite all this work, the final result is still not perfect. Based on our API tests, Shopify appears to limit catalog percentage adjustments to two decimal places, even when using the GraphQL Admin API. The relevant API mutation is priceListUpdate , and the PriceListAdjustmentInput.value field is documented as a Float . However, we are apparently unable to retain more than two decimal places. For example, in Spain: Italian VAT rate: 22% Spanish VAT rate: 21% Mathematically required adjustment: +0.826446% Actual suppo",
+    "url": "https://community.shopify.com/t/shopify-markets-consistent-eu-vat-inclusive-pricing-and-b2b-vat-deduction-api-decimal-precision-limitation/723614",
+    "created_utc": 1795773806,
+    "score": 4,
+    "comments": 3,
+    "author": "Cargoran_Team",
+    "signals": {
+      "combo": true,
+      "money": 0,
+      "cash": 2,
+      "pain": 3,
+      "engagement": 1.6,
+      "multiplier": 1.2,
+      "score": 10.92,
+      "money_matched": [],
+      "pain_matched": [
+        "workaround"
+      ],
+      "cash_matched": [
+        "€185",
+        "€185",
+        "€185.00",
+        "€185.00"
+      ],
+      "always": true
+    },
+    "triage_reason": "Merchant limited by API decimal precision when handling EU B2B/B2C VAT.",
+    "pooled_on": "2026-11-28"
+  },
+  {
+    "id": "discourse:community.shopify.com:724156",
+    "source": "discourse",
+    "channel": "community.shopify.com",
+    "group": "ecommerce",
+    "title": "Selling gift boxes with local pickup? The box's stock count adds up every location",
+    "text": "If you make gift boxes with Shopify’s own Bundles app and also offer local pickup, it’s worth knowing how the box’s stock number gets worked out. The help centre says bundles don’t track inventory by location, only by overall stock. Each component’s total available stock is divided by how many of it go in the box, and the lowest result is what the bundle shows. So if the candles for your box are sitting at the warehouse and the shop shelf is empty, the box can still show as available, because the count is adding every location together. The two minute check is to open the bundle in the Bundles app, note each component and how many go in, then look at each component’s inventory at the one location you actually hand pickups out from. Divide, take the lowest, and compare it with what the bundle says. While you’re in there, look for any component that’s untracked or set to continue selling when out of stock. The help centre says those get ignored completely in the bundle count, which matters if you flipped a few products to keep selling through Black Friday. I couldn’t find a setting that ties a bundle’s count to a single location, so natively the fix is just keeping enough component stock where pickup orders get packed, or moving stock there before a busy weekend. It’s a quick sum, and much nicer than a customer turning up for a box you can’t put together. 7 posts - 7 participants Read full topic",
+    "url": "https://community.shopify.com/t/selling-gift-boxes-with-local-pickup-the-boxs-stock-count-adds-up-every-location/724156",
+    "created_utc": 1795800833,
+    "score": 2,
+    "comments": 6,
+    "author": "dropfeed",
+    "signals": {
+      "combo": false,
+      "money": 0,
+      "cash": 0,
+      "pain": 0,
+      "engagement": 2.6,
+      "multiplier": 1.2,
+      "score": 3.12,
+      "money_matched": [],
+      "pain_matched": [],
+      "cash_matched": [],
+      "always": true
+    },
+    "triage_reason": "Bundles app inventory calculation issues for local pickup locations.",
+    "pooled_on": "2026-11-28"
+  }
+]
